@@ -1,0 +1,10 @@
+{
+  "name": "flow",
+  "description": "Fostering well-being",
+  "version": "0.01",
+  "incognito": "split",
+  "chrome_url_overrides": {
+    "newtab": "app.html"
+  },
+  "manifest_version": 2
+}

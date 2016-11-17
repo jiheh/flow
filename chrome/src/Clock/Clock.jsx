@@ -9,8 +9,8 @@ const Clock = ({ hour, minute }) => (
       left: '0',
       color: 'white',
       fontSize: '34px',
-      padding: '12px',
-      fontFamily: 'Helvetica'
+      padding: '18px',
+      fontFamily: 'Helvetica',
     }}
   >
     {hour}:{minute}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Clock from './Clock.jsx';
 
+const convertMilitaryHour = (hour) => (hour > 12) ? hour - 12 : hour;
+
 class ClockComponent extends Component {
   constructor(props) {
     super(props);
@@ -24,16 +26,21 @@ class ClockComponent extends Component {
     clearInterval(this.clock);
   }
 
+  componentShouldUpate(nextProps, nextState) {
+    return this.state.minute !== nextState.minute;
+  }
+
   tick() {
     const date = new Date();
-    this.hour = date.getHours() + '';
-    this.minute = date.getMinutes() + '';
+    this.hour = `${date.getHours()}`;
+    this.minute = `${date.getMinutes()}`;
     this.setState({ date });
   }
 
+
   render() {
     return (
-      <Clock hour={this.hour} minute={this.minute} />
+      <Clock hour={convertMilitaryHour(this.hour)} minute={this.minute} />
     );
   }
 }

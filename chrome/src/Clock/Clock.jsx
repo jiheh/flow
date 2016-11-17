@@ -11,6 +11,8 @@ const Clock = ({ hour, minute }) => (
       fontSize: '34px',
       padding: '18px',
       fontFamily: '"Century Gothic", Helvetica, Georgia',
+      textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+      zIndex: '1',
     }}
   >
     {hour}:{minute}

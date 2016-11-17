@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
+
 import Clock from '../Clock/ClockComponent.jsx';
+import Docker from '../Docker/DockerContainer.js';
+import Widgets from '../Widgets/WidgetsContainer.js';
 
 const Main = ({ backgroundImage }) => (
   <div
@@ -19,6 +22,7 @@ const Main = ({ backgroundImage }) => (
         left: '-50%',
         width: '200%',
         height: '200%',
+        zIndex: '-1',
       }}
     >
       <img
@@ -33,15 +37,16 @@ const Main = ({ backgroundImage }) => (
           margin: 'auto',
           minWidth: '50%',
           minHeight: '50%',
-          zIndex: '-1',
         }}
       />
     </div>
+    <Docker />
+    <Widgets />
   </div>
 );
 
 Main.propTypes = {
-  backgroundImage: PropTypes.string,
+  backgroundImage: PropTypes.string.isRequired,
 };
 
 export default Main;

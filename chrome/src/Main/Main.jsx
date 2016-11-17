@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+import { propTypes as backgroundImagePropTypes } from '../reducers/backgroundImage';
 import Clock from '../Clock/ClockComponent.jsx';
 import Docker from '../Docker/DockerContainer.js';
 import Widgets from '../Widgets/WidgetsContainer.js';
@@ -46,7 +47,7 @@ const Main = ({ backgroundImage }) => (
 );
 
 Main.propTypes = {
-  backgroundImage: PropTypes.string.isRequired,
+  ...backgroundImagePropTypes,
 };
 
 export default Main;

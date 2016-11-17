@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+
 import MeditationWidget from '../MeditationWidget/MeditationWidget.jsx';
+import { propTypes } from '../reducers/meditationWidget';
 
 const Widgets = ({ meditationWidget }) => (
   <div className="widgets">
@@ -7,10 +9,6 @@ const Widgets = ({ meditationWidget }) => (
   </div>
 );
 
-Widgets.propTypes = {
-  meditationWidget: PropTypes.shape({
-    visible: PropTypes.bool.isRequired,
-  }),
-};
+Widgets.propTypes = propTypes;
 
 export default Widgets;

@@ -1,7 +1,14 @@
 import { createAction, handleActions } from 'redux-actions';
+import { PropTypes } from 'react';
 
 const initialState = {
   visible: false,
+};
+
+export const propTypes = {
+  meditationWidget: PropTypes.shape({
+    visible: PropTypes.bool.isRequired,
+  }),
 };
 
 export const TOGGLE_MEDITATION_VISIBLE = 'TOGGLE_MEDITATION_VISIBLE';

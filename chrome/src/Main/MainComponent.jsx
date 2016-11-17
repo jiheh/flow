@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+
+import { propTypes as backgroundImagePropTypes } from '../reducers/backgroundImage';
 import Main from './Main.jsx';
 
 class MainComponent extends Component {
@@ -16,8 +18,8 @@ class MainComponent extends Component {
 }
 
 MainComponent.propTypes = {
-  getBackgroundImage: PropTypes.func,
-  backgroundImage: PropTypes.string,
+  getBackgroundImage: PropTypes.func.isRequired,
+  ...backgroundImagePropTypes,
 };
 
 export default MainComponent;

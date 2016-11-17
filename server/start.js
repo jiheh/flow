@@ -1,10 +1,10 @@
 'use strict';
 
-var app = require('./app');
-var db = require('./db');
+let app = require('./app');
+let db = require('./db');
 
-var port = 8080;
-var server = app.listen(port, function (err) {
+let port = 8080;
+let server = app.listen(port, function (err) {
   if (err) throw err;
   console.log(`Server is listening to port ${port}!`);
   db.sync()

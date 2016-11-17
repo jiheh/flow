@@ -1,15 +1,15 @@
 'use strict';
 
-var router = require('express').Router();
+let router = require('express').Router();
 
-var HttpError = require('../utils/HttpError');
+let HttpError = require('../utils/HttpError');
 
 router.use(HttpError(404).middleware());
 
 router.use(function (err, req, res, next) {
   err.status = err.status || 500;
   console.error(err.stack);
-  var html = [
+  let html = [
     '<html><body>',
     '<p>ERROR: ', err.status, ' - ', err.message, '</p>',
     '<p>VERB: ', req.method, '</p>',

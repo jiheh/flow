@@ -1,15 +1,15 @@
 'use strict'; 
 
-var app = require('express')();
-var path = require('path');
-var User = require('../api/users/user.model');
-var passport = require('passport');
+let app = require('express')();
+let path = require('path');
+let User = require('../api/users/user.model');
+let passport = require('passport');
 
 app.use(require('./logging.middleware'));
 app.use(require('./request-state.middleware'));
 app.use(require('./statics.middleware'));
 
-var session = require('express-session');
+let session = require('express-session');
 
 app.use(session({
   secret: 'supersecret'
@@ -45,8 +45,8 @@ app.use('/api', require('../api/api.router'));
 
 app.use('/auth', require('../auth'));
 
-var validFrontendRoutes = ['/', '/users', '/users/:id', '/signup', '/login', '/:abc'];
-var indexPath = path.join(__dirname, '..', '..', 'browser', 'index.html');
+let validFrontendRoutes = ['/', '/users', '/users/:id', '/signup', '/login', '/:abc'];
+let indexPath = path.join(__dirname, '..', '..', 'browser', 'index.html');
 validFrontendRoutes.forEach(function (stateRoute) {
   app.get(stateRoute, function (req, res) {
     res.sendFile(indexPath);

@@ -1,10 +1,10 @@
 'use strict';
 
-var Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
 
-var databaseURI = 'postgres://localhost:5432/flow';
+let databaseURI = 'postgres://localhost:5432/flow';
 
-var db = new Sequelize(databaseURI, {
+let db = new Sequelize(databaseURI, {
     define: {
         timestamps: false,
         underscored: true

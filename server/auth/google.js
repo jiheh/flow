@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('../api/users/user.model');
+let express = require('express');
+let router = express.Router();
+let passport = require('passport');
+let GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+let User = require('../api/users/user.model');
 module.exports = router;
 
 // BASE PATH: /auth/google

@@ -1,10 +1,10 @@
 'use strict';
 
-var Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
 
-var db = require('../../_db');
+let db = require('../../_db');
 
-var User = db.define('user', {
+let User = db.define('user', {
   name: Sequelize.STRING,
   photo: {
     type: Sequelize.STRING,

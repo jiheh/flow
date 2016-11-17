@@ -1,9 +1,9 @@
 'use strict';
 
-var router = require('express').Router();
+let router = require('express').Router();
 
-var HttpError = require('../../utils/HttpError');
-var User = require('./user.model');
+let HttpError = require('../../utils/HttpError');
+let User = require('./user.model');
 
 router.param('id', function (req, res, next, id) {
   User.findById(id)

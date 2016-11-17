@@ -1,9 +1,9 @@
 'use strict'; 
 
-var router = require('express').Router();
+let router = require('express').Router();
 
 router.use(function (req, res, next) {
-  var bodyString = '';
+  let bodyString = '';
   req.on('data', function (chunk) {
     bodyString += chunk;
   });

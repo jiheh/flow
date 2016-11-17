@@ -1,7 +1,7 @@
 'use strict';
 
-var db = require('./_db');
+let db = require('./_db');
 
-var User = require('./api/users/user.model');
+let User = require('./api/users/user.model');
 
 module.exports = db;

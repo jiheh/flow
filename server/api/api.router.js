@@ -1,6 +1,6 @@
 'use strict';
 
-var router = require('express').Router();
+let router = require('express').Router();
 
 router.use('/users', require('./users/user.router'));
 

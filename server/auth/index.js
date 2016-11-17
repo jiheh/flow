@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var User = require('../api/users/user.model');
+let express = require('express');
+let router = express.Router();
+let User = require('../api/users/user.model');
 module.exports = router;
 
 router.post('/login', function (req, res, next) {

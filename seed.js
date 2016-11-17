@@ -1,17 +1,17 @@
 'use strict';
 
-var chance = require('chance')(123);
-var Promise = require('bluebird');
+let chance = require('chance')(123);
+let Promise = require('bluebird');
 
-var db = require('./server/db');
-var User = require('./server/api/users/user.model');
+let db = require('./server/db');
+let User = require('./server/api/users/user.model');
 
-var numUsers = 100;
+let numUsers = 100;
 
-var emails = chance.unique(chance.email, numUsers);
+let emails = chance.unique(chance.email, numUsers);
 
 function doTimes (n, fn) {
-  var results = [];
+  let results = [];
   while (n--) {
     results.push(fn());
   }
@@ -19,8 +19,8 @@ function doTimes (n, fn) {
 }
 
 function randPhoto () {
-  var g = chance.pick(['men', 'women']);
-  var n = chance.natural({
+  let g = chance.pick(['men', 'women']);
+  let n = chance.natural({
     min: 0,
     max: 96
   });
@@ -39,7 +39,7 @@ function randUser () {
 }
 
 function generateUsers () {
-  var users = doTimes(numUsers, randUser);
+  let users = doTimes(numUsers, randUser);
   users.push(User.build({
     name: 'Zeke Nierenberg',
     photo: 'http://learndotresources.s3.amazonaws.com/workshop/55e5c92fe859dc0300619bc8/zeke-astronaut.png',

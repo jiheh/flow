@@ -5,25 +5,17 @@ let Sequelize = require('sequelize');
 let db = require('../../_db');
 
 let User = db.define('user', {
-  name: Sequelize.STRING,
-  photo: {
-    type: Sequelize.STRING,
-    defaultValue: '/images/default-photo.jpg'
+  name:{
+    type:Sequelize.STRING,
+    allowNull:false
   },
-  phone: Sequelize.STRING,
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      isEmail: true
-    }
-  },
-  password: Sequelize.STRING,
-  isAdmin: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
+  email:{
+    type:Sequelize.STRING,
+    isEmail:true,
+    allowNull:false
   }
 });
 
 module.exports = User;
+
+

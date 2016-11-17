@@ -10,7 +10,7 @@ const Clock = ({ hour, minute }) => (
       color: 'white',
       fontSize: '34px',
       padding: '18px',
-      fontFamily: 'Helvetica',
+      fontFamily: '"Century Gothic", Helvetica, Georgia',
     }}
   >
     {hour}:{minute}

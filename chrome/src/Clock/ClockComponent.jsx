@@ -40,7 +40,7 @@ class ClockComponent extends Component {
 
   render() {
     return (
-      <Clock hour={convertMilitaryHour(this.hour)} minute={this.minute} />
+      <Clock hour={`${convertMilitaryHour(this.hour)}`} minute={this.minute} />
     );
   }
 }

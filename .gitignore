@@ -1,1 +1,3 @@
 node_modules
+chrome/node_modules
+chrome/bundle.js*

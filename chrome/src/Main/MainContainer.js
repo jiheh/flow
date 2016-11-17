@@ -11,7 +11,8 @@ const mapDispatchToProps = () => dispatch => ({
   getBackgroundImage: () => {
     axios.get('https://www.reddit.com/r/earthporn/random/.json')
       .then(({ data }) => {
-        const result = `${data[0].data.children[0].data.url}`;
+        let result = `${data[0].data.children[0].data.url}`;
+        if(result.includes('imgur')) { result += '.jpg'; }
         dispatch(setImageUrl(result));
       })
       .catch(console.error);

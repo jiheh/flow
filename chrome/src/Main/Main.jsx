@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Clock from '../Clock/ClockComponent.jsx';
 
 const Main = ({ backgroundImage }) => (
   <div
@@ -6,16 +7,18 @@ const Main = ({ backgroundImage }) => (
       position: 'fixed',
       top: '0',
       left: '0',
-      zIndex: '-1',
       width: '100%',
       height: '100%',
     }}
   >
+    <Clock />
     <img
+      role="presentation"
       src={backgroundImage}
       style={{
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
+        zIndex: '-1',
       }}
     />
   </div>

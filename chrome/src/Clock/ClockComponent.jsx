@@ -29,7 +29,7 @@ class ClockComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.date.minute !== nextState.date.minute;
+    return this.state.date.getMinutes() !== nextState.date.getMinutes();
   }
 
   componentWillUnmount() {

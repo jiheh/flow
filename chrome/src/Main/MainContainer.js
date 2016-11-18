@@ -34,8 +34,14 @@ const imageSubreddits = [
   'viewporn',
 ];
 
-const mapStateToProps = ({ backgroundImage }) => ({
+const mapStateToProps = ({
   backgroundImage,
+  settings,
+  showSettingsPanel,
+}) => ({
+  backgroundImage,
+  settings,
+  showSettingsPanel,
 });
 
 const mapDispatchToProps = () => dispatch => ({

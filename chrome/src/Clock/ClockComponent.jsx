@@ -16,8 +16,8 @@ class ClockComponent extends Component {
     super(props);
 
     const date = new Date();
-    this.hour = convertMilitaryHour(date.getHours() + '');
-    this.minute = padMinutes(date.getMinutes() + '');
+    this.hour = date.getHours() + '';
+    this.minute = date.getMinutes() + '';
 
     this.state = {
       date: new Date(),

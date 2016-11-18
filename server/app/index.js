@@ -12,7 +12,9 @@ app.use(require('./statics.middleware'));
 let session = require('express-session');
 
 app.use(session({
-  secret: 'supersecret'
+  secret: 'supersecret',
+  resave: false,
+  saveUninitialized: true
 }));
 
 app.use(passport.initialize());

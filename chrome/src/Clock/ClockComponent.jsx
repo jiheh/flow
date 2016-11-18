@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Clock from './Clock.jsx';
 
-const convertMilitaryHour = (hour) => {
+let convertMilitaryHour = (hour) => {
   if (hour === '0') { return '12'; }
   else return (+hour > 12) ? `${+hour - 12}` : hour;
 };
 
-const padMinutes = (minutes) => {
+let padMinutes = (minutes) => {
   if (+minutes > 9) { return minutes; }
   return `0${minutes}`;
 };
@@ -15,7 +15,7 @@ class ClockComponent extends Component {
   constructor(props) {
     super(props);
 
-    const date = new Date();
+    let date = new Date();
     this.hour = `${date.getHours()}`;
     this.minute = padMinutes(date.getMinutes() + '');
 
@@ -39,7 +39,7 @@ class ClockComponent extends Component {
   }
 
   tick() {
-    const date = new Date();
+    let date = new Date();
     this.hour = date.getHours() + '';
     this.minute = padMinutes(date.getMinutes() + '');
     this.setState({ date });

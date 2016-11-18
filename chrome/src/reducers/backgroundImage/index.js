@@ -1,14 +1,14 @@
 import { createAction, handleActions } from 'redux-actions';
 import { PropTypes } from 'react';
 
-const initialState = '';
+let initialState = '';
 
-export const propTypes = {
+export let propTypes = {
   backgroundImage: PropTypes.string.isRequired,
 };
 
-export const SET_IMAGE_URL = 'SET_IMAGE_URL';
-export const setImageUrl = createAction(SET_IMAGE_URL);
+export let SET_IMAGE_URL = 'SET_IMAGE_URL';
+export let setImageUrl = createAction(SET_IMAGE_URL);
 
 export default handleActions({
   SET_IMAGE_URL: (state, { payload }) => {

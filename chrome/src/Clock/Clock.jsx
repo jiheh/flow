@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Clock = ({ hour, minute }) => (
+let Clock = ({ hour, minute }) => (
   <div
     className="clock"
     style={{

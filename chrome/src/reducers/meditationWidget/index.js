@@ -1,18 +1,18 @@
 import { createAction, handleActions } from 'redux-actions';
 import { PropTypes } from 'react';
 
-const initialState = {
+let initialState = {
   visible: false,
 };
 
-export const propTypes = {
+export let propTypes = {
   meditationWidget: PropTypes.shape({
     visible: PropTypes.bool.isRequired,
   }),
 };
 
-export const TOGGLE_MEDITATION_VISIBLE = 'TOGGLE_MEDITATION_VISIBLE';
-export const toggleMeditationVisible = createAction(TOGGLE_MEDITATION_VISIBLE);
+export let TOGGLE_MEDITATION_VISIBLE = 'TOGGLE_MEDITATION_VISIBLE';
+export let toggleMeditationVisible = createAction(TOGGLE_MEDITATION_VISIBLE);
 
 export default handleActions({
   TOGGLE_MEDITATION_VISIBLE: (state, { payload }) => {

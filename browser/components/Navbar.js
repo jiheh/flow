@@ -68,9 +68,9 @@ class Navbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapProps = ({ currentUser }) => ({ currentUser });
+let mapProps = ({ currentUser }) => ({ currentUser });
 
-const mapDispatch = dispatch => ({ 
+let mapDispatch = dispatch => ({ 
   logout: () => {
     dispatch(logout())
     browserHistory.push('/');

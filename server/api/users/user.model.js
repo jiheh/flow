@@ -4,17 +4,10 @@ let Sequelize = require('sequelize');
 
 let db = require('../../_db');
 
-let User = db.define('user', {
-  name:{
-    type:Sequelize.STRING,
-    allowNull:false
-  },
-  email:{
-    type:Sequelize.STRING,
-    isEmail:true,
-    allowNull:false
-  }
-});
+let User = db.define('users', {
+   
+})
+
 
 module.exports = User;
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { setImageUrl } from '../reducers/backgroundImage';
 import MainComponent from './MainComponent.jsx';
 
-const imageSubreddits = [
+let imageSubreddits = [
   'earthporn',
   'botanicalporn',
   'waterporn',
@@ -34,13 +34,13 @@ const imageSubreddits = [
   'viewporn',
 ];
 
-const mapStateToProps = ({ backgroundImage }) => ({
+let mapStateToProps = ({ backgroundImage }) => ({
   backgroundImage,
 });
 
-const mapDispatchToProps = () => dispatch => ({
+let mapDispatchToProps = () => dispatch => ({
   getBackgroundImage: () => {
-    const subreddit = imageSubreddits[Math.floor(Math.random() * imageSubreddits.length)];
+    let subreddit = imageSubreddits[Math.floor(Math.random() * imageSubreddits.length)];
 
     axios.get(`https://www.reddit.com/r/${subreddit}/random/.json`)
       .then(({ data }) => {

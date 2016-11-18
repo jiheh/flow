@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Widgets from './Widgets.jsx';
 
-const mapStateToProps = ({
+let mapStateToProps = ({
   meditationWidget,
 }) => ({
   meditationWidget,

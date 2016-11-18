@@ -5,7 +5,8 @@
   "main": "server/start.js",
   "scripts": {
     "start": "webpack -w & nodemon server/start.js",
-    "test": "mocha --watch --compilers js:babel-register server/api/**/*.test.js"
+    "test": "mocha --watch --compilers js:babel-register server/api/**/*.test.js",
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",

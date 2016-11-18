@@ -3,13 +3,13 @@ import Docker from './Docker.jsx';
 import { toggleMeditationVisible } from '../reducers/meditationWidget';
 
 
-const mapStateToProps = ({
+let mapStateToProps = ({
   meditationWidget,
 }) => ({
   meditationWidget,
 });
 
-const mapDispatchToProps = () => dispatch => ({
+let mapDispatchToProps = () => dispatch => ({
   toggleMeditationVisibility: () => {
     dispatch(toggleMeditationVisible());
   },

@@ -9,7 +9,7 @@ class MainComponent extends Component {
   }
 
   render() {
-    const { backgroundImage } = this.props;
+    let { backgroundImage } = this.props;
 
     return (
       <Main backgroundImage={backgroundImage} />

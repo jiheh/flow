@@ -5,7 +5,7 @@ import Clock from '../Clock/ClockComponent.jsx';
 import Docker from '../Docker/DockerContainer.js';
 import Widgets from '../Widgets/WidgetsContainer.js';
 
-const Main = ({ backgroundImage }) => (
+let Main = ({ backgroundImage }) => (
   <div
     style={{
       position: 'fixed',

@@ -1,9 +1,9 @@
 'use strict';
 
-const Sequelize = require('sequelize');
-const db = require('../../_db');
+let Sequelize = require('sequelize');
+let db = require('../../_db');
 
-const Organization = db.define('organization', {
+let Organization = db.define('organization', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -32,6 +32,10 @@ const Organization = db.define('organization', {
     validate: {
       notEmpty: true
     }
+  },
+  numberOfStudents: {
+    type:Sequelize.INTEGER,
+    defaultValue:0
   }
 });
 

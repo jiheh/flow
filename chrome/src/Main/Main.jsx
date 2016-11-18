@@ -11,6 +11,7 @@ import ToggleSettingsPanel from '../ToggleSettingsPanel/ToggleSettingsPanelConta
 
 const Main = ({
   backgroundImage,
+  backgroundVideo,
   settings,
   showSettingsPanel,
   saveSettings,
@@ -25,6 +26,7 @@ const Main = ({
     }}
   >
     {settings.showClock && <Clock />}
+    {!settings.showVideo &&
     <div
       style={{
         position: 'fixed',
@@ -50,11 +52,26 @@ const Main = ({
         }}
       />
     </div>
+    }
+    {settings.showVideo &&
+     <div className="video"
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        zIndex: '-1',
+        width: '100%',
+        height: '100%',
+      }}
+     >
+       <video src={backgroundVideo} autoPlay loop />
+     </div>
+    }
     <Docker />
     <ToggleSettingsPanel />
     {showSettingsPanel &&
      <SettingsPanel
-        saveSettings={saveSettings}
+       saveSettings={saveSettings}
      />
     }
     <Widgets />
@@ -63,7 +80,7 @@ const Main = ({
 
 Main.propTypes = {
   ...backgroundImagePropTypes,
-  ...settingsPropTypes,
+  settings: PropTypes.shape(...settingsPropTypes),
   ...showSettingsPanelPropTypes,
   saveSettings: PropTypes.func.isRequired,
 };

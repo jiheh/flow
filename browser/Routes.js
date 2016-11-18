@@ -6,16 +6,16 @@ import Home from './components/Home';
 import { Login, Signup } from './components/Auth';
 import UserList from './components/User/UserList';
 import UserDetail from './components/User/UserDetail';
-import { fetchUsers } from './redux/users';
-import { retrieveLoggedInUser } from './redux/auth';
+import { fetchUsers } from './reducers/organization';
+import { retrieveLoggedInUser } from './reducers/auth';
 
 /* -----------------    COMPONENT     ------------------ */
 
 const Routes = ({ fetchInitialData }) => (
   <Router history={browserHistory}>
-    <Route path="/" component={Root} onEnter={fetchInitialData}>
+    <Route path="/" component={Root}>
       <IndexRoute component={Home} />
-      <Route path="login" component={Login} />
+      <Route path="login" component={Login} onEnter={fetchInitialData}/>
       <Route path="signup" component={Signup} />
       <Route path="users" component={UserList} />
       <Route path="users/:id" component={UserDetail} />

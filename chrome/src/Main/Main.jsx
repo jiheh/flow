@@ -24,7 +24,7 @@ const Main = ({
       height: '100vh',
     }}
   >
-    { settings.showClock && <Clock /> }
+    {settings.showClock && <Clock />}
     <div
       style={{
         position: 'fixed',

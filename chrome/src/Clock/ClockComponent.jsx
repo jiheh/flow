@@ -16,6 +16,7 @@ class ClockComponent extends Component {
     super(props);
 
     const date = new Date();
+
     const hour = date.getHours() + '';
     const minute = date.getMinutes() + '';
 

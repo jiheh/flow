@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { setImageUrl } from '../reducers/backgroundImage';
+import { setVideoUrl } from '../reducers/backgroundVideo';
 import MainComponent from './MainComponent.jsx';
+import { setSettings } from '../reducers/settings';
 
 const imageSubreddits = [
   'earthporn',
@@ -34,8 +36,16 @@ const imageSubreddits = [
   'viewporn',
 ];
 
-const mapStateToProps = ({ backgroundImage }) => ({
+const mapStateToProps = ({
   backgroundImage,
+  backgroundVideo,
+  settings,
+  showSettingsPanel,
+}) => ({
+  backgroundImage,
+  backgroundVideo,
+  settings,
+  showSettingsPanel,
 });
 
 const mapDispatchToProps = () => dispatch => ({
@@ -54,6 +64,15 @@ const mapDispatchToProps = () => dispatch => ({
       // TODO: error handling
       .catch(console.error);
   },
+
+  saveSettings: (settings) => {
+    dispatch(setSettings(settings));
+  },
+
+  getBackgroundVideo: () => {
+    const videoUrl = '../../assets/videos/1.mp4';
+    dispatch(setVideoUrl(videoUrl));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);

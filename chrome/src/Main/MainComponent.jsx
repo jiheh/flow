@@ -17,11 +17,11 @@ class MainComponent extends Component {
   componentDidMount() {
     const { settings } = this.props;
 
-    if (settings.showVideo) {
+    /* if (settings.showVideo) {*/
       this.props.getBackgroundVideo();
-    } else if (settings.showImage) {
+    /* } else if (settings.showImage) {*/
       this.props.getBackgroundImage();
-    }
+    /* }*/
 
     console.log('mounting settings panel component');
     chrome.storage.sync.get(defaultSettings, (settings) => {

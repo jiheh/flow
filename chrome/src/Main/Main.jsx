@@ -56,7 +56,7 @@ const Main = ({
     {settings.showVideo &&
      <div className="video"
       style={{
-        position: 'fixied',
+        position: 'fixed',
         top: '0',
         left: '0',
         zIndex: '-1',

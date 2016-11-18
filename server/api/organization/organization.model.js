@@ -1,10 +1,9 @@
 'use strict';
 
-let Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
+const db = require('../../_db');
 
-let db = require('../../_db');
-
-let Organization = db.define('organization', {
+const Organization = db.define('organization', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,

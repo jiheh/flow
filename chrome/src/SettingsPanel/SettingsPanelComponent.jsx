@@ -8,7 +8,7 @@ import {
 
 class SettingsPanelComponent extends Component {
   static propTypes = {
-    ...settingsPropTypes,
+    settings: PropTypes.shape(...settingsPropTypes),
     saveSettings: PropTypes.func,
   }
 
@@ -24,12 +24,31 @@ class SettingsPanelComponent extends Component {
     });
   }
 
+  toggleBackgroundMode = () => {
+    const { settings } = this.props;
+
+    chrome.storage.sync.set({
+      ...settings,
+      showVideo: !settings.showVideo,
+      showImage: !settings.showImage,
+    }, () => {
+      console.log('toggled background mode, saving to browser');
+      this.props.saveSettings(
+        {...settings,
+          showVideo: !settings.showVideo,
+          showImage: !settings.showImage
+        });
+    })
+  }
+
+
   render() {
     const { settings } = this.props;
 
     return (
       <SettingsPanel
         toggleClock={this.toggleClock}
+        toggleBackgroundMode={this.toggleBackgroundMode}
         settings={settings}
       />
     );

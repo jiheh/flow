@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 
 import { propTypes as backgroundImagePropTypes } from '../reducers/backgroundImage';
+import { propTypes as settingsPropTypes } from '../reducers/settings';
+import { propTypes as showSettingsPanelPropTypes } from '../reducers/showSettingsPanel';
 import Clock from '../Clock/ClockComponent.jsx';
 import Docker from '../Docker/DockerContainer.js';
 import Widgets from '../Widgets/WidgetsContainer.js';
@@ -11,6 +13,7 @@ const Main = ({
   backgroundImage,
   settings,
   showSettingsPanel,
+  saveSettings,
 }) => (
   <div
     style={{
@@ -49,13 +52,20 @@ const Main = ({
     </div>
     <Docker />
     <ToggleSettingsPanel />
-    {showSettingsPanel && <SettingsPanel />}
+    {showSettingsPanel &&
+     <SettingsPanel
+        saveSettings={saveSettings}
+     />
+    }
     <Widgets />
   </div>
 );
 
 Main.propTypes = {
   ...backgroundImagePropTypes,
+  ...settingsPropTypes,
+  ...showSettingsPanelPropTypes,
+  saveSettings: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -6,7 +6,7 @@ const Clock = ({ hour, minute }) => (
     style={{
       position: 'fixed',
       top: '0',
-      left: '0',
+      left: '600px',
       color: 'white',
       fontSize: '34px',
       padding: '18px',

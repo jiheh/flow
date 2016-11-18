@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { setImageUrl } from '../reducers/backgroundImage';
 import MainComponent from './MainComponent.jsx';
+import { setSettings } from '../reducers/settings';
 
 const imageSubreddits = [
   'earthporn',
@@ -59,6 +60,10 @@ const mapDispatchToProps = () => dispatch => ({
       })
       // TODO: error handling
       .catch(console.error);
+  },
+
+  saveSettings: (settings) => {
+    dispatch(setSettings(settings));
   },
 });
 

@@ -12,12 +12,6 @@ class SettingsPanelComponent extends Component {
     saveSettings: PropTypes.func,
   }
 
-  componentDidMount() {
-    chrome.storage.sync.get(defaultSettings, (settings) => {
-      this.props.saveSettings(settings);
-    });
-  }
-
   toggleClock = () => {
     const { settings } = this.props;
 
@@ -25,6 +19,7 @@ class SettingsPanelComponent extends Component {
       ...settings,
       showClock: !settings.showClock
     }, () => {
+      console.log('saving settings');
       this.props.saveSettings({...settings, showClock: !settings.showClock});
     });
   }

@@ -1,11 +1,20 @@
 import React, { PropTypes } from 'react';
 
 import { propTypes as backgroundImagePropTypes } from '../reducers/backgroundImage';
+import { propTypes as settingsPropTypes } from '../reducers/settings';
+import { propTypes as showSettingsPanelPropTypes } from '../reducers/showSettingsPanel';
 import Clock from '../Clock/ClockComponent.jsx';
 import Docker from '../Docker/DockerContainer.js';
 import Widgets from '../Widgets/WidgetsContainer.js';
+import SettingsPanel from '../SettingsPanel/SettingsPanelContainer.js';
+import ToggleSettingsPanel from '../ToggleSettingsPanel/ToggleSettingsPanelContainer.js';
 
-const Main = ({ backgroundImage }) => (
+const Main = ({
+  backgroundImage,
+  settings,
+  showSettingsPanel,
+  saveSettings,
+}) => (
   <div
     style={{
       position: 'fixed',
@@ -15,7 +24,7 @@ const Main = ({ backgroundImage }) => (
       height: '100vh',
     }}
   >
-    <Clock />
+    {settings.showClock && <Clock />}
     <div
       style={{
         position: 'fixed',
@@ -42,12 +51,21 @@ const Main = ({ backgroundImage }) => (
       />
     </div>
     <Docker />
+    <ToggleSettingsPanel />
+    {showSettingsPanel &&
+     <SettingsPanel
+        saveSettings={saveSettings}
+     />
+    }
     <Widgets />
   </div>
 );
 
 Main.propTypes = {
   ...backgroundImagePropTypes,
+  ...settingsPropTypes,
+  ...showSettingsPanelPropTypes,
+  saveSettings: PropTypes.func.isRequired,
 };
 
 export default Main;

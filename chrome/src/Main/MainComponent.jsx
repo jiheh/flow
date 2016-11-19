@@ -11,7 +11,7 @@ class MainComponent extends Component {
     getBackgroundImage: PropTypes.func.isRequired,
     ...backgroundImagePropTypes,
     ...backgroundVideoPropTypes,
-    settings: PropTypes.shape(...settingsPropTypes),
+    settings: PropTypes.shape(settingsPropTypes),
   };
 
   componentDidMount() {

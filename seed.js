@@ -70,7 +70,8 @@ function seed () {
 
 db.sync({force: true})
 .then(function () {
-  return seed();
+  // return seed();
+  return 
 })
 .then(function () {
   console.log('Seeding successful');

@@ -9,6 +9,7 @@ import Widgets from '../Widgets/WidgetsContainer.js';
 import SettingsPanel from '../SettingsPanel/SettingsPanelContainer.js';
 import ToggleSettingsPanel from '../ToggleSettingsPanel/ToggleSettingsPanelContainer.js';
 
+
 const Main = ({
   backgroundImage,
   backgroundVideo,

@@ -13,7 +13,7 @@ class UserDetail extends React.Component {
 	}
 
 	render() {
-    const { user, currentUser } = this.props;
+    let { user, currentUser } = this.props;
     if (!user) return <div></div>  // the user id is invalid or data isn't loaded yet
 		return (
 			<div className="container">
@@ -47,21 +47,21 @@ class UserDetail extends React.Component {
 
 	onSubmit(event) {
 		event.preventDefault()
-		const { user } = this.props;
+		let { user } = this.props;
 		event.target.title.value = "";
 	}
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ users, currentUser }, ownProps) => {
-  const param_id = Number(ownProps.params.id);
+let mapState = ({ users, currentUser }, ownProps) => {
+  let param_id = Number(ownProps.params.id);
   return { 
     user:    _.find(users, user => user.id === param_id), 
     currentUser
   }
 }
 
-const mapDispatch = {  }
+let mapDispatch = {  }
 
 export default connect(mapState, mapDispatch)(UserDetail);

@@ -11,7 +11,7 @@ class UserItem extends React.Component {
 		this.removeUserCallback = this.removeUserCallback.bind(this)
 	}
 	render() {
-		const { user, currentUser } = this.props;
+		let { user, currentUser } = this.props;
 		return (
 			<div className="list-group-item min-content user-item">
 				<div className="media">
@@ -48,7 +48,7 @@ class UserItem extends React.Component {
 	}
 
 	removeUserCallback(event) {
-		const { removeUser } = this.props;
+		let { removeUser } = this.props;
 		event.stopPropagation();
 		removeUser(user.id);
 	}
@@ -56,8 +56,8 @@ class UserItem extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ currentUser }) => ({ currentUser })
+let mapState = ({ currentUser }) => ({ currentUser })
 
-const mapDispatch = { removeUser }
+let mapDispatch = { removeUser }
 
 export default connect(mapState, mapDispatch)(UserItem);

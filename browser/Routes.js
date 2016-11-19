@@ -11,7 +11,7 @@ import { retrieveLoggedInUser } from './redux/auth';
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Routes = ({ fetchInitialData }) => (
+let Routes = ({ fetchInitialData }) => (
   <Router history={browserHistory}>
     <Route path="/" component={Root} onEnter={fetchInitialData}>
       <IndexRoute component={Home} />
@@ -26,9 +26,9 @@ const Routes = ({ fetchInitialData }) => (
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapProps = null;
+let mapProps = null;
 
-const mapDispatch = dispatch => ({
+let mapDispatch = dispatch => ({
  fetchInitialData: () => {
     dispatch(fetchUsers())
     dispatch(retrieveLoggedInUser())

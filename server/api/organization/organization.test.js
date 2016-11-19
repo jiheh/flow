@@ -1,9 +1,9 @@
-const chai = require('chai');
+let chai = require('chai');
 chai.use(require('chai-as-promised'));
 chai.should();
 
 let db = require('../../_db');
-const Organization = require('./organization.model');
+let Organization = require('./organization.model');
 
 describe('Organization', () => {
 

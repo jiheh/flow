@@ -2,27 +2,27 @@ import axios from 'axios';
 
 /* -----------------    ACTIONS     ------------------ */
 
-let SET    = 'SET_CURRENT_USER'
-let REMOVE = 'REMOVE_CURRENT_USER'
+const SET    = 'SET_CURRENT_ADMIN'
+const REMOVE = 'REMOVE_CURRENT_ADMIN'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-let set     = user => ({ type: SET, user })
-let remove  = () => ({ type: REMOVE })
+const set     = admin => ({ type: SET, admin })
+const remove  = () => ({ type: REMOVE })
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (currentUser = null, action) {
+export default function reducer (currentAdmin = null, action) {
   switch (action.type) {
     
     case SET: 
-      return action.user;
+      return action.admin;
 
     case REMOVE: 
       return null;  
 
     default: 
-      return currentUser;
+      return currentAdmin;
   }
 }
 

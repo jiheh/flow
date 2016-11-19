@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const cls = require('continuation-local-storage');
 const namespace = cls.createNamespace('clsNamespace');
 
-Sequelize.useCLS(namespace);
+Sequelize.cls = namespace;
 
 const databaseURI = 'postgres://localhost:5432/flow';
 

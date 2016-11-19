@@ -8,7 +8,7 @@ import {
 
 class SettingsPanelComponent extends Component {
   static propTypes = {
-    settings: PropTypes.shape(...settingsPropTypes),
+    settings: PropTypes.shape(settingsPropTypes),
     saveSettings: PropTypes.func,
   }
 
@@ -19,7 +19,6 @@ class SettingsPanelComponent extends Component {
       ...settings,
       showClock: !settings.showClock
     }, () => {
-      console.log('saving settings');
       this.props.saveSettings({...settings, showClock: !settings.showClock});
     });
   }
@@ -32,7 +31,6 @@ class SettingsPanelComponent extends Component {
       showVideo: !settings.showVideo,
       showImage: !settings.showImage,
     }, () => {
-      console.log('toggled background mode, saving to browser');
       this.props.saveSettings(
         {...settings,
           showVideo: !settings.showVideo,

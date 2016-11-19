@@ -1,9 +1,9 @@
 'use strict';
 
-let http = require('http');
+const http = require('http');
 
-function HttpError (status, message) {
-  let err = new Error(message || http.STATUS_CODES[status]);
+function HttpError(status, message) {
+  const err = new Error(message || http.STATUS_CODES[status]);
   err.status = status;
   Object.setPrototypeOf(err, HttpError.prototype);
   return err;
@@ -11,11 +11,10 @@ function HttpError (status, message) {
 
 Object.setPrototypeOf(HttpError.prototype, Error.prototype);
 
-HttpError.prototype.middleware = function () {
-  let self = this;
-  return function (req, res, next) {
-    next(self);
-  }
+HttpError.prototype.middleware = function httpErrorMiddleware() {
+  return (req, res, next) => {
+    next(this);
+  };
 };
 
 module.exports = HttpError;

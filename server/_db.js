@@ -1,15 +1,19 @@
 'use strict';
 
-let Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
+const cls = require('continuation-local-storage');
+const namespace = cls.createNamespace('clsNamespace');
 
-let databaseURI = 'postgres://localhost:5432/flow';
+Sequelize.useCLS(namespace);
 
-let db = new Sequelize(databaseURI, {
-    define: {
-        timestamps: true,
-        underscored: true
-    },
-    logging: false
+const databaseURI = 'postgres://localhost:5432/flow';
+
+const db = new Sequelize(databaseURI, {
+  define: {
+    timestamps: true,
+    underscored: true,
+  },
+  logging: false,
 });
 
 module.exports = db;

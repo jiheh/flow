@@ -11,9 +11,9 @@ class UserList extends Component {
     super(props);
 
     this.state = {
-      name: '', 
-      email: '', 
-      phone: '' 
+      name: '',
+      email: '',
+      phone: '',
     };
 
     this.filterUser = this.filterUser.bind(this);
@@ -32,8 +32,8 @@ class UserList extends Component {
         <br />
         <br />
         <div className="user-list">
-        { 
-          this.props.users 
+        {
+          this.props.users
             .filter(this.filterUser)
             .map(user => <UserItem user={user} key={user.id} />)
         }
@@ -51,10 +51,10 @@ class UserList extends Component {
           </div>
           <div className="media-body">
             <h4 className="media-heading tucked">
-              <input 
+              <input
                 type="text"
                 placeholder="Jean Doe"
-                className="form-like" 
+                className="form-like"
                 onChange={e => this.setState({ name: e.target.value })}
               />
             </h4>
@@ -76,17 +76,17 @@ class UserList extends Component {
             </h5>
           </div>
         </div>
-      </div>  
+      </div>
     );
   }
 
   filterUser(story) {
-    let nameMatch  = new RegExp(this.state.name, 'i');
-    let emailMatch = new RegExp(this.state.email, 'i');
-    let phoneMatch = new RegExp(this.state.phone, 'i');
+    const nameMatch  = new RegExp(this.state.name, 'i');
+    const emailMatch = new RegExp(this.state.email, 'i');
+    const phoneMatch = new RegExp(this.state.phone, 'i');
 
-    return nameMatch.test(story.name) 
-        && emailMatch.test(story.email) 
+    return nameMatch.test(story.name)
+        && emailMatch.test(story.email)
         && phoneMatch.test(story.phone);
   }
 
@@ -96,14 +96,14 @@ class UserList extends Component {
       <div className="list-group-item min-content user-item">
         <form className="media" onSubmit={this.submit}>
           <div className="media-left media-middle icon-container">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="glyphicon glyphicon-plus clickable">
             </button>
           </div>
           <div className="media-body">
             <h4 className="media-heading tucked">
-              <input 
+              <input
                 name="name"
                 type="text"
                 placeholder="Jean Doe"
@@ -135,29 +135,29 @@ class UserList extends Component {
 
   submit(event) {
     event.preventDefault();
-    let user = {
+    const user = {
       name: event.target.name.value,
       email: event.target.email.value,
       phone: event.target.phone.value,
     }
     this.props.addUser(user);
     // clear the inputs
-    event.target.name.value = ""
-    event.target.email.value = ""
-    event.target.phone.value = ""
+    event.target.name.value = '';
+    event.target.email.value = '';
+    event.target.phone.value = '';
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
 let mapState = ({ users, currentUser }) => (
-  { 
+  {
     isAdmin: currentUser && currentUser.isAdmin,
-    users
+    users,
   }
 )
 
-let mapDispatch = { addUser }
+let mapDispatch = { addUser };
 
 export default connect(mapState, mapDispatch)(UserList);
 

@@ -1,30 +1,33 @@
-let chai = require('chai');
+/* global it, describe */
+/* eslint-disable arrow-body-style */
+
+const chai = require('chai');
 chai.use(require('chai-as-promised'));
+
 chai.should();
 
-let db = require('../../_db');
-let Organization = require('./organization.model');
+const db = require('../../_db');
+const Organization = require('./organization.model');
 
 describe('Organization', () => {
-
-  let emptyName = {
+  const emptyName = {
     name: '',
     address: '5 Hanover Square, Floor 25, New York, NY 10004',
     email: 'fullstack@fullstack.com',
-    phone: '123-456-7890'
+    phone: '123-456-7890',
   };
 
-  let notEmail = {
+  const notEmail = {
     name: 'Fullstack Academy',
     address: '5 Hanover Square, Floor 25, New York, NY 10004',
     email: 'fullstack.com',
-    phone: '123-456-7890'
+    phone: '123-456-7890',
   };
 
-  let nullPhone = {
+  const nullPhone = {
     name: 'Fullstack Academy',
     address: '5 Hanover Square, Floor 25, New York, NY 10004',
-    email: 'fullstack@fullstack.com'
+    email: 'fullstack@fullstack.com',
   };
 
   it('should not be created an empty name', () => {

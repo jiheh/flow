@@ -81,9 +81,9 @@ class UserList extends Component {
   }
 
   filterUser(story) {
-    const nameMatch  = new RegExp(this.state.name, 'i');
-    const emailMatch = new RegExp(this.state.email, 'i');
-    const phoneMatch = new RegExp(this.state.phone, 'i');
+    let nameMatch  = new RegExp(this.state.name, 'i');
+    let emailMatch = new RegExp(this.state.email, 'i');
+    let phoneMatch = new RegExp(this.state.phone, 'i');
 
     return nameMatch.test(story.name) 
         && emailMatch.test(story.email) 
@@ -135,7 +135,7 @@ class UserList extends Component {
 
   submit(event) {
     event.preventDefault();
-    const user = {
+    let user = {
       name: event.target.name.value,
       email: event.target.email.value,
       phone: event.target.phone.value,
@@ -150,14 +150,14 @@ class UserList extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ users, currentUser }) => (
+let mapState = ({ users, currentUser }) => (
   { 
     isAdmin: currentUser && currentUser.isAdmin,
     users
   }
 )
 
-const mapDispatch = { addUser }
+let mapDispatch = { addUser }
 
 export default connect(mapState, mapDispatch)(UserList);
 

@@ -28,26 +28,26 @@ export default function reducer (currentAdmin = null, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const login = credentials => dispatch => {
+export let login = credentials => dispatch => {
   axios.post('/auth/login', credentials)
        .then(res => dispatch(set(res.data)))
        .catch(err => console.error('Login unsuccessful', err));
 }
 
-export const signup = credentials => dispatch => {
+export let signup = credentials => dispatch => {
   axios.post('/auth/signup', credentials)
        .then(res => dispatch(set(res.data)))
        .catch(err => console.error('Signup unsuccessful', err));
 }
 
-export const retrieveLoggedInUser = () => dispatch => {
+export let retrieveLoggedInUser = () => dispatch => {
   axios.get('/auth/me')
       .then(res => dispatch(set(res.data)))
       .catch(err => console.error('retrieveLoggedInUser unsuccessful', err));
 }
 
 // optimistic
-export const logout = () => dispatch => {
+export let logout = () => dispatch => {
   dispatch(remove())
   axios.get('/auth/logout')  
        .catch(err => console.error('logout unsuccessful', err));

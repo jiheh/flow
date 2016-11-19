@@ -1,11 +1,22 @@
 import React, { PropTypes } from 'react';
 
 import { propTypes as backgroundImagePropTypes } from '../reducers/backgroundImage';
+import { propTypes as settingsPropTypes } from '../reducers/settings';
+import { propTypes as showSettingsPanelPropTypes } from '../reducers/showSettingsPanel';
 import Clock from '../Clock/ClockComponent.jsx';
 import Docker from '../Docker/DockerContainer.js';
 import Widgets from '../Widgets/WidgetsContainer.js';
+import SettingsPanel from '../SettingsPanel/SettingsPanelContainer.js';
+import ToggleSettingsPanel from '../ToggleSettingsPanel/ToggleSettingsPanelContainer.js';
 
-const Main = ({ backgroundImage }) => (
+
+const Main = ({
+  backgroundImage,
+  backgroundVideo,
+  settings,
+  showSettingsPanel,
+  saveSettings,
+}) => (
   <div
     style={{
       position: 'fixed',
@@ -15,7 +26,8 @@ const Main = ({ backgroundImage }) => (
       height: '100vh',
     }}
   >
-    <Clock />
+    {settings.showClock && <Clock />}
+    {!settings.showVideo &&
     <div
       style={{
         position: 'fixed',
@@ -41,13 +53,37 @@ const Main = ({ backgroundImage }) => (
         }}
       />
     </div>
+    }
+    {settings.showVideo &&
+     <div className="video"
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        zIndex: '-1',
+        width: '100%',
+        height: '100%',
+      }}
+     >
+       <video src={backgroundVideo} autoPlay loop />
+     </div>
+    }
     <Docker />
+    <ToggleSettingsPanel />
+    {showSettingsPanel &&
+     <SettingsPanel
+       saveSettings={saveSettings}
+     />
+    }
     <Widgets />
   </div>
 );
 
 Main.propTypes = {
   ...backgroundImagePropTypes,
+  settings: PropTypes.shape(...settingsPropTypes),
+  ...showSettingsPanelPropTypes,
+  saveSettings: PropTypes.func.isRequired,
 };
 
 export default Main;

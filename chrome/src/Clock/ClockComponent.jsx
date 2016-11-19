@@ -16,11 +16,13 @@ class ClockComponent extends Component {
     super(props);
 
     const date = new Date();
-    this.hour = convertMilitaryHour(date.getHours() + '');
-    this.minute = padMinutes(date.getMinutes() + '');
+
+    const hour = date.getHours() + '';
+    const minute = date.getMinutes() + '';
 
     this.state = {
-      date: new Date(),
+      hour,
+      minute,
     };
   }
 
@@ -29,7 +31,7 @@ class ClockComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.date.minute !== nextState.date.minute;
+    return this.state.minute !== nextState.minute;
   }
 
   componentWillUnmount() {
@@ -38,14 +40,14 @@ class ClockComponent extends Component {
 
   tick = () => {
     const date = new Date();
-    this.hour = date.getHours() + '';
-    this.minute = date.getMinutes() + '';
-    this.setState({ date });
+    const hour = date.getHours() + '';
+    const minute = date.getMinutes() + '';
+    this.setState({ hour, minute });
   }
 
   render() {
     return (
-      <Clock hour={convertMilitaryHour(this.hour)} minute={padMinutes(this.minute)} />
+      <Clock hour={convertMilitaryHour(this.state.hour)} minute={padMinutes(this.state.minute)} />
     );
   }
 }

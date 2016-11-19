@@ -13,7 +13,7 @@ class Auth extends React.Component {
 	}
 
 	render() {
-		const { message } = this.props;
+		let { message } = this.props;
 		return (
 			<div className="signin-container">
 				<div className="buffer local">
@@ -60,8 +60,8 @@ class Auth extends React.Component {
 
 	onSubmit(event) {
 		event.preventDefault();
-		const { message, login, signup } = this.props;
-    const credentials = {
+		let { message, login, signup } = this.props;
+    let credentials = {
       email: event.target.email.value,
       password: event.target.password.value
     }
@@ -77,21 +77,21 @@ class Auth extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapStateLogin = () => ({ message: 'Log in' })
-const mapDispatchLogin = dispatch => ({ 
+let mapStateLogin = () => ({ message: 'Log in' })
+let mapDispatchLogin = dispatch => ({ 
 	login: credentials => {
 		dispatch(login(credentials));
 		browserHistory.push('/');
 	}
 })
 
-const mapStateSignup = () => ({ message: 'Sign up' })
-const mapDispatchSignup = dispatch => ({ 
+let mapStateSignup = () => ({ message: 'Sign up' })
+let mapDispatchSignup = dispatch => ({ 
 	signup: credentials => {
 		dispatch(signup(credentials));
 		browserHistory.push('/');
 	}
 })
 
-export const Login = connect(mapStateLogin, mapDispatchLogin)(Auth);
-export const Signup = connect(mapStateSignup, mapDispatchSignup)(Auth);
+export let Login = connect(mapStateLogin, mapDispatchLogin)(Auth);
+export let Signup = connect(mapStateSignup, mapDispatchSignup)(Auth);

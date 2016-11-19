@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-let Docker = ({
+const Docker = ({
   toggleMeditationVisibility,
 }) => (
   <div className="docker">

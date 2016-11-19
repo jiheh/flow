@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { setImageUrl } from '../reducers/backgroundImage';
+import { setVideoUrl } from '../reducers/backgroundVideo';
 import MainComponent from './MainComponent.jsx';
+import { setSettings } from '../reducers/settings';
 
-let imageSubreddits = [
+const imageSubreddits = [
   'earthporn',
   'botanicalporn',
   'waterporn',
@@ -34,13 +36,21 @@ let imageSubreddits = [
   'viewporn',
 ];
 
-let mapStateToProps = ({ backgroundImage }) => ({
+const mapStateToProps = ({
   backgroundImage,
+  backgroundVideo,
+  settings,
+  showSettingsPanel,
+}) => ({
+  backgroundImage,
+  backgroundVideo,
+  settings,
+  showSettingsPanel,
 });
 
-let mapDispatchToProps = () => dispatch => ({
+const mapDispatchToProps = () => dispatch => ({
   getBackgroundImage: () => {
-    let subreddit = imageSubreddits[Math.floor(Math.random() * imageSubreddits.length)];
+    const subreddit = imageSubreddits[Math.floor(Math.random() * imageSubreddits.length)];
 
     axios.get(`https://www.reddit.com/r/${subreddit}/random/.json`)
       .then(({ data }) => {
@@ -54,6 +64,15 @@ let mapDispatchToProps = () => dispatch => ({
       // TODO: error handling
       .catch(console.error);
   },
+
+  saveSettings: (settings) => {
+    dispatch(setSettings(settings));
+  },
+
+  getBackgroundVideo: () => {
+    const videoUrl = '../../assets/videos/1.mp4';
+    dispatch(setVideoUrl(videoUrl));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);

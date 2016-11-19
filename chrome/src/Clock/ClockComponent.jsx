@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Clock from './Clock.jsx';
 
-let convertMilitaryHour = (hour) => {
+const convertMilitaryHour = (hour) => {
   if (hour === '0') { return '12'; }
   else return (+hour > 12) ? `${+hour - 12}` : hour;
 };
 
-let padMinutes = (minutes) => {
+const padMinutes = (minutes) => {
   if (+minutes > 9) { return minutes; }
   return `0${minutes}`;
 };
@@ -15,15 +15,15 @@ class ClockComponent extends Component {
   constructor(props) {
     super(props);
 
-    let date = new Date();
-    this.hour = `${date.getHours()}`;
-    this.minute = padMinutes(date.getMinutes() + '');
+    const date = new Date();
+
+    const hour = date.getHours() + '';
+    const minute = date.getMinutes() + '';
 
     this.state = {
-      date: new Date(),
+      hour,
+      minute,
     };
-
-    this.tick = this.tick.bind(this);
   }
 
   componentDidMount() {
@@ -31,23 +31,23 @@ class ClockComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.date.minute !== nextState.date.minute;
+    return this.state.minute !== nextState.minute;
   }
 
   componentWillUnmount() {
     clearInterval(this.clock);
   }
 
-  tick() {
-    let date = new Date();
-    this.hour = date.getHours() + '';
-    this.minute = padMinutes(date.getMinutes() + '');
-    this.setState({ date });
+  tick = () => {
+    const date = new Date();
+    const hour = date.getHours() + '';
+    const minute = date.getMinutes() + '';
+    this.setState({ hour, minute });
   }
 
   render() {
     return (
-      <Clock hour={convertMilitaryHour(this.hour)} minute={this.minute} />
+      <Clock hour={convertMilitaryHour(this.state.hour)} minute={padMinutes(this.state.minute)} />
     );
   }
 }

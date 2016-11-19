@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
-let Clock = ({ hour, minute }) => (
+const Clock = ({ hour, minute }) => (
   <div
     className="clock"
     style={{
       position: 'fixed',
       top: '0',
-      left: '0',
+      left: '600px',
       color: 'white',
       fontSize: '34px',
       padding: '18px',

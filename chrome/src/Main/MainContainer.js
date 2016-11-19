@@ -72,7 +72,7 @@ const mapDispatchToProps = () => dispatch => ({
   getBackgroundVideo: () => {
     const videoUrl = '../../assets/videos/1.mp4';
     dispatch(setVideoUrl(videoUrl));
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainComponent);

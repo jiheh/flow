@@ -13,14 +13,12 @@ const UserInfo = require('./api/userinfo/userinfo.model');
 
 // User
 User.belongsToMany(Channel, { through: 'User-Channel' });
+User.belongsTo(UserInfo,{as:'UserInfo'})
 
 // Admin
 Admin.belongsToMany(Channel, { through: 'Admin-Channel' });
 Admin.belongsToMany(Organization, { through: 'Admin-Organization' });
-
-// UserInfo
-UserInfo.belongsTo(User, { as: 'User' });
-UserInfo.belongsTo(Admin, { as: 'Admin' });
+Admin.belongsTo(UserInfo,{as:'UserInfo'})
 
 // Channel
 Channel.belongsToMany(User, { through: 'User-Channel' });

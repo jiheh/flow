@@ -9,6 +9,8 @@ const seedAdmins = require('./server/api/admin/admin.seed')
 const seedUsers = require('./server/api/users/user.seed')
 const seedChannels = require('./server/api/channel/channel.seed')
 const seedOrganizations = require('./server/api/organization/organization.seed')
+const seedAccounts = require('./server/api/account/account.seed')
+const seedBillings = require('./server/api/billing/billing.seed') 
 
 
 db.sync({force: true})
@@ -16,6 +18,8 @@ db.sync({force: true})
 .then(() => seedUsers(10))
 .then(() => seedChannels(10))
 .then(() => seedOrganizations(10))
+.then(() => seedAccounts(10))
+.then(() => seedBillings(10))
 .then(function () {
   console.log('Seeding successful');
 }, function (err) {

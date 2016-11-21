@@ -32,5 +32,4 @@ Organization.belongsTo(Billing, { as: 'Billing' });
 Organization.belongsTo(Admin, { as: 'Head' });
 
 
-
 module.exports = db;

@@ -5,10 +5,14 @@ import { propTypes } from '../reducers/meditationWidget';
 
 const Widgets = ({ meditationWidget }) => (
   <div className="widgets">
-    {meditationWidget.visible && <MeditationWidget />}
+    {meditationWidget.visible &&
+    <MeditationWidget meditationWidget={meditationWidget}/>
+    }
   </div>
 );
 
-Widgets.propTypes = propTypes;
+Widgets.propTypes = {
+  meditationWidget: propTypes,
+};
 
 export default Widgets;

@@ -1,24 +1,22 @@
 'use strict';
 
-let Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-let db = require('../../_db');
+const db = require('../../_db');
 
-let Account = db.define('account', {
-  type:{
-    type:Sequelize.ENUM('basic,medium,pro'),
-    allowNull:false
+const Account = db.define('account', {
+  type: {
+    type: Sequelize.ENUM('basic,medium,pro'), // eslint-disable-line new-cap
+    allowNull: false,
   },
-  maxStudents:{
-    type:Sequelize.INTEGER,
-    allowNull:false
+  maxStudents: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
   },
-  cost:{
-    type:Sequelize.DOUBLE,
-    allowNull:false
-  }
+  cost: {
+    type: Sequelize.DOUBLE,
+    allowNull: false,
+  },
 });
 
 module.exports = Account;
-
-

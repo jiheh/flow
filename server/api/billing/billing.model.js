@@ -1,28 +1,26 @@
 'use strict';
 
-let Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-let db = require('../../_db');
+const db = require('../../_db');
 
-let Billing = db.define('billing', {
-  cardType:{
-    type:Sequelize.ENUM('visa,mastercard'),
-    allowNull:false
+const Billing = db.define('billing', {
+  cardType: {
+    type: Sequelize.ENUM('visa,mastercard'), // eslint-disable-line new-cap
+    allowNull: false,
   },
-  cardNumber:{
-    type:Sequelize.STRING,
-    allowNull:false
+  cardNumber: {
+    type: Sequelize.STRING,
+    allowNull: false,
   },
-  expiryDate:{
-    type:Sequelize.INTEGER,
-    allowNull:false
+  expiryDate: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
   },
-  securityNumber:{
-    type:Sequelize.INTEGER,
-    allowNull:false
-  }
+  securityNumber: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
 });
 
 module.exports = Billing;
-
-

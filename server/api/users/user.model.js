@@ -1,12 +1,11 @@
 'use strict';
 
-let Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-let db = require('../../_db');
+const db = require('../../_db');
 
-let User = db.define('users', {
-   
-})
+const User = db.define('users', {
+});
 
 
 module.exports = User;

@@ -1,16 +1,16 @@
 'use strict';
 
-let app = require('./app');
-let db = require('./db');
+const app = require('./app');
+const db = require('./db');
 
-let port = 8080;
-let server = app.listen(port, function (err) {
+const port = 8080;
+const server = app.listen(port, (err) => {
   if (err) throw err;
   console.log(`Server is listening to port ${port}!`);
-  db.sync({force: true})
-  .then(function () {
-    console.log('Database is connected!');
-  });
+  db.sync({ force: true })
+    .then(() => {
+      console.log('Database is connected!');
+    });
 });
 
 module.exports = server;

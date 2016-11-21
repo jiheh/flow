@@ -58,7 +58,7 @@ class Navbar extends React.Component {
     return (
       <ul className="nav navbar-nav navbar-right">
         <li>
-        <button className="navbar-btn btn btn-default" 
+        <button className="navbar-btn btn btn-default"
           onClick={this.props.logout}>logout</button>
         </li>
       </ul>
@@ -68,13 +68,13 @@ class Navbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-let mapProps = ({ currentUser }) => ({ currentUser });
+const mapProps = ({ currentUser }) => ({ currentUser });
 
-let mapDispatch = dispatch => ({ 
+const mapDispatch = dispatch => ({
   logout: () => {
     dispatch(logout())
     browserHistory.push('/');
-  }
-})
+  },
+});
 
 export default connect(mapProps, mapDispatch)(Navbar);

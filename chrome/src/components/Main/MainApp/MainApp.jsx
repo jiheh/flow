@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { propTypes as showSettingsPanelPropTypes } from '../../reducers/showSettingsPanel';
+import { propTypes as showSettingsPanelPropTypes } from '../../../reducers/showSettingsPanel';
 import Docker from './Docker/DockerContainer.js'
 import Widgets from './Widgets/WidgetsContainer.js';
 import SettingsPanel from './SettingsPanel/SettingsPanelContainer.js';

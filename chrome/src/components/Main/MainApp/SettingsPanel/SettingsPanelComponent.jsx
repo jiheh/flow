@@ -4,7 +4,7 @@ import SettingsPanel from './SettingsPanel.jsx';
 import {
   propTypes as settingsPropTypes,
   initialState as defaultSettings,
-} from '../../../reducers/settings';
+} from '../../../../reducers/settings';
 
 class SettingsPanelComponent extends Component {
   static propTypes = {

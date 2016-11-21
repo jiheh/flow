@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainApp from '../MainApp/MainAppContainer.js';
+import MainApp from './MainApp/MainAppContainer.js';
 import Background from './Background/BackgroundContainer.js';
 
 import './Main.scss';

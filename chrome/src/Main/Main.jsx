@@ -80,9 +80,9 @@ const Main = ({
 );
 
 Main.propTypes = {
-  ...backgroundImagePropTypes,
-  settings: PropTypes.shape(...settingsPropTypes),
-  ...showSettingsPanelPropTypes,
+  backgroundImagePropTypes,
+  settings: settingsPropTypes,
+  showSettingsPanelPropTypes,
   saveSettings: PropTypes.func.isRequired,
 };
 

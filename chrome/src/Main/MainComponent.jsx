@@ -9,9 +9,10 @@ import { initialState as defaultSettings } from '../reducers/settings';
 class MainComponent extends Component {
   static propTypes = {
     getBackgroundImage: PropTypes.func.isRequired,
-    ...backgroundImagePropTypes,
-    ...backgroundVideoPropTypes,
-    settings: PropTypes.shape(...settingsPropTypes),
+    getBackgroundVideo: PropTypes.func.isRequired,
+    backgroundImagePropTypes,
+    backgroundVideoPropTypes,
+    settings: settingsPropTypes,
   };
 
   componentDidMount() {

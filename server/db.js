@@ -11,6 +11,7 @@ const Survey = require('./api/survey/survey.model');
 const User = require('./api/users/user.model');
 const UserInfo = require('./api/userinfo/userinfo.model');
 
+
 // User
 User.belongsToMany(Channel, { through: 'User-Channel' });
 User.belongsTo(UserInfo,{as:'UserInfo'})
@@ -31,5 +32,6 @@ Organization.belongsTo(Billing, { as: 'Billing' });
 
 Organization.belongsTo(Admin, { as: 'Head' });
 Organization.belongsToMany(Admin, { through: 'Admin-Organization' });
+
 
 module.exports = db;

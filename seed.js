@@ -5,6 +5,7 @@ let Promise = require('bluebird');
 
 let db = require('./server/db');
 let User = require('./server/api/users/user.model');
+const seedAdmins = require('./server/api/admin/admin.seed')
 
 let numUsers = 100;
 
@@ -70,8 +71,7 @@ function seed () {
 
 db.sync({force: true})
 .then(function () {
-  // return seed();
-  return 
+  return seedAdmins(10)
 })
 .then(function () {
   console.log('Seeding successful');

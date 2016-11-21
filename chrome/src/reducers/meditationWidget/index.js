@@ -6,9 +6,7 @@ const initialState = {
 };
 
 export const propTypes = PropTypes.shape({
-  meditationWidget: PropTypes.shape({
-    visible: PropTypes.bool.isRequired,
-  }),
+  visible: PropTypes.bool.isRequired,
 });
 
 export const TOGGLE_MEDITATION_VISIBLE = 'TOGGLE_MEDITATION_VISIBLE';

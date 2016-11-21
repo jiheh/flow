@@ -1,46 +1,45 @@
-let express = require('express');
-let router = express.Router();
-let User = require('../api/users/user.model');
+const express = require('express');
+const router = express.Router();
+const User = require('../api/users/user.model');
+
 module.exports = router;
 
-router.post('/login', function (req, res, next) {
+router.post('/login', (req, res, next) => {
   User.findOne({
-    where: req.body
+    where: req.body,
   })
-  .then(function (user) {
-    if (!user) {
-      res.sendStatus(401);
-    } else {
-      req.session.userId = user.id;
-      res.sendStatus(204);
-    }
-  })
-  .catch(next);
+    .then((user) => {
+      if (!user) {
+        res.sendStatus(401);
+      } else {
+        req.session.userId = user.id;
+        res.sendStatus(204);
+      }
+    })
+    .catch(next);
 });
 
-router.get('/logout', function (req, res, next) {
+router.get('/logout', (req, res, next) => {
   req.session.destroy();
   res.sendStatus(204);
 });
 
-router.post('/signup', function (req, res, next) {
-
+router.post('/signup', (req, res, next) => {
   User.findOrCreate({
     where: {
-      email: req.body.email
+      email: req.body.email,
     },
     defaults: {
-      password: req.body.password
+      password: req.body.password,
     }
   })
-  .then(function (user) {
-    req.session.userId = user.id;
-    res.sendStatus(204);
-  });
-
+    .then((user) => {
+      req.session.userId = user.id;
+      res.sendStatus(204);
+    });
 });
 
-router.get('/me', function (req, res, next) {
+router.get('/me', (req, res, next) => {
   if (req.user) {
     res.send(req.user);
   } else {

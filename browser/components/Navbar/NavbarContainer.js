@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
-import { logout } from '../../reducers/auth';
+import { login, logout } from '../../reducers/auth';
 import { browserHistory } from 'react-router';
 import Navigation from './Navbar';
 
 
-const mapStateToProps = ({ currentUser }) => ({ currentUser });
+const mapStateToProps = ({ organization }) => ({ organization });
 
-const mapDispatchToProps = dispatch => ({ 
+const mapDispatchToProps = dispatch => ({
+	loginAdmin: () => {
+		dispatch(login());
+	},
   logoutAdmin: () => {
     dispatch(logout())
     browserHistory.push('/');

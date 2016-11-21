@@ -1,13 +1,15 @@
 'use strict';
 
-let router = require('express').Router();
+// eslint-disable-next-line new-cap
+const router = require('express').Router();
 
-let HttpError = require('../../utils/HttpError');
-let User = require('./user.model');
+const HttpError = require('../../utils/HttpError');
+const User = require('./user.model');
 
-router.param('id', function (req, res, next, id) {
+router.param('id', (req, res, next, id) => {
   User.findById(id)
-  .then(function (user) {
+  .then((user) => {
+    // eslint-disable-next-line new-cap
     if (!user) throw HttpError(404);
     req.requestedUser = user;
     next();
@@ -15,41 +17,41 @@ router.param('id', function (req, res, next, id) {
   .catch(next);
 });
 
-router.get('/', function (req, res, next) {
+router.get('/', (req, res, next) => {
   User.findAll({})
-  .then(function (users) {
+  .then((users) => {
     res.json(users);
   })
   .catch(next);
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
   User.create(req.body)
-  .then(function (user) {
+  .then((user) => {
     res.status(201).json(user);
   })
   .catch(next);
 });
 
-router.get('/:id', function (req, res, next) {
+router.get('/:id', (req, res, next) => {
   req.requestedUser.reload()
-  .then(function (requestedUser) {
+  .then((requestedUser) => {
     res.json(requestedUser);
   })
   .catch(next);
 });
 
-router.put('/:id', function (req, res, next) {
+router.put('/:id', (req, res, next) => {
   req.requestedUser.update(req.body)
-  .then(function (user) {
+  .then((user) => {
     res.json(user);
   })
   .catch(next);
 });
 
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id', (req, res, next) => {
   req.requestedUser.destroy()
-  .then(function () {
+  .then(() => {
     res.status(204).end();
   })
   .catch(next);

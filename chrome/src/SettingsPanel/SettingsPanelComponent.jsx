@@ -8,7 +8,7 @@ import {
 
 class SettingsPanelComponent extends Component {
   static propTypes = {
-    settings: PropTypes.shape(...settingsPropTypes),
+    settings: settingsPropTypes,
     saveSettings: PropTypes.func,
   }
 

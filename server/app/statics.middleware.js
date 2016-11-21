@@ -1,11 +1,13 @@
 'use strict';
 
-let express = require('express');
-let router = express.Router();
-let path = require('path');
+const express = require('express');
 
-let rootPath = path.join(__dirname, '..', '..');
-let publicPath = path.join(rootPath, 'public');
+// eslint-disable-next-line new-cap
+const router = express.Router();
+const path = require('path');
+
+const rootPath = path.join(__dirname, '..', '..');
+const publicPath = path.join(rootPath, 'public');
 
 router.use(express.static(publicPath));
 

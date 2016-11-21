@@ -14,13 +14,10 @@ const remove  = () => ({ type: REMOVE })
 
 export default function reducer (currentAdmin = null, action) {
   switch (action.type) {
-    
     case SET: 
       return action.admin;
-
-    case REMOVE: 
-      return null;  
-
+    case REMOVE:
+      return null;
     default: 
       return currentAdmin;
   }
@@ -28,27 +25,27 @@ export default function reducer (currentAdmin = null, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export let login = credentials => dispatch => {
+export const login = credentials => (dispatch) => {
   axios.post('/auth/login', credentials)
-       .then(res => dispatch(set(res.data)))
-       .catch(err => console.error('Login unsuccessful', err));
-}
+    .then(res => dispatch(set(res.data)))
+    .catch(err => console.error('Login unsuccessful', err));
+};
 
-export let signup = credentials => dispatch => {
+export const signup = credentials => (dispatch) => {
   axios.post('/auth/signup', credentials)
-       .then(res => dispatch(set(res.data)))
-       .catch(err => console.error('Signup unsuccessful', err));
-}
+    .then(res => dispatch(set(res.data)))
+    .catch(err => console.error('Signup unsuccessful', err));
+};
 
-export let retrieveLoggedInUser = () => dispatch => {
+export const retrieveLoggedInUser = () => (dispatch) => {
   axios.get('/auth/me')
-      .then(res => dispatch(set(res.data)))
-      .catch(err => console.error('retrieveLoggedInUser unsuccessful', err));
-}
+    .then(res => dispatch(set(res.data)))
+    .catch(err => console.error('retrieveLoggedInUser unsuccessful', err));
+};
 
 // optimistic
-export let logout = () => dispatch => {
-  dispatch(remove())
-  axios.get('/auth/logout')  
-       .catch(err => console.error('logout unsuccessful', err));
-}
+export const logout = () => (dispatch) => {
+  dispatch(remove());
+  axios.get('/auth/logout')
+    .catch(err => console.error('logout unsuccessful', err));
+};

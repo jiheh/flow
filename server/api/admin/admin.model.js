@@ -1,12 +1,11 @@
 'use strict';
 
-let db = require('../../_db');
-let bcrypt = require('bcrypt')
-let Sequelize = require('sequelize')
+const db = require('../../_db');
+const bcrypt = require('bcrypt');
+const Sequelize = require('sequelize');
 
 let Admin = db.define('admins', {
-
-})
+});
 
 module.exports = Admin;
 

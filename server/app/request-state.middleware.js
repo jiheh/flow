@@ -1,13 +1,13 @@
-'use strict'; 
+'use strict';
 
-let router = require('express').Router();
+const router = require('express').Router();
 
-router.use(function (req, res, next) {
+router.use((req, res, next) => {
   let bodyString = '';
-  req.on('data', function (chunk) {
+  req.on('data', (chunk) => {
     bodyString += chunk;
   });
-  req.on('end', function () {
+  req.on('end', () => {
     bodyString = bodyString || '{}';
     req.body = eval('(' + bodyString + ')');
     next();

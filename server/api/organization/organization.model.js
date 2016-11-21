@@ -1,44 +1,42 @@
 'use strict';
 
-let Sequelize = require('sequelize');
-let db = require('../../_db');
+const Sequelize = require('sequelize');
+const db = require('../../_db');
 
-let Organization = db.define('organization', {
+const Organization = db.define('organization', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   address: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       isEmail: true,
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   phone: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   numberOfStudents: {
-    type:Sequelize.INTEGER,
-    defaultValue:0
-  }
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
 });
 
 module.exports = Organization;
-
-

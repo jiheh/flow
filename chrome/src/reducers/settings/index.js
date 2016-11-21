@@ -7,11 +7,11 @@ export const initialState = {
   showVideo: false,
 };
 
-export const propTypes = {
+export const propTypes = PropTypes.shape({
   // setting types
   showClock: PropTypes.bool.isRequired,
   showVideo: PropTypes.bool.isRequired,
-};
+});
 
 export const SET_SETTINGS = 'SET_SETTINGS';
 export const setSettings = createAction(SET_SETTINGS);

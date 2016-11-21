@@ -16,7 +16,7 @@ const SettingsPanel = ({
 SettingsPanel.propTypes = {
   toggleClock: PropTypes.func.isRequired,
   toggleBackgroundMode: PropTypes.func.isRequired,
-  ...settingsPropTypes,
+  settingsPropTypes,
 };
 
 export default SettingsPanel;

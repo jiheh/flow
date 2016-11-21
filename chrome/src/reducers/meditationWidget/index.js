@@ -5,11 +5,11 @@ const initialState = {
   visible: false,
 };
 
-export const propTypes = {
+export const propTypes = PropTypes.shape({
   meditationWidget: PropTypes.shape({
     visible: PropTypes.bool.isRequired,
   }),
-};
+});
 
 export const TOGGLE_MEDITATION_VISIBLE = 'TOGGLE_MEDITATION_VISIBLE';
 export const toggleMeditationVisible = createAction(TOGGLE_MEDITATION_VISIBLE);

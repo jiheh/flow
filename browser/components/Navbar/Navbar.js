@@ -1,30 +1,65 @@
-import React from 'react';
-import { connect } from'react-redux';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import { Link, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
-const Navigation = ({ currentUser, logoutAdmin }) => (
-  <Navbar inverse collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand>
-        <Link to='/'>flow</Link>
-      </Navbar.Brand>
-    </Navbar.Header>
+import LogInForm from '../LogIn/LogIn';
 
-      <Nav pullRight>
-        {currentUser ?
+export default class Navigation extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false
+    }
+  }
+
+  open = () => {
+    this.setState({showModal: true})
+  }
+  close = () => {
+    this.setState({showModal: false})
+  }
+  login = () => {
+    this.props.loginAdmin();
+    this.close();
+  }
+  signup = () => {
+    browserHistory.push('/signup');
+    this.close();
+  }
+
+  render() {
+    const { logoutAdmin, organization } = this.props;
+  
+    return (
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to='/'>flow</Link>
+          </Navbar.Brand>
+        </Navbar.Header>
+
+        {organization ?
           (
-            <span>
-              <NavItem eventKey={1}><Link to='/signup'>Sign Up</Link></NavItem>
-              <NavItem eventKey={2}>Log In</NavItem>
-            </span>
+            <Nav pullRight>
+              <NavItem eventKey={1} onClick={this.open}>Log In</NavItem>
+            </Nav>
           ) : (
-           <NavItem eventKey={3} onClick={logoutAdmin}>Log Out</NavItem>
+            <Nav pullRight>
+              <NavItem eventKey={3} onClick={logoutAdmin}>Log Out</NavItem>
+            </Nav>
           )
         }
-      </Nav>
 
-  </Navbar>
-);
+        <LogInForm
+          showModal={this.state.showModal}
+          close={this.close}
+          login={this.login}
+          signup={this.signup}
+        />
 
-export default Navigation;
+      </Navbar>
+    );
+  }
+}

@@ -9,6 +9,8 @@ const Widgets = ({ meditationWidget }) => (
   </div>
 );
 
-Widgets.propTypes = propTypes;
+Widgets.propTypes = {
+  meditationWidget: propTypes,
+};
 
 export default Widgets;

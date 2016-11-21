@@ -18,20 +18,19 @@ User.belongsTo(UserInfo,{as:'UserInfo'})
 
 // Admin
 Admin.belongsToMany(Channel, { through: 'Admin-Channel' });
-Admin.belongsToMany(Organization, { through: 'Admin-Organization' });
 Admin.belongsTo(UserInfo,{as:'UserInfo'})
 
 // Channel
 Channel.belongsToMany(User, { through: 'User-Channel' });
 Channel.belongsToMany(Admin, { through: 'Admin-Channel' });
-Channel.belongsTo(Organization, { as: 'Channel' });
+Channel.belongsTo(Organization, { as: 'Organization' });
 
 // Organization
 Organization.belongsTo(Account, { as: 'Account' });
 Organization.belongsTo(Billing, { as: 'Billing' });
 
 Organization.belongsTo(Admin, { as: 'Head' });
-Organization.belongsToMany(Admin, { through: 'Admin-Organization' });
+
 
 
 module.exports = db;

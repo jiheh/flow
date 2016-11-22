@@ -3,11 +3,11 @@ import React from 'react';
 import Line from '../WidgetComponents/Line.jsx';
 import '../Widgets.scss';
 
-const MeditationWidget = ({  }) => (
-  <div className="meditation-widget widget">
+const SettingsWidget = ({  }) => (
+  <div className="settings-widget widget">
 
     <h4 className="widget-title">
-      Wellbeing
+      Settings
     </h4>
 
     <Line />
@@ -19,8 +19,5 @@ const MeditationWidget = ({  }) => (
   </div>
 );
 
-// MeditationWidget.propTypes = {
-//   meditationWidget: propTypes,
-// };
 
-export default MeditationWidget;
+export default SettingsWidget;

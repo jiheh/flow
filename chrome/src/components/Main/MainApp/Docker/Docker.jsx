@@ -7,10 +7,11 @@ import DockerViewportContainer from './DockerViewport/DockerViewportContainer.js
 const Docker = ({
   viewportVisible,
   toggleDockerViewport,
+  activeWidget,
 }) => (
   <div className="docker">
     {viewportVisible ? <DockerViewportContainer /> : null}
-    <DockerSidebar toggleDockerViewport={toggleDockerViewport}/>
+    <DockerSidebar toggleDockerViewport={toggleDockerViewport} activeWidget={activeWidget}/>
   </div>
 );
 

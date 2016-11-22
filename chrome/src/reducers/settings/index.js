@@ -3,13 +3,11 @@ import { PropTypes } from 'react';
 
 export const initialState = {
   // default settings
-  showClock: true,
   showVideo: false,
 };
 
 export const propTypes = PropTypes.shape({
   // setting types
-  showClock: PropTypes.bool.isRequired,
   showVideo: PropTypes.bool.isRequired,
 });
 

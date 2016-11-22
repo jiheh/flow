@@ -11,8 +11,8 @@ router.get('/random', (req, res, next) => {
       next(err);
     } else {
       const numFiles = files.length;
-      const randomFileIdx = Math.floor(Math.random() * numFiles);
-      res.json(files[randomFileIdx]);
+      const imageToSend = files[Math.floor(Math.random() * numFiles)];
+      res.json(imageToSend);
     }
   });
 });

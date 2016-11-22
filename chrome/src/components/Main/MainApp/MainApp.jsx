@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import Docker from './Docker/DockerContainer.js'
-import Widgets from './Widgets/WidgetsContainer.js';
+import DockerContainer from './Docker/DockerContainer.js'
 import ToggleBackgroundMode from './ToggleBackgroundMode/ToggleBackgroundModeContainer.js';
 import CenterPiece from './CenterPiece/CenterPieceContainer';
 
@@ -11,10 +10,9 @@ const MainApp = ({
   saveSettings,
 }) => (
   <div className="main-app">
-    <Docker />
-      <ToggleBackgroundMode saveSettings={saveSettings} />
-      <CenterPiece />
-    <Widgets />
+    <DockerContainer />
+    <ToggleBackgroundMode saveSettings={saveSettings} />
+    <CenterPiece />
   </div>
 );
 

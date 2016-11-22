@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react';
 
 import './Docker.scss';
-import Button from './DockerButtons/Button.jsx';
+import DockerSidebar from './DockerSidebar/DockerSidebar.jsx';
+import DockerViewportContainer from './DockerViewport/DockerViewportContainer.js';
 
 const Docker = ({
-  toggleMeditationVisibility,
+  viewportVisible,
+  toggleDockerViewport,
 }) => (
   <div className="docker">
-    <Button />
-    <Button />
-    <Button />
-    <Button />
+    {viewportVisible ? <DockerViewportContainer /> : null}
+    <DockerSidebar toggleDockerViewport={toggleDockerViewport}/>
   </div>
 );
 

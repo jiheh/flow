@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
 
+import './Docker.scss';
+import Button from './DockerButtons/Button.jsx';
+
 const Docker = ({
   toggleMeditationVisibility,
 }) => (
   <div className="docker">
-    DOCKER
-    <button onClick={toggleMeditationVisibility}>
-      TOGGLE MEDITATION
-    </button>
+    <Button />
+    <Button />
+    <Button />
+    <Button />
   </div>
 );
 

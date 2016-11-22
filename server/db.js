@@ -9,7 +9,7 @@ const Organization = require('./api/organization/organization.model');
 const Response = require('./api/response/response.model');
 const Survey = require('./api/survey/survey.model');
 const User = require('./api/users/user.model');
-const UserInfo = require('./api/userinfo/userinfo.model');
+const UserInfo = require('./api/userInfo/userInfo.model');
 
 // User
 User.belongsToMany(Channel, { through: 'User-Channel' });

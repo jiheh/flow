@@ -4,7 +4,7 @@ import Greeting from './Greeting.jsx';
 const mapStateToProps = ({
   settings,
 }) => ({
-  name: "Clement",
+  name: "Chuhan",
 });
 
 export default connect(mapStateToProps, null)(Greeting);

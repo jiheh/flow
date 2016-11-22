@@ -3,8 +3,16 @@ import './Quote.scss';
 
 import { propTypes as quotePropTypes } from '../../../../../../reducers/quote';
 
-const Quote = ({ quote }) => (
-  <h2 className="quote">{quote}</h2>
+const Quote = ({ quote, author }) => (
+  <div className = "quote">
+    <span className="quote-text">
+      "{quote}"
+    </span>
+    <span className="quote-origin">
+      - {author}
+    </span>
+  </div>
+
 );
 
 Quote.propTypes = {

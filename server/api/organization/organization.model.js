@@ -11,6 +11,10 @@ const Organization = db.define('organization', {
       notEmpty: true,
     },
   },
+  type:{
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   address: {
     type: Sequelize.STRING,
     allowNull: false,

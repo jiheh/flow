@@ -6,7 +6,7 @@ const db = require('../../_db');
 
 const Account = db.define('account', {
   type: {
-    type: Sequelize.ENUM('basic,medium,pro'), // eslint-disable-line new-cap
+    type: Sequelize.STRING, // eslint-disable-line new-cap
     allowNull: false,
   },
   maxStudents: {

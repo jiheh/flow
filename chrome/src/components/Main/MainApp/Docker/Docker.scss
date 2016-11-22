@@ -1,6 +1,11 @@
 .docker {
   position: absolute;
   right: 10px;
-  top: 10px;
-  text-align: right;
+  top: 20px;
+  text-align: left;
+
+  // flex-box settings
+  display: flex;
+  align-items: flex-start;
+
 }

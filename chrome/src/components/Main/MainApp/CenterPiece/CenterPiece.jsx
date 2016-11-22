@@ -1,21 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Clock from './Clock/ClockComponent.jsx';
 import Greeting from './Greeting/GreetingContainer.js';
 import Survey from './Survey/SurveyContainer.js';
 import './CenterPiece.scss';
 
-const CenterPiece = ({
-  showClock,
-}) => (
+const CenterPiece = () => (
   <div className="center-piece">
-    {showClock && <Clock />}
+    <Clock />
     <Greeting />
     <Survey />
   </div>
 );
-
-CenterPiece.propTypes = {
-  showClock: PropTypes.bool,
-};
 
 export default CenterPiece;

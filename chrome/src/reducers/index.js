@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 
 import backgroundImage from './backgroundImage';
 import backgroundVideo from './backgroundVideo';
+
 import meditationWidget from './meditationWidget';
 import quote from './quote';
 import surveyQuestions from './surveyQuestions';
+
 import settings from './settings';
-import showSettingsPanel from './showSettingsPanel';
+import docker from './docker';
 
 export default combineReducers({
   backgroundImage,
@@ -15,5 +17,5 @@ export default combineReducers({
   quote,
   surveyQuestions,
   settings,
-  showSettingsPanel,
+  docker,
 });

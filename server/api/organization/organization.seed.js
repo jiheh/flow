@@ -9,6 +9,7 @@ const createOrganizations = (n) =>{
     let randomNum = Math.floor(Math.random() * (n-1))
     const organizationPromise = Organization.create({
       name:`organization${i}`,
+      type:`University`,
       address:'5 Hanover Square',
       email:`organization${i}@organization.organization`,
       phone:`12345678`,

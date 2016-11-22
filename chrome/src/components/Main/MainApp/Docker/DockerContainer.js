@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Docker from './Docker.jsx';
-import { toggleMeditationVisible } from '../../../reducers/meditationWidget';
+import { toggleMeditationVisible } from '../../../../reducers/meditationWidget';
 
 
 const mapStateToProps = ({

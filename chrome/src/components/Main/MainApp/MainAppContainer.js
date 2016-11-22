@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MainApp from './MainApp.jsx';
-import { setSettings } from '../../reducers/settings';
+import { setSettings } from '../../../reducers/settings';
 
 const mapStateToProps = ({
   showSettingsPanel,

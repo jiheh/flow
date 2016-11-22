@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SettingsPanelComponent from './SettingsPanelComponent.jsx';
-import { setSettings } from '../../../reducers/settings';
+import { setSettings } from '../../../../reducers/settings';
 
 const mapStateToProps = ({ settings }) => ({
   settings,

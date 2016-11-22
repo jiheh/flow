@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { propTypes as settingsPropTypes } from '../../../reducers/settings';
+import { propTypes as settingsPropTypes } from '../../../../reducers/settings';
 
 const SettingsPanel = ({
   toggleClock,

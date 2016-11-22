@@ -1,40 +1,44 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+
+
 const Admin = require('../api/admin/admin.model')
 const UserInfo = require('../api/userInfo/userInfo.model');
 
 module.exports = router;
 
-router.post('/login', (req, res, next) => {
-  let admin;
-  Admin.findOne(
+passport.use(new (require('passport-local').Strategy) ({
+  usernameField: 'email',
+  passwordField: 'password'
+  }, (email, password, done) => {
+    Admin.findOne(
     {include: [{
       model: UserInfo, as: 'UserInfo',
-      where: {email: req.body.email}
-    }]
-  })
-  .then(currentAdmin => {
-    console.log(currentAdmin)
-    if (!currentAdmin) {
-      res.sendStatus(401);
+      where: {email}
+    }]})
+    .then(currentAdmin => {
+      if (!currentAdmin) return done(null, false);
+      return currentAdmin.UserInfo.authenticate(password)
+      .then(ok => {
+        if (!ok) return done(null, false);
+        done(null, currentAdmin.UserInfo);
+      })
+    .catch(done);
+  });
+}));
+
+
+router.post('/login',
+  passport.authenticate('local'),
+    function (req, res, next) {
+      res.redirect('/');
     }
-    admin = currentAdmin;
-    return currentAdmin.UserInfo.authenticate(req.body.password);
-  })
-  .then(passwordMatches => {
-    if (passwordMatches) {
-      req.session.userId = admin.id;
-      res.sendStatus(204);
-    } else {
-      res.sendStatus(401);
-    }
-  })
-  .catch(next);
-});
+);
 
 router.get('/logout', (req, res, next) => {
-  req.session.destroy();
-  res.sendStatus(204);
+  req.logout();
+  res.redirect('/');
 });
 
 // router.post('/signup', (req, res, next) => {

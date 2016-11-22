@@ -3,7 +3,8 @@
 const app = require('express')();
 const path = require('path');
 const bodyParser = require('body-parser')
-const User = require('../api/users/user.model');
+const Admin = require('../api/admin/admin.model');
+const UserInfo = require('../api/userInfo/userInfo.model');
 const passport = require('passport');
 
 app.use(require('./logging.middleware'));
@@ -18,6 +19,7 @@ app.use(session({
   secret: 'supersecret',
   resave: false,
   saveUninitialized: true,
+  // cookie: {maxAge: 3600000}
 }));
 
 app.use(passport.initialize());
@@ -28,23 +30,21 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id)
-      .then((user) => {
-        done(null, user);
-      })
-      .catch(done);
+   Admin.findOne(
+    {include: [{
+      model: UserInfo, as: 'UserInfo',
+      where: {id}
+    }]})
+    .then((user) => {
+      done(null, user);
+    })
+    .catch(done);
 });
 
-// app.use('/api', function (req, res, next) {
-//   if (!req.session.counter) req.session.counter = 0;
-//   console.log('counter', ++req.session.counter);
-//   next();
-// });
-
-// app.use(function (req, res, next) {
-//   console.log('session', req.session);
-//   next();
-// });
+app.use(function (req, res, next) {
+  console.log('session', req.session);
+  next();
+});
 
 app.use('/api', require('../api/api.router'));
 

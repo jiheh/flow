@@ -28,6 +28,7 @@
     "babel-preset-stage-2": "^6.18.0",
     "babel-register": "^6.18.0",
     "bcrypt": "^0.8.7",
+    "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.15.2",
     "continuation-local-storage": "^3.2.0",
     "css-loader": "^0.26.0",

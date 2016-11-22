@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import Greeting from './Greeting.jsx';
 
 const mapStateToProps = ({
-  settings,
+  user,
 }) => ({
-  name: "Chuhan",
+  name: user.name,
 });
 
 export default connect(mapStateToProps, null)(Greeting);

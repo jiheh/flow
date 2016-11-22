@@ -59,21 +59,27 @@ router.post('/', (req, res, next) => {
               res.json(user.hash);
             });
         } else {
-          // UserInfo found, find User and return hash
-          return User.findOne({
-            include: [{
-              model: UserInfo,
-              as: 'UserInfo',
-              where: {
-                id: userInfo.id,
-              },
-            }]
-          })
-            .then(user => {
+          // UserInfo found, check password, find User and return hash
+          let newUserInfo;
+          return userInfo.authenticate(req.body.password)
+            .then(passwordMatch => {
               // eslint-disable-next-line new-cap
-              if (!user) throw HttpError(404);
-              res.json(user.hash);
-            });
+              if (!passwordMatch) throw HttpError(404);
+              return User.findOne({
+                include: [{
+                  model: UserInfo,
+                  as: 'UserInfo',
+                  where: {
+                    id: userInfo.id,
+                  },
+                }]
+              })
+                .then(user => {
+                  // eslint-disable-next-line new-cap
+                  if (!user) throw HttpError(404);
+                  res.json(user.hash);
+                });
+            })
         }
       })
       .catch(next);

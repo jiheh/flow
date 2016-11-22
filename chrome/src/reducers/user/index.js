@@ -15,7 +15,7 @@ export const SET_USER = 'SET_USER';
 export const setUser = createAction(SET_USER);
 
 export const LOGOUT = 'LOGOUT';
-export const logout = createAction(LOGOUT);
+export const logoutUser = createAction(LOGOUT);
 
 export default handleActions({
   SET_USER: (state, { payload }) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import MainApp from './MainApp/MainAppContainer.js';
 import Background from './Background/BackgroundContainer.js';
@@ -13,7 +13,7 @@ const Main = ({
 }) => (
   <div className="main">
     <Background />
-   {user.name ? <MainApp /> : <Login />}
+    {user.name ? <MainApp /> : <Login />}
   </div>
 );
 

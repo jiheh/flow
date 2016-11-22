@@ -9,6 +9,7 @@ class MainComponent extends Component {
   static propTypes = {
     settings: settingsPropTypes,
     user: userPropTypes,
+    saveSettings: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -16,11 +17,12 @@ class MainComponent extends Component {
 
     chrome.storage.sync.get(defaultSettings, (settings) => {
       this.props.saveSettings(settings);
+      this.props.setUser(settings.user);
     });
   }
 
   render() {
-    const { user } = this.props;
+    const { user, saveSettings } = this.props;
 
     return (
       <Main

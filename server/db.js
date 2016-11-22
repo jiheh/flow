@@ -26,11 +26,9 @@ Channel.belongsToMany(Admin, { through: 'Admin-Channel' });
 Channel.belongsTo(Organization, { as: 'Organization' });
 
 // Organization
-Organization.belongsTo(Account, { as: 'Account' });
+Organization.belongsToMany(Account, { through: 'Organization-Account' });
 Organization.belongsTo(Billing, { as: 'Billing' });
-
 Organization.belongsTo(Admin, { as: 'Head' });
-
 
 
 module.exports = db;

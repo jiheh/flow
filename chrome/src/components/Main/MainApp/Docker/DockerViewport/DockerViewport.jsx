@@ -11,7 +11,7 @@ const DockerViewport = ({
   activeWidget,
 }) => (
 
-  <div className="docker-viewport">
+  <div className="docker-viewport" >
     {activeWidget === 'Announcements' ? <AnnouncementWidget /> : null}
     {activeWidget === 'Meditation' ? <MeditationWidget /> : null}
     {activeWidget === 'Reflection' ? <ReflectionWidget /> : null}

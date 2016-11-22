@@ -1,10 +1,21 @@
 import React from 'react';
 
-// import { propTypes } from '../../../../../../reducers/widgets/meditationWidget';
+import Line from '../WidgetComponents/Line.jsx';
+import '../Widgets.scss';
 
 const ReflectionWidget = ({  }) => (
-  <div className="meditation-widget">
-    Reflection WIDGET
+  <div className="reflection-widget widget">
+
+    <h4 className="widget-title">
+      Reflection
+    </h4>
+
+    <Line />
+
+    <div className="widget-contents">
+
+    </div>
+
   </div>
 );
 

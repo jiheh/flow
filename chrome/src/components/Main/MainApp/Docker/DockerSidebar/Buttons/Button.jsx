@@ -6,9 +6,10 @@ import buttonImg from './button.png';
 const Button = ({
   toggleDockerViewport,
   widgetName,
+  active,
 }) => (
 
-  <img className="docker-button" src={buttonImg} onClick={() => toggleDockerViewport(widgetName)}/>
+  <img className={`docker-button ${active ? 'active-button' : ''}`} src={buttonImg} onClick={() => toggleDockerViewport(widgetName)}/>
 
 );
 

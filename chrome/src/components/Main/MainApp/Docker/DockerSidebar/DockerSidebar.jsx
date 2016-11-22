@@ -5,12 +5,13 @@ import Button from './Buttons/Button.jsx';
 
 const DockerSidebar = ({
   toggleDockerViewport,
+  activeWidget,
 }) => (
   <div className="docker-sidebar">
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Announcements"/>
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Meditation"/>
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Reflection"/>
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings"/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Announcements" active={activeWidget === "Announcements" ? true : false}/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Meditation" active={activeWidget === "Meditation" ? true : false}/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Reflection" active={activeWidget === "Reflection" ? true : false}/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings" active={activeWidget === "Settings" ? true : false}/>
   </div>
 );
 

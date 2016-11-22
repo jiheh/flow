@@ -2,32 +2,24 @@ import axios from 'axios';
 
 /* -----------------    ACTIONS     ------------------ */
 
-let SET = 'SET_CURRENT_USER'
-let REMOVE = 'REMOVE_CURRENT_USER'
+const SET    = 'SET_CURRENT_ADMIN'
+const REMOVE = 'REMOVE_CURRENT_ADMIN'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const set = user => ({
-  type: SET,
-  user,
-});
-
-const remove = () => ({
-  type: REMOVE,
-});
+const set     = admin => ({ type: SET, admin })
+const remove  = () => ({ type: REMOVE })
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer(currentUser = null, action) {
+export default function reducer (currentAdmin = null, action) {
   switch (action.type) {
-    case SET:
-      return action.user;
-
+    case SET: 
+      return action.admin;
     case REMOVE:
       return null;
-
-    default:
-      return currentUser;
+    default: 
+      return currentAdmin;
   }
 }
 
@@ -35,7 +27,10 @@ export default function reducer(currentUser = null, action) {
 
 export const login = credentials => (dispatch) => {
   axios.post('/auth/login', credentials)
-    .then(res => dispatch(set(res.data)))
+  .then(res => {
+    // Need to set just the e-mail to currentAdmin
+    dispatch(set(res.config.data))
+  })
     .catch(err => console.error('Login unsuccessful', err));
 };
 

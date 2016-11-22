@@ -60,9 +60,8 @@ router.post('/', (req, res, next) => {
             });
         } else {
           // UserInfo found, check password, find User and return hash
-          let newUserInfo;
           return userInfo.authenticate(req.body.password)
-            .then(passwordMatch => {
+            .then((passwordMatch) => {
               // eslint-disable-next-line new-cap
               if (!passwordMatch) throw HttpError(404);
               return User.findOne({
@@ -72,14 +71,14 @@ router.post('/', (req, res, next) => {
                   where: {
                     id: userInfo.id,
                   },
-                }]
-              })
-                .then(user => {
-                  // eslint-disable-next-line new-cap
-                  if (!user) throw HttpError(404);
-                  res.json(user.hash);
-                });
+                }],
+              });
             })
+            .then((user) => {
+              // eslint-disable-next-line new-cap
+              if (!user) throw HttpError(404);
+              res.json(user.hash);
+            });
         }
       })
       .catch(next);

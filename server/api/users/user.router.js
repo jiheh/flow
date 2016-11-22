@@ -74,7 +74,7 @@ router.post('/', (req, res, next) => {
                 }],
               });
             })
-            .then(user => {
+            .then((user) => {
               // eslint-disable-next-line new-cap
               if (!user) throw HttpError(404);
               res.json(user.hash);

@@ -2,12 +2,15 @@
 
 const app = require('express')();
 const path = require('path');
+const bodyParser = require('body-parser')
 const User = require('../api/users/user.model');
 const passport = require('passport');
 
 app.use(require('./logging.middleware'));
-app.use(require('./request-state.middleware'));
 app.use(require('./statics.middleware'));
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 const session = require('express-session');
 

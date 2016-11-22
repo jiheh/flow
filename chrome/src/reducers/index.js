@@ -9,6 +9,7 @@ import surveyQuestions from './surveyQuestions';
 
 import settings from './settings';
 import docker from './docker';
+import user from './user';
 
 export default combineReducers({
   backgroundImage,
@@ -18,4 +19,5 @@ export default combineReducers({
   surveyQuestions,
   settings,
   docker,
+  user,
 });

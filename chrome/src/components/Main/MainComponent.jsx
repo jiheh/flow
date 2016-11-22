@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
 import { propTypes as settingsPropTypes } from '../../reducers/settings';
+import { propTypes as userPropTypes } from '../../reducers/user';
 import Main from './Main.jsx';
 import { initialState as defaultSettings } from '../../reducers/settings';
 
 class MainComponent extends Component {
   static propTypes = {
     settings: settingsPropTypes,
+    user: userPropTypes,
   };
 
   componentDidMount() {
@@ -18,8 +20,12 @@ class MainComponent extends Component {
   }
 
   render() {
+    const { user } = this.props;
+
     return (
-      <Main />
+      <Main
+        user={user}
+      />
     );
   }
 }

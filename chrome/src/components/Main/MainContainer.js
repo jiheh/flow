@@ -5,9 +5,11 @@ import { setSettings } from '../../reducers/settings';
 const mapStateToProps = ({
   settings,
   showSettingsPanel,
+  user,
 }) => ({
   settings,
   showSettingsPanel,
+  user,
 });
 
 const mapDispatchToProps = () => dispatch => ({

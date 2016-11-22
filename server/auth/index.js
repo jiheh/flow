@@ -1,22 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const userInfo = require('../api/userInfo/userInfo.model');
+const Admin = require('../api/admin/admin.model')
+const UserInfo = require('../api/userInfo/userInfo.model');
 
 module.exports = router;
 
 router.post('/login', (req, res, next) => {
   let admin;
-  userInfo.findOne({
-    where: {
-      email: req.body.email,
-    }
+  Admin.findOne(
+    {include: [{
+      model: UserInfo, as: 'UserInfo',
+      where: {email: req.body.email}
+    }]
   })
   .then(currentAdmin => {
+    console.log(currentAdmin)
     if (!currentAdmin) {
       res.sendStatus(401);
     }
     admin = currentAdmin;
-    return currentAdmin.authenticate(req.body.password);
+    return currentAdmin.UserInfo.authenticate(req.body.password);
   })
   .then(passwordMatches => {
     if (passwordMatches) {

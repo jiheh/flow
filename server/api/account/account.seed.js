@@ -31,7 +31,6 @@ const createAccounts = (n) => {
         organizationGlobal = organization
         return Account.findById(randomNum)
       }).then(account => {
-        console.log(organizationGlobal.id,account.id)
         return organizationGlobal.addAccount(account)
       });
       orgPromiseArr.push(orgPromise);

@@ -7,6 +7,7 @@ const createAdmins = (n) =>{
     let userGlobal;
     const userPromise = UserInfo.create({
       name:`admin${i}`,
+      type:`admin`,
       email:`admin${i}@admin.com`,
       password:`123`
     }).then(userInfo =>{

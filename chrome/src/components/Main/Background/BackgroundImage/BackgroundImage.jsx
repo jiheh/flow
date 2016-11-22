@@ -8,7 +8,7 @@ const BackgroundImage = ({ backgroundImage }) => (
     <img
       className="backround-image"
       role="presentation"
-      src={backgroundImage}
+      src={`http://localhost:8080/backgroundImages/${backgroundImage}`}
     />
   </div>
 );

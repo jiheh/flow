@@ -5,7 +5,12 @@ import { propTypes as backgroundVideoPropTypes } from '../../../../reducers/back
 
 const BackgroundVideo = ({ backgroundVideo }) => (
   <div className="backround-video-wrapper">
-    <video className="background-video" src={backgroundVideo} autoPlay loop />
+    <video
+      className="background-video"
+      src={`http://localhost:8080/backgroundVideos/${backgroundVideo}`}
+      autoPlay
+      loop
+    />
   </div>
 );
 

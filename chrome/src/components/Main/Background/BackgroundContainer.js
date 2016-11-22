@@ -4,37 +4,6 @@ import { setImageUrl } from '../../../reducers/backgroundImage';
 import { setVideoUrl } from '../../../reducers/backgroundVideo';
 import BackgroundComponent from './BackgroundComponent.jsx';
 
-const imageSubreddits = [
-  'earthporn',
-  'botanicalporn',
-  'waterporn',
-  'seaporn',
-  'skyporn',
-  'desertporn',
-  'winterporn',
-  'autumnporn',
-  'weatherporn',
-  'geologyporn',
-  'spaceporn',
-  'beachporn',
-  'mushroomporn',
-  'summerporn',
-  'lavaporn',
-  'lakeporn',
-  'cityporn',
-  'villageporn',
-  'ruralporn',
-  'boatporn',
-  'ridesporn',
-  'spaceflightporn',
-  'roadporn',
-  'animalporn',
-  'agricultureporn',
-  'fractalporn',
-  'aerialporn',
-  'viewporn',
-];
-
 const mapStateToProps = ({
   backgroundImage,
   backgroundVideo,
@@ -48,17 +17,9 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = () => dispatch => ({
   getBackgroundImage: () => {
-    const subreddit = imageSubreddits[Math.floor(Math.random() * imageSubreddits.length)];
-
-    axios.get(`https://www.reddit.com/r/${subreddit}/random/.json`)
-      .then(({ data }) => {
-        let result = `${data[0].data.children[0].data.url}`;
-        if (result.includes('imgur')) { result += '.jpg'; }
-
-        // fix for bugged HTML-escaping of ampersands in i.reddituploads.com urls from reddit API
-        if (result.includes('i.reddituploads.com')) { result = result.replace(/amp;/g, ''); }
-        dispatch(setImageUrl(result));
-      })
+    // TODO: CHANGE TO PRODUCTION SERVER
+    axios.get('http://localhost:8080/api/images/random')
+      .then(res => dispatch(setImageUrl(res.data)))
     // TODO: error handling
       .catch(console.error);
   },
@@ -68,8 +29,11 @@ const mapDispatchToProps = () => dispatch => ({
   },
 
   getBackgroundVideo: () => {
-    const videoUrl = '../../assets/videos/1.mp4';
-    dispatch(setVideoUrl(videoUrl));
+    // TODO: CHANGE TO PRODUCTION SERVER
+    axios.get('http://localhost:8080/api/videos/random')
+      .then(res => dispatch(setVideoUrl(res.data)))
+    // TODO: error handling
+      .catch(console.error);
   },
 });
 

@@ -8,7 +8,7 @@ const DockerSidebar = ({
 }) => (
   <div className="docker-sidebar">
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Announcements"/>
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Relaxation"/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Meditation"/>
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Reflection"/>
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings"/>
   </div>

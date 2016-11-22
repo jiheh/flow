@@ -5,8 +5,8 @@ const path = require('path');
 const router = require('express').Router(); // eslint-disable-line new-cap
 
 router.get('/random', (req, res, next) => {
-  const imageDir = path.join(__dirname, '..', '..', '..', 'public', 'backgroundImages');
-  fs.readdir(imageDir, (err, files) => {
+  const videoDir = path.join(__dirname, '..', '..', '..', 'public', 'backgroundVideos');
+  fs.readdir(videoDir, (err, files) => {
     if (err) {
       next(err);
     } else {

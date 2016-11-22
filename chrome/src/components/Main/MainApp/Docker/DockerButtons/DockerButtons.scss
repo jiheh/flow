@@ -1,0 +1,13 @@
+.docker-button {
+  opacity:0.25;
+  display: block;
+  margin: 10px;
+  transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  &:hover {
+    opacity: 1.0;
+    transform: scale(1.2);
+  }
+}

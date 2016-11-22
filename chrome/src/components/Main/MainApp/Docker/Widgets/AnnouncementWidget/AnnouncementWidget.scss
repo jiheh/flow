@@ -1,0 +1,33 @@
+.single-announcement {
+  padding: 0px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+  width: 285px;
+  margin-bottom: 8px;
+
+  p {
+    margin: 0;
+    color: #7D7D7D;
+  }
+
+}
+
+.single-announcement-contents {
+  background-color: rgba(255,255,255,0.6);
+  padding: 8px;
+}
+
+.single-announcement-title {
+  margin: 0;
+  padding: 8px;
+  background-color: rgba(255,255,255,0.8);
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.inactive {
+  opacity: 0.3;
+}

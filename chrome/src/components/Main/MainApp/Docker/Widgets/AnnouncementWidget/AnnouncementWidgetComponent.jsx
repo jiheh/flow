@@ -26,11 +26,12 @@ class AnnouncementWidgetComponent extends Component {
   // }
 
   render() {
-    const {  } = this.props;
+    const { allAnnouncements, unread } = this.props;
 
     return (
       <AnnouncementWidget
-
+        allAnnouncements={allAnnouncements}
+        unread={unread}
       />
     );
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
-import LogInForm from '../LogIn/LogIn';
+import LogInForm from './LogIn';
 
 export default class Navigation extends Component {
 

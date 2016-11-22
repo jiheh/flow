@@ -1,20 +1,14 @@
 import React, { PropTypes } from 'react';
 import { propTypes as settingsPropTypes } from '../../../../reducers/settings';
-import './SettingsPanel.scss';
+import './ToggleBackgroundMode.scss';
 import photoLogo from './photo-camera.png';
 import videoLogo from './video-camera.png';
 
-console.log("HELLO!!!!!!!!!!!!!!!!")
-console.log()
-
-const SettingsPanel = ({
-  toggleClock,
+const BackgroundMode = ({
   toggleBackgroundMode,
   settings,
-  test
 }) => (
-  <div className="settings-panel">
-    <button onClick={toggleClock}>Toggle Clock</button>
+  <div className="toggle-background-mode">
     <img
       src={settings.showVideo ? photoLogo : videoLogo}
       className="background-mode"
@@ -23,10 +17,9 @@ const SettingsPanel = ({
   </div>
 );
 
-SettingsPanel.propTypes = {
-  toggleClock: PropTypes.func.isRequired,
+BackgroundMode.propTypes = {
   toggleBackgroundMode: PropTypes.func.isRequired,
   settings: settingsPropTypes,
 };
 
-export default SettingsPanel;
+export default BackgroundMode;

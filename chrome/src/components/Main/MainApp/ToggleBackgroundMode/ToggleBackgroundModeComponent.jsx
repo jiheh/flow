@@ -1,27 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
-import SettingsPanel from './SettingsPanel.jsx';
+import ToggleBackgroundMode from './ToggleBackgroundMode.jsx';
 import {
   propTypes as settingsPropTypes,
   initialState as defaultSettings,
 } from '../../../../reducers/settings';
 
-class SettingsPanelComponent extends Component {
+class ToggleBackgroundModeComponent extends Component {
   static propTypes = {
     settings: settingsPropTypes,
     saveSettings: PropTypes.func,
-  }
-
-  toggleClock = () => {
-    const { settings } = this.props;
-
-    chrome.storage.sync.set({
-      ...settings,
-      showClock: !settings.showClock
-    }, () => {
-      console.log('saving settings');
-      this.props.saveSettings({...settings, showClock: !settings.showClock});
-    });
   }
 
   toggleBackgroundMode = () => {
@@ -32,7 +20,6 @@ class SettingsPanelComponent extends Component {
       showVideo: !settings.showVideo,
       showImage: !settings.showImage,
     }, () => {
-      console.log('toggled background mode, saving to browser');
       this.props.saveSettings(
         {...settings,
           showVideo: !settings.showVideo,
@@ -46,8 +33,7 @@ class SettingsPanelComponent extends Component {
     const { settings } = this.props;
 
     return (
-      <SettingsPanel
-        toggleClock={this.toggleClock}
+      <ToggleBackgroundMode
         toggleBackgroundMode={this.toggleBackgroundMode}
         settings={settings}
       />
@@ -55,4 +41,4 @@ class SettingsPanelComponent extends Component {
   }
 }
 
-export default SettingsPanelComponent;
+export default ToggleBackgroundModeComponent;

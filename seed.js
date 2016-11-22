@@ -16,6 +16,7 @@ const seedBillings = require('./server/api/billing/billing.seed')
 
 const seedDatabase = num =>{
     db.sync({force: true})
+
     .then(() => seedAdmins(num))
     .then(() => seedUsers(num))
     .then(() => seedChannels(num))

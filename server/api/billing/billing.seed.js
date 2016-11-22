@@ -21,4 +21,4 @@ const createBillings = (n) =>{
   return Promise.all(arrToReturn)
 }
 
-module.exports = createBillings;
+module.exports = createBillings; 

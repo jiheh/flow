@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import AnnouncementWidgetComponent from './AnnouncementWidgetComponent.jsx';
 
 const mapStateToProps = ({
-
+  announcements
 }) => ({
-
+  allAnnouncements: announcements.allAnnouncements,
+  unread: announcements.unread,
 });
 
 const mapDispatchToProps = ({
@@ -13,4 +14,4 @@ const mapDispatchToProps = ({
 
 });
 
-export default connect(null, null)(AnnouncementWidgetComponent);
+export default connect(mapStateToProps, null)(AnnouncementWidgetComponent);

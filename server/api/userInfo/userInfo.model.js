@@ -27,9 +27,6 @@ const UserInfo = db.define('userInfo', {
         notEmpty: true,
       },
     },
-    type:{
-      type:Sequelize.STRING
-    },
     password_digest: Sequelize.STRING,
     password: Sequelize.VIRTUAL
   }, {

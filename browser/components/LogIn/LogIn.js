@@ -1,24 +1,66 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { Modal, Button } from 'react-bootstrap';
 
-const LogInForm = ({ showModal, close, login, signup }) => (
-  <Modal show={showModal} onHide={close}>
+export default class LogInForm extends Component {
 
-    <Modal.Header closeButton>
-      <Modal.Title>Log In</Modal.Title>
-    </Modal.Header>
-    
-    <Modal.Body>
-      <p>E-mail<input></input></p>
-      <p>Password<input></input></p>
-      <p><Button onClick={login}>Submit</Button></p>
-    </Modal.Body>
+  constructor(props) {
+    super(props);
+  }
 
-    <Modal.Footer>
-      <Button onClick={signup}>Create an Organization</Button>
-    </Modal.Footer>
+  onSubmit = (e) => {
+    e.preventDefault();
+    const { login } = this.props;
+    const credentials = {
+      email: e.target.email.value,
+      password: e.target.password.value
+    }
+    if (login) {
+      login(credentials);
+      this.props.close();
+    }
+  }
 
-  </Modal>
-);
+  signup = () => {
+    browserHistory.push('/signup');
+    this.props.close();
+  }
 
-export default LogInForm;
+  render() {
+    const { showModal, close } = this.props;
+  
+    return (
+      <Modal show={showModal} onHide={close}>
+
+        <Modal.Header closeButton>
+          <Modal.Title>Log In</Modal.Title>
+        </Modal.Header>
+        
+        <Modal.Body>
+          <form onSubmit={this.onSubmit}>
+            <div>
+              <label>Email</label>
+              <input
+                name="email" 
+                type="email"
+              />
+            </div>
+            <div>
+                <label>Password</label>
+                <input 
+                  name="password"
+                  type="password"
+                />
+            </div>
+            <Button type="submit">Submit</Button>
+          </form>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button onClick={this.signup}>Create an Organization</Button>
+        </Modal.Footer>
+
+      </Modal>
+    );
+  }
+}

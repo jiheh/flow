@@ -7,7 +7,7 @@ const port = 8080;
 const server = app.listen(port, (err) => {
   if (err) throw err;
   console.log(`Server is listening to port ${port}!`);
-  db.sync({ force: true })
+  db.sync()
     .then(() => {
       console.log('Database is connected!');
     });

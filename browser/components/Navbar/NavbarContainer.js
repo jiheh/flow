@@ -4,11 +4,11 @@ import { browserHistory } from 'react-router';
 import Navigation from './Navbar';
 
 
-const mapStateToProps = ({ organization }) => ({ organization });
+const mapStateToProps = ({ currentAdmin }) => ({ currentAdmin });
 
 const mapDispatchToProps = dispatch => ({
-	loginAdmin: () => {
-		dispatch(login());
+	loginAdmin: (admin) => {
+		dispatch(login(admin));
 	},
   logoutAdmin: () => {
     dispatch(logout())

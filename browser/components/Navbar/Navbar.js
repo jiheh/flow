@@ -20,17 +20,9 @@ export default class Navigation extends Component {
   close = () => {
     this.setState({showModal: false})
   }
-  login = () => {
-    this.props.loginAdmin();
-    this.close();
-  }
-  signup = () => {
-    browserHistory.push('/signup');
-    this.close();
-  }
-
+  
   render() {
-    const { logoutAdmin, organization } = this.props;
+    const { loginAdmin, logoutAdmin, currentAdmin } = this.props;
   
     return (
       <Navbar inverse collapseOnSelect>
@@ -40,14 +32,14 @@ export default class Navigation extends Component {
           </Navbar.Brand>
         </Navbar.Header>
 
-        {organization ?
+        {currentAdmin ?
           (
             <Nav pullRight>
-              <NavItem eventKey={1} onClick={this.open}>Log In</NavItem>
+              <NavItem eventKey={3} onClick={logoutAdmin}>Log Out</NavItem>
             </Nav>
           ) : (
             <Nav pullRight>
-              <NavItem eventKey={3} onClick={logoutAdmin}>Log Out</NavItem>
+              <NavItem eventKey={1} onClick={this.open}>Log In</NavItem>
             </Nav>
           )
         }
@@ -55,8 +47,7 @@ export default class Navigation extends Component {
         <LogInForm
           showModal={this.state.showModal}
           close={this.close}
-          login={this.login}
-          signup={this.signup}
+          login={loginAdmin}
         />
 
       </Navbar>

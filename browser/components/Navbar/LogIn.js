@@ -38,11 +38,12 @@ export default class LogInForm extends Component {
         
         <Modal.Body>
           <form onSubmit={this.onSubmit}>
-            <div>
+            <div className="form-group">
               <label>Email</label>
               <input
                 name="email" 
                 type="email"
+                className="form-control"
               />
             </div>
             <div>
@@ -50,8 +51,11 @@ export default class LogInForm extends Component {
                 <input 
                   name="password"
                   type="password"
+                  className="form-control"
                 />
             </div>
+            <br />
+
             <Button type="submit">Submit</Button>
           </form>
         </Modal.Body>

@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 import Docker from './Docker.jsx';
-import { toggleMeditationVisible } from '../../../../reducers/meditationWidget';
+import { toggleDockerViewport } from '../../../../reducers/docker';
 
 
 const mapStateToProps = ({
-  meditationWidget,
+  docker,
 }) => ({
-  meditationWidget,
+  viewportVisible: docker.viewportVisible,
+  activeWidget: docker.activeWidget,
+
 });
 
 const mapDispatchToProps = () => dispatch => ({
-  toggleMeditationVisibility: () => {
-    dispatch(toggleMeditationVisible());
+  toggleDockerViewport: (widgetNameString) => {
+    dispatch(toggleDockerViewport(widgetNameString));
   },
 });
 

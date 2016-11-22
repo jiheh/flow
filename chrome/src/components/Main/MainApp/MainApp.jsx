@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import { propTypes as showSettingsPanelPropTypes } from '../../../reducers/showSettingsPanel';
-import Docker from './Docker/DockerContainer.js'
-import Widgets from './Widgets/WidgetsContainer.js';
+import DockerContainer from './Docker/DockerContainer.js'
 import SettingsPanel from './SettingsPanel/SettingsPanelContainer.js';
 import ToggleSettingsPanel from './ToggleSettingsPanel/ToggleSettingsPanelContainer.js';
 import CenterPiece from './CenterPiece/CenterPieceContainer';
@@ -14,7 +13,7 @@ const MainApp = ({
   saveSettings,
 }) => (
   <div className="main-app">
-    <Docker />
+    <DockerContainer />
     <ToggleSettingsPanel />
     {showSettingsPanel &&
      <SettingsPanel
@@ -22,7 +21,6 @@ const MainApp = ({
      />
     }
     <CenterPiece />
-    <Widgets />
   </div>
 );
 

@@ -3,7 +3,7 @@
 'use strict';
 
 const UserInfo = require('../userInfo/userInfo.model');
-const User = require('../users/user.model');
+const User = require('../user/user.model');
 
 const createUsers = (n) => {
   const arrToReturn = [];

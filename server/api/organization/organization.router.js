@@ -59,9 +59,4 @@ router.post('/',(req,res,next) =>{
   .catch(err => console.log(err))
 })
 
-
-router.get('/',(req,res,next) =>{
-  res.json('fggch ')
-})
-
 module.exports = router

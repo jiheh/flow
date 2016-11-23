@@ -43,10 +43,10 @@ passport.deserializeUser((id, done) => {
     .catch(done);
 });
 
-app.use(function (req, res, next) {
-  console.log('session', req.session);
-  next();
-});
+// app.use(function (req, res, next) {
+//   console.log('session', req.session);
+//   next();
+// });
 
 app.use('/api', require('../api/api.router'));
 

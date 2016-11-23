@@ -8,9 +8,11 @@ import SingleAnnouncement from './AnnouncementSubcomponents/SingleAnnouncement.j
 const AnnouncementWidget = ({ allAnnouncements, unread }) => (
   <div className="announcement-widget widget">
 
-    <h4 className="widget-title">
-      Announcements
-    </h4>
+    <div className="widget-nav">
+      <h4 className="widget-title">
+        COMMUNITY MESSAGES
+      </h4>
+    </div>
 
     <Line />
 
@@ -33,3 +35,5 @@ const AnnouncementWidget = ({ allAnnouncements, unread }) => (
 
 
 export default AnnouncementWidget;
+
+

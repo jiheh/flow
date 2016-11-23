@@ -6,15 +6,13 @@ import '../Widgets.scss';
 const ReflectionWidget = ({  }) => (
   <div className="reflection-widget widget">
 
-    <h4 className="widget-title">
-      Reflection
-    </h4>
+    <div className="widget-nav">
+      <h4 className="widget-title">
+        REFLECTION
+      </h4>
+    </div>
 
     <Line />
-
-    <div className="widget-contents">
-
-    </div>
 
   </div>
 );

@@ -1,3 +1,41 @@
+// Quote animations
+
 .quote {
   color: white;
+  text-align: center;
+
+  span {
+    display: block;
+  }
+
+  .quote-text {
+    font-size: 1.5em;
+    font-weight: 400;
+    transition: 0.5s;
+    transform: translateY(2.5px);
+    transition-function: ease-in;
+  }
+
+  .quote-origin {
+    font-size: 1em;
+    font-weight: 300;
+    opacity: 0;
+    transition: 0.5s;
+    transform: translateY(-2.5px);
+    transition-function: ease-in;
+  }
+
+  &:hover {
+
+    .quote-text {
+      transform: translateY(-2.5px);
+    }
+
+    .quote-origin {
+      transform: translateY(2.5px);
+      opacity: 1;
+    }
+
+  }
+
 }

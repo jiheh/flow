@@ -19,8 +19,24 @@ const User = db.define('users', {
         .catch(console.error); // TODO: error handling
     },
   },
+  instanceMethods: {
+    // get this user's response from a specific survey
+    getResponsesFromSurvey: (survey) => {
+      return this.getResponses({
+        include: [
+          {
+            model: Survey,
+            where: {id: survey.id},
+          },
+        ],
+      })
+    },
+    // has user been sent this specific survey?
+    userHasBeenSentSurvey: (survey) => {
+      return this.hasAssociation(survey);
+    },
+  }
 });
-
 
 module.exports = User;
 

@@ -8,6 +8,7 @@ const Billing = require('./api/billing/billing.model');
 const Organization = require('./api/organization/organization.model');
 const Response = require('./api/response/response.model');
 const Survey = require('./api/survey/survey.model');
+const Question = require('./api/question/question.model');
 const User = require('./api/users/user.model');
 const UserInfo = require('./api/userInfo/userInfo.model');
 
@@ -30,5 +31,23 @@ Organization.belongsToMany(Account, { through: 'Organization-Account' });
 Organization.belongsTo(Billing, { as: 'Billing' });
 Organization.belongsTo(Admin, { as: 'Head' });
 
+// Questions and Surveys
+Admin.hasMany(Survey); // Admin.getSurveys, get all surveys by this admin
+Survey.belongsTo(Admin, {as: 'Owner'}); // Survey.getOwner
+
+User.hasMany(Survey); // When user asks the API, "What surveys do I have for today?" User.getSurveys({where: {active...
+Survey.belongsToMany(User, {through: 'Survey-Participant'}); // Survey.getParticipants
+
+Survey.belongsTo(Channel);
+Channel.hasMany(Survey);
+
+Response.belongsTo(User); // Question.getResponses({where: user...
+User.hasMany(Response);
+
+Question.hasMany(Response); // Question.getResponses
+Response.belongsTo(Question); // Response.getQuestion
+
+Survey.hasMany(Question);
+Question.belongsTo(Survey);
 
 module.exports = db;

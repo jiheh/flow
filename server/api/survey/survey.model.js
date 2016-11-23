@@ -28,7 +28,7 @@ const Survey = db.define('survey', {
   instanceMethods: {
     // How many questions does this survey have?
     numberOfQuestions: () => {
-      this.getQuestions
+      this.getQuestions()
         .then(questions => {
           return questions.length;
         })

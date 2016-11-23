@@ -47,6 +47,7 @@ const UserInfo = db.define('userInfo', {
         );
       },
     },
+
 });
 
 

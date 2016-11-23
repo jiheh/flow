@@ -61,8 +61,20 @@ class Auth extends React.Component {
 	onSubmit(event) {
 		event.preventDefault();
 		let { message, login, signup } = this.props;
-    let credentials = {
-      email: event.target.email.value,
+   let credentials = {
+      organizationName:'Test Organization',
+			adminName:'Test Admin',
+			accountType:'basic',
+			organizationType:'University',
+			address:'5 Hanover Square', 
+			phone:'123456789',
+			billing:{
+				cardType:'mastercard',
+				cardNumber:1234567890,
+				expiryDate:1234,
+				securityNumber:987
+			},
+			email: event.target.email.value,
       password: event.target.password.value
     }
 		if (login) {

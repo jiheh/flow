@@ -12,6 +12,8 @@ app.use(require('./statics.middleware'));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+
+
 const session = require('express-session');
 
 app.use(session({
@@ -56,7 +58,7 @@ validFrontendRoutes.forEach((stateRoute) => {
   app.get(stateRoute, (req, res) => {
     res.sendFile(indexPath);
   });
-});
+}); 
 
 app.use(require('./error.middleware'));
 

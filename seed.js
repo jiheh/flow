@@ -11,18 +11,27 @@ const seedChannels = require('./server/api/channel/channel.seed')
 const seedOrganizations = require('./server/api/organization/organization.seed')
 const seedAccounts = require('./server/api/account/account.seed')
 const seedBillings = require('./server/api/billing/billing.seed') 
+const test = require('./server/api/admin/admin.methods')
 
 
+let credentials = {
+  name:'fake person',
+  email: 'fakeEmail@email.com',
+  password:'1235'
+}
 
 const seedDatabase = num =>{
-    db.sync({force: true})
-
-    .then(() => seedAdmins(num))
-    .then(() => seedUsers(num))
-    .then(() => seedChannels(num))
-    .then(() => seedOrganizations(num))
-    .then(() => seedAccounts(num))
-    .then(() => seedBillings(num))
+    db.sync({force:true})
+    // .then(() => test(credentials))
+    // .then((val) =>{
+    //   // console.log(val)
+    // }) 
+    // .then(() => seedAdmins(num))
+    // .then(() => seedUsers(num))
+    // .then(() => seedChannels(num))
+    // .then(() => seedOrganizations(num))
+    // .then(() => seedAccounts(num))
+    // .then(() => seedBillings(num))
     .then(function () {
       console.log('Seeding successful');
     }, function (err) {
@@ -30,7 +39,7 @@ const seedDatabase = num =>{
       console.error(err.stack);
     })
     .then(function () {
-      process.exit();
+      // process.exit();
     });
 
 }

@@ -35,7 +35,7 @@ Organization.belongsTo(Admin, { as: 'Head' });
 Admin.hasMany(Survey); // Admin.getSurveys, get all surveys by this admin
 Survey.belongsTo(Admin, {as: 'Owner'}); // Survey.getOwner
 
-User.hasMany(Survey); // When user asks the API, "What surveys do I have for today?" User.getSurveys({where: {active...
+User.belongsToMany(Survey, {through: 'Survey-Participant'}); // When user asks the API, "What surveys do I have for today?" User.getSurveys({where: {active...
 Survey.belongsToMany(User, {through: 'Survey-Participant'}); // Survey.getParticipants
 
 Survey.belongsTo(Channel);

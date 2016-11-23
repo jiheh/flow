@@ -22,16 +22,12 @@ let credentials = {
 
 const seedDatabase = num =>{
     db.sync({force:true})
-    // .then(() => test(credentials))
-    // .then((val) =>{
-    //   // console.log(val)
-    // }) 
-    // .then(() => seedAdmins(num))
-    // .then(() => seedUsers(num))
-    // .then(() => seedChannels(num))
-    // .then(() => seedOrganizations(num))
+    .then(() => seedAdmins(num))
+    .then(() => seedUsers(num))
+    .then(() => seedChannels(num))
+    .then(() => seedOrganizations(num))
     .then(() => seedAccounts(num))
-    // .then(() => seedBillings(num))
+    .then(() => seedBillings(num))
     .then(function () {
       console.log('Seeding successful');
     }, function (err) {
@@ -39,7 +35,7 @@ const seedDatabase = num =>{
       console.error(err.stack);
     })
     .then(function () {
-      // process.exit();
+      process.exit();
     });
 
 }

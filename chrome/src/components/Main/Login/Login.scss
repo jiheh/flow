@@ -21,5 +21,69 @@
 
 .login-input {
   position: relative;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  color: white;
+  font-size: 3em;
   text-align: center;
+  width: 35%;
+  animation-name: loginInputAnimationTest;
+  animation-duration: 1.0s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+
+  &[type=text]:focus {
+    animation-name: loginInputAnimation;
+    animation-duration: 1.0s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+  }
+  &[type=password]:focus {
+    animation-name: loginInputAnimation;
+    animation-duration: 1.0s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+  }
+}
+
+@keyframes loginInputAnimation {
+  0% {
+    width: 35%;
+  }
+
+  75% {
+    width: 100%;
+  }
+
+  100% {
+    width: 80%;
+  }
+}
+
+@keyframes loginInputAnimationTest {
+  0% {
+    width: 80%;
+  }
+
+  75% {
+    width: 15%;
+  }
+
+  100% {
+    width: 35%;
+  }
 }

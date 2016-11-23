@@ -16,10 +16,14 @@ class QuoteComponent extends Component {
   render() {
     const {
       quote,
+      author,
     } = this.props;
 
     return (
-      <Quote quote={quote}/>
+      <Quote
+        quote={quote}
+        author={author}
+  />
     );
   }
 }

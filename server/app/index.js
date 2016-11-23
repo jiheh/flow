@@ -13,6 +13,8 @@ app.use(require('./statics.middleware'));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+
+
 const session = require('express-session');
 
 app.use(session({
@@ -41,10 +43,10 @@ passport.deserializeUser((id, done) => {
     .catch(done);
 });
 
-app.use(function (req, res, next) {
-  console.log('session', req.session);
-  next();
-});
+// app.use(function (req, res, next) {
+//   console.log('session', req.session);
+//   next();
+// });
 
 app.use('/api', require('../api/api.router'));
 

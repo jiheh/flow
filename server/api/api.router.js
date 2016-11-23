@@ -8,5 +8,7 @@ router.use('/videos', require('./video/video.router'));
 router.use('/quotes', require('./quote/quote.router'));
 router.use('/users', require('./user/user.router'));
 router.use('/announcements', require('./announcement/announcement.router'));
+router.use('/organization',require('./organization/organization.router'));
+router.use('/admin',require('./admin/admin.router'));
 
 module.exports = router;

@@ -10,9 +10,11 @@ import SingleAnnouncement from './AnnouncementSubcomponents/SingleAnnouncement.j
 const AnnouncementWidget = ({ announcements, unread }) => (
   <div className="announcement-widget widget">
 
-    <h4 className="widget-title">
-      Announcements
-    </h4>
+    <div className="widget-nav">
+      <h4 className="widget-title">
+        COMMUNITY MESSAGES
+      </h4>
+    </div>
 
     <Line />
 
@@ -37,3 +39,5 @@ AnnouncementWidget.propTypes = {
 };
 
 export default AnnouncementWidget;
+
+

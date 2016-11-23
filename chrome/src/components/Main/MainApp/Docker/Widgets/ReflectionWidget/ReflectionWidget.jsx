@@ -14,6 +14,9 @@ const ReflectionWidget = ({  }) => (
 
     <Line />
 
+    <div className="widget-contents">
+    </div>
+
   </div>
 );
 

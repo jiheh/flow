@@ -6,6 +6,7 @@ import '../Widgets.scss';
 import MeditationSection from './MeditationWidgetSubcomponents/MeditationSection.jsx';
 import SoundSection from './MeditationWidgetSubcomponents/SoundSection.jsx';
 import VisualSection from './MeditationWidgetSubcomponents/VisualSection.jsx';
+import {meditations, sounds, visuals} from './example-files.js'
 
 const MeditationWidget = ({  }) => (
   <div className="meditation-widget widget">
@@ -19,9 +20,9 @@ const MeditationWidget = ({  }) => (
     <Line />
 
     <div className="widget-contents">
-      <MeditationSection/>
-      <SoundSection/>
-      <VisualSection/>
+      <MeditationSection meditations={meditations}/>
+      <SoundSection sounds={sounds}/>
+      <VisualSection visuals={visuals}/>
     </div>
 
   </div>

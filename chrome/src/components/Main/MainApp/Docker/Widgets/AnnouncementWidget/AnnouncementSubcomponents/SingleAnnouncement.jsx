@@ -1,25 +1,23 @@
 import React from 'react';
 
 import '../AnnouncementWidget.scss';
+import Line from '../../WidgetComponents/Line.jsx';
 
 const SingleAnnoucement = ({ title, timestamp, contents }) => (
 
   <div className="single-announcement">
-
-    <div className="single-announcement-title">
+    <div className="single-announcement-content">
       <h4>
         {title}
       </h4>
-    </div>
-
-    <div className="single-announcement-contents">
       <p>
         {contents}
       </p>
     </div>
 
-  </div>
+    <Line />
 
+  </div>
 );
 
 

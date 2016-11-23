@@ -19,12 +19,12 @@ router.post('/',(req,res,next) =>{
     globalOrganization = organization
     return Account.findOne({
       where:{
-        type:globalOrganization.accountType
+        type:req.body.accountType
       }
     })
   })
   .then(account =>{ 
-    return globalOrganization.addAccount(account)
+    return globalOrganization.setAccount(account)
   })
   .then(() =>{
     let dataToSendToAdmin = {

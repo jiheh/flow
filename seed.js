@@ -30,7 +30,7 @@ const seedDatabase = num =>{
     // .then(() => seedUsers(num))
     // .then(() => seedChannels(num))
     // .then(() => seedOrganizations(num))
-    // .then(() => seedAccounts(num))
+    .then(() => seedAccounts(num))
     // .then(() => seedBillings(num))
     .then(function () {
       console.log('Seeding successful');

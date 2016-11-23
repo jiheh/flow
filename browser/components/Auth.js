@@ -65,8 +65,8 @@ class Auth extends React.Component {
     let credentials = {
       organizationName:'Test Organization',
 			adminName:'Test Admin',
-			organizationType:'basic',
-			accountType:'University',
+			accountType:'basic',
+			organizationType:'University',
 			address:'5 Hanover Square', 
 			phone:'123456789',
 			billing:{

@@ -59,10 +59,9 @@ class Auth extends React.Component {
 	}
 
 	onSubmit(event) {
-		console.log('here')
 		event.preventDefault();
 		let { message, login, signup } = this.props;
-    let credentials = {
+   let credentials = {
       organizationName:'Test Organization',
 			adminName:'Test Admin',
 			accountType:'basic',
@@ -78,8 +77,6 @@ class Auth extends React.Component {
 			email: event.target.email.value,
       password: event.target.password.value
     }
-		console.log('login',login)
-		console.log('signup',signup)
 		if (login) {
 			login(credentials);
 		} else if (signup) {

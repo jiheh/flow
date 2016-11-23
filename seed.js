@@ -4,19 +4,23 @@ let chance = require('chance')(123);
 let Promise = require('bluebird');
 
 let db = require('./server/db');
-let User = require('./server/api/users/user.model');
 const seedAdmins = require('./server/api/admin/admin.seed')
-const seedUsers = require('./server/api/users/user.seed')
+const seedUsers = require('./server/api/user/user.seed')
 const seedChannels = require('./server/api/channel/channel.seed')
 const seedOrganizations = require('./server/api/organization/organization.seed')
 const seedAccounts = require('./server/api/account/account.seed')
 const seedBillings = require('./server/api/billing/billing.seed') 
+const test = require('./server/api/admin/admin.methods')
 
 
+let credentials = {
+  name:'fake person',
+  email: 'fakeEmail@email.com',
+  password:'1235'
+}
 
 const seedDatabase = num =>{
-    db.sync({force: true})
-
+    db.sync({force:true})
     .then(() => seedAdmins(num))
     .then(() => seedUsers(num))
     .then(() => seedChannels(num))

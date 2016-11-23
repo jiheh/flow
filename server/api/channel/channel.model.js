@@ -22,8 +22,9 @@ const Channel = db.define('channel', {
       return this.getOrganization();
     },
   },
-
-
+  // location: {
+  //   type: Sequelize.ARRAY(Sequelize.INTEGER),
+  // },
 });
 
 module.exports = Channel;

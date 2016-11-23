@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-// import Question from /////////////
+import Question from './Question/QuestionContainer.js';
 // import Response from /////////////
 import Quote from './Quote/QuoteContainer.js';
 
@@ -7,9 +7,9 @@ const Survey = ({
   surveyQuestions, // boolean that basically says if there are surveys to show
 }) => (
   <div className="survey">
-    {surveyQuestions.length ?
-      <h1>test</h1> :
-        <Quote />}
+    {surveyQuestions.allQuestions.length ?
+    	<Question /> :
+      <Quote />}
   </div>
 );
 

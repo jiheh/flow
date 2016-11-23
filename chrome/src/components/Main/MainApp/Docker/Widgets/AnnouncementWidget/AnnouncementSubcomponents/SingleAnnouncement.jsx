@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import '../AnnouncementWidget.scss';
 
-const SingleAnnoucement = ({ title, timestamp, contents }) => (
+const SingleAnnouncement = ({ title, contents }) => (
 
   <div className="single-announcement">
 
@@ -22,5 +22,10 @@ const SingleAnnoucement = ({ title, timestamp, contents }) => (
 
 );
 
+SingleAnnouncement.propTypes = {
+  title: PropTypes.string.isRequired,
+  contents: PropTypes.string.isRequired,
+};
 
-export default SingleAnnoucement;
+
+export default SingleAnnouncement;

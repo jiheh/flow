@@ -1,3 +1,5 @@
+// eslint-disable no-use-before-define
+
 import React, { PropTypes } from 'react';
 
 import './Login.scss';
@@ -7,6 +9,7 @@ const Login = ({
   handleKeyUp,
   pageNum,
   input,
+  validationMessage,
 }) => (
   <div className="login-wrapper">
     <div className="login-text">
@@ -20,6 +23,9 @@ const Login = ({
       type={pageNum === 2 ? 'password' : 'text'}
     >
     </input>
+    <div className="login-validation-message">
+      {validationMessage}
+    </div>
   </div>
 );
 
@@ -28,6 +34,7 @@ Login.propTypes = {
   handleKeyUp: PropTypes.func.isRequired,
   pageNum: PropTypes.number.isRequired,
   input: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  validationMessage: PropTypes.string,
 };
 
 function loginText(pageNum) {

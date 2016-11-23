@@ -35,8 +35,8 @@ const UserInfo = db.define('userInfo', {
       unique: true,
     }],
     hooks: {
-      // beforeCreate: setEmailAndPassword, // eslint-disable-line no-use-before-define
-      // beforeUpdate: setEmailAndPassword, // eslint-disable-line no-use-before-define
+      beforeCreate: setEmailAndPassword, // eslint-disable-line no-use-before-define
+      beforeUpdate: setEmailAndPassword, // eslint-disable-line no-use-before-define
     },
     instanceMethods: {
       authenticate(plaintext) {
@@ -48,6 +48,7 @@ const UserInfo = db.define('userInfo', {
         );
       },
     },
+
 });
 
 

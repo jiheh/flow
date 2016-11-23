@@ -23,7 +23,7 @@ router.post('/',(req,res,next) =>{
       }
     })
   })
-  .then(account =>{ 
+  .then(account =>{  
     return globalOrganization.setAccount(account)
   })
   .then(() =>{
@@ -32,7 +32,7 @@ router.post('/',(req,res,next) =>{
       email:req.body.email,
       password:req.body.password,
     }
-    return adminMethods(dataToSendToAdmin)
+    return adminMethods.createAdmin(dataToSendToAdmin)
   })
   .then(admin =>{
     globalOrganization.update({head_id:admin.id})

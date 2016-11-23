@@ -21,22 +21,22 @@ const createAccounts = (n) => {
       cost:300
     })  
   })
-  .then(() =>{
-    const orgPromiseArr = [];
-    for(let i=1; i<=n; i++) {
-      let organizationGlobal;
-      let randomNum = Math.floor(Math.random() * 3) + 1;
-      const orgPromise = Organization.findById(i)
-      .then(organization => {
-        organizationGlobal = organization
-        return Account.findById(randomNum)
-      }).then(account => {
-        return organizationGlobal.addAccount(account)
-      });
-      orgPromiseArr.push(orgPromise);
-    }
-    return Promise.all(orgPromiseArr);
-  })
+  // .then(() =>{
+  //   const orgPromiseArr = [];
+  //   for(let i=1; i<=n; i++) {
+  //     let organizationGlobal;
+  //     let randomNum = Math.floor(Math.random() * 3) + 1;
+  //     const orgPromise = Organization.findById(i)
+  //     .then(organization => {
+  //       organizationGlobal = organization
+  //       return Account.findById(randomNum)
+  //     }).then(account => {
+  //       return organizationGlobal.addAccount(account)
+  //     });
+  //     orgPromiseArr.push(orgPromise);
+  //   }
+  //   return Promise.all(orgPromiseArr);
+  // })
 }
 
 module.exports = createAccounts;

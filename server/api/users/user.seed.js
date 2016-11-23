@@ -12,7 +12,7 @@ const createUsers = (n) => {
     const userPromise = UserInfo.create({
       name: `user${i}`,
       email: `user${i}@user.com`,
-      password: '123',
+      password: '123456',
     })
       .then((userInfo) => {
         userGlobal = userInfo;

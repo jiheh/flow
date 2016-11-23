@@ -15,42 +15,75 @@ class LoginComponent extends Component {
     this.state = {
       pageNum: 0,
       input: ['','',''],
+      validationMessage: '',
     };
   }
 
   handleInput = (evt) => {
     const { pageNum, input } = this.state;
-    this.setState({
-      input: [...input.slice(0, pageNum),
-              evt.target.value,
-              ...input.slice(pageNum + 1)
-             ]
-    });
+
+    if (evt.target.value !== input[pageNum]) {
+      this.setState({
+        input: [...input.slice(0, pageNum),
+                evt.target.value,
+                ...input.slice(pageNum + 1)],
+        validationMessage: '',
+      });
+    }
   }
 
   handleKeyUp = (evt) => {
     const { input, pageNum } = this.state;
     const { tryLogin } = this.props;
 
+    const text = input[pageNum];
+
     if (evt.which == 13) {
-      if (pageNum < 2 && input[pageNum] !== '' ) {
-        // name or email page, input not empty
-        if (pageNum !== 1 || (pageNum === 1 && emailRegex.test(input[pageNum]))) {
-          // name page, or email page and valid email
-          this.setState({ pageNum: pageNum + 1});
-        }
-      } else if (pageNum === 2 && input[pageNum] !== '') {
-        // password page and valid password
-        tryLogin(...input);
-      } else {
-        console.log('some sort of error');
+      switch (pageNum) {
+        case 0:
+          // name
+          if (text === '') {
+            this.setState({ validationMessage: 'Please enter your name.' })
+          } else {
+            this.setState({ pageNum: pageNum + 1 });
+          }
+          break;
+
+        case 1:
+          // email
+          if (text === '') {
+            this.setState({ validationMessage: 'Please enter your email address.' });
+          } else if (!emailRegex.test(text)) {
+            this.setState({ validationMessage: 'Please enter a valid email address.' });
+          } else {
+            this.setState({ pageNum: pageNum + 1 });
+          }
+          break;
+
+        case 2:
+          // password
+          if (text === '') {
+            this.setState({ validationMessage: 'Please enter your password.' });
+          } else if (text.length < 6) {
+            this.setState({ validationMessage: 'Password must be at least 6 characters long.' });
+          } else {
+            tryLogin(...input);
+          }
+          break;
+
+        default:
+          this.setState({ validationMessage: 'Invalid input.' });
       }
     }
   }
 
   render() {
     const { tryLogin } = this.props;
-    const { pageNum, input } = this.state;
+    const {
+      pageNum,
+      input,
+      validationMessage
+    } = this.state;
 
     return (
       <Login
@@ -58,6 +91,7 @@ class LoginComponent extends Component {
         handleKeyUp={this.handleKeyUp}
         pageNum={pageNum}
         input={input}
+        validationMessage={validationMessage}
       />
     );
   }

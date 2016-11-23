@@ -3,6 +3,8 @@ import React, { PropTypes } from 'react';
 // import Response from /////////////
 import Quote from './Quote/QuoteContainer.js';
 
+import './Survey.scss';
+
 const Survey = ({
   surveyQuestions, // boolean that basically says if there are surveys to show
 }) => (

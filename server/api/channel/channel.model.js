@@ -8,9 +8,9 @@ const Channel = db.define('channel', {
   name: {
     type: Sequelize.STRING,
   },
-  location: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-  },
+  // location: {
+  //   type: Sequelize.ARRAY(Sequelize.INTEGER),
+  // },
 });
 
 module.exports = Channel;

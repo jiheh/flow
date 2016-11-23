@@ -9,25 +9,6 @@ const HttpError = require('../../utils/HttpError');
 const User = require('./user.model');
 const UserInfo = require('../userInfo/userInfo.model');
 
-router.param('id', (req, res, next, id) => {
-  User.findById(id)
-  .then((user) => {
-    // eslint-disable-next-line new-cap
-    if (!user) throw HttpError(404);
-    req.requestedUser = user;
-    next();
-  })
-  .catch(next);
-});
-
-router.get('/', (req, res, next) => {
-  User.findAll({})
-  .then((users) => {
-    res.json(users);
-  })
-  .catch(next);
-});
-
 router.post('/', (req, res, next) => {
   db.transaction((t) => {
     return UserInfo.find({
@@ -63,7 +44,7 @@ router.post('/', (req, res, next) => {
           return userInfo.authenticate(req.body.password)
             .then((passwordMatch) => {
               // eslint-disable-next-line new-cap
-              if (!passwordMatch) throw HttpError(404);
+              if (!passwordMatch) throw new Error();
               return User.findOne({
                 include: [{
                   model: UserInfo,
@@ -76,37 +57,13 @@ router.post('/', (req, res, next) => {
             })
             .then((user) => {
               // eslint-disable-next-line new-cap
-              if (!user) throw HttpError(404);
+              if (!user) throw new Error();
               res.json(user.hash);
             });
         }
       })
-      .catch(next);
-  });
-});
-
-router.get('/:id', (req, res, next) => {
-  req.requestedUser.reload()
-  .then((requestedUser) => {
-    res.json(requestedUser);
   })
-  .catch(next);
-});
-
-router.put('/:id', (req, res, next) => {
-  req.requestedUser.update(req.body)
-  .then((user) => {
-    res.json(user);
-  })
-  .catch(next);
-});
-
-router.delete('/:id', (req, res, next) => {
-  req.requestedUser.destroy()
-  .then(() => {
-    res.status(204).end();
-  })
-  .catch(next);
+    .catch(next);
 });
 
 module.exports = router;

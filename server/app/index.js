@@ -58,7 +58,7 @@ validFrontendRoutes.forEach((stateRoute) => {
   app.get(stateRoute, (req, res) => {
     res.sendFile(indexPath);
   });
-}); 
+});
 
 app.use(require('./error.middleware'));
 

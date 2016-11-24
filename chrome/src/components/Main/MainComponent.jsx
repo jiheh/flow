@@ -12,20 +12,20 @@ class MainComponent extends Component {
     saveSettings: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    const { settings } = this.props;
+  /* componentDidMount() {
+   *   const { settings } = this.props;
 
-    chrome.storage.sync.get('settings', ({ settings })  => {
-      if (settings) { this.props.saveSettings(settings); }
-    });
+   *   chrome.storage.sync.get('settings', ({ settings })  => {
+   *     if (settings) { this.props.saveSettings(settings); }
+   *   });
 
-    chrome.storage.sync.get('user', ({ user }) => {
-      if(user) { this.props.setUser(user); }
-    })
-  }
+   *   chrome.storage.sync.get('user', ({ user }) => {
+   *     if(user) { this.props.setUser(user); }
+   *   })
+   * }*/
 
   render() {
-    const { user, saveSettings } = this.props;
+    const { user } = this.props;
 
     return (
       <Main

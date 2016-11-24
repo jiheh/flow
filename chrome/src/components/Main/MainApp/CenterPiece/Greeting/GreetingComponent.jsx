@@ -11,7 +11,7 @@ class GreetingComponent extends Component {
     super(props);
 
     this.state = {
-      message: "Hello",
+      message: 'Hello',
     };
   }
 

@@ -6,7 +6,7 @@ const createAdmin = credentials =>{
   let globalUser;
   return UserInfo.create({ 
       email:credentials.email,
-      name:credentials.email,
+      name:credentials.name,
       password:credentials.password
   })
   .then(user =>{

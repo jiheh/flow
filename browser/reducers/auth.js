@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 /* -----------------    ACTIONS     ------------------ */
 
 const SET    = 'SET_CURRENT_ADMIN'
@@ -41,9 +42,8 @@ export const logout = () => (dispatch) => {
 
 export const signup = credentials => (dispatch) => {
   axios.post('/api/organization/', credentials)
-    .then(res=>{
-      console.log('after post')
-      return res
+    .then(headAdmin =>{
+      return headAdmin
     })
     .then(res => dispatch(set(res.data)))
     .catch(err => console.error('Signup unsuccessful', err));

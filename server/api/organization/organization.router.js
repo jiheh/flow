@@ -8,7 +8,7 @@ const Admin = require('../admin/admin.model')
 
 //Create a new Organization returns Head Admin
 router.post('/',(req,res,next) =>{
-  let globalOrganization;
+  let globalOrganization; 
   Organization.create({
     name:req.body.organizationName,
     type:req.body.organizationType,

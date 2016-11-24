@@ -180,7 +180,7 @@ class Auth extends React.Component {
 
 	changeOrganizationType(event) {
 		this.setState({organizationType: event.target.value})
-	}
+	} 
 
 	changeAccountType(event) {
 		this.setState({accountType: event.target.value})

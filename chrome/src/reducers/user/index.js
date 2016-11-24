@@ -1,3 +1,5 @@
+/* global chrome */
+
 import { createAction, handleActions } from 'redux-actions';
 import { PropTypes } from 'react';
 
@@ -5,6 +7,12 @@ const initialState = {
   name: '',
   hash: '',
 };
+
+chrome.storage.sync.get('user', (result) => {
+  if (!result) {
+    chrome.storage.sync.set({ user: initialState });
+  }
+});
 
 export const propTypes = PropTypes.shape({
   name: PropTypes.string,

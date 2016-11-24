@@ -15,10 +15,13 @@ class MainComponent extends Component {
   componentDidMount() {
     const { settings } = this.props;
 
-    chrome.storage.sync.get(defaultSettings, (settings) => {
-      this.props.saveSettings(settings);
-      this.props.setUser(settings.user);
+    chrome.storage.sync.get('settings', ({ settings })  => {
+      if (settings) { this.props.saveSettings(settings); }
     });
+
+    chrome.storage.sync.get('user', ({ user }) => {
+      if(user) { this.props.setUser(user); }
+    })
   }
 
   render() {

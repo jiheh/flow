@@ -13,7 +13,7 @@ const Background = ({
   <div>
     {showVideo ?
       <BackgroundVideo backgroundVideo={backgroundVideo} />
-    :  <BackgroundImage backgroundImage={backgroundImage} />
+    : <BackgroundImage backgroundImage={backgroundImage} />
     }
   </div>
 );

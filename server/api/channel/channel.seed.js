@@ -1,7 +1,7 @@
 // eslint-disable arrow-body-style
 
 const Admin = require('../admin/admin.model');
-const Channel = require('../channel/channel.model');
+const Channel = require('./channel.model');
 const User = require('../user/user.model');
 
 const createChannels = (n) => {

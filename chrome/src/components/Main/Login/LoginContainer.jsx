@@ -25,7 +25,7 @@ const mapDispatchToProps = () => dispatch => ({
 
         // persist user to both redux store and chrome storage
         chrome.storage.sync.set({ user }, () => {
-          dispatch(setSetting({ user }));
+          dispatch(setSetting({ name: 'user', value: user }));
         });
       })
     // TODO: error handling for failed login

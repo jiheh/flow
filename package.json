@@ -64,6 +64,7 @@
     "chai-as-promised": "^6.0.0",
     "chance": "^1.0.4",
     "expect": "^1.20.2",
+    "lorem-ipsum": "^1.0.3",
     "mocha": "^3.1.2",
     "nodemon": "^1.7.1"
   }

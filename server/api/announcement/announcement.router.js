@@ -57,7 +57,7 @@ router.post('/', (req, res, next) => {
 
         return Announcement.create({
           title,
-          content,
+          contents,
           admin_id: admin.id,
         });
       })
@@ -79,7 +79,7 @@ router.post('/', (req, res, next) => {
             });
         });
       })
-      .then(() => res.status(201).send())
+      .then(() => res.status(201).send());
   })
     .catch(next);
 });

@@ -34,6 +34,12 @@ export const login = credentials => (dispatch) => {
     .catch(err => console.error('Login unsuccessful', err));
 };
 
+export const logout = () => (dispatch) => {
+  dispatch(remove());
+  axios.get('/auth/logout')
+    .catch(err => console.error('logout unsuccessful', err));
+};
+
 export const signup = credentials => (dispatch) => {
   axios.post('/api/organization/', credentials)
     .then(headAdmin =>{
@@ -41,17 +47,4 @@ export const signup = credentials => (dispatch) => {
     })
     .then(res => dispatch(set(res.data)))
     .catch(err => console.error('Signup unsuccessful', err));
-};
-
-export const retrieveLoggedInUser = () => (dispatch) => {
-  axios.get('/auth/me')
-    .then(res => dispatch(set(res.data)))
-    .catch(err => console.error('retrieveLoggedInUser unsuccessful', err));
-};
-
-// optimistic
-export const logout = () => (dispatch) => {
-  dispatch(remove());
-  axios.get('/auth/logout')
-    .catch(err => console.error('logout unsuccessful', err));
 };

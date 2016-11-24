@@ -2,33 +2,119 @@ import React from 'react';
 import { connect } from'react-redux';
 import { browserHistory } from 'react-router';
 import { login, signup } from '../reducers/auth';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
 class Auth extends React.Component {
   constructor(props) {
     super(props);
-    
+    this.state = {
+			accountType:'basic',
+			organizationType:'University',
+			cardType:'visa'
+		}
     this.onSubmit = this.onSubmit.bind(this);
-	}
+		this.changeAccountType = this.changeAccountType.bind(this)
+		this.changeOrganizationType = this.changeOrganizationType.bind(this)
+		this.changeCardType = this.changeCardType.bind(this)
+	}  
 
-	render() {
+	render() { 
 		let { message } = this.props;
 		return (
 			<div className="signin-container">
 				<div className="buffer local">
 						<form onSubmit={this.onSubmit}>
 								<div className="form-group">
-									<label>email</label>
-									<input
-										name="email" 
-										type="email" 
-										className="form-control" 
-										required 
-									/>
-								</div>
-								<div className="form-group">
-										<label>password</label>
+									<label>Organization Name</label>
+										<input
+											name="organizationName" 
+											type="organizationName" 
+											className="form-control" 
+											required 
+										/>
+										<FormGroup controlId="formControlsSelect"> 
+											<ControlLabel>Organization Type</ControlLabel>
+											<FormControl componentClass="select" placeholder="University" onChange={this.changeOrganizationType}>
+												<option value="University" >University</option>
+												<option value="Business">Business</option>
+												<option value="NGO">NGO</option>
+											</FormControl>
+										</FormGroup>
+									<label>Address</label>
+										<input 
+										  name="address"
+											type="address" 
+											className="form-control" 
+											required 
+										/>
+									<label>Phone Number</label>
+										<input 
+										  name="phone"
+											type="phone" 
+											className="form-control" 
+											required 
+										/>
+									<FormGroup controlId="formControlsSelect"> 
+										<ControlLabel>Account Type</ControlLabel>
+										<FormControl componentClass="select" placeholder="basic" onChange={this.changeAccountType}>
+											<option value="basic" >basic</option>
+											<option value="medium">medium</option>
+											<option value="pro">pro</option>
+										</FormControl>
+									</FormGroup>
+									{ this.state.accountType !== 'basic' ?
+
+										<div>
+											<FormGroup controlId="formControlsSelect"> 
+												<ControlLabel>Card Type</ControlLabel>
+												<FormControl componentClass="select" placeholder="visa" onChange={this.changeCardType}>
+													<option value="visa">visa</option>
+													<option value="mastercard">mastercard</option>
+													<option value="maestro">maestro</option>
+												</FormControl>
+											</FormGroup>
+											<label>Card Number</label>
+												<input 
+													name="cardNumber"
+													type="cardNumber" 
+													className="form-control" 
+													required 
+												/>
+											<label>Expiry Date</label>
+												<input 
+													name="expiryDate"
+													type="expiryDate" 
+													className="form-control" 
+													required 
+												/>
+											<label>Security Number</label>
+											<input 
+												name="securityNumber"
+												type="securityNumber" 
+												className="form-control" 
+												required 
+											/>
+										</div>
+										:
+										<div/>
+									}
+									<label>Admin Name</label>
+										<input 
+										  name="adminName"
+											type="adminName" 
+											className="form-control" 
+											required 
+										/>
+									<label>Admin Email</label>
+										<input 
+										  name="email"
+											type="email" 
+											className="form-control" 
+											required 
+										/>
+									<label>Admin Password</label>
 										<input 
 										  name="password"
 											type="password" 
@@ -58,25 +144,31 @@ class Auth extends React.Component {
 		);
 	}
 
-	onSubmit(event) {
+	onSubmit(event) { 
 		event.preventDefault();
 		let { message, login, signup } = this.props;
-   let credentials = {
-      organizationName:'Test Organization',
-			adminName:'Test Admin',
-			accountType:'basic',
-			organizationType:'University',
-			address:'5 Hanover Square', 
-			phone:'123456789',
-			billing:{
-				cardType:'mastercard',
-				cardNumber:1234567890,
-				expiryDate:1234,
-				securityNumber:987
-			},
-			email: event.target.email.value,
-      password: event.target.password.value
-    }
+		let self = this
+		let credentials = {
+				organizationName:event.target.organizationName.value,
+				adminName: event.target.adminName.value,
+				accountType: self.state.accountType,
+				organizationType: self.state.organizationType,
+				address: event.target.address.value, 
+				phone: event.target.phone.value,
+				billing:{
+				},
+				email: event.target.email.value,
+				password: event.target.password.value
+			}
+		if(this.state.accountType !== 'basic'){
+			credentials.billing = {
+					cardType:self.state.cardType,
+					cardNumber:event.target.cardNumber.value,
+					expiryDate:event.target.expiryDate.value,
+					securityNumber:event.target.securityNumber.value
+			}
+		}
+		console.log(credentials)
 		if (login) {
 			login(credentials);
 		} else if (signup) {
@@ -84,6 +176,18 @@ class Auth extends React.Component {
 		} else {
 			console.log(`${message} isn't implemented yet`);
 		}
+	}
+
+	changeOrganizationType(event) {
+		this.setState({organizationType: event.target.value})
+	}
+
+	changeAccountType(event) {
+		this.setState({accountType: event.target.value})
+	}
+	
+	changeCardType(event) {
+		this.setState({cardType: event.target.value})
 	}
 }
 

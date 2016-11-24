@@ -11,7 +11,7 @@ const seedChannels = require('./server/api/channel/channel.seed')
 const seedOrganizations = require('./server/api/organization/organization.seed')
 const seedAccounts = require('./server/api/account/account.seed')
 const seedBillings = require('./server/api/billing/billing.seed') 
-const test = require('./server/api/admin/admin.methods')
+
 
 
 let credentials = {

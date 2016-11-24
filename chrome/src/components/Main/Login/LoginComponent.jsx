@@ -23,9 +23,10 @@ class LoginComponent extends Component {
     const { pageNum, input } = this.state;
 
     if (evt.target.value !== input[pageNum]) {
+      const newValue = pageNum > 0 ? evt.target.value.trim() : evt.target.value;
       this.setState({
         input: [...input.slice(0, pageNum),
-                evt.target.value,
+                newValue,
                 ...input.slice(pageNum + 1)],
         validationMessage: '',
       });
@@ -38,6 +39,7 @@ class LoginComponent extends Component {
 
     const text = input[pageNum];
 
+    // 'enter' key was pressed
     if (evt.which == 13) {
       switch (pageNum) {
         case 0:

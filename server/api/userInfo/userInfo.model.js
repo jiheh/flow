@@ -18,7 +18,7 @@ function setEmailAndPassword(user) {
   );
 }
 
-const UserInfo = db.define('userInfo', {
+const UserInfo = db.define('userInfo', { 
     name: Sequelize.STRING,
     email: { 
       type: Sequelize.STRING,

@@ -37,9 +37,12 @@ export default handleActions({
   },
 
   LOGOUT: (state, { payload }) => {
-    return {...state, user : {
-      name: '',
-      hash: '',
-    }};
-  }
+    return {
+      ...state, 
+      user: {
+        name: '',
+        hash: '',
+      },
+    };
+  },
 }, initialState);

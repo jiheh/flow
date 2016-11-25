@@ -15,25 +15,22 @@ const Survey = db.define('survey', {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      isEmail: true,
       notEmpty: true,
     },
   },
   active: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: false,
+    defaultValue: true,
   },
 }, {
   instanceMethods: {
     // How many questions does this survey have?
     numberOfQuestions: () => {
       this.getQuestions()
-        .then(questions => {
-          return questions.length;
-        })
-    }
-  }
+        .then(questions => questions.length);
+    },
+  },
 });
 
 module.exports = Survey;

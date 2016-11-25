@@ -17,8 +17,8 @@ const User = require('../user/user.model');
 
 const Promise = require('bluebird');
 
-// user receives announcements - POST because hash is sent with request
-router.post('/list', (req, res, next) => {
+// POST - CHROME - user receives announcements
+router.post('/chrome', (req, res, next) => {
   const { hash } = req.body;
 
   return User.findOne({
@@ -29,6 +29,8 @@ router.post('/list', (req, res, next) => {
     }],
   })
     .then((user) => {
+      if (!user) { throw new Error('User not found.'); }
+
       const { channels } = user;
       return Promise.all(channels.map(channel => channel.getAnnouncements()));
     })
@@ -52,7 +54,7 @@ router.post('/', (req, res, next) => {
       },
     })
       .then((admin) => {
-        if (!admin) { throw HttpError(404); } // eslint-disable-line new-cap
+        if (!admin) { throw new Error('Admin not found.'); }
         tempAdmin = admin;
 
         return Announcement.create({
@@ -71,11 +73,11 @@ router.post('/', (req, res, next) => {
               return tempAdmin.getChannels();
             })
             .then((channels) => {
-              if (!channels) { throw new Error(); }
+              if (!channels) { throw new Error('Admin does not have any channels.'); }
 
               if (channels.map(ch => ch.id).includes(channel.id)) {
                 return channel.addAnnouncement(announcement);
-              } else { throw new Error(); }
+              } else { throw new Error('Admin does not have access to channel.'); }
             });
         });
       })

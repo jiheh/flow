@@ -29,6 +29,7 @@
     "babel-register": "^6.18.0",
     "bcrypt": "^0.8.7",
     "bcrypt-as-promised": "^1.1.0",
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "continuation-local-storage": "^3.2.0",
     "css-loader": "^0.26.0",
@@ -59,7 +60,6 @@
     "webpack": "^1.13.2"
   },
   "devDependencies": {
-    "bluebird": "^3.4.6",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "chance": "^1.0.4",

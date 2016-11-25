@@ -67,7 +67,6 @@
     "friendly-errors-webpack-plugin": "^1.1.0",
     "lorem-ipsum": "^1.0.3",
     "mocha": "^3.1.2",
-    "nodemon": "^1.7.1",
     "npm-install-webpack-plugin": "^4.0.4",
     "progress-bar-webpack-plugin": "^1.9.0",
     "reload-server-webpack-plugin": "^1.0.1"

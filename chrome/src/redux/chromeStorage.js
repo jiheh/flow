@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-const chromeStorage = (keys) => {
+const chromeStorageMiddleware = (keys) => {
   return store => next => (action) => {
     const currState = store.getState();
     const result = next(action);
@@ -18,4 +18,25 @@ const chromeStorage = (keys) => {
   };
 };
 
-export default chromeStorage;
+export const loadFromStorage = (keys, resolve) => {
+  if (!keys || !keys.length) { return Promise.resolve({}); }
+
+  let i = 0;
+  const result = {};
+
+  const loadNext = (key) => {
+    if (i === keys.length || !key) {
+      resolve(result);
+    } else {
+      chrome.storage.sync.get(key, (res) => {
+        result[key] = res[key];
+        i += 1;
+        loadNext(keys[i]);
+      });
+    }
+  };
+
+  return loadNext(keys[i]);
+};
+
+export default chromeStorageMiddleware;

@@ -29,7 +29,7 @@ export const loadFromStorage = (keys, resolve) => {
       resolve(result);
     } else {
       chrome.storage.sync.get(key, (res) => {
-        result[key] = res[key];
+        if(res[key]) { result[key] = res[key]; }
         i += 1;
         loadNext(keys[i]);
       });

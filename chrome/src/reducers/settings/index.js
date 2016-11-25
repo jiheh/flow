@@ -13,12 +13,6 @@ export const initialState = {
   showVideo: false,
 };
 
-chrome.storage.sync.get('settings', (result) => {
-  if (!result) {
-    chrome.storage.sync.set({ settings: initialState });
-  }
-});
-
 export const propTypes = PropTypes.shape({
   // setting types
   showVideo: PropTypes.bool.isRequired,

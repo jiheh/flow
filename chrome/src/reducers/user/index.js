@@ -8,12 +8,6 @@ const initialState = {
   hash: '',
 };
 
-chrome.storage.sync.get('user', (result) => {
-  if (!result) {
-    chrome.storage.sync.set({ user: initialState });
-  }
-});
-
 export const propTypes = PropTypes.shape({
   name: PropTypes.string,
   hash: PropTypes.string,

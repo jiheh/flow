@@ -60,7 +60,11 @@ router.post('/', (req, res, next) => {
         if (!foundChannel) { throw new Error('Channel not found.'); }
 
         channel = foundChannel;
-        return Admin.findById(req.user.id);
+        return Admin.findOne({
+          where: {
+            user_info_id: req.user.id,
+          },
+        });
       })
       .then((foundAdmin) => {
         admin = foundAdmin;

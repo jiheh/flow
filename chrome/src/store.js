@@ -8,19 +8,35 @@ import axios from 'axios';
 
 import rootReducer from './reducers';
 
+const keysToPersistInChrome = ['settings', 'user'];
+
+const loadFromStorage = (keys, resolve) => {
+  if (!keys || !keys.length) { return Promise.resolve({}); }
+
+  let i = 0;
+  const result = {};
+
+  const loadNext = (key) => {
+    if (i === keys.length || !key) {
+      resolve(result);
+    } else {
+      chrome.storage.sync.get(key, (res) => {
+        result[key] = res[key];
+        i += 1;
+        loadNext(keys[i]);
+      });
+    }
+  };
+
+  return loadNext(keys[i]);
+};
+
 const loadStore = (currentState) => {
   let loadedChromeStorage;
   let imageUrl;
   let videoUrl;
   return new Promise((resolve) => {
-    chrome.storage.sync.get('settings', ({ settings }) => {
-      chrome.storage.sync.get('user', ({ user }) => {
-        resolve({
-          user,
-          settings,
-        });
-      });
-    });
+    loadFromStorage(keysToPersistInChrome, resolve);
   })
     .then((fromStorage) => {
       loadedChromeStorage = fromStorage;
@@ -44,7 +60,7 @@ const loadStore = (currentState) => {
 export default createStore(
   rootReducer,
   applyMiddleware(
-    chromeStorage(['settings', 'user']),
+    chromeStorage(keysToPersistInChrome),
     thunk,
     createLogger(),
     middleware(loadStore),

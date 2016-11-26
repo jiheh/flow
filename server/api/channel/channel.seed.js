@@ -1,4 +1,4 @@
-// eslint-disable arrow-body-style
+/* eslint-disable arrow-body-style */
 
 const Admin = require('../admin/admin.model');
 const Channel = require('./channel.model');

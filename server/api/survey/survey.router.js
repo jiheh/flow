@@ -1,4 +1,4 @@
-// eslint-disable arrow-body-style
+/* eslint-disable arrow-body-style */
 
 'use strict';
 
@@ -57,7 +57,7 @@ router.post('/', (req, res, next) => {
     let admin;
     return Channel.findById(channelId)
       .then((foundChannel) => {
-        if (!foundChannel) { throw new Error('Channel not found.'); }
+        if (!foundChannel) { throw new Error('ChannelItem not found.'); }
 
         channel = foundChannel;
         return Admin.findOne({
@@ -74,7 +74,7 @@ router.post('/', (req, res, next) => {
         if (!adminChannels) { throw new Error('Admin does not have any channels.'); }
 
         if (!_.filter(adminChannels, adminChannel => adminChannel.id === channel.id).length) {
-          throw new Error('Admin does not have access to specified channel.');
+          throw new Error('Admin does not have access to specified channels.');
         } else {
           return Survey.create({
             name,
@@ -96,7 +96,7 @@ router.post('/', (req, res, next) => {
               if (!userChannels) { throw new Error('User has no channels.'); }
 
               if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
-                throw new Error('User is not part of the specified channel.');
+                throw new Error('User is not part of the specified channels.');
               } else {
                 return survey.addUser(user);
               }

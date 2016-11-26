@@ -1,6 +1,6 @@
 /* global chrome */
 
-// eslint-disable arrow-body-style
+/* eslint-disable arrow-body-style */
 
 import { createAction, handleActions } from 'redux-actions';
 import { PropTypes } from 'react';

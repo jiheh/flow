@@ -6,15 +6,13 @@ import '../Widgets.scss';
 const SettingsWidget = ({  }) => (
   <div className="settings-widget widget">
 
-    <h4 className="widget-title">
-      Settings
-    </h4>
+    <div className="widget-nav">
+      <h4 className="widget-title">
+        SETTINGS
+      </h4>
+    </div>
 
     <Line />
-
-    <div className="widget-contents">
-
-    </div>
 
   </div>
 );

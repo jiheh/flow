@@ -1,0 +1,6 @@
+button:focus {
+    text-decoration: none;
+    outline:none;
+    border: none;
+    box-shadow: none;
+}

@@ -4,7 +4,7 @@ import './ToggleBackgroundMode.scss';
 import photoLogo from './photo-camera.png';
 import videoLogo from './video-camera.png';
 
-const BackgroundMode = ({
+const ToggleBackgroundMode = ({
   toggleBackgroundMode,
   settings,
 }) => (
@@ -17,9 +17,9 @@ const BackgroundMode = ({
   </div>
 );
 
-BackgroundMode.propTypes = {
+ToggleBackgroundMode.propTypes = {
   toggleBackgroundMode: PropTypes.func.isRequired,
   settings: settingsPropTypes,
 };
 
-export default BackgroundMode;
+export default ToggleBackgroundMode;

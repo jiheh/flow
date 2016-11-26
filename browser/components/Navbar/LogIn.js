@@ -17,6 +17,7 @@ export default class LogInForm extends Component {
     }
     if (login) {
       login(credentials);
+      browserHistory.push('/dashboard');
       this.props.close();
     }
   }

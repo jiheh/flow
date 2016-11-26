@@ -1,3 +1,5 @@
+/* global chrome */
+
 import { createAction, handleActions } from 'redux-actions';
 import { PropTypes } from 'react';
 

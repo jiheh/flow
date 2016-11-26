@@ -4,8 +4,6 @@ const UserInfo = require('../userInfo/userInfo.model')
 
 //Create a new Organization
 router.post('/',(req,res,next) =>{
-  console.log('in admin router')
-  return Admin.findById(1)
 })
 
 

@@ -24,7 +24,7 @@ const mapDispatchToProps = () => dispatch => ({
 
   getAnnouncements: () => {
     // TODO: change to production server url
-    axios.post('http://localhost:8080/api/announcements/list', { hash: store.getState().user.hash })
+    axios.post('http://localhost:8080/api/announcements/chrome', { hash: store.getState().user.hash })
       .then(res => dispatch(receiveAnnouncements(res.data)))
       .catch(console.error); // TODO: error handling
   },

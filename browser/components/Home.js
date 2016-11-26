@@ -22,6 +22,21 @@ export default () => (
                       }>
               POST TEST ANNOUNCEMENT
       </button>
+      {/* TESTING SURVEYS */}
+      <button onClick={
+        () => {
+          axios.post('/api/surveys', {
+            channelId: 3,
+            name: 'test survey name',
+            description: 'test survey description',
+            userIds: [3],
+          })
+            .then(() => console.log('POSTED TEST SURVEY'))
+          .catch(console.error);
+        }
+                      }>
+        POST TEST SURVEY
+      </button>
     </div>
   </div>
 );

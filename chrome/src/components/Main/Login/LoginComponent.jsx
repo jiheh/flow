@@ -16,6 +16,7 @@ class LoginComponent extends Component {
       pageNum: 0,
       input: ['','',''],
       validationMessage: '',
+      inputClass: 'login-input'
     };
   }
 
@@ -33,6 +34,27 @@ class LoginComponent extends Component {
     }
   }
 
+  handleBlur = () => {
+    this.setState({ inputClass: 'login-input-blurred' });
+  }
+
+  handleFocus = () => {
+    this.setState({ inputClass: 'login-input' });
+  }
+
+  nextPage = () => {
+    const { pageNum, inputClass } = this.state;
+
+    if(pageNum < 2) {
+      this.setState({
+        pageNum: pageNum + 1,
+        inputClass: 'login-input',
+      });
+    } else {
+      this.props.tryLogin();
+    }
+  }
+
   handleKeyUp = (evt) => {
     const { input, pageNum } = this.state;
     const { tryLogin } = this.props;
@@ -47,7 +69,7 @@ class LoginComponent extends Component {
           if (text === '') {
             this.setState({ validationMessage: 'Please enter your name.' })
           } else {
-            this.setState({ pageNum: pageNum + 1 });
+            this.nextPage();
           }
           break;
 
@@ -58,7 +80,7 @@ class LoginComponent extends Component {
           } else if (!emailRegex.test(text)) {
             this.setState({ validationMessage: 'Please enter a valid email address.' });
           } else {
-            this.setState({ pageNum: pageNum + 1 });
+            this.nextPage();
           }
           break;
 
@@ -69,7 +91,7 @@ class LoginComponent extends Component {
           } else if (text.length < 6) {
             this.setState({ validationMessage: 'Password must be at least 6 characters long.' });
           } else {
-            tryLogin(...input);
+            this.nextPage();
           }
           break;
 
@@ -84,15 +106,19 @@ class LoginComponent extends Component {
     const {
       pageNum,
       input,
-      validationMessage
+      validationMessage,
+      inputClass,
     } = this.state;
 
     return (
       <Login
         handleInput={this.handleInput}
         handleKeyUp={this.handleKeyUp}
+        handleBlur={this.handleBlur}
+        handleFocus={this.handleFocus}
         pageNum={pageNum}
         input={input}
+        inputClass={inputClass}
         validationMessage={validationMessage}
       />
     );

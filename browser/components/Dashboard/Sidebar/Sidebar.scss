@@ -1,0 +1,59 @@
+.sidebar {
+  width: 20%;
+  vertical-align: top;
+  display: inline-block;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 1px 1px rgba(16, 22, 26, 0.2);
+
+
+
+  .sidebar-nav {
+    background-color: rgba(0,0,0, 0.05);
+    height: 50px;
+    border-bottom: 1px solid rgba(0,0,0, 0.05);
+
+    .sidebar-nav-search {
+      padding: 10px;
+
+    .search-icon {
+      margin: 10px 0 0 20px;
+    }
+
+    }
+
+  }
+
+  .channel-item {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0,0,0, 0.05);
+
+    &:hover {
+      background-color: rgba(0,0,0, 0.025);
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+
+    p {
+      font-size: 0.8em;
+      color: gray;
+      margin-bottom: 5px;
+    }
+
+    .mini-label {
+      font-size: 0.8em;
+      padding: 1px 3px;
+      color: gray;
+    }
+
+  }
+
+  #channel_searchbox {
+    width: 100%;
+  }
+
+
+
+}

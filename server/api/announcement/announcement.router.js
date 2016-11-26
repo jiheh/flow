@@ -25,7 +25,7 @@ router.post('/chrome', (req, res, next) => {
     where: { hash },
     include: [{
       model: Channel,
-      through: 'User-Channel',
+      through: 'User-ChannelItem',
     }],
   })
     .then((user) => {
@@ -77,7 +77,7 @@ router.post('/', (req, res, next) => {
 
               if (channels.map(ch => ch.id).includes(channel.id)) {
                 return channel.addAnnouncement(announcement);
-              } else { throw new Error('Admin does not have access to channel.'); }
+              } else { throw new Error('Admin does not have access to channels.'); }
             });
         });
       })

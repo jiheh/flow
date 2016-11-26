@@ -10,5 +10,6 @@ const rootPath = path.join(__dirname, '..', '..');
 const publicPath = path.join(rootPath, 'public');
 
 router.use(express.static(publicPath));
+router.use(express.static(path.join(__dirname, '..', '..', 'node_modules')));
 
 module.exports = router;

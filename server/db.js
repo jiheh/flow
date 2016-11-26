@@ -15,17 +15,17 @@ const Announcement = require('./api/announcement/announcement.model');
 
 
 // User
-User.belongsToMany(Channel, { through: 'User-Channel' });
+User.belongsToMany(Channel, { through: 'User-ChannelItem' });
 User.belongsTo(UserInfo, { as: 'UserInfo' });
 
 // Admin
-Admin.belongsToMany(Channel, { through: 'Admin-Channel' });
+Admin.belongsToMany(Channel, { through: 'Admin-ChannelItem' });
 Admin.belongsTo(UserInfo, { as: 'UserInfo' });
 Admin.hasMany(Announcement);
 
 // Channel
-Channel.belongsToMany(User, { through: 'User-Channel' });
-Channel.belongsToMany(Admin, { through: 'Admin-Channel' });
+Channel.belongsToMany(User, { through: 'User-ChannelItem' });
+Channel.belongsToMany(Admin, { through: 'Admin-ChannelItem' });
 Channel.belongsTo(Organization, { as: 'Organization' });
 Channel.hasMany(Announcement);
 
@@ -54,6 +54,6 @@ Survey.hasMany(Question);
 Question.belongsTo(Survey);
 
 // Announcement
-Announcement.belongsToMany(Channel, { through: 'Channel-Announcement' });
+Announcement.belongsToMany(Channel, { through: 'ChannelItem-Announcement' });
 
 module.exports = db;

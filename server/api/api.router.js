@@ -13,7 +13,7 @@ router.use('/admin', require('./admin/admin.router'));
 router.use('/surveys', require('./survey/survey.router'));
 
 // router.use('/response', require('./response/response.router'));
-// router.use('/channel', require('./channel/channel.router'));
+// router.use('/channels', require('./channels/channels.router'));
 // router.use('/question', require('./question/question.router'));
 
 

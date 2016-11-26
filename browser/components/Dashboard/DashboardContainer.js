@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard.jsx';
 
-const mapStateToProps = null
+const mapStateToProps = () => ({
+	
+})
 
 const mapDispatchToProps = null;
 

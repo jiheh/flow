@@ -5,10 +5,10 @@ import Root from './components/Root';
 import Home from './components/Home';
 import { Signup } from './components/Auth';
 import DashboardContainer from './components/Dashboard/DashboardContainer';
-import OverviewContainer from './components/Dashboard/Overview/OverviewContainer';
-import NotificationsContainer from './components/Dashboard/Notifications/NotificationsContainer';
-import SurveysContainer from './components/Dashboard/Surveys/SurveysContainer';
-import SettingsContainer from './components/Dashboard/Settings/SettingsContainer';
+import OverviewContainer from './components/Dashboard/Viewport/Overview/OverviewContainer';
+import NotificationsContainer from './components/Dashboard/Viewport/Notifications/NotificationsContainer';
+import SurveysContainer from './components/Dashboard/Viewport/Surveys/SurveysContainer';
+import SettingsContainer from './components/Dashboard/Viewport/Settings/SettingsContainer';
 
 /* -----------------    COMPONENT     ------------------ */
 

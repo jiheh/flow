@@ -33,15 +33,8 @@ export const loadFromStorage = (keys /*, resolve */) => {
     });
   })
     .then((loaded) => {
-      const loadedChromeStorage = {};
-
-      loaded.forEach((obj) => {
-        Object.keys(obj).forEach((key) => {
-          loadedChromeStorage[key] = obj[key];
-        });
-      });
-
-      return loadedChromeStorage;
+      // combine all loaded values into one object
+      return loaded.reduce((agg, obj) => _.merge(obj, agg), {});
     });
 };
 

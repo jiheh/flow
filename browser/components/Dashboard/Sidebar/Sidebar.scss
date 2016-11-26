@@ -45,13 +45,16 @@
 
   .react-autosuggest__suggestions-container {
     .react-autosuggest__suggestions-list {
-      background-color: white;
+      background-color: rgba(255,255,255,0.7);
       color: black;
       list-style-type: none;
       margin: 0;
       padding: 0;
 
       .react-autosuggest__suggestion {
+        font-weight: bold;
+        padding-top: 4px;
+        padding-bottom: 4px;
         &:hover {
           background-color: rgba(0,0,0,0.025);
         }

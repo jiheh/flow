@@ -43,7 +43,7 @@ class LoginComponent extends Component {
   }
 
   nextPage = () => {
-    const { pageNum, inputClass } = this.state;
+    const { pageNum, inputClass, input } = this.state;
 
     if(pageNum < 2) {
       this.setState({
@@ -51,7 +51,7 @@ class LoginComponent extends Component {
         inputClass: 'login-input',
       });
     } else {
-      this.props.tryLogin();
+      this.props.tryLogin(...input);
     }
   }
 

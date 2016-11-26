@@ -6,17 +6,10 @@ import Background from './Background.jsx';
 
 class BackgroundComponent extends Component {
   static propTypes = {
-    getBackgroundImage: PropTypes.func.isRequired,
-    getBackgroundVideo: PropTypes.func.isRequired,
     backgroundImage: backgroundImagePropTypes,
     backgroundVideo: backgroundVideoPropTypes,
     showVideo: PropTypes.bool.isRequired,
   };
-
-  componentDidMount() {
-    this.props.getBackgroundVideo();
-    this.props.getBackgroundImage();
-  }
 
   render() {
     const {

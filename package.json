@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack -w & nodemon server/start.js",
     "test": "mocha --watch --compilers js:babel-register server/api/**/*.test.js",
-    "seed": "node seed.js",
-    "start-nowatch": "webpack -w & node server/start.js"
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",

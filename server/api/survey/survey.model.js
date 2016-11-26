@@ -15,14 +15,13 @@ const Survey = db.define('survey', {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      isEmail: true,
       notEmpty: true,
     },
   },
   active: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: false,
+    defaultValue: true,
   },
 }, {
   instanceMethods: {

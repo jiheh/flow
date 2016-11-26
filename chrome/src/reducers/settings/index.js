@@ -1,6 +1,10 @@
+/* eslint-disable arrow-body-style */
+
 import { createAction, handleActions } from 'redux-actions';
 import { PropTypes } from 'react';
 import { propTypes as userPropTypes } from '../user';
+
+import { LOGOUT } from '../user';
 
 export const initialState = {
   // default settings
@@ -29,7 +33,16 @@ export default handleActions({
   },
 
   SET_SETTING: (state, { payload }) => {
-    const { name, value } = payload;
-    return { ...state, [name]: value };
+    return { ...state, ...payload };
+  },
+
+  LOGOUT: (state, { payload }) => {
+    return {
+      ...state, 
+      user: {
+        name: '',
+        hash: '',
+      },
+    };
   },
 }, initialState);

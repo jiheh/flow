@@ -24,7 +24,9 @@
   font-size: 16px;
 }
 
-.login-input {
+.login-input, .login-input-blurred {
+  width: auto;
+  min-width: 35%;
   position: relative;
   background-color: transparent;
   border: none;
@@ -33,7 +35,20 @@
   color: white;
   font-size: 3em;
   text-align: center;
-  width: 35%;
+}
+
+.login-input-blurred {
+  animation-name: loginBlurAnimation;
+  animation-duration: 1.0s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-direction: normal;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+.login-input {
   animation-name: loginInputAnimationTest;
   animation-duration: 1.0s;
   animation-timing-function: ease-in-out;
@@ -65,30 +80,44 @@
   }
 }
 
-@keyframes loginInputAnimation {
+@keyframes loginBlurAnimation {
   0% {
-    width: 35%;
+    min-width: 80%;
   }
 
-  75% {
-    width: 100%;
+  25% {
+    min-width: 100%;
   }
 
   100% {
-    width: 80%;
+    min-width: 35%;
+  }
+}
+
+@keyframes loginInputAnimation {
+  0% {
+    min-width: 35%;
+  }
+
+  75% {
+    min-width: 100%;
+  }
+
+  100% {
+    min-width: 80%;
   }
 }
 
 @keyframes loginInputAnimationTest {
   0% {
-    width: 80%;
+    min-width: 80%;
   }
 
   75% {
-    width: 15%;
+    min-width: 15%;
   }
 
   100% {
-    width: 35%;
+    min-width: 35%;
   }
 }

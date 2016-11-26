@@ -2,15 +2,15 @@ import React, { PropTypes } from 'react';
 import './Greeting.scss';
 
 const Greeting = ({
-  name,
+  message,
 }) => (
   <div className="greeting">
-    <h1>Good Evening, {name}</h1>
+    <h1>{message}</h1>
   </div>
 );
 
 Greeting.propTypes = {
-  name: PropTypes.string,
+  message: PropTypes.string.isRequired,
 };
 
 export default Greeting;

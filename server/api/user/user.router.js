@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+
 'use strict';
 
 // eslint-disable-next-line new-cap
@@ -5,46 +7,38 @@ const router = require('express').Router();
 
 const db = require('../../_db');
 
-const HttpError = require('../../utils/HttpError');
 const User = require('./user.model');
 const UserInfo = require('../userInfo/userInfo.model');
 
 router.post('/', (req, res, next) => {
+  // eslint-disable-next-line no-unused-vars
   db.transaction((t) => {
     return UserInfo.find({
       where: {
         email: req.body.email,
       },
     })
-      .then((userInfo) => {
-        if (!userInfo) {
+      .then((foundUserInfo) => {
+        let userInfo;
+        if (!foundUserInfo) {
           // UserInfo not found, try create
-          let newUserInfo;
           return UserInfo.create(req.body)
             .then((createdUserInfo) => {
-              // eslint-disable-next-line new-cap
-              if (!createdUserInfo) throw HttpError(404);
-              newUserInfo = createdUserInfo;
+              userInfo = createdUserInfo;
               return User.create();
             })
             .then((user) => {
-              // eslint-disable-next-line new-cap
-              if (!user) throw HttpError(404);
-              return user.update({
-                user_info_id: newUserInfo.id,
-              });
+              return user.setUserInfo(userInfo);
             })
             .then((user) => {
-              // eslint-disable-next-line new-cap
-              if (!user) throw HttpError(404);
               res.json(user.hash);
             });
-        } else {
+        } else { // eslint-disable-line no-else-return
           // UserInfo found, check password, find User and return hash
+          userInfo = foundUserInfo;
           return userInfo.authenticate(req.body.password)
             .then((passwordMatch) => {
-              // eslint-disable-next-line new-cap
-              if (!passwordMatch) throw new Error();
+              if (!passwordMatch) { throw new Error('Password doesn\'t match.'); }
               return User.findOne({
                 include: [{
                   model: UserInfo,
@@ -56,12 +50,11 @@ router.post('/', (req, res, next) => {
               });
             })
             .then((user) => {
-              // eslint-disable-next-line new-cap
-              if (!user) throw new Error();
+              if (!user) { throw new Error('User not found.'); }
               res.json(user.hash);
             });
         }
-      })
+      });
   })
     .catch(next);
 });

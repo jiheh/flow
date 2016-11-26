@@ -15,8 +15,7 @@ const User = db.define('users', {
       return bcrypt.hash(JSON.stringify(user), 10)
         .then(hash => {
           user.hash = hash;
-        })
-        .catch(console.error); // TODO: error handling
+        });
     },
   },
   instanceMethods: {

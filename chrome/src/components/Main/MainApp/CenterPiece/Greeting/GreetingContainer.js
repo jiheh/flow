@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Greeting from './Greeting.jsx';
+import Greeting from './GreetingComponent.jsx';
 
 const mapStateToProps = ({
   user,

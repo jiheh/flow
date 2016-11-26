@@ -25,24 +25,26 @@ export default class Navigation extends Component {
     const { loginAdmin, logoutAdmin, currentAdmin } = this.props;
   
     return (
-      <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to='/'>flow</Link>
-          </Navbar.Brand>
-        </Navbar.Header>
 
-        {currentAdmin ?
-          (
-            <Nav pullRight>
-              <NavItem eventKey={3} onClick={logoutAdmin}>Log Out</NavItem>
-            </Nav>
-          ) : (
-            <Nav pullRight>
-              <NavItem eventKey={1} onClick={this.open}>Log In</NavItem>
-            </Nav>
-          )
-        }
+      <nav className="pt-navbar">
+        <div className="pt-navbar-group pt-align-left">
+          <Link to='/dashboard'>
+            <div className="pt-navbar-heading">Flow Administrator</div>
+          </Link>
+        </div>
+        <div className="pt-navbar-group pt-align-right">
+          
+          
+
+          {currentAdmin ?
+            (
+              <button className="pt-button pt-minimal" onClick={logoutAdmin}>Log Out</button>
+            ) : (
+              <button className="pt-button pt-minimal" onClick={this.open}>Log In</button>
+            )
+          }    
+          
+        </div>
 
         <LogInForm
           showModal={this.state.showModal}
@@ -50,7 +52,15 @@ export default class Navigation extends Component {
           login={loginAdmin}
         />
 
-      </Navbar>
+      </nav>
+
+
+
     );
   }
 }
+
+
+// <span className="pt-navbar-divider"></span>
+
+

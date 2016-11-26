@@ -4,10 +4,11 @@ const Account = require('../account/account.model')
 const Billing = require('../billing/billing.model')
 const axios = require('axios')
 const adminMethods = require('../admin/admin.methods')
+const Admin = require('../admin/admin.model')
 
-//Create a new Organization
+//Create a new Organization returns Head Admin
 router.post('/',(req,res,next) =>{
-  let globalOrganization;
+  let globalOrganization; 
   Organization.create({
     name:req.body.organizationName,
     type:req.body.organizationType,
@@ -38,9 +39,9 @@ router.post('/',(req,res,next) =>{
     globalOrganization.update({head_id:admin.id})
   })
   .then(() =>{
-    if(req.body.billing){
+    if(Object.keys(req.body.billing).length){
       return Billing.create({
-        cardType:'mastercard',
+        cardType:req.body.billing.cardType,
         cardNumber:req.body.billing.cardNumber,
         expiryDate:req.body.billing.expiryDate,
         securityNumber:req.body.billing.securityNumber
@@ -54,7 +55,10 @@ router.post('/',(req,res,next) =>{
   })
   .then(globalOrg =>{
     globalOrganization = globalOrg
-    res.status(209).send(globalOrganization)
+    return Admin.findById(globalOrganization.head_id)
+  })
+  .then(headAdmin =>{
+    res.status(209).send(headAdmin)
   })
   .catch(err => console.log(err))
 })

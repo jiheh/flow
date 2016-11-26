@@ -1,6 +1,6 @@
 'use strict';
-
 const router = require('express').Router();
+const Promise = require('bluebird');
 
 const db = require('../../_db');
 
@@ -17,23 +17,14 @@ router.post('/', (req, res, next) => {
   })
   .then(createdSurvey => {
     newSurvey = createdSurvey;
-    let questionArray = [];
-
-    req.body.questions.forEach(question => {
-      let questionPromise = Question.create(question);
-      questionArray.push(questionPromise);
+    return Promise.map(req.body.questions, question => {
+      return Question.create(question);
     });
-
-    return Promise.all(questionArray);
   })
   .then(surveyQuestions => {
-    let setArray = [];
-    surveyQuestions.forEach(question => {
-      let setPromise = question.setSurvey(newSurvey);
-      setArray.push(setPromise);
+    return Promise.map(surveyQuestions, question => {
+      return question.setSurvey(newSurvey);
     });
-
-    return Promise.all(setArray);
   })
   .then(() => res.send("Survey created successfully!"))
   .catch(next);

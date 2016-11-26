@@ -148,14 +148,17 @@ router.get('/survey/:surveyId', (req, res, next) => {
           id: surveyId,
         },
         include: [{
-          model: Response,
-          include: [{
-            model: User,
+          model: Question,
+          include [{
+            model: Response,
             include: [{
-              model: UserInfo,
-              attributes: ['name', 'email'],
+              model: User,
+              include: [{
+                model: UserInfo,
+                attributes: ['name', 'email'],
+              }],
             }],
-          }],
+          }]
         }],
       });
     })

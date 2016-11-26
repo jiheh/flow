@@ -14,6 +14,7 @@ const Sidebar = ({
   renderSuggestion,
   suggestions,
   shouldRenderSuggestions,
+  renderInputComponent,
 }) => (
   <div className="sidebar">
     <div className="sidebar-nav">
@@ -33,6 +34,8 @@ const Sidebar = ({
           onSuggestionsClearRequested={onSuggestionsClearRequested}
           getSuggestionValue={getSuggestionValue}
           renderSuggestion={renderSuggestion}
+          shouldRenderSuggestions={shouldRenderSuggestions}
+          renderInputComponent={renderInputComponent}
         />
       </div>
     </div>
@@ -52,6 +55,7 @@ Sidebar.propTypes = {
   renderSuggestion: PropTypes.func.isRequired,
   suggestions: PropTypes.array.isRequired,
   shouldRenderSuggestions: PropTypes.func.isRequired,
+  renderInputComponent: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

@@ -24,6 +24,25 @@
 
   }
 
+  .input-container {
+    input {
+      padding-left: 32px;
+    }
+
+    .clear-input {
+      position: absolute;
+      margin: 0;
+      right: 12px;
+      top: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.05);
+      border-style: solid;
+      border-color: rgba(0,0,0,0.1);
+    }
+  }
+
   .react-autosuggest__suggestions-container {
     .react-autosuggest__suggestions-list {
       background-color: white;

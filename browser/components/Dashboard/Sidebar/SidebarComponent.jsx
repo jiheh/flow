@@ -60,6 +60,25 @@ class SidebarComponent extends Component {
     </div>
   )
 
+  renderInputComponent = inputProps => (
+    <div className="input-container">
+      <input {...inputProps} />
+      <button
+        className="clear-input"
+        onClick={this.clearInput}
+      >
+        x
+      </button>
+    </div>
+  )
+
+  clearInput = () => {
+    this.setState({
+      searchInput: '',
+      suggestions: [],
+    });
+  }
+
   render() {
     return (
       <Sidebar
@@ -72,6 +91,7 @@ class SidebarComponent extends Component {
         allChannels={this.props.allChannels}
         suggestions={this.state.suggestions}
         shouldRenderSuggestions={this.shouldRenderSuggestions}
+        renderInputComponent={this.renderInputComponent}
       />
     );
   }

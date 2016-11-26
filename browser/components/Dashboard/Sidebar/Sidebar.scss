@@ -24,6 +24,31 @@
 
   }
 
+  .react-autosuggest__suggestions-container {
+    .react-autosuggest__suggestions-list {
+      background-color: white;
+      color: black;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      .react-autosuggest__suggestion {
+        &:hover {
+          background-color: rgba(0,0,0,0.025);
+        }
+      }
+    }
+  }
+
+  .search-suggestion {
+    background-color: rgba(1,1,1,1);
+    color: black;
+
+    &:hover {
+      background-color: rgba(0,0,0,0.025);
+    }
+  }
+
   .channel-item {
     padding: 12px;
     border-bottom: 1px solid rgba(0,0,0, 0.05);

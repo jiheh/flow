@@ -3070,6 +3070,10 @@ oauth@0.9.x:
   version "0.9.14"
   resolved "https://registry.yarnpkg.com/oauth/-/oauth-0.9.14.tgz#c5748883a40b53de30ade9cabf2100414b8a0971"
 
+object-assign@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
+
 object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.0.tgz#7a3b3d0e98063d43f4c03f2e8ae6cd51a86883a0"
@@ -3737,6 +3741,22 @@ react-addons-css-transition-group@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.4.1.tgz#60b133fac5116e4009e56ab0674dc2ddcc1a18f6"
 
+react-autosuggest:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-autosuggest/-/react-autosuggest-7.0.1.tgz#e751d2c2e516a344f6cdc150672e85f134f5f2f1"
+  dependencies:
+    react-autowhatever "^7.0.0"
+    react-redux "^4.4.5"
+    redux "^3.6.0"
+    shallow-equal "^1.0.0"
+
+react-autowhatever@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/react-autowhatever/-/react-autowhatever-7.0.0.tgz#7ea19f8024183acf1568fc8e4b76c0d0cc250d00"
+  dependencies:
+    react-themeable "^1.1.0"
+    section-iterator "^2.0.0"
+
 react-bootstrap@^0.30.6:
   version "0.30.6"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.30.6.tgz#288662a245f9dbb79f7740ee595e4ec931d6a4a9"
@@ -3792,6 +3812,12 @@ react-router@^2.8.1:
     invariant "^2.2.1"
     loose-envify "^1.2.0"
     warning "^3.0.0"
+
+react-themeable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-themeable/-/react-themeable-1.1.0.tgz#7d4466dd9b2b5fa75058727825e9f152ba379a0e"
+  dependencies:
+    object-assign "^3.0.0"
 
 react@^15.4.0:
   version "15.4.1"
@@ -4099,6 +4125,10 @@ sax@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
 
+section-iterator@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/section-iterator/-/section-iterator-2.0.0.tgz#bf444d7afeeb94ad43c39ad2fb26151627ccba2a"
+
 semver@^4.1.0:
   version "4.3.6"
   resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
@@ -4170,6 +4200,10 @@ setprototypeof@1.0.2:
 sha.js@2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/sha.js/-/sha.js-2.2.6.tgz#17ddeddc5f722fb66501658895461977867315ba"
+
+shallow-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"
 
 shebang-regex@^1.0.0:
   version "1.0.0"

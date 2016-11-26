@@ -50,7 +50,7 @@ User.hasMany(Response);
 Question.hasMany(Response); // Question.getResponses
 Response.belongsTo(Question); // Response.getQuestion
 
-// Survey.hasMany(Question);
+Survey.hasMany(Question);
 Question.belongsTo(Survey);
 
 // Announcement

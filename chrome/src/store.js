@@ -4,7 +4,6 @@ import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import chromeStorage, { loadFromStorage } from './redux/chromeStorage';
 import { middleware } from 'redux-async-initial-state';
-import axios from 'axios';
 
 import rootReducer from './reducers';
 
@@ -18,23 +17,15 @@ const keysToPersistInChrome = ['settings', 'user'];
 // from login state
 const loadStore = (currentState) => {
   const chromeStoragePromise = loadFromStorage(keysToPersistInChrome);
-  const imageUrlPromise = axios.get('http://localhost:8080/api/images/random');
-  const videoUrlPromise = axios.get('http://localhost:8080/api/videos/random');
 
   return Promise.all([
     chromeStoragePromise,
-    imageUrlPromise,
-    videoUrlPromise,
   ])
     .then(([
       loadedChromeStorage,
-      imageUrlRes,
-      videoUrlRes,
     ]) => ({
       ...currentState,
       ...loadedChromeStorage,
-      backgroundImage: imageUrlRes.data,
-      backgroundVideo: videoUrlRes.data,
     }));
 };
 

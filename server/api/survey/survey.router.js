@@ -15,6 +15,8 @@ const Channel = require('../channel/channel.model');
 const Admin = require('../admin/admin.model');
 const User = require('../user/user.model');
 const Question = require('../question/question.model');
+const UserInfo = require('../userInfo/userInfo.model');
+const Response = require('../response/response.model');
 
 // POST - CHROME - pull surveys linked to specific user
 router.post('/chrome', (req, res, next) => {
@@ -48,7 +50,7 @@ router.post('/', (req, res, next) => {
     description, // string - survey description
   } = req.body;
 
-  if (!req.user) { throw new Error(); }
+  if (!req.user) { res.status(403).send(); }
 
   // eslint-disable-next-line no-unused-vars
   db.transaction((t) => {
@@ -116,6 +118,58 @@ router.post('/', (req, res, next) => {
         res.status(201).send();
       });
   })
+    .catch(next);
+});
+
+// GET - admin gets responses to a survey for a given channel
+router.get('/survey/:surveyId', (req, res, next) => {
+  const { surveyId } = req.params;
+
+  if (!req.user) { res.status(403).send(); }
+
+  let admin;
+  let survey;
+  let adminChannels;
+
+  return Admin.findOne({
+    where: {
+      user_info_id: req.user.id,
+    },
+  })
+    .then((foundAdmin) => {
+      admin = foundAdmin;
+      return admin.getChannels();
+    })
+    .then((foundAdminChannels) => {
+      if (!foundAdminChannels) { throw new Error('Admin does not have any channels.'); }
+      adminChannels = foundAdminChannels;
+      return Survey.findOne({
+        where: {
+          id: surveyId,
+        },
+        include: [{
+          model: Response,
+          include: [{
+            model: User,
+            include: [{
+              model: UserInfo,
+              attributes: ['name', 'email'],
+            }],
+          }],
+        }],
+      });
+    })
+    .then((foundSurvey) => {
+      if (!foundSurvey) { throw new Error('Survey not found.'); }
+      survey = foundSurvey;
+      return survey.getChannel();
+    })
+    .then((surveyChannel) => {
+      if (!surveyChannel) { throw new Error('Survey not linked to a channel.'); }
+      if (!_.filter(adminChannels, adminChannel => adminChannel.id === surveyChannel.id).length) {
+        throw new Error('Admin does not have access to specified survey.'); }
+      res.json(survey);
+    })
     .catch(next);
 });
 

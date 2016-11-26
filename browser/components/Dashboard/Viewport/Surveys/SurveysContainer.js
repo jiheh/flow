@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import Surveys from './Surveys';
+import SurveysComponent from './SurveysComponent';
 
 const mapStateToProps = null
 
 const mapDispatchToProps = null;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Surveys);
+export default connect(mapStateToProps, mapDispatchToProps)(SurveysComponent);

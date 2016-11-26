@@ -1,6 +1,7 @@
 import React from 'react';
 import './Viewport.scss';
-import ChannelHeaderContainer from './ChannelHeader/ChannelHeaderContainer.js';
+import ChannelHeaderContainer from './ChannelHeader/ChannelHeaderContainer';
+import SurveysContainer from './Surveys/SurveysContainer';
 
 import {Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
 
@@ -25,8 +26,7 @@ export default () => (
         </TabPanel>
 
         <TabPanel>
-          <h3>Surveys</h3>
-
+          <SurveysContainer />
         </TabPanel>
 
         <TabPanel>

@@ -44,6 +44,7 @@ router.post('/', (req, res, next) => {
     userIds, // array of numbers
     name, // string - survey name
     description, // string - survey description
+    questions, // array of objects
   } = req.body;
 
   if (!req.user) { throw new Error(); }
@@ -81,7 +82,21 @@ router.post('/', (req, res, next) => {
       })
       .then((createdSurvey) => {
         survey = createdSurvey;
-        return Promise.map(userIds, (userId) => {
+
+
+        return Promise.map(questions, question => {
+            return Question.create(question);
+          });
+        })
+        .then(surveyQuestions => {
+          return Promise.map(surveyQuestions, question => {
+            return question.setSurvey(survey);
+          });
+        })
+
+        
+        .then(() => {
+          return Promise.map(userIds, (userId) => {
           let user;
           return User.findById(userId)
             .then((foundUser) => {

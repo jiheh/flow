@@ -57,18 +57,19 @@ router.post('/', (req, res, next) => {
     let channel;
     let survey;
     let admin;
-    return Channel.findById(channelId)
-      .then((foundChannel) => {
-        if (!foundChannel) { throw new Error('ChannelItem not found.'); }
-
-        channel = foundChannel;
-        return Admin.findOne({
-          where: {
-            user_info_id: req.user.id,
-          },
-        });
-      })
-      .then((foundAdmin) => {
+    return Promise.all([
+      Channel.findById(channelId)
+        .then((foundChannel) => {
+          if (!foundChannel) { throw new Error('ChannelItem not found.'); }
+          channel = foundChannel;
+        }),
+      Admin.findOne({
+        where: {
+          user_info_id: req.user.id,
+        },
+      }),
+    ])
+      .spread((a, foundAdmin) => {
         admin = foundAdmin;
         return admin.getChannels();
       })
@@ -100,19 +101,15 @@ router.post('/', (req, res, next) => {
               if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
                 throw new Error('User is not part of the specified channels.');
               } else {
-                return survey.addUser(user);
+                return Promise.all([
+                  survey.addUser(user),
+                  survey.setChannel(channel),
+                  survey.setOwner(admin),
+                  admin.addSurvey(survey),
+                ]);
               }
             });
         });
-      })
-      .then(() => {
-        return survey.setChannel(channel);
-      })
-      .then(() => {
-        return survey.setOwner(admin);
-      })
-      .then(() => {
-        return admin.addSurvey(survey);
       })
       .then(() => {
         res.status(201).send();
@@ -131,46 +128,50 @@ router.get('/survey/:surveyId', (req, res, next) => {
   let survey;
   let adminChannels;
 
-  return Admin.findOne({
-    where: {
-      user_info_id: req.user.id,
-    },
-  })
-    .then((foundAdmin) => {
-      admin = foundAdmin;
-      return admin.getChannels();
+  return Promise.all([
+    Admin.findOne({
+      where: {
+        user_info_id: req.user.id,
+      },
     })
-    .then((foundAdminChannels) => {
-      if (!foundAdminChannels) { throw new Error('Admin does not have any channels.'); }
-      adminChannels = foundAdminChannels;
-      return Survey.findOne({
-        where: {
-          id: surveyId,
-        },
+      .then((foundAdmin) => {
+        admin = foundAdmin;
+        return admin.getChannels();
+      })
+      .then((foundAdminChannels) => {
+        if (!foundAdminChannels) { throw new Error('Admin does not have any channels.'); }
+        adminChannels = foundAdminChannels;
+      }),
+    Survey.findOne({
+      where: {
+        id: surveyId,
+      },
+      include: [{
+        model: Question,
         include: [{
-          model: Question,
-          include [{
-            model: Response,
+          model: Response,
+          include: [{
+            model: User,
             include: [{
-              model: User,
-              include: [{
-                model: UserInfo,
-                attributes: ['name', 'email'],
-              }],
+              model: UserInfo,
+              attributes: ['name', 'email'],
             }],
-          }]
+          }],
         }],
-      });
+      }],
     })
-    .then((foundSurvey) => {
-      if (!foundSurvey) { throw new Error('Survey not found.'); }
-      survey = foundSurvey;
-      return survey.getChannel();
-    })
-    .then((surveyChannel) => {
+      .then((foundSurvey) => {
+        if (!foundSurvey) { throw new Error('Survey not found.'); }
+        survey = foundSurvey;
+        return survey.getChannel();
+      }),
+  ])
+    .spread((a, surveyChannel) => {
       if (!surveyChannel) { throw new Error('Survey not linked to a channel.'); }
       if (!_.filter(adminChannels, adminChannel => adminChannel.id === surveyChannel.id).length) {
-        throw new Error('Admin does not have access to specified survey.'); }
+        throw new Error('Admin does not have access to specified survey.');
+      }
+
       res.json(survey);
     })
     .catch(next);

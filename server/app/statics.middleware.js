@@ -35,8 +35,8 @@ router.use('/bundle.min.js.map', express.static(bundleMapMinPath));
 router.use('/favicon.ico', express.static(faviconPath));
 router.use('/logo.png', express.static(logoPath));
 router.use('/style.css', express.static(stylePath));
-
 router.use('/css', express.static(cssPath));
+
 const blueprintPath = path.join(rootPath, 'node_modules', '@blueprintjs', 'core', 'dist', 'blueprint.css');
 const blueprintMapPath = path.join(rootPath, 'node_modules', '@blueprintjs', 'core', 'dist', 'blueprint.css.map');
 const blueprintIconsPath = path.join(rootPath, 'node_modules', '@blueprintjs', 'core', 'resources');

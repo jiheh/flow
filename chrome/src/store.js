@@ -17,17 +17,20 @@ const keysToPersistInChrome = ['settings', 'user'];
 // perform any initial server requests that are independent
 // from login state
 const loadStore = (currentState) => {
-  let loadedChromeStorage;
-  return new Promise((resolve) => {
-    loadFromStorage(keysToPersistInChrome, resolve);
-  })
-    .then((fromStorage) => {
-      loadedChromeStorage = fromStorage;
-      const imageUrlPromise = axios.get('http://localhost:8080/api/images/random');
-      const videoUrlPromise = axios.get('http://localhost:8080/api/videos/random');
-      return Promise.all([imageUrlPromise, videoUrlPromise]);
-    })
-    .then(([ imageUrlRes, videoUrlRes]) => {
+  const chromeStoragePromise = loadFromStorage(keysToPersistInChrome);
+  const imageUrlPromise = axios.get('http://localhost:8080/api/images/random');
+  const videoUrlPromise = axios.get('http://localhost:8080/api/videos/random');
+
+  return Promise.all([
+    chromeStoragePromise,
+    imageUrlPromise,
+    videoUrlPromise,
+  ])
+    .then(([
+      loadedChromeStorage,
+      imageUrlRes,
+      videoUrlRes,
+    ]) => {
       return {
         ...currentState,
         ...loadedChromeStorage,

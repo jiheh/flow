@@ -1,17 +1,10 @@
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { setImageUrl } from '../../../reducers/backgroundImage';
-import { setVideoUrl } from '../../../reducers/backgroundVideo';
-import BackgroundComponent from './BackgroundComponent.jsx';
+import Background from './Background.jsx';
 
 const mapStateToProps = ({
-  backgroundImage,
-  backgroundVideo,
   settings,
 }) => ({
-  backgroundImage,
-  backgroundVideo,
   showVideo: settings.showVideo,
 });
 
-export default connect(mapStateToProps, null)(BackgroundComponent);
+export default connect(mapStateToProps, null)(Background);

@@ -3,15 +3,15 @@ import './ChannelList.scss';
 
 import Channel from './ChannelItem/channelItem.jsx';
 
-export default ({channels}) => (
+export default ({channels, currentChannelID, setCurrentChannel}) => (
   <div className="channel-list">
     {
-      channels && channels.map((channel, index)=> (
+      channels.allChannels && channels.allChannels.map((channel, index)=> (
         <Channel
           key={index}
-          name={channel.name}
-          numMembers={channel.numMembers}
-          description={channel.description}
+          channel={channel}
+          currentChannelID={currentChannelID}
+          setCurrentChannel={setCurrentChannel}
         />
         ))
     }

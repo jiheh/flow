@@ -1,6 +1,9 @@
 /* global chrome */
 
 import _ from 'lodash';
+// eslint-disable-next-line no-unused-vars
+import { isEqual } from 'lodash';
+
 import Promise from 'bluebird';
 
 // automatically save the values specified by the

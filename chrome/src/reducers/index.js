@@ -1,8 +1,5 @@
 import { combineReducers } from 'redux';
 
-import backgroundImage from './backgroundImage';
-import backgroundVideo from './backgroundVideo';
-
 import meditationWidget from './widgets/meditationWidget';
 import quote from './quote';
 import surveyQuestions from './surveyQuestions';
@@ -14,8 +11,6 @@ import docker from './docker';
 import user from './user';
 
 export default combineReducers({
-  backgroundImage,
-  backgroundVideo,
   meditationWidget,
   announcements,
   quote,

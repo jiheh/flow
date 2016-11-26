@@ -1,9 +1,7 @@
 import React from 'react';
 import './BackgroundVideo.scss';
 
-import { propTypes as backgroundVideoPropTypes } from '../../../../reducers/backgroundVideo';
-
-const BackgroundVideo = ({ backgroundVideo }) => (
+const BackgroundVideo = () => (
   <div className="backround-video-wrapper">
     <video
       className="background-video"
@@ -13,9 +11,5 @@ const BackgroundVideo = ({ backgroundVideo }) => (
     />
   </div>
 );
-
-BackgroundVideo.propTypes = {
-  backgroundVideo: backgroundVideoPropTypes,
-};
 
 export default BackgroundVideo;

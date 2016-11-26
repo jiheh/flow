@@ -1,20 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import './BackgroundImage.scss';
 
-import { propTypes as backgroundImagePropTypes } from '../../../../reducers/backgroundImage';
-
-const BackgroundImage = ({ backgroundImage }) => (
+const BackgroundImage = () => (
   <div className="background-image-wrapper">
     <img
       className="backround-image"
       role="presentation"
-      src={`http://localhost:8080/backgroundImages/${backgroundImage}`}
+      src={'http://localhost:8080/api/images/random'}
     />
   </div>
 );
-
-BackgroundImage.propTypes = {
-  backgroundImage: backgroundImagePropTypes,
-};
 
 export default BackgroundImage;

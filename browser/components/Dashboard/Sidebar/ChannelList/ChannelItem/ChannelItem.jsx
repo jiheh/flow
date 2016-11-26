@@ -5,6 +5,6 @@ export default ({id, name, description, numMembers, }) => (
     <h5>{name}</h5>
     <p>{description}</p>
     <span className="pt-icon-standard pt-icon-people" ></span>
-    <span className="channel-label">{numMembers}</span>
+    <span className="mini-label">{numMembers}</span>
   </div>
 );

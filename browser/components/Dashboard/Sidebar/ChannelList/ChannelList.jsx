@@ -6,8 +6,9 @@ import Channel from './ChannelItem/channelItem.jsx';
 export default ({channels}) => (
   <div className="channel-list">
     {
-      channels && channels.map(channel => (
+      channels && channels.map((channel, index)=> (
         <Channel
+          key={index}
           name={channel.name}
           numMembers={channel.numMembers}
           description={channel.description}

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { login, logout } from '../../reducers/auth';
 import { browserHistory } from 'react-router';
-import Navigation from './Navbar';
+import Navigation from './Navbar.jsx';
 
 
 const mapStateToProps = ({ currentAdmin }) => ({ currentAdmin });

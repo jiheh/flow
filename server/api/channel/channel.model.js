@@ -14,11 +14,11 @@ const Channel = db.define('channel', {
 }, {
 
   // getterMethods: {
-  //   numUsers: () => { // How many users does this channel have?
+  //   numUsers: () => { // How many users does this channels have?
       // return this.countUsers();
     // },
 
-    // organization: () => { // To what organization does this channel belong?
+    // organization: () => { // To what organization does this channels belong?
       // return this.getOrganization();
     // },
   // },

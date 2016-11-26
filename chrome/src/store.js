@@ -27,7 +27,7 @@ const loadStore = (currentState) => {
       const videoUrlPromise = axios.get('http://localhost:8080/api/videos/random');
       return Promise.all([imageUrlPromise, videoUrlPromise]);
     })
-    .then(([ imageUrlRes , videoUrlRes]) => {
+    .then(([ imageUrlRes, videoUrlRes]) => {
       return {
         ...currentState,
         ...loadedChromeStorage,

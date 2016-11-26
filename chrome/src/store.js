@@ -30,14 +30,12 @@ const loadStore = (currentState) => {
       loadedChromeStorage,
       imageUrlRes,
       videoUrlRes,
-    ]) => {
-      return {
-        ...currentState,
-        ...loadedChromeStorage,
-        backgroundImage: imageUrlRes.data,
-        backgroundVideo: videoUrlRes.data,
-      };
-    });
+    ]) => ({
+      ...currentState,
+      ...loadedChromeStorage,
+      backgroundImage: imageUrlRes.data,
+      backgroundVideo: videoUrlRes.data,
+    }));
 };
 
 export default createStore(

@@ -6,11 +6,13 @@ const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const chalk = require('chalk');
 
+const PROD = (process.env.NODE_ENV === 'production');
+
 module.exports = {
   entry: './src/app.jsx',
   output: {
     path: __dirname,
-    filename: './bundle.js',
+    filename: PROD ? 'bundle.min.js' : './bundle.js',
   },
   context: __dirname,
   devtool: 'cheap-module-source-map',
@@ -35,7 +37,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [
+  plugins: PROD ? [
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.DedupePlugin(),
+  ] : [
     new ProgressBarPlugin({
       format: `${chalk.inverse('webpack:')} ${chalk.cyan('|')}:bar${chalk.cyan('|')} ${chalk.yellow.bold(':percent')}`,
       clear: false,

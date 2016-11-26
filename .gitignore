@@ -1,11 +1,10 @@
 node_modules
 .DS_Store
-public/bundle.js
-public/bundle.js.map
+public/bundle*
 npm-debug.log
 
 chrome/node_modules
-chrome/bundle.js*
+chrome/bundle*
 chrome/npm-debug.log
 
 .idea

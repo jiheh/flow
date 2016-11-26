@@ -1,42 +1,45 @@
 import React from 'react';
 import './Viewport.scss';
-import ChannelHeader from './ChannelHeader/ChannelHeader.jsx';
+import ChannelHeaderContainer from './ChannelHeader/ChannelHeaderContainer.js';
 
 import {Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
 
 export default () => (
   <div className="viewport">
 
-    <ChannelHeader />
+    <ChannelHeaderContainer />
 
-    <Tabs>
-      <TabList>
-        <Tab>Overview</Tab>
-        <Tab>Surveys</Tab>
-        <Tab>Members</Tab>
-        <Tab>Settings</Tab>
-      </TabList>
+    <div className="viewport-content">
 
-      <TabPanel>
-        <h3>Overview</h3>
+      <Tabs>
+        <TabList>
+          <Tab>Overview</Tab>
+          <Tab>Surveys</Tab>
+          <Tab>Members</Tab>
+          <Tab>Settings</Tab>
+        </TabList>
 
-      </TabPanel>
+        <TabPanel>
+          <h3>Overview</h3>
 
-      <TabPanel>
-        <h3>Surveys</h3>
+        </TabPanel>
 
-      </TabPanel>
+        <TabPanel>
+          <h3>Surveys</h3>
 
-      <TabPanel>
-        <h3>Members</h3>
+        </TabPanel>
 
-      </TabPanel>
+        <TabPanel>
+          <h3>Members</h3>
 
-      <TabPanel>
-        <h3>Settings</h3>
+        </TabPanel>
 
-      </TabPanel>
+        <TabPanel>
+          <h3>Settings</h3>
 
-    </Tabs>
+        </TabPanel>
+      </Tabs>
+
+    </div>
   </div>
 );

@@ -19,9 +19,7 @@ const mapDispatchToProps = () => dispatch => ({
   },
 
   logout: () => {
-    chrome.storage.sync.set({ user: { name: '', hash: '' } }, () => {
-      dispatch(logoutUser());
-    });
+    dispatch(logoutUser());
   },
 
   getAnnouncements: () => {

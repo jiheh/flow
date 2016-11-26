@@ -1,18 +1,27 @@
 import React from 'react';
 import './ChannelList.scss';
 
-import Channel from './ChannelItem/channelItem.jsx';
+import Channel from './ChannelItem/ChannelItem.jsx';
 
-export default ({channels}) => (
+export default ({
+  channels,
+  currentChannelID,
+  setCurrentChannel,
+  searchInput,
+}) => (
   <div className="channel-list">
     {
-      channels && channels.map((channel, index)=> (
-        <Channel
-          key={index}
-          name={channel.name}
-          numMembers={channel.numMembers}
-          description={channel.description}
-        />
+      channels.allChannels &&
+      channels.allChannels
+        .filter(channel => channel.name.toLowerCase().includes(searchInput)
+          || channel.description.toLowerCase().includes(searchInput))
+        .map((channel, index) => (
+          <Channel
+            key={index}
+            channel={channel}
+            currentChannelID={currentChannelID}
+            setCurrentChannel={setCurrentChannel}
+          />
         ))
     }
   </div>

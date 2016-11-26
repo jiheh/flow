@@ -27,6 +27,7 @@
   .channel-item {
     padding: 12px;
     border-bottom: 1px solid rgba(0,0,0, 0.05);
+    cursor: pointer;
 
     &:hover {
       background-color: rgba(0,0,0, 0.025);
@@ -54,6 +55,12 @@
     width: 100%;
   }
 
+  .active {
+    background-color: #E1E8ED;
+    &:hover {
+      background-color: #D8E1E8;
+    }
+  }
 
 
 }

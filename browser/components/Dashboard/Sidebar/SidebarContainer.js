@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import Sidebar from './Sidebar.jsx';
+import SidebarComponent from './SidebarComponent.jsx';
 
-const mapStateToProps = null
+const mapStateToProps = null;
 
 const mapDispatchToProps = null;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarComponent);

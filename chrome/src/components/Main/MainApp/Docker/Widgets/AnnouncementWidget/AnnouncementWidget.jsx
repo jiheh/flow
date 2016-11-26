@@ -20,11 +20,11 @@ const AnnouncementWidget = ({ announcements, unread }) => (
 
     <div className="widget-contents">
       {
-        announcements.length && announcements.map((announcement, index ) => (
+        announcements.length > 0 && announcements.map((announcement, index) => (
             <SingleAnnouncement
-              key = {index}
-              title = {announcement.title}
-              contents = {announcement.contents}
+              key={index}
+              title={announcement.title}
+              contents={announcement.contents}
             />
           )
         )

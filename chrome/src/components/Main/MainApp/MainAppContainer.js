@@ -30,7 +30,7 @@ const mapDispatchToProps = () => dispatch => ({
     axios.post('http://localhost:8080/api/survey/chrome', { hash: store.getState().user.hash })
       .then(res => dispatch(receiveSurveys(res.data)))
       .catch(console.error); // TODO: error handling;
-  }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainApp);

@@ -84,7 +84,7 @@
   position: absolute;
   bottom: 45px;
   left: 20px;
-  width: 25px;
+  width: 28px;
   opacity: 0.5;
   transition-timing-function: ease-out;
   -webkit-transition-timing-function: ease-out;
@@ -93,7 +93,7 @@
   cursor: pointer;
   &:hover {
     opacity: 1.0;
-    transform: scale(1.2);
+    // transform: scale(1.2);
   }
 }
 
@@ -101,7 +101,7 @@
   position: absolute;
   bottom: 45px;
   right: 20px;
-  width: 25px;
+  width: 28px;
   opacity: 0.5;
   transition-timing-function: ease-out;
   -webkit-transition-timing-function: ease-out;
@@ -110,7 +110,7 @@
   cursor: pointer;
   &:hover {
     opacity: 1.0;
-    transform: scale(1.2);
+    // transform: scale(1.2);
   }
 }
 

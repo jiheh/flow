@@ -12,8 +12,7 @@ router.get('/random', (req, res, next) => {
     } else {
       const numFiles = files.length;
       const songToSend = files[Math.floor(Math.random() * numFiles)];
-      const songPath = path.join(audioDir, songToSend);
-      res.sendFile(songPath);
+      res.redirect(`/backgroundSongs/${songToSend}`);
     }
   });
 });

@@ -41,7 +41,8 @@ router.post('/chrome', (req, res, next) => {
     .catch(next);
 });
 
-// POST - admin creates announcement
+// POST - admin creates survey
+// survey status defaults to "inactive"
 router.post('/', (req, res, next) => {
   const {
     channelId, // number
@@ -101,8 +102,8 @@ router.post('/', (req, res, next) => {
               if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
                 throw new Error('User is not part of the specified channels.');
               } else {
-                return Promise.all([
-                  survey.addUser(user),
+                return Promise.all([            // validations all passed
+                  survey.addUser(user),         // set associations
                   survey.setChannel(channel),
                   survey.setOwner(admin),
                   admin.addSurvey(survey),

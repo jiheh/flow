@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { PropTypes } from 'react';
+import _ from 'lodash';
 
 export const initialState = [];
 
@@ -8,8 +9,25 @@ export const propTypes = PropTypes.array;
 export const RECEIVE_SURVEYS = 'RECEIVE_SURVEYS';
 export const receiveSurveys = createAction(RECEIVE_SURVEYS);
 
+export const REMOVE_QUESTION = 'REMOVE_QUESTION';
+export const removeQuestion = createAction(REMOVE_QUESTION);
+
 export default handleActions({
   RECEIVE_SURVEYS: (state, { payload }) => {
     return payload;
+  },
+
+  REMOVE_QUESTION: (state, { payload }) => {
+    const { surveyId, questionId } = payload;
+    return state.map((survey) => {
+      if (survey.id !== surveyId) { return survey; }
+
+      const surveyCopy = _.cloneDeep(survey);
+      const questions = _.filter(survey.questions,
+                                 question => question.id !== questionId);
+
+      surveyCopy.questions = questions;
+      return surveyCopy;
+    });
   },
 }, initialState);

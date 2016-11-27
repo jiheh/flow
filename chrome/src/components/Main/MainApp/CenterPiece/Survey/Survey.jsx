@@ -5,18 +5,23 @@ import Quote from './Quote/QuoteContainer.js';
 import './Survey.scss';
 
 const Survey = ({
-  surveyQuestions, // boolean that basically says if there are surveys to show
+  surveyQuestions,
+  surveyIds,
 }) => (
   <div className="survey">
     {surveyQuestions.length ?
-    	<Question question={surveyQuestions[0]} /> :
-      <Quote />}
+      <Question
+        surveyId={surveyIds[0]}
+        question={surveyQuestions[0]}
+      />
+      : <Quote />
+    }
   </div>
 );
 
 Survey.propTypes = {
-  showQuote: PropTypes.bool,
-  surveyQuestions: PropTypes.array,
+  surveyQuestions: PropTypes.array.isRequired,
+  surveyIds: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default Survey;

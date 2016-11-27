@@ -9,7 +9,6 @@ const Response = ({
   sendResponse,
 }) => (
   <div className="response">
-    RESPONSE INPUTS HERE
     {type === 'emoji' &&
     <Emoji
       questionId={questionId}

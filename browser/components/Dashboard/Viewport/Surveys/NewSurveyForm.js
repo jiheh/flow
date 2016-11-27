@@ -12,14 +12,25 @@ class SurveyForm extends Component {
 			channelId: this.props.channel,
 			name: '',
 			description: '',
-			// questions: []
+			questionNumber: 1,
+			questions: []
 		}
 	}
 
 	submitForm = (e) => {
+		let questionsArray = [];
+
+		for (let i = 1; i <= this.state.questionNumber; i++) {
+			console.log(e.target[`question${i}`].value)
+			this.state.questions.push({
+				text: `${e.target.question}${i}.value`
+			})
+		}
+
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
+			questions: questionsArray
 		}, () => {
 			axios.post('/api/survey', this.state)
 			.catch(err => console.error(err));
@@ -30,7 +41,7 @@ class SurveyForm extends Component {
 		return(
 
 			<div id='surveyform' className='container-fluid'>
-				<h3>Create a Survey for Your Channel</h3>
+				<h3>Create a Survey for Your Channel{console.log(this.state)}</h3>
 
 				<form onSubmit={this.submitForm}>
 
@@ -46,9 +57,9 @@ class SurveyForm extends Component {
 					  </div>
 					</label>
 
-					<label className="pt-label">Question 1
+					<label className="pt-label">Question {this.state.questionNumber}
 					  <div className="pt-input-group">
-					    <input  className="pt-input" type="text" dir="auto" />
+					    <input  className="pt-input" name={`question${this.state.questionNumber}`} type="text" dir="auto" />
 					  </div>
 					</label>
 

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 import DockerContainer from './Docker/DockerContainer.js'
 import ToggleBackgroundMode from './ToggleBackgroundMode/ToggleBackgroundModeContainer.js';
+import ToggleAudio from './ToggleAudio/ToggleAudioContainer.js';
 import CenterPiece from './CenterPiece/CenterPieceContainer';
 
 import './MainApp.scss';
@@ -12,6 +13,7 @@ const MainApp = ({
   <div className="main-app">
     <DockerContainer />
     <ToggleBackgroundMode saveSettings={saveSettings} />
+    <ToggleAudio saveSettings={saveSettings} />
     <CenterPiece />
   </div>
 );

@@ -11,6 +11,7 @@ import { LOGOUT } from '../user';
 export const initialState = {
   // default settings
   showVideo: false,
+  playAudio: false,
 };
 
 export const propTypes = PropTypes.shape({

@@ -83,39 +83,39 @@ router.post('/', (req, res, next) => {
       })
       .then((createdSurvey) => {
         survey = createdSurvey;
+        return Promise.map(req.body.questions, question => {
+          return Question.create(question);
+        });
+      })
+      .then(surveyQuestions => {
+        return Promise.map(surveyQuestions, question => {
+          return question.setSurvey(survey);
+        });
+      })
+      .then(() => {
+      //   return Promise.map(userIds, (userId) => {
+      //     let user;
+      //     return User.findById(userId)
+      //       .then((foundUser) => {
+      //         if (!foundUser) { throw new Error('User not found.'); }
+      //         user = foundUser;
+      //         return user.getChannels();
+      //       })
+      //       .then((userChannels) => {
+      //         if (!userChannels) { throw new Error('User has no channels.'); }
 
-        //   return Promise.map(req.body.questions, question => {
-        //     return Question.create(question);
-        //   });
-        // })
-        // .then(surveyQuestions => {
-        //   return Promise.map(surveyQuestions, question => {
-        //     return question.setSurvey(survey);
-        //   });
-        // })
-        return Promise.map(userIds, (userId) => {
-          let user;
-          return User.findById(userId)
-            .then((foundUser) => {
-              if (!foundUser) { throw new Error('User not found.'); }
-              user = foundUser;
-              return user.getChannels();
-            })
-            .then((userChannels) => {
-              if (!userChannels) { throw new Error('User has no channels.'); }
-
-              if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
-                throw new Error('User is not part of the specified channels.');
-              } else {
+      //         if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
+      //           throw new Error('User is not part of the specified channels.');
+      //         } else {
                 return Promise.all([
                   // survey.addUser(user),
                   survey.setChannel(channel),
                   survey.setOwner(admin),
                   admin.addSurvey(survey),
                 ]);
-              }
-            });
-        });
+      //         }
+      //       });
+      //   });
       })
       .then(() => {
         res.status(201).send();

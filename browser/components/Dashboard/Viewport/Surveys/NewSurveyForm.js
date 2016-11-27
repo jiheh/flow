@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import { Button } from 'react-bootstrap';
 
 import axios from 'axios';
 
@@ -12,29 +11,8 @@ class SurveyForm extends Component {
 			channelId: this.props.channel,
 			name: '',
 			description: '',
-			questionNumber: 1,
 			questions: []
 		}
-	}
-
-	submitForm = (e) => {
-		let questionsArray = [];
-
-		for (let i = 1; i <= this.state.questionNumber; i++) {
-			console.log(e.target[`question${i}`].value)
-			this.state.questions.push({
-				text: `${e.target.question}${i}.value`
-			})
-		}
-
-		this.setState({
-			name: e.target.name.value,
-			description: e.target.description.value,
-			questions: questionsArray
-		}, () => {
-			axios.post('/api/survey', this.state)
-			.catch(err => console.error(err));
-		});
 	}
 
 	render() {
@@ -45,42 +23,68 @@ class SurveyForm extends Component {
 
 				<form onSubmit={this.submitForm}>
 
-					<label className="pt-label">Survey Name
-					  <div className="pt-input-group">
-					    <input  className="pt-input" type="text" name="name" dir="auto" />
+					<label className='pt-label'>Survey Name
+					  <div className='pt-input-group'>
+					    <input  className='pt-input' type='text' name='name' dir='auto' />
 					  </div>
 					</label>
 
-					<label className="pt-label">Survey Description
-					  <div className="pt-input-group">
-					    <input  className="pt-input" type="text" name="description" dir="auto" />
+					<label className='pt-label'>Survey Description
+					  <div className='pt-input-group'>
+					    <input  className='pt-input' type='text' name='description' dir='auto' />
 					  </div>
 					</label>
 
-					<label className="pt-label">Question {this.state.questionNumber}
-					  <div className="pt-input-group">
-					    <input  className="pt-input" name={`question${this.state.questionNumber}`} type="text" dir="auto" />
-					  </div>
-					</label>
+					{this.state.questions.map((question, i) => (
+						<label className='pt-label' key={i + 1}>Question {i + 1}
+						  <div className='pt-input-group'>
+						    <input  className='pt-input' name={`question${i + 1}`} type='text' dir='auto' />
+						  </div>
 
-					<label className="pt-label">Select a Response Type
-					  <div className="pt-select">
-					    <select>
-					      <option value="1">Emoticons</option>
-					      <option value="2">Binary</option>
-					      <option value="3">Slider</option>
-					      <option value="4">Multiple Choice</option>
-					      <option value="5">Text Box</option>
-					    </select>
-					  </div>
-					</label>
+						  <div className='pt-select'>
+						    <select name={`response${i + 1}`}>
+						    	<option defaultValue='select'>Select a Response Type</option>
+						      <option value='emoji'>Emoticons</option>
+						      <option value='Binary'>Binary</option>
+						      <option value='slider'>Slider</option>
+						      <option value='mutiple_choice'>Multiple Choice</option>
+						      <option value='text'>Text Box</option>
+						    </select>
+						  </div>
+						 </label>
+					))}
 
-					<Button bsStyle='success' type='submit'>Submit</Button>
+					<button type='button' className='pt-button pt-icon-add' onClick={this.newQuestion}>Add a Question</button>
+					<button type='submit' className='pt-button pt-intent-success'>Submit</button>
 				</form>
 
 		  </div>
 		)
 	}
+
+	newQuestion = () => {
+		this.setState({
+			questions: this.state.questions.concat('question')
+		});
+	};
+
+	submitForm = (e) => {
+		this.setState({
+			name: e.target.name.value,
+			description: e.target.description.value,
+			questions: this.state.questions.map((question, i) => (
+				if (question !== 'question') {
+					return {
+						text: e.target[`question${i + 1}`].value,
+						type: e.target[`response${i + 1}`].value
+					}
+				}));
+		}, () => {
+			axios.post('/api/survey', this.state)
+			.catch(err => console.error(err));
+		});
+	}
+
 };
 
 export default SurveyForm;

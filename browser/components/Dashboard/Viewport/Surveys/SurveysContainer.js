@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import SurveysComponent from './SurveysComponent';
 
-const mapStateToProps = null
+const mapStateToProps = ({channels}) => ({
+	currentChannel: channels.currentChannel
+});
 
 const mapDispatchToProps = null;
 

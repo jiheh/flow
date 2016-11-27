@@ -1,36 +1,75 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
-export default ({ toggleForm }) => (
-	<div id='surveyform' className='container-fluid'>
-		<h3>Create a Survey for Your Channel</h3>
+import axios from 'axios';
 
-		<form>
+class SurveyForm extends Component {
+	constructor(props) {
+		super(props);
 
-			<div className='form-group'>
-				<label>Survey Name</label>
-				<input name='name' className='form-control'></input>
-			</div>
-			<div className='form-group'>
-				<label>Survey Description</label>
-				<input name='description' className='form-control'></input>
-			</div>
+		this.state = {
+			channelId: this.props.channel,
+			name: '',
+			description: '',
+			// questions: []
+		}
+	}
 
-			<div className='form-group'>
-				<label>Question 1</label>
-				<input name='description' className='form-control'></input>
-				<DropdownButton title='Select a Response Type' id='dropdown-basic-1' key='1'>
-					<MenuItem eventKey='1'>Emoticons</MenuItem>
-					<MenuItem eventKey='2'>Binary</MenuItem>
-					<MenuItem eventKey='3'>Slider</MenuItem>
-					<MenuItem eventKey='4'>Multiple Choice</MenuItem>
-					<MenuItem eventKey='5'>Text Box</MenuItem>
-				</DropdownButton>
-			</div>
+	submitForm = (e) => {
+		this.setState({
+			name: e.target.name.value,
+			description: e.target.description.value,
+		}, () => {
+			axios.post('/api/survey', this.state)
+			.catch(err => console.error(err));
+		});
+	}
 
-			<Button bsStyle='success' type='submit'>Submit</Button>
-		</form>
+	render() {
+		return(
 
-  </div>
-);
+			<div id='surveyform' className='container-fluid'>
+				<h3>Create a Survey for Your Channel</h3>
+
+				<form onSubmit={this.submitForm}>
+
+					<label className="pt-label">Survey Name
+					  <div className="pt-input-group">
+					    <input  className="pt-input" type="text" name="name" dir="auto" />
+					  </div>
+					</label>
+
+					<label className="pt-label">Survey Description
+					  <div className="pt-input-group">
+					    <input  className="pt-input" type="text" name="description" dir="auto" />
+					  </div>
+					</label>
+
+					<label className="pt-label">Question 1
+					  <div className="pt-input-group">
+					    <input  className="pt-input" type="text" dir="auto" />
+					  </div>
+					</label>
+
+					<label className="pt-label">Select a Response Type
+					  <div className="pt-select">
+					    <select>
+					      <option value="1">Emoticons</option>
+					      <option value="2">Binary</option>
+					      <option value="3">Slider</option>
+					      <option value="4">Multiple Choice</option>
+					      <option value="5">Text Box</option>
+					    </select>
+					  </div>
+					</label>
+
+					<Button bsStyle='success' type='submit'>Submit</Button>
+				</form>
+
+		  </div>
+		)
+	}
+};
+
+export default SurveyForm;

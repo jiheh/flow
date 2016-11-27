@@ -41,10 +41,10 @@ router.post('/chrome', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const {
     channelId, // number
-    userIds, // array of numbers
+    // userIds, // array of numbers
     name, // string - survey name
     description, // string - survey description
-    questions, // array of objects
+    // questions, // array of objects
   } = req.body;
 
   if (!req.user) { throw new Error(); }
@@ -53,22 +53,25 @@ router.post('/', (req, res, next) => {
     let channel;
     let survey;
     let admin;
-    return Channel.findById(channelId)
-      .then((foundChannel) => {
-        if (!foundChannel) { throw new Error('ChannelItem not found.'); }
-
-        channel = foundChannel;
-        return Admin.findOne({
-          where: {
-            user_info_id: req.user.id,
-          },
-        });
-      })
-      .then((foundAdmin) => {
+    return Promise.all([
+      Channel.findById(channelId)
+        .then((foundChannel) => {
+          if (!foundChannel) { throw new Error('ChannelItem not found.'); }
+          channel = foundChannel;
+        }),
+      Admin.findOne({
+        where: {
+          user_info_id: req.user.id,
+        },
+      }),
+    ])
+      .spread((a, foundAdmin) => {
+        console.log('JIHEH', foundAdmin)
         admin = foundAdmin;
-        return admin.getChannels();
+        return admin.getChannels({through: 'Admin-ChannelItem'});
       })
       .then((adminChannels) => {
+        console.log('LOOK HERE', adminChannels)
         if (!adminChannels) { throw new Error('Admin does not have any channels.'); }
 
         if (!_.filter(adminChannels, adminChannel => adminChannel.id === channel.id).length) {
@@ -82,47 +85,29 @@ router.post('/', (req, res, next) => {
       })
       .then((createdSurvey) => {
         survey = createdSurvey;
+        // return Promise.map(userIds, (userId) => {
+        //   let user;
+        //   return User.findById(userId)
+        //     .then((foundUser) => {
+        //       if (!foundUser) { throw new Error('User not found.'); }
+        //       user = foundUser;
+        //       return user.getChannels();
+        //     })
+        //     .then((userChannels) => {
+        //       if (!userChannels) { throw new Error('User has no channels.'); }
 
-
-        return Promise.map(questions, question => {
-            return Question.create(question);
-          });
-        })
-        .then(surveyQuestions => {
-          return Promise.map(surveyQuestions, question => {
-            return question.setSurvey(survey);
-          });
-        })
-
-        
-        .then(() => {
-          return Promise.map(userIds, (userId) => {
-          let user;
-          return User.findById(userId)
-            .then((foundUser) => {
-              if (!foundUser) { throw new Error('User not found.'); }
-              user = foundUser;
-              return user.getChannels();
-            })
-            .then((userChannels) => {
-              if (!userChannels) { throw new Error('User has no channels.'); }
-
-              if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
-                throw new Error('User is not part of the specified channels.');
-              } else {
-                return survey.addUser(user);
-              }
-            });
-        });
-      })
-      .then(() => {
-        return survey.setChannel(channel);
-      })
-      .then(() => {
-        return survey.setOwner(admin);
-      })
-      .then(() => {
-        return admin.addSurvey(survey);
+        //       if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
+        //         throw new Error('User is not part of the specified channels.');
+        //       } else {
+                return Promise.all([
+                  // survey.addUser(user),
+                  survey.setChannel(channel),
+                  survey.setOwner(admin),
+                  admin.addSurvey(survey),
+                ]);
+              // }
+            // });
+        // });
       })
       .then(() => {
         res.status(201).send();

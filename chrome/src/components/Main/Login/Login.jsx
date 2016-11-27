@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react';
 
 import './Login.scss';
 
+import leftArrow from './left-arrow.png';
+import rightArrow from './right-arrow.png';
+
 function loginText(pageNum) {
   switch (pageNum) {
     case 0:
@@ -47,9 +50,17 @@ const Login = ({
       {validationMessage}
     </div>
     {pageNum > 0 &&
-      <button onClick={pageBack}>BACK</button>
+      <img
+        src={leftArrow}
+        className="back"
+        onClick={pageBack}
+      />
     }
-    <button onClick={pageNext}>NEXT</button>
+    <img
+      src={rightArrow}
+      className="next"
+      onClick={pageNext}
+    />
   </div>
 );
 

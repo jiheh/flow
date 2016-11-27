@@ -15,7 +15,7 @@ class SurveyForm extends Component {
 		};
 	}
 
-	componendDidMount() {
+	componentDidMount() {
 		this.setState({options: [{value: 'one', label: 'one'}]})
 	}
 

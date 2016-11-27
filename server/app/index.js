@@ -10,10 +10,8 @@ const passport = require('passport');
 app.use(require('./logging.middleware'));
 app.use(require('./statics.middleware'));
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const session = require('express-session');
 
@@ -52,7 +50,7 @@ app.use('/api', require('../api/api.router'));
 
 app.use('/auth', require('../auth'));
 
-const validFrontendRoutes = ['/', '/users', '/users/:id', '/signup', '/login', '/:abc'];
+const validFrontendRoutes = ['/', '/:abc'];
 const indexPath = path.join(__dirname, '..', '..', 'browser', 'index.html');
 validFrontendRoutes.forEach((stateRoute) => {
   app.get(stateRoute, (req, res) => {

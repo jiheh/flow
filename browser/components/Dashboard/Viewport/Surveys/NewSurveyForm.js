@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
-
 class SurveyForm extends Component {
 	constructor(props) {
 		super(props);
@@ -33,6 +31,14 @@ class SurveyForm extends Component {
 					  </div>
 					</label>
 
+					<label className='pt-label'>Survey Participants</label>
+						<p>Leave blank to set all channel users to participants</p>
+					  <div className='pt-input-group'>
+					    <input  className='pt-input' type='text' name='users' dir='auto' />
+					  </div>
+					  <br />
+
+
 					{this.state.questions.map((question, i) => (
 						<label className='pt-label' key={i + 1}>Question {i + 1}
 						  <div className='pt-input-group'>
@@ -52,8 +58,9 @@ class SurveyForm extends Component {
 						 </label>
 					))}
 
-					<button type='button' className='pt-button pt-icon-add' onClick={this.newQuestion}>Add a Question</button>
-					<button type='submit' className='pt-button pt-intent-success'>Submit</button>
+					<div><button type='button' className='pt-button pt-icon-add' onClick={this.newQuestion}>Add a Question</button></div>
+					<br />
+					<div><button type='submit' className='pt-button pt-intent-success'>Submit</button></div>
 				</form>
 
 		  </div>
@@ -81,10 +88,9 @@ class SurveyForm extends Component {
 				))
 			.filter(el => el !== null)
 		}, () => {
-			axios.post('/api/survey', this.state)
-			.catch(err => console.error(err));
-		});
-	}
+			this.props.submitSurvey(this.state)
+		})
+	};
 
 };
 

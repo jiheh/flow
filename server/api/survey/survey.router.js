@@ -29,7 +29,7 @@ router.post('/chrome', (req, res, next) => {
     }],
   })
     .then((user) => {
-      if (!user) { throw new Error('User not found.'); }
+      if (!user) throw new Error('User not found.');
 
       const { surveys } = user;
       res.json(surveys);
@@ -37,17 +37,18 @@ router.post('/chrome', (req, res, next) => {
     .catch(next);
 });
 
+
 // POST - admin creates survey
 router.post('/', (req, res, next) => {
   const {
     channelId, // number
-    // userIds, // array of numbers
+    userIds, // array of numbers
     name, // string - survey name
     description, // string - survey description
     questions, // array of objects
   } = req.body;
 
-  if (!req.user) { throw new Error(); }
+  if (!req.user) throw new Error();
 
   db.transaction((t) => {
     let channel;
@@ -56,7 +57,7 @@ router.post('/', (req, res, next) => {
     return Promise.all([
       Channel.findById(channelId)
         .then((foundChannel) => {
-          if (!foundChannel) { throw new Error('ChannelItem not found.'); }
+          if (!foundChannel) throw new Error('ChannelItem not found.');
           channel = foundChannel;
         }),
       Admin.findOne({
@@ -70,7 +71,7 @@ router.post('/', (req, res, next) => {
         return admin.getChannels();
       })
       .then((adminChannels) => {
-        if (!adminChannels || !adminChannels.length) { throw new Error('Admin does not have any channels.'); }
+        if (!adminChannels || !adminChannels.length) throw new Error('Admin does not have any channels.');
 
         if (!_.filter(adminChannels, adminChannel => adminChannel.id === channel.id).length) {
           throw new Error('Admin does not have access to specified channels.');
@@ -93,35 +94,38 @@ router.post('/', (req, res, next) => {
         });
       })
       .then(() => {
-      //   return Promise.map(userIds, (userId) => {
-      //     let user;
-      //     return User.findById(userId)
-      //       .then((foundUser) => {
-      //         if (!foundUser) { throw new Error('User not found.'); }
-      //         user = foundUser;
-      //         return user.getChannels();
-      //       })
-      //       .then((userChannels) => {
-      //         if (!userChannels) { throw new Error('User has no channels.'); }
+        return channel.getUsers();
+      })
+      .then(channelUsers => {
+        if (!channelUsers || !channelUsers.length) throw new Error('No users in this channel');
 
-      //         if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
-      //           throw new Error('User is not part of the specified channels.');
-      //         } else {
-                return Promise.all([
-                  // survey.addUser(user),
-                  survey.setChannel(channel),
-                  survey.setOwner(admin),
-                  admin.addSurvey(survey),
-                ]);
-      //         }
-      //       });
-      //   });
+        if (userIds) {
+          let channelIds = channelUsers.map(user => user.id);
+          
+          userIds.forEach(userId => {
+            if (!channelIds.includes(userId)) throw new Error('User is not part of the specified channel');
+          });
+
+          channelUsers = channelUsers.filter(channelUser => userIds.includes(channelUser.id));
+        }
+
+        return Promise.map(channelUsers, channelUser => {
+          return survey.addUser(channelUser);
+        });
+      })
+      .then(() => {
+        return Promise.all([
+          survey.setChannel(channel),
+          survey.setOwner(admin),
+          admin.addSurvey(survey),
+        ]);
       })
       .then(() => {
         res.status(201).send();
       });
-  })
-    .catch(next);
+    })
+  .catch(next);
 });
+
 
 module.exports = router;

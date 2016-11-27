@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
+
 
 class SurveyForm extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			channelId: this.props.channel,
+			channelId: this.props.channel.id,
 			name: '',
 			description: '',
-			questions: []
-		}
+			questions: [],
+			options: []
+		};
+	}
+
+	componendDidMount() {
+		this.setState({options: [{value: 'one', label: 'one'}]})
 	}
 
 	render() {
+		let options=[];
+
 		return(
 			<div id='surveyform' className='container-fluid'>
-				<h3>Create a Survey for Your Channel{console.log(this.state)}</h3>
+				<h3>Create a Survey for {this.props.channel.name} {console.log(this.state)}</h3>
 
+				<br />
 				<form onSubmit={this.submitForm}>
 
 					<label className='pt-label'>Survey Name
@@ -25,19 +35,22 @@ class SurveyForm extends Component {
 					  </div>
 					</label>
 
-					<label className='pt-label'>Survey Description
+					<label className='pt-label'>Description
 					  <div className='pt-input-group'>
 					    <input  className='pt-input' type='text' name='description' dir='auto' />
 					  </div>
 					</label>
 
-					<label className='pt-label'>Survey Participants</label>
-						<p>Leave blank to set all channel users to participants</p>
-					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='text' name='users' dir='auto' />
-					  </div>
-					  <br />
+					<label className='pt-label'>Participants</label>
+					<Select 
+						name='userIds'
+						placeholder='Leave blank to select all users from the channel'
+						options={this.state.options}
+						multi={true}
+						joinValues={true}
+					/>
 
+					<br />
 
 					{this.state.questions.map((question, i) => (
 						<label className='pt-label' key={i + 1}>Question {i + 1}
@@ -58,9 +71,12 @@ class SurveyForm extends Component {
 						 </label>
 					))}
 
-					<div><button type='button' className='pt-button pt-icon-add' onClick={this.newQuestion}>Add a Question</button></div>
-					<br />
-					<div><button type='submit' className='pt-button pt-intent-success'>Submit</button></div>
+					<hr />
+
+					<div>
+						<button type='button' className='pt-button pt-icon-add' onClick={this.newQuestion}>Add a Question</button>
+						<button type='submit' className='pt-button pt-intent-success'>Submit</button>
+					</div>
 				</form>
 
 		  </div>

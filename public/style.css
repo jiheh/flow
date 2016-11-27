@@ -6,5 +6,9 @@ button:focus {
 }
 
 .pt-select {
-	width: 200px;
+	width: 30%;
+}
+
+.pt-intent-success {
+	float: right;
 }

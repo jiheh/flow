@@ -1,12 +1,16 @@
 import { connect } from 'react-redux';
 import Survey from './Survey.jsx';
 
+import _ from 'lodash';
+
 const mapStateToProps = ({
   settings,
-  surveyQuestions,
+  surveys,
 }) => ({
   showQuote: settings.showQuote,
-  surveyQuestions: surveyQuestions
+  surveyQuestions: surveys.reduce((agg, survey) => {
+    return [...agg, _.flatten(survey.questions)];
+  }, []),
 });
 
 export default connect(mapStateToProps, null)(Survey);

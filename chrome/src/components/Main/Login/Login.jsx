@@ -25,6 +25,8 @@ const Login = ({
   input,
   inputClass,
   validationMessage,
+  pageBack,
+  pageNext,
 }) => (
   <div className="login-wrapper">
     <div className="login-text">
@@ -44,6 +46,10 @@ const Login = ({
     <div className="login-validation-message">
       {validationMessage}
     </div>
+    {pageNum > 0 &&
+      <button onClick={pageBack}>BACK</button>
+    }
+    <button onClick={pageNext}>NEXT</button>
   </div>
 );
 
@@ -56,6 +62,8 @@ Login.propTypes = {
   inputClass: PropTypes.string.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleFocus: PropTypes.func.isRequired,
+  pageBack: PropTypes.func.isRequired,
+  pageNext: PropTypes.func.isRequired,
 };
 
 export default Login;

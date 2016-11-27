@@ -1,21 +1,16 @@
 import { combineReducers } from 'redux';
-
-import backgroundImage from './backgroundImage';
-import backgroundVideo from './backgroundVideo';
+import { outerReducer } from 'redux-async-initial-state';
 
 import meditationWidget from './widgets/meditationWidget';
 import quote from './quote';
 import surveyQuestions from './surveyQuestions';
-// import announcements from './widgets/announcementWidget';
 import announcements from './announcements';
 
 import settings from './settings';
 import docker from './docker';
 import user from './user';
 
-export default combineReducers({
-  backgroundImage,
-  backgroundVideo,
+export default outerReducer(combineReducers({
   meditationWidget,
   announcements,
   quote,
@@ -23,4 +18,4 @@ export default combineReducers({
   settings,
   docker,
   user,
-});
+}));

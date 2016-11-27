@@ -3,4 +3,11 @@
   height: 400px;
   background-color: rgba(255, 255, 255, 0.6);
   z-index: 10;
+  -webkit-animation: fadein 0.5s 1 alternate forwards;
+  // -webkit-transition: opacity 3s ease-in-out;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1 ; }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ChannelList.scss';
 
-import Channel from './ChannelItem/channelItem.jsx';
+import Channel from './ChannelItem/ChannelItem.jsx';
 
 export default ({
   channels,

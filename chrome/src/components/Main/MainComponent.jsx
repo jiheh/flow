@@ -12,17 +12,8 @@ class MainComponent extends Component {
     saveSettings: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    const { settings } = this.props;
-
-    chrome.storage.sync.get(defaultSettings, (settings) => {
-      this.props.saveSettings(settings);
-      this.props.setUser(settings.user);
-    });
-  }
-
   render() {
-    const { user, saveSettings } = this.props;
+    const { user } = this.props;
 
     return (
       <Main

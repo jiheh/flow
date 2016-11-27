@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react';
 
 import './Login.scss';
 
+import leftArrow from './left-arrow.png';
+import rightArrow from './right-arrow.png';
+
 function loginText(pageNum) {
   switch (pageNum) {
     case 0:
@@ -25,6 +28,8 @@ const Login = ({
   input,
   inputClass,
   validationMessage,
+  pageBack,
+  pageNext,
 }) => (
   <div className="login-wrapper">
     <div className="login-text">
@@ -44,6 +49,18 @@ const Login = ({
     <div className="login-validation-message">
       {validationMessage}
     </div>
+    {pageNum > 0 &&
+      <img
+        src={leftArrow}
+        className="back"
+        onClick={pageBack}
+      />
+    }
+    <img
+      src={rightArrow}
+      className="next"
+      onClick={pageNext}
+    />
   </div>
 );
 
@@ -56,6 +73,8 @@ Login.propTypes = {
   inputClass: PropTypes.string.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleFocus: PropTypes.func.isRequired,
+  pageBack: PropTypes.func.isRequired,
+  pageNext: PropTypes.func.isRequired,
 };
 
 export default Login;

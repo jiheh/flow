@@ -6,14 +6,14 @@ const Emoji = ({
   sendResponse,
 }) => (
   <div className="response-emoji">
-    <button onClick={() => sendResponse{ surveyId, questionId, 'SAD' }}>
+    <button onClick={() => sendResponse({ surveyId, questionId, value: 'SAD' })}>
       SAD
     </button>
 
-    <button onClick={() => sendResponse{ surveyId, questionId, 'NEUTRAL' }}>
+    <button onClick={() => sendResponse({ surveyId, questionId, value: 'NEUTRAL' })}>
       NEUTRAL
     </button>
-    <button onClick={() => sendResponse{ surveyId, questionId, 'HAPPY' }}>
+    <button onClick={() => sendResponse({ surveyId, questionId, value: 'HAPPY' })}>
       HAPPY
     </button>
   </div>

@@ -42,7 +42,7 @@ router.post('/chrome', (req, res, next) => {
       const { surveys } = user;
       const filteredSurveys = surveys.map((survey) => {
         let questions = survey.questions.filter((question) => {
-          return question.response;
+          return question.responses.length === 0;
         });
         survey.questions = questions;
         return survey;

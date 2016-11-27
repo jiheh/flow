@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import Emoji from './Emoji/Emoji.jsx';
+
 const Response = ({
   questionId,
   surveyId,

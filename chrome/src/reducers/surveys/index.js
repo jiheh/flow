@@ -28,6 +28,7 @@ export default handleActions({
 
       surveyCopy.questions = questions;
       return surveyCopy;
-    });
+    })
+      .filter(survey => survey.questions.length > 0);
   },
 }, initialState);

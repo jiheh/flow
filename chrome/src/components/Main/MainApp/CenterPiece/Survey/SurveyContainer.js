@@ -6,12 +6,8 @@ import _ from 'lodash';
 const mapStateToProps = ({
   surveys,
 }) => ({
-  surveyQuestions: surveys.reduce((agg, survey) => {
-    return [...agg, _.flatten(survey.questions)];
-  }, []),
-  surveyIds: surveys.reduce((agg, survey) => {
-    return [...agg, survey.id];
-  }, []),
+  surveyQuestions: (surveys && surveys.length > 0 && surveys[0].questions) || [],
+  surveyId: (surveys && surveys.length > 0 && surveys[0].id) || -1,
 });
 
 export default connect(mapStateToProps, null)(Survey);

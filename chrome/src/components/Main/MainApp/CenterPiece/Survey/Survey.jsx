@@ -6,12 +6,12 @@ import './Survey.scss';
 
 const Survey = ({
   surveyQuestions,
-  surveyIds,
+  surveyId,
 }) => (
   <div className="survey">
-    {surveyQuestions.length ?
+    {surveyQuestions.length > 0 ?
       <Question
-        surveyId={surveyIds[0]}
+        surveyId={surveyId}
         question={surveyQuestions[0]}
       />
       : <Quote />
@@ -21,7 +21,7 @@ const Survey = ({
 
 Survey.propTypes = {
   surveyQuestions: PropTypes.array.isRequired,
-  surveyIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  surveyId: PropTypes.number.isRequired,
 };
 
 export default Survey;

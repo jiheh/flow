@@ -9,7 +9,7 @@ class QuestionComponent extends Component {
   // }
 
   static propTypes = {
-    question: PropTypes.object,
+    question: PropTypes.object.isRequired,
   };
 
   render() {

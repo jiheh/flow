@@ -28,24 +28,23 @@ router.post('/chrome', (req, res, next) => {
 
   // eslint-disable-next-line no-unused-vars
   db.transaction((t) => {
-    User.findOne({
+    return User.findOne({
       where: { hash },
-      include: [{
-        model: Survey,
-        through: 'Survey-Participant',
-        include: [{
-          model: Question,
-          include: [{
-            model: Response,
-          }],
-        }],
-      }],
     })
       .then((foundUser) => {
-        if (!user) { throw new Error('User not found.'); }
-
+        if (!foundUser) { throw new Error('User not found.'); }
         user = foundUser;
-        const { surveys } = user;
+        return user.getSurveys({
+          include: [{
+            model: Question,
+            include: [{
+              model: Response,
+            }],
+          }],
+        });
+      })
+      .then((surveys) => {
+        if (!surveys) { throw new Error('No surveys found.'); }
         const foundSurvey = _.find(surveys, (surveyToCheck) => {
           const { questions } = surveyToCheck;
           const foundQuestion =

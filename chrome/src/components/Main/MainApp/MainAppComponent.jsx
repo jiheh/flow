@@ -5,7 +5,6 @@ import MainApp from './MainApp.jsx';
 class MainAppComponent extends Component {
   static propTypes = {
     saveSettings: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired,
   }
 
   componentDidMount() {

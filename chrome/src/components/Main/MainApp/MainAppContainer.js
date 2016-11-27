@@ -2,7 +2,6 @@
 import { connect } from 'react-redux';
 import MainApp from './MainAppComponent.jsx';
 import { setSettings } from '../../../reducers/settings';
-import { logoutUser } from '../../../reducers/user';
 import { receiveAnnouncements } from '../../../reducers/announcements';
 import store from '../../../store';
 import axios from 'axios';
@@ -16,10 +15,6 @@ const mapStateToProps = ({
 const mapDispatchToProps = () => dispatch => ({
   saveSettings: (settings) => {
     dispatch(setSettings(settings));
-  },
-
-  logout: () => {
-    dispatch(logoutUser());
   },
 
   getAnnouncements: () => {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 
 import axios from 'axios';
 
@@ -17,7 +16,6 @@ class SurveyForm extends Component {
 
 	render() {
 		return(
-
 			<div id='surveyform' className='container-fluid'>
 				<h3>Create a Survey for Your Channel{console.log(this.state)}</h3>
 
@@ -45,9 +43,9 @@ class SurveyForm extends Component {
 						    <select name={`response${i + 1}`}>
 						    	<option defaultValue='select'>Select a Response Type</option>
 						      <option value='emoji'>Emoticons</option>
-						      <option value='Binary'>Binary</option>
+						      <option value='binary'>Binary</option>
 						      <option value='slider'>Slider</option>
-						      <option value='mutiple_choice'>Multiple Choice</option>
+						      <option value='multiple_choice'>Multiple Choice</option>
 						      <option value='text'>Text Box</option>
 						    </select>
 						  </div>
@@ -72,13 +70,16 @@ class SurveyForm extends Component {
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
-			questions: this.state.questions.map((question, i) => (
-				if (question !== 'question') {
-					return {
+			questions: this.state.questions
+			.map((question, i) => (
+				e.target[`question${i + 1}`].value ?
+					{
 						text: e.target[`question${i + 1}`].value,
 						type: e.target[`response${i + 1}`].value
-					}
-				}));
+					} :
+					null
+				))
+			.filter(el => el !== null)
 		}, () => {
 			axios.post('/api/survey', this.state)
 			.catch(err => console.error(err));

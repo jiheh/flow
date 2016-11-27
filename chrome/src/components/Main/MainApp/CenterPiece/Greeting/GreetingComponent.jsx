@@ -20,11 +20,11 @@ class GreetingComponent extends Component {
     const hours = date.getHours();
 
     if (hours >= 6 && hours < 12) {
-      this.setState({ message: 'Good Morning, NAME' });
+      this.setState({ message: 'Good morning, NAME' });
     } else if (hours >= 12 && hours < 17) {
-      this.setState({ message: 'Good Afternoon, NAME' });
+      this.setState({ message: 'Good afternoon, NAME' });
     } else {
-      this.setState({ message: 'Good Evening, NAME' });
+      this.setState({ message: 'Good evening, NAME' });
     }
   }
 

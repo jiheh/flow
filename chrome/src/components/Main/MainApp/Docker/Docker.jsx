@@ -9,10 +9,12 @@ const Docker = ({
   toggleDockerViewport,
   activeWidget,
 }) => (
-  <div className="docker">
+  <div>
+  <div className="docker" onMouseLeave={() => viewportVisible && toggleDockerViewport(activeWidget)}>
     {viewportVisible ? <DockerViewportContainer /> : null}
     <DockerSidebar toggleDockerViewport={toggleDockerViewport} activeWidget={activeWidget}/>
   </div>
+</div>
 );
 
 Docker.propTypes = {

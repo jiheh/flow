@@ -27,7 +27,7 @@ const mapDispatchToProps = () => dispatch => ({
 
   getSurveys: () => {
     // TODO: change to productino server url
-    axios.post('http://localhost:8080/api/surveys/chrome', { hash: store.getState().user.hash })
+    axios.post('http://localhost:8080/api/survey/chrome', { hash: store.getState().user.hash })
       .then(res => dispatch(receiveSurveys(res.data)))
       .catch(console.error); // TODO: error handling;
   }

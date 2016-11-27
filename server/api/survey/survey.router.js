@@ -39,15 +39,15 @@ router.post('/chrome', (req, res, next) => {
     .then((user) => {
       if (!user) { throw new Error('User not found.'); }
 
-      const { allSurveys } = user;
-      const surveys = allSurveys.map((survey) => {
+      const { surveys } = user;
+      const filteredSurveys = surveys.map((survey) => {
         let questions = survey.questions.filter((question) => {
           return question.response;
         });
         survey.questions = questions;
         return survey;
       });
-      res.json(surveys.filter(survey => survey.questions.length > 0));
+      res.json(filteredSurveys.filter(survey => survey.questions.length > 0));
     })
     .catch(next);
 });

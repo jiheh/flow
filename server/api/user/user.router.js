@@ -9,6 +9,7 @@ const db = require('../../_db');
 
 const User = require('./user.model');
 const UserInfo = require('../userInfo/userInfo.model');
+const Channel = require('../channel/channel.model');
 
 router.post('/', (req, res, next) => {
   // eslint-disable-next-line no-unused-vars
@@ -57,6 +58,16 @@ router.post('/', (req, res, next) => {
       });
   })
     .catch(next);
+});
+
+router.get('/channelUsers', (req, res, next) => {
+  User.findAll({
+    include: [{
+      all: true
+    }]
+  })
+  .then(channelUsers => res.send(channelUsers))
+  .catch(next);
 });
 
 module.exports = router;

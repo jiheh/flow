@@ -3,7 +3,7 @@ const Admin = require('../admin/admin.model')
 const Channel = require('./channel.model')
 const User = require('../user/user.model')
 // Get all Channels for a specific admin
-router.get('/allChannels/:adminId',(req,res) =>{  
+router.get('/allChannels/',(req,res) =>{  
   let globalChannels;
   Channel.findAll({
     include:[{all:true,nested:true}]
@@ -13,7 +13,8 @@ router.get('/allChannels/:adminId',(req,res) =>{
       let returnVal = false
       let listOfPossibleAdmins = channel.admins
       for(var i in listOfPossibleAdmins){
-        let idCheck = parseInt(req.params.adminId)
+        let idCheck;
+        if(req.user) idCheck = req.user.id
         if(idCheck && listOfPossibleAdmins[i].id === idCheck){
           returnVal = true
         }

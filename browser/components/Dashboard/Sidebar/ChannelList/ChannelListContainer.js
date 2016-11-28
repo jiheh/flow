@@ -13,12 +13,9 @@ const mapDispatchToProps = () => dispatch => ({
   setCurrentChannel: (channel) => {
     dispatch(setCurrentChannel(channel));
   },
-  recieveChannels: () =>{
-    let adminId = 1
-    //adminId = JSON.parse(localstorage).currentAdmin.id
-    axios.get(`/api/channel/allChannels/${adminId}`)
-    .then(channels =>{
-      console.log(channels)
+  recieveChannels: () => {
+    axios.get(`/api/channel/allChannels/`)
+    .then(channels => {
       dispatch(receiveChannels(channels.data))
     })
   }

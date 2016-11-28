@@ -48,11 +48,7 @@ router.post('/', (req, res, next) => {
 
   db.transaction((t) => {
     let tempAdmin;
-    return Admin.findOne({
-      where: {
-        user_info_id: req.user.id,
-      },
-    })
+    return Admin.findByUserInfoId(req.user.id)
       .then((admin) => {
         if (!admin) { throw new Error('Admin not found.'); }
         tempAdmin = admin;

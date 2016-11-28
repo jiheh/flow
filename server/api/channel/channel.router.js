@@ -6,7 +6,7 @@ const User = require('../user/user.model')
 router.get('/allChannels/:adminId',(req,res) =>{  
   let globalChannels;
   Channel.findAll({
-    include:[{all:true}]
+    include:[{all:true,nested:true}]
   })
   .then(channels =>{
     return channels.filter(channel =>{

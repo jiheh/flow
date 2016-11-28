@@ -9,6 +9,7 @@ router.use('/songs', require('./audio/audio.router'));
 router.use('/quotes', require('./quote/quote.router'));
 router.use('/users', require('./user/user.router'));
 router.use('/announcements', require('./announcement/announcement.router'));
+router.use('/invites', require('./invite/invite.router'));
 
 router.use('/organization', require('./organization/organization.router'));
 router.use('/admin', require('./admin/admin.router'));

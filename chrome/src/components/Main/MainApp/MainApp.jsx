@@ -9,9 +9,10 @@ import './MainApp.scss';
 
 const MainApp = ({
   saveSettings,
+  invites,
 }) => (
   <div className="main-app">
-    <DockerContainer />
+    <DockerContainer invites={invites} />
     <ToggleBackgroundMode saveSettings={saveSettings} />
     <ToggleAudio saveSettings={saveSettings} />
     <CenterPiece />

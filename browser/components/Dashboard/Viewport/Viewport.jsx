@@ -2,6 +2,7 @@ import React from 'react';
 import './Viewport.scss';
 import ChannelHeaderContainer from './ChannelHeader/ChannelHeaderContainer';
 import SurveysContainer from './Surveys/SurveysContainer';
+import MembersContainer from './Members/MembersContainer';
 
 import {Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
 
@@ -30,7 +31,7 @@ export default () => (
         </TabPanel>
 
         <TabPanel>
-          <h3>Members</h3>
+          <MembersContainer />
 
         </TabPanel>
 

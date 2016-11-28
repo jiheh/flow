@@ -30,6 +30,12 @@ h4 {
   -webkit-animation: fadein 0.5s 1 alternate forwards;
 }
 
+.channelInvitations {
+  color: white;
+  font-size: 1em;
+}
+
+
 @keyframes fadein {
   from { opacity: 0; }
   to { opacity: 1 ; }

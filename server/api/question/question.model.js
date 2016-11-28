@@ -15,12 +15,6 @@ const Question = db.define('question', {
     type: Sequelize.ENUM('multiple_choice', 'emoji', 'slider', 'text', 'binary'),
     allowNull: false,
   },
-  MCFields: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
-  },
-  SliderFields: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER)
-  }
 });
 
 module.exports = Question;

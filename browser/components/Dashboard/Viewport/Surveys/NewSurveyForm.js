@@ -24,7 +24,7 @@ class SurveyForm extends Component {
 
 		return(
 			<div id='surveyform' className='container-fluid'>
-				<h3>Create a Survey for {this.props.channel.name} {console.log(this.state)}</h3>
+				<h3>Create a Survey for {this.props.channel.name}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>
@@ -78,6 +78,8 @@ class SurveyForm extends Component {
 						<button type='submit' className='pt-button pt-intent-success'>Submit</button>
 					</div>
 				</form>
+				<br />
+				<br />
 
 		  </div>
 		)

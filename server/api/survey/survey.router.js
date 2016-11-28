@@ -143,11 +143,58 @@ router.post('/', (req, res, next) => {
   .catch(next);
 });
 
+// GET - admin gets surveys for a given channel
+router.get('/channel/:channelId', (req, res, next) => {
+  const { channelId } = req.params;
+
+  if (!req.user) res.status(403).send();
+
+  let currentChannel, admin, allChannelSurveys, surveys;
+
+  Admin.findOne({
+    where: {
+      user_info_id: req.user.id,
+    },
+  })
+  .then((foundAdmin) => {
+    admin = foundAdmin;
+    return admin.getChannels({
+      where: {
+        id: channelId
+      }
+    });
+  })
+  .then((foundAdminChannels) => {
+    currentChannel = foundAdminChannels.find(channel => channel.id === +channelId);
+
+    if (!currentChannel) throw new Error('Admin does not have access to this channel.');
+
+    return currentChannel.getSurveys();
+  })
+  .then(channelSurveys => {
+    allChannelSurveys = channelSurveys;
+
+    return admin.getSurveys();
+  })
+  .then(adminSurveys => {
+    console.log('alladminsurveys', adminSurveys)
+    surveys = adminSurveys.filter(survey => {
+      console.log('each survey', survey);
+      allChannelSurveys.includes(survey);
+    });
+
+    if (!surveys.length) throw new Error('Admin does not have access to surveys in this channel.');
+
+    res.send(surveys);
+  })
+  .catch(next);
+});
+
 // GET - admin gets responses to a survey for a given channel
 router.get('/survey/:surveyId', (req, res, next) => {
   const { surveyId } = req.params;
 
-  if (!req.user) { res.status(403).send(); }
+  if (!req.user) res.status(403).send();
 
   let admin;
   let survey;
@@ -164,7 +211,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
         return admin.getChannels();
       })
       .then((foundAdminChannels) => {
-        if (!foundAdminChannels) { throw new Error('Admin does not have any channels.'); }
+        if (!foundAdminChannels) throw new Error('Admin does not have any channels.');
         adminChannels = foundAdminChannels;
       }),
     Survey.findOne({
@@ -179,6 +226,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
             model: User,
             include: [{
               model: UserInfo,
+              as: 'UserInfo',
               attributes: ['name', 'email'],
             }],
           }],
@@ -186,13 +234,13 @@ router.get('/survey/:surveyId', (req, res, next) => {
       }],
     })
       .then((foundSurvey) => {
-        if (!foundSurvey) { throw new Error('Survey not found.'); }
+        if (!foundSurvey) throw new Error('Survey not found.');
         survey = foundSurvey;
         return survey.getChannel();
       }),
   ])
     .spread((a, surveyChannel) => {
-      if (!surveyChannel) { throw new Error('Survey not linked to a channel.'); }
+      if (!surveyChannel) throw new Error('Survey not linked to a channel.');
       if (!_.filter(adminChannels, adminChannel => adminChannel.id === surveyChannel.id).length) {
         throw new Error('Admin does not have access to specified survey.');
       }

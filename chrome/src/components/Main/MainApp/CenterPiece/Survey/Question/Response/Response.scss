@@ -1,0 +1,8 @@
+.response-emoji > img {
+	width: 32px;
+
+	padding: 1.5%;
+  z-index: 10;
+  -webkit-animation: fadein 0.5s 1 alternate forwards;
+  // -webkit-transition: opacity 3s ease-in-out;
+}

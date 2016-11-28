@@ -95,30 +95,6 @@ router.post('/', (req, res, next) => {
       })
       .then((createdSurvey) => {
         survey = createdSurvey;
-<<<<<<< HEAD
-        return Promise.map(userIds, (userId) => {
-          let user;
-          return User.findById(userId)
-            .then((foundUser) => {
-              if (!foundUser) { throw new Error('User not found.'); }
-              user = foundUser;
-              return user.getChannels();
-            })
-            .then((userChannels) => {
-              if (!userChannels) { throw new Error('User has no channels.'); }
-
-              if (!_.filter(userChannels, userChannel => userChannel.id === channel.id).length) {
-                throw new Error('User is not part of the specified channels.');
-              } else {
-                return Promise.all([            // validations all passed
-                  survey.addUser(user),         // set associations
-                  survey.setChannel(channel),
-                  survey.setOwner(admin),
-                  admin.addSurvey(survey),
-                ]);
-              }
-            });
-=======
 
         return Promise.map(questions, question => {
           return Question.create(question);
@@ -127,7 +103,6 @@ router.post('/', (req, res, next) => {
       .then(surveyQuestions => {
         return Promise.map(surveyQuestions, question => {
           return question.setSurvey(survey);
->>>>>>> master
         });
       })
       .then(() => {

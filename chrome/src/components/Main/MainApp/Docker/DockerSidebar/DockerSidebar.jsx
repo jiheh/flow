@@ -12,6 +12,9 @@ const DockerSidebar = ({
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Meditation" active={activeWidget === "Meditation" ? true : false}/>
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Reflection" active={activeWidget === "Reflection" ? true : false}/>
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings" active={activeWidget === "Settings" ? true : false}/>
+
+    {window.onclick = () => toggleDockerViewport(activeWidget)}
+
   </div>
 );
 

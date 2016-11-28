@@ -13,7 +13,6 @@ const Button = ({
     className={`docker-button ${active ? 'active-button' : ''}`}
     src={buttonImg}
     onMouseEnter={() => !active && toggleDockerViewport(widgetName)}
-    onClick={() => active && toggleDockerViewport(widgetName)}
   />
 
 );

@@ -1,10 +1,21 @@
 import React from 'react';
+import Survey from './Survey/SurveyContainer.js';
 
-export default ({ toggleForm }) => (
+export default ({
+  toggleForm,
+  currentChannel,
+}) => (
 	<div id="surveys" className="container-fluid">
 		<h3>Surveys</h3>
 
-		<div>LIST EXISTING SURVEYS HERE</div>
+    {currentChannel.surveys.length > 0 &&
+     currentChannel.surveys.map((survey, idx) => (
+       <Survey
+           surveyId={survey.id}
+           key={idx}
+       />
+     ))
+    }
 
 		<button onClick={toggleForm}>Create a New Survey</button>
   </div>

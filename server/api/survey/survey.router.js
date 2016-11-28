@@ -171,6 +171,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
             model: User,
             include: [{
               model: UserInfo,
+              as: 'UserInfo',
               attributes: ['name', 'email'],
             }],
           }],

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
-
 
 class SurveyForm extends Component {
 	constructor(props) {
@@ -37,11 +35,12 @@ class SurveyForm extends Component {
 					  </div>
 					</label>
 
+					<hr />
 
-					<label className='pt-label'>Sample Size</label>
-						<p>Leave blank to select all users from the channel, or enter a number to select that % of channel users as a sample.</p>
+					<label className='pt-label'>Sample Size (% of Channel Users)</label>
+						<p>Leave blank to select all users from the channel, or enter a NUMBER to select that % of channel users as a random sample.</p>
 					  <div className='pt-input-group'>
-					    <input className='pt-input' type='text' name='sample' />
+					    <input className='pt-input' type='text' name='sample' placeholder='%' />
 					  </div>
 
 					<br />
@@ -89,7 +88,7 @@ class SurveyForm extends Component {
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
-			sample: e.target.sample.value ? e.target.sample.value : 100,
+			sample: e.target.sample.value && typeof e.target.sample.value === 'number' ? e.target.sample.value : 100,
 			questions: this.state.questions
 			.map((question, i) => (
 				e.target[`question${i + 1}`].value ?

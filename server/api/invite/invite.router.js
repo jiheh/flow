@@ -45,11 +45,11 @@ router.post('/chrome/get', (req, res, next) => {
 });
 
 router.post('/chrome/delete', (req, res, next) => {
-  const { invites } = req.body;
+  const { invite } = req.body;
   let user;
   UserInfo.findOne({
     where: {
-      email: invites.email
+      email: invite.email
     }
   })
     .then((userInfo) => {
@@ -64,7 +64,7 @@ router.post('/chrome/delete', (req, res, next) => {
       user = foundUser;
       return Channel.findOne({
         where: {
-          id: invites.channelId
+          id: invite.channelId
         }
       })
     })
@@ -74,8 +74,8 @@ router.post('/chrome/delete', (req, res, next) => {
     .then((channel) => {
       return Invite.destroy({
         where: {
-          email: invites.email,
-          channelId: invites.channelId
+          email: invite.email,
+          channelId: invite.channelId
         }
       })
     })

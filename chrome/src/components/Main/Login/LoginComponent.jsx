@@ -30,6 +30,7 @@ class LoginComponent extends Component {
                 newValue,
                 ...input.slice(pageNum + 1)],
         validationMessage: '',
+        inputClass: 'login-input',
       });
     }
   }
@@ -43,15 +44,18 @@ class LoginComponent extends Component {
   }
 
   nextPage = () => {
-    const { pageNum, inputClass, input } = this.state;
+    const { pageNum, input } = this.state;
 
-    if(pageNum < 2) {
+    if (pageNum < 2) {
       this.setState({
         pageNum: pageNum + 1,
         inputClass: 'login-input',
       });
     } else {
-      this.props.tryLogin(...input);
+      this.props.tryLogin(...input)
+        .catch(() => this.setState({
+          inputClass: 'input-shake',
+        }));
     }
   }
 

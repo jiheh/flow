@@ -16,8 +16,6 @@ const responsesToData = (responses) => {
 
     return agg;
   }, []);
-  console.log("EYYYY HABIBI");
-  console.log(result);
   return Object.keys(result).map(key => ({ name: key, value: result[key] }));
 };
 
@@ -32,11 +30,11 @@ const EmojiData = ({ responses }) => (
           cy={200}
           innerRadius={60}
           outerRadius={80}
-          fill="#8884d8"
+          fill={COLORS[2]}
           paddingAngle={5}
         >
        </Pie>
-         {responsesToData(responses).map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
+         {responsesToData(responses).map((entry, index) => <Cell fill={COLORS[2]} key={index}/>)}
        </PieChart>
      )
     }

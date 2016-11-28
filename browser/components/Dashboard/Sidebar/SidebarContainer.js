@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import SidebarComponent from './SidebarComponent.jsx';
 
-const mapStateToProps = null;
+const mapStateToProps = ({ channels }) => ({
+  allChannels: channels.allChannels,
+});
 
 const mapDispatchToProps = null;
 

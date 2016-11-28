@@ -19,7 +19,7 @@ User.belongsToMany(Channel, { through: 'User-ChannelItem' });
 User.belongsTo(UserInfo, { as: 'UserInfo' });
 
 // Admin
-Admin.belongsToMany(Channel, { through: 'AdminChannel' });
+Admin.belongsToMany(Channel, { through: 'Admin-ChannelItem' });
 Admin.belongsTo(UserInfo, { as: 'UserInfo' });
 Admin.hasMany(Announcement);
 

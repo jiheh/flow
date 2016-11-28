@@ -6,6 +6,7 @@ import '../Widgets.scss';
 
 const ChannelsWidget = ({
   invites,
+  acceptAndDeleteInvite,
 }) => (
   <div className="channels-widget widget">
 
@@ -18,7 +19,7 @@ const ChannelsWidget = ({
     <Line />
 
     <div className="widget-contents">
-      {invites !== "" ? <div className="channelInvitations">{invites.channelName} has invited you to its channel!<button>Accept</button></div> :
+      {invites !== "" ? <div className="channelInvitations">{invites.channelName} has invited you to its channel!<button onClick={() => acceptAndDeleteInvite()}>Accept</button></div> :
         <div className="channelInvitations">You have no channel invitations at this time.</div>}
     </div>
 

@@ -37,7 +37,7 @@ const mapDispatchToProps = () => dispatch => ({
 
   getInvites: () => {
     // TODO: change to production server url
-    axios.post('http://localhost:8080/api/invites/chrome', { hash: store.getState().user.hash })
+    axios.post('http://localhost:8080/api/invites/chrome/get', { hash: store.getState().user.hash })
       .then(res => dispatch(receiveInvites(res.data)))
       .catch(console.error); // TODO: error handling;
   },

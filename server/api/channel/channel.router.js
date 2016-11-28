@@ -3,10 +3,10 @@ const Admin = require('../admin/admin.model')
 const Channel = require('./channel.model')
 const User = require('../user/user.model')
 // Get all Channels for a specific admin
-router.get('/allChannels/',(req,res) =>{  
+router.get('/allChannels/',(req,res) =>{
   let globalChannels;
   Channel.findAll({
-    include:[{all:true,nested:true}]
+    include:[{all:true}]
   })
   .then(channels =>{
     return channels.filter(channel =>{

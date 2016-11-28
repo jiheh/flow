@@ -32,16 +32,19 @@ router.post('/chrome/get', (req, res, next) => {
       })
     })
     .then((userInfo) => {
-      return Invite.findOne({
+      console.log("IN USER INFO")
+      console.log(userInfo)
+      return Invite.findAll({
         where: {
           email: userInfo.email
         }
       })
     })
-    .then((invite) => {
+    .then((invites) => {
       console.log("GOTTEEEEEM");
-      console.log(invite);
-      res.send(invite);
+      // console.log(invite);
+      console.log(invites)
+      res.send(invites);
     })
     .catch(next);
 });
@@ -91,7 +94,11 @@ router.post('/chrome/delete', (req, res, next) => {
 // POST - admin creates announcement
 router.post('/webapp', (req, res, next) => {
   Invite.create(req.body)
-    .then(() => res.status(201).send())
+    .then((invite) => {
+      console.log("CREATING INVITE")
+      console.log(invite);
+      res.status(201).send()
+    })
     .catch(next);
 });
 

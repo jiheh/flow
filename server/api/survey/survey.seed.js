@@ -39,13 +39,30 @@ const createSurveys = (adminID) => {
     const surveys = surveyDataCreator(foundAdmin.id, foundAdminChannelID);
 
     // create surveys in the array
-    return Promise.all(surveys.map(survey => Survey.create(survey)));
+    return Promise.all(surveys.map(s => {
+      const survey = s;
+      const surveyQuestions = survey.questions;
+
+      return Survey.create(survey)
+        // create survey based on data
+        .then(newlyCreatedSurvey => {
+          // now create questions
+          return Promise.all(surveyQuestions.map(q => Question.create(q)))
+                  .then(newlyCreatedQuestionsArray => {
+                    return Promise.all(newlyCreatedQuestionsArray.map(newQuestion => {
+                      // and associate those questions with the current survey
+                      return newlyCreatedSurvey.addQuestion(newQuestion);
+                    }))
+                  })
+
+        })
+    }));
 
   })
   .then(newlyCreatedSurveysArray => {
     console.log(`\tCreated ${newlyCreatedSurveysArray.length} surveys:`);
     newlyCreatedSurveysArray.map(survey => {
-      console.log(`\t\t-${survey.name}`)
+      console.log(`\t\t-${survey[0].name}`);
     })
   })
 

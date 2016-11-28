@@ -1,6 +1,16 @@
 // this file contains surveys and their associated questions.
 // there are 5 types of questions:
-  // 'multiple_choice', 'emoji', 'slider', 'text', 'binary'
+  // 'multiple_choice',   custom responseOptions
+  // 'emoji',             no responseOptions
+  // 'slider',            custom responseOptions (min, max)
+  // 'text',              no responseOptions
+  // 'binary',            no responseOptions
+
+// responseOptions are stringified JSON objects
+
+
+
+
 
 const createSurveyData = (adminID, foundAdminChannelID) => ([
   {
@@ -75,6 +85,25 @@ const createSurveyData = (adminID, foundAdminChannelID) => ([
       },
     ]
   },
+
+
+  // you can add your own surveys by following this format:
+  // {
+  //   name: "Career Survey",
+  //   description:  "This survey is administered by the Yale Office of Career Services.",
+  //   active: true,
+  //   owner_id: adminID,
+  //   admin_id: adminID,
+  //   channel_id: foundAdminChannelID,
+  //   questions: [
+  //     {
+  //       text: "Did you do an internship over the summer?",
+  //       type: "binary",
+  //       responseOptions: null,
+  //     }
+  //   ],
+  // },
+
 ])
 
 module.exports = createSurveyData;

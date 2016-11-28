@@ -19,7 +19,7 @@ passport.use(new (require('passport-local').Strategy) ({
     }]})
     .then(currentAdmin => {
       if (!currentAdmin) return done(null, false);
-      return currentAdmin.UserInfo.authenticate(password)
+        return  currentAdmin.UserInfo.authenticate(password)
       .then(ok => {
         if (!ok) return done(null, false);
         done(null, currentAdmin.UserInfo);

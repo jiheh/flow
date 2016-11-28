@@ -7,7 +7,7 @@ const User = require('../user/user.model');
 
 const createUsers = (n) => {
   const arrToReturn = [];
-  for (let i = 0; i < n; i++) {
+  for (let i = 1; i <= n; i++) {
     let userGlobal;
     const userPromise = UserInfo.create({
       name: `user${i}`,

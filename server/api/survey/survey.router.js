@@ -27,14 +27,25 @@ router.post('/chrome', (req, res, next) => {
       through: 'Survey-Participant',
       include: [{
         model: Question,
+        include: [{
+          model: Response,
+        }],
       }],
     }],
+    order: 'created_at ASC',
   })
     .then((user) => {
       if (!user) throw new Error('User not found.');
 
       const { surveys } = user;
-      res.json(surveys);
+      const filteredSurveys = surveys.map((survey) => {
+        let questions = survey.questions.filter((question) => {
+          return question.responses.length === 0;
+        });
+        survey.questions = questions;
+        return survey;
+      });
+      res.json(filteredSurveys.filter(survey => survey.questions.length > 0));
     })
     .catch(next);
 });

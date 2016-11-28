@@ -32,8 +32,6 @@ router.post('/chrome/get', (req, res, next) => {
       })
     })
     .then((userInfo) => {
-      console.log("IN USER INFO")
-      console.log(userInfo)
       return Invite.findAll({
         where: {
           email: userInfo.email

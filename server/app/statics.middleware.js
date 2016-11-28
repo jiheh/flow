@@ -9,6 +9,7 @@ const path = require('path');
 const rootPath = path.join(__dirname, '..', '..');
 const publicPath = path.join(rootPath, 'public');
 const videosPath = path.join(publicPath, 'backgroundVideos');
+const songsPath = path.join(publicPath, 'backgroundSongs');
 
 router.use('/', express.static(publicPath));
 
@@ -16,6 +17,7 @@ router.use('/', express.static(publicPath));
 // browser refetch each time the video loops
 const cacheTime = '1d';
 router.use('/backgroundVideos', express.static(videosPath, { maxAge: cacheTime }));
+router.use('/backgroundSongs', express.static(songsPath, { maxAge: cacheTime }));
 
 const blueprintPath = path.join(rootPath, 'node_modules', '@blueprintjs', 'core', 'dist', 'blueprint.css');
 const blueprintMapPath = path.join(rootPath, 'node_modules', '@blueprintjs', 'core', 'dist', 'blueprint.css.map');

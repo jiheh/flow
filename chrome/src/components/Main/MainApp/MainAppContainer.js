@@ -2,8 +2,8 @@
 import { connect } from 'react-redux';
 import MainApp from './MainAppComponent.jsx';
 import { setSettings } from '../../../reducers/settings';
-import { logoutUser } from '../../../reducers/user';
 import { receiveAnnouncements } from '../../../reducers/announcements';
+import { receiveSurveys } from '../../../reducers/surveys';
 import store from '../../../store';
 import axios from 'axios';
 
@@ -18,15 +18,18 @@ const mapDispatchToProps = () => dispatch => ({
     dispatch(setSettings(settings));
   },
 
-  logout: () => {
-    dispatch(logoutUser());
-  },
-
   getAnnouncements: () => {
     // TODO: change to production server url
     axios.post('http://localhost:8080/api/announcements/chrome', { hash: store.getState().user.hash })
       .then(res => dispatch(receiveAnnouncements(res.data)))
       .catch(console.error); // TODO: error handling
+  },
+
+  getSurveys: () => {
+    // TODO: change to production server url
+    axios.post('http://localhost:8080/api/survey/chrome', { hash: store.getState().user.hash })
+      .then(res => dispatch(receiveSurveys(res.data)))
+      .catch(console.error); // TODO: error handling;
   },
 });
 

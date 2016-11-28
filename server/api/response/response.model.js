@@ -7,6 +7,7 @@ const Response = db.define('response', {
   value: {
     type: Sequelize.TEXT,
     allowNull: false,
+    dafaultValue: 'emoji',
     validate: {
       notEmpty: true,
     },

@@ -13,7 +13,7 @@ npm start
 Go to the chrome folder
 ```
 npm install
-npm run build
+npm start
 ```
 Go to chrome extensions (chrome://extensions/)
 Check the 'Developer mode' box

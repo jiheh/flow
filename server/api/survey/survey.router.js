@@ -1,5 +1,3 @@
-/* eslint-disable arrow-body-style */
-
 'use strict';
 
 // eslint-disable-next-line new-cap
@@ -29,14 +27,25 @@ router.post('/chrome', (req, res, next) => {
       through: 'Survey-Participant',
       include: [{
         model: Question,
+        include: [{
+          model: Response,
+        }],
       }],
     }],
+    order: 'created_at ASC',
   })
     .then((user) => {
-      if (!user) { throw new Error('User not found.'); }
+      if (!user) throw new Error('User not found.');
 
       const { surveys } = user;
-      res.json(surveys);
+      const filteredSurveys = surveys.map((survey) => {
+        let questions = survey.questions.filter((question) => {
+          return question.responses.length === 0;
+        });
+        survey.questions = questions;
+        return survey;
+      });
+      res.json(filteredSurveys.filter(survey => survey.questions.length > 0));
     })
     .catch(next);
 });
@@ -49,11 +58,11 @@ router.post('/', (req, res, next) => {
     userIds, // array of numbers
     name, // string - survey name
     description, // string - survey description
+    questions, // array of objects
   } = req.body;
 
-  if (!req.user) { res.status(403).send(); }
+  if (!req.user) res.status(403).send();
 
-  // eslint-disable-next-line no-unused-vars
   db.transaction((t) => {
     let channel;
     let survey;
@@ -61,7 +70,9 @@ router.post('/', (req, res, next) => {
     return Promise.all([
       Channel.findById(channelId)
         .then((foundChannel) => {
-          if (!foundChannel) { throw new Error('ChannelItem not found.'); }
+
+          if (!foundChannel) throw new Error('ChannelItem not found.');
+
           channel = foundChannel;
         }),
       Admin.findOne({
@@ -75,7 +86,7 @@ router.post('/', (req, res, next) => {
         return admin.getChannels();
       })
       .then((adminChannels) => {
-        if (!adminChannels) { throw new Error('Admin does not have any channels.'); }
+        if (!adminChannels || !adminChannels.length) throw new Error('Admin does not have any channels.');
 
         if (!_.filter(adminChannels, adminChannel => adminChannel.id === channel.id).length) {
           throw new Error('Admin does not have access to specified channels.');
@@ -88,6 +99,7 @@ router.post('/', (req, res, next) => {
       })
       .then((createdSurvey) => {
         survey = createdSurvey;
+<<<<<<< HEAD
         return Promise.map(userIds, (userId) => {
           let user;
           return User.findById(userId)
@@ -110,13 +122,50 @@ router.post('/', (req, res, next) => {
                 ]);
               }
             });
+=======
+
+        return Promise.map(questions, question => {
+          return Question.create(question);
         });
+      })
+      .then(surveyQuestions => {
+        return Promise.map(surveyQuestions, question => {
+          return question.setSurvey(survey);
+>>>>>>> master
+        });
+      })
+      .then(() => {
+        return channel.getUsers();
+      })
+      .then(channelUsers => {
+        if (!channelUsers || !channelUsers.length) throw new Error('No users in this channel');
+
+        if (userIds) {
+          let channelIds = channelUsers.map(user => user.id);
+          
+          userIds.forEach(userId => {
+            if (!channelIds.includes(userId)) throw new Error('User is not part of the specified channel');
+          });
+
+          channelUsers = channelUsers.filter(channelUser => userIds.includes(channelUser.id));
+        }
+
+        return Promise.map(channelUsers, channelUser => {
+          return survey.addUser(channelUser);
+        });
+      })
+      .then(() => {
+        return Promise.all([
+          survey.setChannel(channel),
+          survey.setOwner(admin),
+          admin.addSurvey(survey),
+        ]);
       })
       .then(() => {
         res.status(201).send();
       });
-  })
-    .catch(next);
+    })
+  .catch(next);
 });
 
 // GET - admin gets responses to a survey for a given channel

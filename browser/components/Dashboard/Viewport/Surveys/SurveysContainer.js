@@ -1,8 +1,17 @@
 import { connect } from 'react-redux';
-import Surveys from './Surveys';
+import SurveysComponent from './SurveysComponent';
 
-const mapStateToProps = null
+import axios from 'axios';
 
-const mapDispatchToProps = null;
+const mapStateToProps = ({channels}) => ({
+	currentChannel: channels.currentChannel
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Surveys);
+const mapDispatchToProps = () => dispatch => ({
+	submitSurvey: form => {
+		axios.post('/api/survey', form)
+		.catch(err => console.error('Survey could not be created', err));
+	}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SurveysComponent);

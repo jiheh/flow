@@ -32,24 +32,20 @@ router.post('/chrome/get', (req, res, next) => {
       })
     })
     .then((userInfo) => {
-      return Invite.findOne({
+      return Invite.findAll({
         where: {
           email: userInfo.email
         }
       })
     })
-    .then((invite) => {
-      console.log("GOTTEEEEEM");
-      console.log(invite);
-      res.send(invite);
+    .then((invites) => {
+      res.send(invites);
     })
     .catch(next);
 });
 
 router.post('/chrome/delete', (req, res, next) => {
   const { invites } = req.body;
-  console.log("IN THE DELETE");
-  console.log(invites);
   let user;
   UserInfo.findOne({
     where: {
@@ -91,7 +87,9 @@ router.post('/chrome/delete', (req, res, next) => {
 // POST - admin creates announcement
 router.post('/webapp', (req, res, next) => {
   Invite.create(req.body)
-    .then(() => res.status(201).send())
+    .then((invite) => {
+      res.status(201).send()
+    })
     .catch(next);
 });
 

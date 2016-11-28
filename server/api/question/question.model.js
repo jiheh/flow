@@ -15,6 +15,9 @@ const Question = db.define('question', {
     type: Sequelize.ENUM('multiple_choice', 'emoji', 'slider', 'text', 'binary'),
     allowNull: false,
   },
+  responseOptions: {
+    type: Sequelize.STRING,
+  }
 });
 
 module.exports = Question;

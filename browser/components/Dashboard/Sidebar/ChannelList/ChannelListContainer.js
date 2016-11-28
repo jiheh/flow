@@ -16,7 +16,7 @@ const mapDispatchToProps = () => dispatch => ({
   recieveChannels: () => {
     axios.get(`/api/channel/allChannels/`)
     .then(channels => {
-      dispatch(receiveChannels(channels.data))
+       dispatch(receiveChannels(channels.data))
     })
   }
 });;

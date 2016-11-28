@@ -1,32 +1,24 @@
 const router = require('express').Router(); // eslint-disable-line new-cap
-const Admin = require('../admin/admin.model')
-const Channel = require('./channel.model')
-const User = require('../user/user.model')
+const Admin = require('../admin/admin.model');
+const Channel = require('./channel.model');
+const User = require('../user/user.model');
+
 // Get all Channels for a specific admin
-router.get('/allChannels/',(req,res) =>{  
-  let globalChannels;
-  Channel.findAll({
-    include:[{all:true}]
-  })
-  .then(channels =>{
-    return channels.filter(channel =>{
-      let returnVal = false
-      let listOfPossibleAdmins = channel.admins
-      for(var i in listOfPossibleAdmins){
-        let idCheck;
-        if(req.user) idCheck = req.user.id
-        if(idCheck && listOfPossibleAdmins[i].id === idCheck){
-          returnVal = true
-        }
-      }
-      return returnVal
+
+router.get('/allChannels/', (req, res, next) => {
+  if (!req.user) res.status(403).send();
+  else {
+    Channel.findAll({
+      include:[{ all: true }],
     })
-  })
-  .then(channels =>{
-    res.status(209).send(channels)
-  })
-})
+      .then((channels) => {
+        res.send(channels.filter((channel) => {
+          return channel.admins.filter(admin => admin.id === req.user.id).length > 0;
+        }));
+      })
+      .catch(next);
+  }
+});
 
 
-// Get one Channel
-module.exports = router
+module.exports = router;

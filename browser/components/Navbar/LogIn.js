@@ -17,7 +17,6 @@ export default class LogInForm extends Component {
     }
     if (login) {
       login(credentials);
-      browserHistory.push('/dashboard');
       this.props.close();
     }
   }
@@ -29,14 +28,14 @@ export default class LogInForm extends Component {
 
   render() {
     const { showModal, close } = this.props;
-  
+
     return (
       <Modal show={showModal} onHide={close}>
 
         <Modal.Header closeButton>
           <Modal.Title>Log In</Modal.Title>
         </Modal.Header>
-        
+
         <Modal.Body>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">

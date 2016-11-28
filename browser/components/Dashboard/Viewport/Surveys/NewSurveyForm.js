@@ -11,12 +11,8 @@ class SurveyForm extends Component {
 			name: '',
 			description: '',
 			questions: [],
-			options: []
+			sample: 100
 		};
-	}
-
-	componentDidMount() {
-		this.setState({options: [{value: 'one', label: 'one'}]})
 	}
 
 	render() {
@@ -31,31 +27,29 @@ class SurveyForm extends Component {
 
 					<label className='pt-label'>Survey Name
 					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='text' name='name' dir='auto' />
+					    <input  className='pt-input' type='text' name='name' />
 					  </div>
 					</label>
 
 					<label className='pt-label'>Description
 					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='text' name='description' dir='auto' />
+					    <input className='pt-input' type='text' name='description' />
 					  </div>
 					</label>
 
-					<label className='pt-label'>Participants</label>
-					<Select 
-						name='userIds'
-						placeholder='Leave blank to select all users from the channel'
-						options={this.state.options}
-						multi={true}
-						joinValues={true}
-					/>
+
+					<label className='pt-label'>Sample Size</label>
+						<p>Leave blank to select all users from the channel, or enter a number to select that % of channel users as a sample.</p>
+					  <div className='pt-input-group'>
+					    <input className='pt-input' type='text' name='sample' />
+					  </div>
 
 					<br />
 
 					{this.state.questions.map((question, i) => (
 						<label className='pt-label' key={i + 1}>Question {i + 1}
 						  <div className='pt-input-group'>
-						    <input  className='pt-input' name={`question${i + 1}`} type='text' dir='auto' />
+						    <input  className='pt-input' name={`question${i + 1}`} type='text' />
 						  </div>
 
 						  <div className='pt-select'>
@@ -95,6 +89,7 @@ class SurveyForm extends Component {
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
+			sample: e.target.sample.value ? e.target.sample.value : 100,
 			questions: this.state.questions
 			.map((question, i) => (
 				e.target[`question${i + 1}`].value ?

@@ -55,10 +55,10 @@ router.post('/chrome', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const {
     channelId, // number
-    userIds, // array of numbers
     name, // string - survey name
     description, // string - survey description
     questions, // array of objects
+    sample, // integer
   } = req.body;
 
   if (!req.user) res.status(403).send();
@@ -111,14 +111,20 @@ router.post('/', (req, res, next) => {
       .then(channelUsers => {
         if (!channelUsers || !channelUsers.length) throw new Error('No users in this channel');
 
-        if (userIds) {
-          let channelIds = channelUsers.map(user => user.id);
+        if (sample) {
+          let indices = [];
+          let sampleSize = sample/100 * channelUsers.length;
 
-          userIds.forEach(userId => {
-            if (!channelIds.includes(userId)) throw new Error('User is not part of the specified channel');
-          });
+          while (indices.length < sampleSize) {
+            let randIndex = Math.floor(Math.random() * channelUsers.length);
 
-          channelUsers = channelUsers.filter(channelUser => userIds.includes(channelUser.id));
+            if (!indices.includes(randIndex)) indices.push(randIndex);
+          }
+
+          let sampleUsers = [];
+
+          indices.forEach(i => sampleUsers.push(channelUsers[i]));
+          channelUsers = sampleUsers;
         }
 
         return Promise.map(channelUsers, channelUser => {

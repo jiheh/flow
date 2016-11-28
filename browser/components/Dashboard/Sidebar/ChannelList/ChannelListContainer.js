@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ChannelList from './ChannelList.jsx';
 import axios from 'axios'
+import persistState from 'redux-localstorage';
 import { setCurrentChannel,receiveChannels } from '../../../../reducers/channels';
 
 const mapStateToProps = ({channels}) => ({
@@ -13,8 +14,11 @@ const mapDispatchToProps = () => dispatch => ({
     dispatch(setCurrentChannel(channel));
   },
   recieveChannels: () =>{
-    axios.get('/api/channel/allChannels')
+    let adminId = 1
+    //adminId = JSON.parse(localstorage).currentAdmin.id
+    axios.get(`/api/channel/allChannels/${adminId}`)
     .then(channels =>{
+      console.log(channels)
       dispatch(receiveChannels(channels.data))
     })
   }

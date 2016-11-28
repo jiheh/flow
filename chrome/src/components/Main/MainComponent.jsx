@@ -14,7 +14,6 @@ class MainComponent extends Component {
 
   render() {
     const { user } = this.props;
-
     return (
       <Main
         user={user}

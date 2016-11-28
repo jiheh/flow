@@ -43,7 +43,7 @@ const Login = ({
       onBlur={handleBlur}
       onFocus={handleFocus}
       type={pageNum === 2 ? 'password' : 'text'}
-      size={Math.max(1, input[pageNum].length)}
+      size={Math.max(2, input[pageNum].length + 2)}
     >
     </input>
     <div className="login-validation-message">

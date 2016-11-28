@@ -140,57 +140,58 @@ router.post('/', (req, res, next) => {
 });
 
 // GET - admin gets surveys for a given channel
-router.get('/channel/:channelId', (req, res, next) => {
-  const { channelId } = req.params;
+// router.get('/channel/:channelId', (req, res, next) => {
+//   const { channelId } = req.params;
 
-  if (!req.user) res.status(403).send();
+//   if (!req.user) res.status(403).send();
 
-  let currentChannel, admin, allChannelSurveys, surveys;
+//   let currentChannel, admin, allChannelSurveys, surveys;
 
-  Admin.findOne({
-    where: {
-      user_info_id: req.user.id,
-    },
-  })
-  .then((foundAdmin) => {
-    admin = foundAdmin;
-    return admin.getChannels({
-      where: {
-        id: channelId
-      }
-    });
-  })
-  .then((foundAdminChannels) => {
-    currentChannel = foundAdminChannels.find(channel => channel.id === +channelId);
+//   Admin.findOne({
+//     where: {
+//       user_info_id: req.user.id,
+//     },
+//   })
+//   .then((foundAdmin) => {
+//     admin = foundAdmin;
+//     return admin.getChannels({
+//       where: {
+//         id: channelId
+//       }
+//     });
+//   })
+//   .then((foundAdminChannels) => {
+//     currentChannel = foundAdminChannels.find(channel => channel.id === +channelId);
 
-    if (!currentChannel) throw new Error('Admin does not have access to this channel.');
+//     if (!currentChannel) throw new Error('Admin does not have access to this channel.');
 
-    return currentChannel.getSurveys();
-  })
-  .then(channelSurveys => {
-    allChannelSurveys = channelSurveys;
+//     return currentChannel.getSurveys();
+//   })
+//   .then(channelSurveys => {
+//     allChannelSurveys = channelSurveys;
 
-    return admin.getSurveys();
-  })
-  .then(adminSurveys => {
-    console.log('alladminsurveys', adminSurveys)
-    surveys = adminSurveys.filter(survey => {
-      console.log('each survey', survey);
-      allChannelSurveys.includes(survey);
-    });
+//     return admin.getSurveys();
+//   })
+//   .then(adminSurveys => {
+//     allChannelSurveys = allChannelSurveys.map(el => el.id)
+//     console.log('ALLCHANNELSURVEYS', allChannelSurveys)
+//     surveys = adminSurveys.filter(survey => {
+//       allChannelSurveys.includes(survey.id);
+//     });
 
-    if (!surveys.length) throw new Error('Admin does not have access to surveys in this channel.');
+//     console.log(surveys)
+//     if (!surveys.length) throw new Error('Admin does not have access to surveys in this channel.');
 
-    res.send(surveys);
-  })
-  .catch(next);
-});
+//     res.send(surveys);
+//   })
+//   .catch(next);
+// });
 
 // GET - admin gets responses to a survey for a given channel
 router.get('/survey/:surveyId', (req, res, next) => {
   const { surveyId } = req.params;
 
-  if (!req.user) res.status(403).send();
+  if (!req.user) return res.status(403).send();
 
   let admin;
   let survey;

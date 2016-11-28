@@ -6,7 +6,7 @@ const User = require('../user/user.model')
 router.get('/allChannels/',(req,res) =>{  
   let globalChannels;
   Channel.findAll({
-    include:[{all:true,nested:true}]
+    include:[{all:true}]
   })
   .then(channels =>{
     return channels.filter(channel =>{

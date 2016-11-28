@@ -20,7 +20,7 @@ const ChannelsWidget = ({
 
     <div className="widget-contents">
       { invites.length ? invites.map((invite) => {
-        return <div className="channelInvitations">{invite.channelName} has invited you to its channel!<button onClick={() => acceptAndDeleteInvite()}>Accept</button></div>
+        return <div className="channelInvitations">{invite.channelName} has invited you to its channel!<button onClick={() => acceptAndDeleteInvite(invite)}>Accept</button></div>
       }) : <div className="channelInvitations">You have no channel invitations at this time.</div> }
     </div>
 

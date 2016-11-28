@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({channel, currentChannelID, setCurrentChannel}) => (
   <div className={channel.id === currentChannelID ? 'channel-item active' : 'channel-item'}
-       onClick={()=> setCurrentChannel(channel)} >
+       onClick={()=> {setCurrentChannel(channel)}} >
 
     <h5>{channel.name}</h5>
     <p>{channel.description}</p>

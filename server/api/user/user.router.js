@@ -17,6 +17,7 @@ router.post('/', (req, res, next) => {
     return UserInfo.find({
       where: {
         email: req.body.email,
+        name: req.body.name,
       },
     })
       .then((foundUserInfo) => {

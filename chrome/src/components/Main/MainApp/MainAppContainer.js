@@ -4,13 +4,16 @@ import MainApp from './MainAppComponent.jsx';
 import { setSettings } from '../../../reducers/settings';
 import { receiveAnnouncements } from '../../../reducers/announcements';
 import { receiveSurveys } from '../../../reducers/surveys';
+import { receiveInvites } from '../../../reducers/invites';
 import store from '../../../store';
 import axios from 'axios';
 
 const mapStateToProps = ({
   showSettingsPanel,
+  invites,
 }) => ({
   showSettingsPanel,
+  invites,
 });
 
 const mapDispatchToProps = () => dispatch => ({
@@ -29,6 +32,13 @@ const mapDispatchToProps = () => dispatch => ({
     // TODO: change to production server url
     axios.post('http://localhost:8080/api/survey/chrome', { hash: store.getState().user.hash })
       .then(res => dispatch(receiveSurveys(res.data)))
+      .catch(console.error); // TODO: error handling;
+  },
+
+  getInvites: () => {
+    // TODO: change to production server url
+    axios.post('http://localhost:8080/api/invites/chrome/get', { hash: store.getState().user.hash })
+      .then(res => dispatch(receiveInvites(res.data)))
       .catch(console.error); // TODO: error handling;
   },
 });

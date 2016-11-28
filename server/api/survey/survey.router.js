@@ -50,8 +50,8 @@ router.post('/chrome', (req, res, next) => {
     .catch(next);
 });
 
-
 // POST - admin creates survey
+// survey status defaults to "inactive"
 router.post('/', (req, res, next) => {
   const {
     channelId, // number
@@ -75,11 +75,7 @@ router.post('/', (req, res, next) => {
 
           channel = foundChannel;
         }),
-      Admin.findOne({
-        where: {
-          user_info_id: req.user.id,
-        },
-      }),
+      Admin.findByUserInfoId(req.user.id),
     ])
       .spread((a, foundAdmin) => {
         admin = foundAdmin;
@@ -117,7 +113,7 @@ router.post('/', (req, res, next) => {
 
         if (userIds) {
           let channelIds = channelUsers.map(user => user.id);
-          
+
           userIds.forEach(userId => {
             if (!channelIds.includes(userId)) throw new Error('User is not part of the specified channel');
           });
@@ -201,11 +197,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
   let adminChannels;
 
   return Promise.all([
-    Admin.findOne({
-      where: {
-        user_info_id: req.user.id,
-      },
-    })
+    Admin.findByUserInfoId(req.user.id)
       .then((foundAdmin) => {
         admin = foundAdmin;
         return admin.getChannels();

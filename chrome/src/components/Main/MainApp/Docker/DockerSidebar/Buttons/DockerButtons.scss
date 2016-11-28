@@ -17,3 +17,26 @@
 .active-button {
   opacity: 1.0;
 }
+
+.flashing {
+  animation-name: flashingButton;
+  animation-duration: 1.0s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  // animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes flashingButton {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: scale(1.25);
+    opacity: 1.0;
+  }
+}

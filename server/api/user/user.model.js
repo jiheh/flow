@@ -1,7 +1,7 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const bcrypt = require('bcrypt-as-promised');
+const crypto = require('crypto');
 
 const db = require('../../_db');
 
@@ -12,7 +12,15 @@ const User = db.define('users', {
 }, {
   hooks: {
     beforeCreate(user) {
-      return bcrypt.hash(JSON.stringify(user), 10)
+      return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        });
+      })
         .then(hash => {
           user.hash = hash;
         });

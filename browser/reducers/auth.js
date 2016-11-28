@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { browserHistory } from 'react-router';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -30,8 +30,8 @@ export const login = credentials => (dispatch) => {
   console.log('login')
   axios.post('/auth/login', credentials)
   .then(res => {
-    console.log('res',res)
     dispatch(set(JSON.parse(res.config.data).email))
+    browserHistory.push('/dashboard');
   })
     .catch(err => console.error('Login unsuccessful', err));
 };

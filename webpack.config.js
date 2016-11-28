@@ -17,7 +17,7 @@ module.exports = {
     filename: PROD ? './public/bundle.min.js' : './public/bundle.js',
   },
   context: __dirname,
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   module: {
     loaders: [
       {

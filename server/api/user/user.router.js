@@ -10,6 +10,7 @@ const db = require('../../_db');
 const User = require('./user.model');
 const UserInfo = require('../userInfo/userInfo.model');
 const Channel = require('../channel/channel.model');
+const Admin = require('../admin/admin.model')
 
 router.post('/', (req, res, next) => {
   // eslint-disable-next-line no-unused-vars
@@ -60,5 +61,26 @@ router.post('/', (req, res, next) => {
   })
     .catch(next);
 });
+ 
+router.get('/allUsers/:channelId',(req,res) =>{
+  if(!req.user) throw new Error('Only Admins have access to this users.')
+  User.findAll({
+  include:[{model: UserInfo, as: 'UserInfo'},{model: Channel,include:[{model:Admin,through:'Admin-ChannelItem'}]}]})
+  .then(users =>{
+    return users.filter(user =>{
+      return user.channels.filter(channel =>{
+        let channelIdCheck = channel.id === parseInt(req.params.channelId) 
+        let adminIdCheck = channel.admins.filter(admin =>{
+          return admin.id === req.user.id
+        }).length > 0
+        return channelIdCheck && adminIdCheck 
+      }).length > 0
+    })
+  })
+  .then(users =>{
+    res.send(users)
+  })
+  .catch(err => console.error('Cant get all users',err))
+})
 
 module.exports = router;

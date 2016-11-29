@@ -15,10 +15,8 @@ const mapDispatchToProps = ({channels}) => dispatch => ({
 		.catch(err => console.error('Member could not be added', err));
 	},
 	receiveUsers: (channelId) =>{
-		console.log('in fetch',channelId)
 		axios.get(`/api/users/allUsers/${channelId}`)
 		.then(users =>{
-			console.log('got users',users.data)
 			dispatch(receiveUsers(users.data))
 		})
 		.catch(err => console.error('Users for this channel can not be found',err))

@@ -79,7 +79,6 @@ router.get('/allUsers/:channelId',(req,res) =>{
     }]
   })
   .then(users =>{
-    console.log('got users',users.length)
     res.send(users)
   })
   .catch(err => console.error('Cant get all users',err))

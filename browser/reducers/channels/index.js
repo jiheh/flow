@@ -25,7 +25,6 @@ export default handleActions({
     return {... state, currentChannel: payload}
   },
   RECEIVE_USERS: (state, { payload }) =>{
-    console.log('IN RECEIVE_USERS')
     let newObj = Object.assign({},state,{users:payload})
     return {... state, currentChannel: newObj}
   }

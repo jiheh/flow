@@ -35,16 +35,6 @@ class SurveyForm extends Component {
 					  </div>
 					</label>
 
-<<<<<<< HEAD
-					<label className='pt-label'>Participants</label>
-					<Select
-						name='userIds'
-						placeholder='Leave blank to select all users from the channel'
-						options={this.state.options}
-						multi={true}
-						joinValues={true}
-					/>
-=======
 					<hr />
 
 					<label className='pt-label'>Sample Size (% of Channel Users)</label>
@@ -52,7 +42,6 @@ class SurveyForm extends Component {
 					  <div className='pt-input-group'>
 					    <input className='pt-input' type='text' name='sample' placeholder='%' />
 					  </div>
->>>>>>> master
 
 					<br />
 

@@ -19,8 +19,6 @@ class MainAppComponent extends Component {
   }
 
   render() {
-    console.log("HABIBI!")
-    console.log(this.props)
     return (
       <MainApp {...this.props} />
     );

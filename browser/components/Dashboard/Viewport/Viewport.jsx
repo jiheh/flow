@@ -6,9 +6,11 @@ import MembersContainer from './Members/MembersContainer';
 
 import {Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
 
-export default () => (
+export default ({ currentChannel }) => (
   <div className="viewport">
 
+    {currentChannel.id &&
+     <div>
     <ChannelHeaderContainer />
 
     <div className="viewport-content">
@@ -41,6 +43,8 @@ export default () => (
         </TabPanel>
       </Tabs>
 
-    </div>
+    </div></div>
+    }
+    {!currentChannel.id && <div>OVERVIEW</div>}
   </div>
 );

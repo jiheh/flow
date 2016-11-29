@@ -19,7 +19,7 @@ class SurveyForm extends Component {
 
 		return(
 			<div id='surveyform' className='container-fluid'>
-				<h3>Create a Survey for {this.props.channel.name}{console.log('STATE', this.state.questions)}</h3>
+				<h3>Create a Survey for {this.props.channel.name}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>

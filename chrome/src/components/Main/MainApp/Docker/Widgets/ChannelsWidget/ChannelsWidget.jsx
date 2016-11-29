@@ -25,14 +25,19 @@ class ChannelsWidget extends Component {
             return <div className="currentChannels" key={index}>{channel}</div>
           }) }
           { invites.length ? invites.map((invite, index) => {
-            return <div className="channelInvitations" ref={index} key={index}>{invite.channelName} has invited you to its channel!<button onClick={() => {
-                console.log(this.refs[index].className);
-                this.refs[index].className = "channelInvitationsDisplayNone";
-                console.log(this.refs[index].className);
-                showNewChannels(currentChannels, invite);
-                acceptAndDeleteInvite(invite);
-              }}>Accept</button></div>
-            }) : <div className="channelInvitations">You have no channel invitations at this time.</div> }
+            return (
+              <div className="channelInvitations" ref={index} key={index}>
+                {invite.channelName} has invited you to its channel!
+                <button 
+                  onClick={() => {
+                    this.refs[index].className = "channelInvitationsDisplayNone";
+                    showNewChannels(currentChannels, invite);
+                    acceptAndDeleteInvite(invite);
+                  }}>
+                    Accept
+                </button>
+              </div>
+            )}) : <div className="channelInvitations">You have no channel invitations at this time.</div> }
           </div>
 
         </div>

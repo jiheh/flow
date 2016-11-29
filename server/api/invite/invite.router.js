@@ -18,13 +18,17 @@ const Invite = require('../invite/invite.model');
 
 const Promise = require('bluebird');
 
-// POST - CHROME - user receives announcements
+// POST - CHROME - user receives invites
 router.post('/chrome/get', (req, res, next) => {
   const { hash } = req.body;
+  console.log("HASH INVITE")
+  console.log(hash)
   User.findOne({
     where: { hash },
   })
     .then((user) => {
+      console.log("INVITE HABIBI USER");
+      console.log(user)
       return UserInfo.findOne({
         where: {
           id: user.user_info_id
@@ -47,12 +51,14 @@ router.post('/chrome/get', (req, res, next) => {
 router.post('/chrome/delete', (req, res, next) => {
   const { invite } = req.body;
   let user;
+  let userInfoEmail;
   UserInfo.findOne({
     where: {
       email: invite.email
     }
   })
     .then((userInfo) => {
+      userInfoEmail = userInfo.email;
       return User.findOne({
         where: {
           user_info_id: userInfo.id
@@ -78,6 +84,16 @@ router.post('/chrome/delete', (req, res, next) => {
           channelId: invite.channelId
         }
       })
+    })
+    .then((number) => {
+      return Invite.findAll({
+        where: {
+          email: userInfoEmail
+        }
+      })
+    })
+    .then((invites) => {
+      res.send(invites);
     })
     .catch(next)
 

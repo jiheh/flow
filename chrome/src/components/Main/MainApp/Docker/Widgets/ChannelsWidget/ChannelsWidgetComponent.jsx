@@ -6,12 +6,17 @@ class ChannelsWidgetComponent extends Component {
 
 
   render() {
-    const { invites, acceptAndDeleteInvite } = this.props;
+    const { invites, acceptAndDeleteInvite, showNewChannels, currentChannels } = this.props;
     console.log("Jiheh Lee - Ritterling!")
     console.log(this.props)
     console.log(invites);
     return (
-      <ChannelsWidget invites={invites} acceptAndDeleteInvite={acceptAndDeleteInvite} />
+      <ChannelsWidget
+        invites={invites}
+        acceptAndDeleteInvite={acceptAndDeleteInvite}
+        showNewChannels={showNewChannels}
+        currentChannels={currentChannels}
+      />
     );
   }
 }

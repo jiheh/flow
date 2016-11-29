@@ -7,6 +7,7 @@ const DockerSidebar = ({
   toggleDockerViewport,
   activeWidget,
   invites,
+  currentChannels,
 }) => (
   <div className="docker-sidebar">
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Announcements" active={activeWidget === "Announcements" ? true : false}/>
@@ -17,10 +18,15 @@ const DockerSidebar = ({
       widgetName="Channels"
       active={activeWidget === "Channels" ? true : false}
       invites={invites}
+      currentChannels={currentChannels}
     />
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings" active={activeWidget === "Settings" ? true : false}/>
 
-    {window.onclick = () => toggleDockerViewport(activeWidget)}
+    {window.onclick = () => {
+      console.log("keepo")
+      console.log(currentChannels)
+      toggleDockerViewport(activeWidget)
+    }}
 
   </div>
 );

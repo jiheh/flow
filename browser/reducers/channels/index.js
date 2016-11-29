@@ -19,14 +19,13 @@ export const setCurrentChannel = createAction(SET_CURRENT_CHANNEL);
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
   RECEIVE_CHANNELS: (state, { payload }) => {
-    return {... state, allChannels: payload};
+    return { ...state, allChannels: payload };
   },
   SET_CURRENT_CHANNEL: (state, { payload }) => {
-    return {... state, currentChannel: payload}
+    return { ...state, currentChannel: payload }
   },
   RECEIVE_USERS: (state, { payload }) =>{
-    let newObj = Object.assign({},state.currentChannel,{users:payload})
-    return {... state, currentChannel: newObj}
+    return { ...state, currentChannel: { ...state.currentChannel, users: payload } }
   }
 }, initialState);
 

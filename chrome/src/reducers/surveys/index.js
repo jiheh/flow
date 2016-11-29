@@ -42,6 +42,6 @@ export default handleActions({
     const newChannels = payload;
     const newChannelIds = newChannels.map(channel => channel[1]);
 
-    return state.filter(survey => newChannelIds.includes(survey.id));
+    return state.filter(survey => newChannelIds.includes(survey.channel_id));
   },
 }, initialState);

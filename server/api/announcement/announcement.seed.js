@@ -9,6 +9,7 @@ const Channel = require('../channel/channel.model');
 const Admin = require('../admin/admin.model');
 
 function generateTitle() {
+
   const title = lorem({
     count: 1,
     units: 'sentences',
@@ -27,28 +28,22 @@ function generateContents() {
   });
 }
 
-const createAnnouncements = (n) => {
+const createAnnouncements = (adminInstance, channelInstance, n) => {
   return Promise.map(_.range(n), (i) => {
     let admin;
     let announcement;
 
-    return Admin.findById(Math.floor(Math.random() * 10) + 1)
-      .then((foundAdmin) => {
-        admin = foundAdmin;
-
-        return Announcement.create({
-          title: generateTitle(),
-          contents: generateContents(),
-          admin_id: admin.id,
-        });
-      })
-      .then((foundAnnouncement) => {
-        announcement = foundAnnouncement;
-        return Channel.findById(Math.floor(Math.random() * 10) + 1);
-      })
-      .then((channel) => {
-        return channel.addAnnouncement(announcement);
-      });
+    return Announcement.create({
+      title: generateTitle(),
+      contents: generateContents(),
+    })
+    .then((foundAnnouncement) => {
+      announcement = foundAnnouncement;
+      return channelInstance.addAnnouncement(announcement);
+    })
+    .then(() => {
+      return adminInstance.addAnnouncement(announcement);
+    });
   });
 };
 

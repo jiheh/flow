@@ -1,32 +1,36 @@
-const Admin = require('../admin/admin.model')
-const Channel = require('../channel/channel.model')
-const Organization = require('../organization/organization.model')
+const Admin = require('../admin/admin.model');
+const Channel = require('../channel/channel.model');
+const Organization = require('../organization/organization.model');
+const Chance = require('chance');
+const chance = new Chance();
 
-const createOrganizations = (n) =>{
-  let arrToReturn = [];
-  for(let i=0;i<n;i++){
-    let organizationGlobal;
-    let randomNum = Math.floor(Math.random() * (n-1))
-    const organizationPromise = Organization.create({
-      name:`organization${i}`,
-      type:`University`,
-      address:'5 Hanover Square',
-      email:`organization${i}@organization.organization`,
-      phone:`12345678`,
-      numberOfStudents:10
-    }).then(organization =>{
-      organizationGlobal = organization
-      return Channel.findById(i+1)
-    }).then(channel =>{
-      return channel.update({organization_id:organizationGlobal.id})
-    }).then(() =>{
-      return Admin.findById(randomNum + 1)
-    }).then((admin)=>{
-      return organizationGlobal.update({head_id:admin.id})
-    })
-    arrToReturn.push(organizationPromise)   
-  }
-  return Promise.all(arrToReturn)
+const createOrganizations = (admin) =>{
+
+  console.log(`\tAn Organization is being created for Admin ${admin.id}`);
+
+  let organizationGlobal;
+
+  return Organization.create({
+    name:`${chance.pickone(['Yale University', 'Fullstack Academy', 'Birmingham University'])}`,
+    type:`University`,
+    address:'5 Hanover Square',
+    email:`organization@organization.com`,
+    phone:`12345678`,
+    numberOfStudents:chance.integer({min: 10, max: 50}),
+  })
+  .then(organization =>{
+    organizationGlobal = organization
+    return admin.getChannels();
+  })
+  .then(channels =>{
+    return Promise.all(channels.map(channel => {
+      return channel.setOrganization(organizationGlobal);
+    }))
+  })
+  .then(()=>{
+    return organizationGlobal.setHead(admin);
+  })
+
 }
 
 module.exports = createOrganizations;

@@ -9,7 +9,7 @@ const mapStateToProps = ({channels}) => ({
 	currentChannel: channels.currentChannel
 });
 
-const mapDispatchToProps = ({channels}) => dispatch => ({
+const mapDispatchToProps = () => dispatch => ({
 	submitInvite: form => {
 		axios.post('/api/invites/webapp', form)
 		.catch(err => console.error('Member could not be added', err));

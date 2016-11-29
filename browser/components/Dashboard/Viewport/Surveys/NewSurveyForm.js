@@ -14,8 +14,6 @@ class SurveyForm extends Component {
 	}
 
 	render() {
-		let options=[];
-
 		return(
 			<div id='surveyform' className='container-fluid'>
 				<h3>Create a Survey for {this.props.channel.name}</h3>
@@ -52,7 +50,7 @@ class SurveyForm extends Component {
 						  </div>
 
 						  <div className='pt-select'>
-						    <select name={`response${i + 1}`}>
+						    <select name={`response${i + 1}`} onChange={() => console.log(i)} >
 						    	<option defaultValue='select'>Select a Response Type</option>
 						      <option value='emoji'>Emoticons</option>
 						      <option value='binary'>Binary</option>
@@ -61,7 +59,18 @@ class SurveyForm extends Component {
 						      <option value='text'>Text Box</option>
 						    </select>
 						  </div>
+
+						  <br />
+						  <div className='pt-input-group'>
+						  	<input  className='pt-input' name={`responseOptions${i + 1}-A`} type='text' placeholder='Choice A' />
+						    <input  className='pt-input' name={`responseOptions${i + 1}-B`} type='text' placeholder='Choice B' />
+						    <input  className='pt-input' name={`responseOptions${i + 1}-C`} type='text' placeholder='Choice C' />
+						    <input  className='pt-input' name={`responseOptions${i + 1}-D`} type='text' placeholder='Choice D' />
+						  </div>
 						 </label>
+
+
+
 					))}
 
 					<hr />
@@ -84,6 +93,10 @@ class SurveyForm extends Component {
 		});
 	};
 
+	responseFields = (e) => {
+
+	};
+
 	submitForm = (e) => {
 		this.setState({
 			name: e.target.name.value,
@@ -94,7 +107,8 @@ class SurveyForm extends Component {
 				e.target[`question${i + 1}`].value ?
 					{
 						text: e.target[`question${i + 1}`].value,
-						type: e.target[`response${i + 1}`].value
+						type: e.target[`response${i + 1}`].value,
+						responseOptions: {}
 					} :
 					null
 				))

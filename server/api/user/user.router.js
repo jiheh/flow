@@ -69,6 +69,20 @@ router.get('/channelUsers', (req, res, next) => {
   })
   .then(channelUsers => res.send(channelUsers))
   .catch(next);
-});
+}); 
+
+router.get('/allUsers/:channelId',(req,res) =>{
+  console.log('in route')
+  User.findAll({
+    include:[{
+      model:UserInfo, as:'UserInfo'
+    }]
+  })
+  .then(users =>{
+    console.log('got users',users.length)
+    res.send(users)
+  })
+  .catch(err => console.error('Cant get all users',err))
+})
 
 module.exports = router;

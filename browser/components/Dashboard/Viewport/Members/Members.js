@@ -6,6 +6,6 @@ export default ({ toggleForm }) => (
 
     <button onClick={toggleForm}>Add New Member</button>
 		<div>LIST EXISTING MEMBERS HERE</div>
-
+		
   </div>
 );

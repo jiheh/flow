@@ -13,6 +13,11 @@ class MembersComponent extends Component {
 		}
 	}
 
+	componentDidMount() {
+		if(Object.keys(this.props.currentChannel).length)this.props.receiveUsers(this.props.currentChannel.id)
+	}
+
+
 	toggleForm = () => {
 		this.setState({showForm: `${!this.state.showForm}`});
 	}

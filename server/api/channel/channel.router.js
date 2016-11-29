@@ -21,21 +21,15 @@ router.get('/allChannels/', (req, res, next) => {
 
 router.post('/chrome/allChannels', (req, res, next) => {
   const { hash } = req.body;
-  console.log("HASH CHANNELS")
-  console.log(hash)
+
   User.findOne({
     where: { hash },
   })
     .then((user) => {
-      console.log("CHANNEL HABIBI USER");
-      console.log(user)
       return user.getChannels();
     })
     .then((channels) => {
-      console.log("HARAMBE HABIBI INSIDE CHANNELS");
-      console.log(channels);
       let channelNames = Object.keys(channels).map(channelKey => channels[channelKey].name);
-      console.log(channelNames);
       res.send(channelNames)
     })
     .catch(next);

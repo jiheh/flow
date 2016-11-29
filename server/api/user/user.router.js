@@ -61,4 +61,35 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/channelUsers', (req, res, next) => {
+  User.findAll({
+    include: [{
+      all: true
+    }]
+  })
+  .then(channelUsers => res.send(channelUsers))
+  .catch(next);
+}); 
+
+router.get('/allUsers/:channelId',(req,res) =>{
+  User.findAll({
+    include:[{
+      model:UserInfo, as:'UserInfo',
+    },{
+      model:Channel
+    }]
+  })
+  .then(users =>{
+    return users.filter(user =>{
+      return user.channels.filter(channel =>{
+        return channel.id === parseInt(req.params.channelId)
+      }).length > 0
+    })
+  })
+  .then(users =>{
+    res.send(users)
+  })
+  .catch(err => console.error('Cant get all users',err))
+})
+
 module.exports = router;

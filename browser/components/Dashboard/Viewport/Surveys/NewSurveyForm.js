@@ -10,16 +10,16 @@ class SurveyForm extends Component {
 			name: '',
 			description: '',
 			questions: [],
-			sample: 100
+			sample: 100,
+			responses: {}
 		};
 	}
 
 	render() {
-		let responses = {};
 
 		return(
 			<div id='surveyform' className='container-fluid'>
-				<h3>Create a Survey for {this.props.channel.name}</h3>
+				<h3>Create a Survey for {this.props.channel.name}{console.log('STATE', this.state.questions)}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>
@@ -53,7 +53,7 @@ class SurveyForm extends Component {
 						  </div>
 
 						  <div className='pt-select'>
-						    <select name={`response${i + 1}`} onChange={() => console.log(i)} >
+						    <select name={`response${i + 1}`} onChange={this.responseFields} >
 						    	<option defaultValue='select'>Select a Response Type</option>
 						      <option value='emoji'>Emoticons</option>
 						      <option value='binary'>Binary</option>
@@ -63,23 +63,24 @@ class SurveyForm extends Component {
 						    </select>
 						  </div>
 
-						  <br />
-						  <div>
-						  	<input  className='pt-input' name={`responseOptions${i + 1}-A`} type='text' placeholder='Choice A' />
-						    <input  className='pt-input' name={`responseOptions${i + 1}-B`} type='text' placeholder='Choice B' />
-						    <input  className='pt-input' name={`responseOptions${i + 1}-C`} type='text' placeholder='Choice C' />
-						    <input  className='pt-input' name={`responseOptions${i + 1}-D`} type='text' placeholder='Choice D' />
-						  </div>
+						  {this.state.responses[`response${i + 1}`] === 'multiple_choice' ? 
+							  <div>
+							  	<input className='pt-input' name={`responseOptions${i + 1}-0`} type='text' placeholder='Choice A' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-1`} type='text' placeholder='Choice B' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-2`} type='text' placeholder='Choice C' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-3`} type='text' placeholder='Choice D' />
+							  </div> :
+							  <div></div>
+							}
 
-						  <br />
-						  <div>
-						  	<input  className='pt-input' name={`responseOptions${i + 1}-min`} type='text' placeholder='Minimum #' />
-						    <input  className='pt-input' name={`responseOptions${i + 1}-max`} type='text' placeholder='Maximum #' />
-						  </div>
-						 </label>
-
-
-
+							{this.state.responses[`response${i + 1}`] === 'slider' ?
+							  <div>
+							  	<input className='pt-input' name={`responseOptions${i + 1}-0`} type='text' placeholder='Minimum #' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-1`} type='text' placeholder='Maximum #' />
+							  </div> :
+							  <div></div>
+							}
+						</label>
 					))}
 
 					<hr />
@@ -103,7 +104,13 @@ class SurveyForm extends Component {
 	};
 
 	responseFields = (e) => {
+		let targetName = e.target.name;
+		let target = {};
+		target[targetName] = e.target.value;
 
+		this.setState({
+			responses: Object.assign({}, this.state.responses, target)
+		});
 	};
 
 	submitForm = (e) => {
@@ -112,15 +119,23 @@ class SurveyForm extends Component {
 			description: e.target.description.value,
 			sample: e.target.sample.value && typeof e.target.sample.value === 'number' ? e.target.sample.value : 100,
 			questions: this.state.questions
-			.map((question, i) => (
-				e.target[`question${i + 1}`].value ?
+			.map((question, i) => {
+
+				let responseFields = [];
+				for (let j = 0; j <= 3; j++) {
+					e.target[`responseOptions${i + 1}-${j}`] && responseFields.push(e.target[`responseOptions${i + 1}-${j}`].value);
+				}
+
+				return (
+					e.target[`question${i + 1}`].value ?
 					{
 						text: e.target[`question${i + 1}`].value,
 						type: e.target[`response${i + 1}`].value,
-						responseOptions: {}
+						responseOptions: responseFields
 					} :
 					null
-				))
+				)
+				})
 			.filter(el => el !== null)
 		}, () => {
 			this.props.submitSurvey(this.state)

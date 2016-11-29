@@ -47,8 +47,5 @@ module.exports = {
     }),
     new NpmInstallPlugin(),
     new FriendlyErrorsWebpackPlugin(),
-    new ReloadServerPlugin({
-      script: path.resolve(__dirname, 'server/start.js'),
-    }),
   ],
 };

@@ -18,5 +18,5 @@ export default handleActions({
 
   CLEAR_CURRENT_CHANNELS: (state, { payload }) => {
     return initialState;
-  }
+  },
 }, initialState);

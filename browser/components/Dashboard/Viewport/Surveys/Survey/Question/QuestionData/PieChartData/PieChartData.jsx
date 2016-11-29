@@ -19,7 +19,7 @@ const responsesToData = (responses) => {
   return Object.keys(result).map(key => ({ name: key, value: result[key] }));
 };
 
-const EmojiData = ({ responses }) => (
+const PieChartData = ({ responses }) => (
   <div>
     {responses.length === 0 ? 'No responses.' :
      (
@@ -40,8 +40,8 @@ const EmojiData = ({ responses }) => (
   </div>
 );
 
-EmojiData.propTypes = {
+PieChartData.propTypes = {
   responses: PropTypes.array.isRequired,
 };
 
-export default EmojiData;
+export default PieChartData;

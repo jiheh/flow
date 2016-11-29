@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
-import EmojiData from './EmojiData/EmojiData.jsx';
+import PieChartData from './PieChartData/PieChartData.jsx';
+import TextData from './TextData/TextData.jsx';
 
 const QuestionData = ({ type, responses }) => (
   <div>
     {responses.length === 0 && 'No responses.'}
-    {responses .length > 0 && type==='emoji' && <EmojiData responses={responses} />}
+    {responses.length > 0 && (type==='emoji' || type==='multiple_choice') && <PieChartData responses={responses} />}
+    {responses.length > 0 && type==='text' && <TextData responses={responses} />}
   </div>
 );
 

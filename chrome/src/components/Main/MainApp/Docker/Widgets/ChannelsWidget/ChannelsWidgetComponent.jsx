@@ -6,7 +6,7 @@ class ChannelsWidgetComponent extends Component {
 
 
   render() {
-    const { invites, acceptAndDeleteInvite, showNewChannels, currentChannels } = this.props;
+    const { invites, acceptAndDeleteInvite, showNewChannels, currentChannels, leaveChannel } = this.props;
     
     return (
       <ChannelsWidget
@@ -14,6 +14,7 @@ class ChannelsWidgetComponent extends Component {
         acceptAndDeleteInvite={acceptAndDeleteInvite}
         showNewChannels={showNewChannels}
         currentChannels={currentChannels}
+        leaveChannel={leaveChannel}
       />
     );
   }

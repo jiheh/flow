@@ -13,6 +13,7 @@ const Question = ({
       questionId={question.id}
       surveyId={surveyId}
       type={question.type}
+      responseOptions={question.responseOptions}
     />
   </div>
 );

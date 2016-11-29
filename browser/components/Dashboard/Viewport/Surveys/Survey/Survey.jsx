@@ -3,10 +3,15 @@ import Question from './Question/Question.jsx';
 
 const Survey = ({ survey }) => (
   <div className="survey">
-    <h1>{survey.name}</h1>
-    <h3>{survey.description}</h3>
+
+  	<hr />
+    <h4>{survey.name}</h4>
+    <p>{survey.description}</p>
     {survey.questions.length > 0 && survey.questions.map((question, idx) => (
-       <Question question={question} index={idx + 1} key={idx}/>
+    	<div key={idx}>
+    		<br />
+      	<Question question={question} index={idx + 1} key={idx}/>
+      </div>
      ))}
   </div>
 );

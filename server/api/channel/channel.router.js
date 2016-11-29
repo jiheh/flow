@@ -20,5 +20,20 @@ router.get('/allChannels/', (req, res, next) => {
   }
 });
 
+router.post('/chrome/allChannels', (req, res, next) => {
+  const { hash } = req.body;
+
+  User.findOne({
+    where: { hash },
+  })
+    .then((user) => {
+      return user.getChannels();
+    })
+    .then((channels) => {
+      let channelNames = Object.keys(channels).map(channelKey => channels[channelKey].name);
+      res.send(channelNames)
+    })
+    .catch(next);
+});
 
 module.exports = router;

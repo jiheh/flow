@@ -5,9 +5,11 @@ import DockerViewport from './DockerViewport.jsx';
 const mapStateToProps = ({
   docker,
   invites,
+  currentChannels,
  }) => ({
   activeWidget: docker.activeWidget,
   invites,
+  currentChannels,
 });
 
 const mapDispatchToProps = () => dispatch => ({

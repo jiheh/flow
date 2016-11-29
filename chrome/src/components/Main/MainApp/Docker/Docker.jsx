@@ -9,11 +9,12 @@ const Docker = ({
   toggleDockerViewport,
   activeWidget,
   invites,
+  currentChannels,
 }) => (
   <div>
   <div className="docker">
     {viewportVisible ? <DockerViewportContainer /> : null}
-    <DockerSidebar toggleDockerViewport={toggleDockerViewport} activeWidget={activeWidget} invites={invites}/>
+    <DockerSidebar toggleDockerViewport={toggleDockerViewport} activeWidget={activeWidget} invites={invites} currentChannels={currentChannels} />
   </div>
 </div>
 );

@@ -43,22 +43,22 @@ const createSurveyData = (adminID, foundAdminChannelID) => ([
       {
         text: "Agree/Disagree: You feel satisfied with your job.",
         type: 'multiple_choice',
-        responseOptions: JSON.stringify({
-          '0': 'Strongly Disagree',
-          '1': 'Disagree',
-          '2': 'Agree',
-          '3': 'Strongly Agree',
-        })
+        responseOptions: [
+          'Strongly Disagree',
+          'Disagree',
+          'Agree',
+          'Strongly Agree',
+        ],
       },
       {
         text: "Agree/Disagree: You are happy with the way your career is going.",
         type: 'multiple_choice',
-        responseOptions: JSON.stringify({
-          '0': 'Strongly Disagree',
-          '1': 'Disagree',
-          '2': 'Agree',
-          '3': 'Strongly Agree',
-        })
+        responseOptions: [
+          'Strongly Disagree',
+          'Disagree',
+          'Agree',
+          'Strongly Agree',
+        ],
       },
     ]
   },
@@ -76,14 +76,13 @@ const createSurveyData = (adminID, foundAdminChannelID) => ([
         text: "What went well today?",
         type: 'text',
         responseOptions: null,
-
       },
       {
         text: "What didn't go so well today?",
         type: 'text',
         responseOptions: null,
       },
-    ]
+    ],
   },
 
 
@@ -104,6 +103,6 @@ const createSurveyData = (adminID, foundAdminChannelID) => ([
   //   ],
   // },
 
-])
+]);
 
 module.exports = createSurveyData;

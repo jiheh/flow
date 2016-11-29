@@ -16,7 +16,6 @@ const responsesToData = (responses) => {
     }
   });
 
-  console.log(result);
   return Object.keys(result).map((word) => ({
     value: word,
     count: result[word],

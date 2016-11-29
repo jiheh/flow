@@ -61,14 +61,4 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/channelUsers', (req, res, next) => {
-  User.findAll({
-    include: [{
-      all: true
-    }]
-  })
-  .then(channelUsers => res.send(channelUsers))
-  .catch(next);
-});
-
 module.exports = router;

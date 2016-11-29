@@ -1,34 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Line from '../WidgetComponents/Line.jsx';
 import '../Widgets.scss';
 // import './ChannelsWidget.scss';
 
-const ChannelsWidget = ({
-  invites,
-  acceptAndDeleteInvite,
-}) => (
-  <div className="channels-widget widget">
+class ChannelsWidget extends Component {
+  render() {
+    const { invites, acceptAndDeleteInvite, currentChannels, showNewChannels } = this.props;
 
-    <div className="widget-nav">
-      <h4 className="widget-title">
-        CHANNELS
-      </h4>
-    </div>
 
-    <Line />
+    return (
+      <div className="channels-widget widget">
 
-    <div className="widget-contents">
-      { invites.length ? invites.map((invite) => {
-        return <div className="channelInvitations">{invite.channelName} has invited you to its channel!<button onClick={() => acceptAndDeleteInvite(invite)}>Accept</button></div>
-      }) : <div className="channelInvitations">You have no channel invitations at this time.</div> }
-    </div>
+        <div className="widget-nav">
+          <h4 className="widget-title">
+            CHANNELS
+          </h4>
+        </div>
 
-  </div>
-);
+        <Line />
 
-// MeditationWidget.propTypes = {
-//   meditationWidget: propTypes,
-// };
+        <div className="widget-contents">
+          { currentChannels && currentChannels.map((channel, index) => {
+            return <div className="currentChannels" key={index}>{channel}</div>
+          }) }
+          { invites.length ? invites.map((invite, index) => {
+            return (
+              <div className="channelInvitations" ref={index} key={index}>
+                {invite.channelName} has invited you to its channel!
+                <button 
+                  onClick={() => {
+                    this.refs[index].className = "channelInvitationsDisplayNone";
+                    showNewChannels(currentChannels, invite);
+                    acceptAndDeleteInvite(invite);
+                  }}>
+                    Accept
+                </button>
+              </div>
+            )}) : <div className="channelInvitations">You have no channel invitations at this time.</div> }
+          </div>
+
+        </div>
+      );
+  }
+}
 
 export default ChannelsWidget;

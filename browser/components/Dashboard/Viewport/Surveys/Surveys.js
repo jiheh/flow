@@ -17,6 +17,6 @@ export default ({
      ))
     }
 
-		<button onClick={toggleForm}>Create a New Survey</button>
+		<button className='pt-button' onClick={toggleForm}>Create a New Survey</button>
   </div>
 );

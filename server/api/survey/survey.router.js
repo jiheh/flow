@@ -60,10 +60,10 @@ router.post('/chrome', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const {
     channelId, // number
-    userIds, // array of numbers
     name, // string - survey name
     description, // string - survey description
     questions, // array of objects
+    sample, // integer
   } = req.body;
 
   if (!req.user) res.status(403).send();
@@ -116,14 +116,20 @@ router.post('/', (req, res, next) => {
       .then(channelUsers => {
         if (!channelUsers || !channelUsers.length) throw new Error('No users in this channel');
 
-        if (userIds) {
-          let channelIds = channelUsers.map(user => user.id);
+        if (sample) {
+          let indices = [];
+          let sampleSize = sample/100 * channelUsers.length;
 
-          userIds.forEach(userId => {
-            if (!channelIds.includes(userId)) throw new Error('User is not part of the specified channel');
-          });
+          while (indices.length < sampleSize) {
+            let randIndex = Math.floor(Math.random() * channelUsers.length);
 
-          channelUsers = channelUsers.filter(channelUser => userIds.includes(channelUser.id));
+            if (!indices.includes(randIndex)) indices.push(randIndex);
+          }
+
+          let sampleUsers = [];
+
+          indices.forEach(i => sampleUsers.push(channelUsers[i]));
+          channelUsers = sampleUsers;
         }
 
         return Promise.map(channelUsers, channelUser => {
@@ -144,11 +150,59 @@ router.post('/', (req, res, next) => {
   .catch(next);
 });
 
+// GET - admin gets surveys for a given channel
+// router.get('/channel/:channelId', (req, res, next) => {
+//   const { channelId } = req.params;
+
+//   if (!req.user) res.status(403).send();
+
+//   let currentChannel, admin, allChannelSurveys, surveys;
+
+//   Admin.findOne({
+//     where: {
+//       user_info_id: req.user.id,
+//     },
+//   })
+//   .then((foundAdmin) => {
+//     admin = foundAdmin;
+//     return admin.getChannels({
+//       where: {
+//         id: channelId
+//       }
+//     });
+//   })
+//   .then((foundAdminChannels) => {
+//     currentChannel = foundAdminChannels.find(channel => channel.id === +channelId);
+
+//     if (!currentChannel) throw new Error('Admin does not have access to this channel.');
+
+//     return currentChannel.getSurveys();
+//   })
+//   .then(channelSurveys => {
+//     allChannelSurveys = channelSurveys;
+
+//     return admin.getSurveys();
+//   })
+//   .then(adminSurveys => {
+//     allChannelSurveys = allChannelSurveys.map(el => el.id)
+//     console.log('ALLCHANNELSURVEYS', allChannelSurveys)
+//     surveys = adminSurveys.filter(survey => {
+//       allChannelSurveys.includes(survey.id);
+//     });
+
+//     console.log(surveys)
+//     if (!surveys.length) throw new Error('Admin does not have access to surveys in this channel.');
+
+//     res.send(surveys);
+//   })
+//   .catch(next);
+// });
+
 // GET - admin gets responses to a survey for a given channel
 router.get('/survey/:surveyId', (req, res, next) => {
   const { surveyId } = req.params;
 
-  if (!req.user) { res.status(403).send(); }
+  if (!req.user) return res.status(403).send();
 
   let admin;
   let survey;
@@ -161,7 +215,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
         return admin.getChannels();
       })
       .then((foundAdminChannels) => {
-        if (!foundAdminChannels) { throw new Error('Admin does not have any channels.'); }
+        if (!foundAdminChannels) throw new Error('Admin does not have any channels.');
         adminChannels = foundAdminChannels;
       }),
     Survey.findOne({
@@ -184,13 +238,13 @@ router.get('/survey/:surveyId', (req, res, next) => {
       }],
     })
       .then((foundSurvey) => {
-        if (!foundSurvey) { throw new Error('Survey not found.'); }
+        if (!foundSurvey) throw new Error('Survey not found.');
         survey = foundSurvey;
         return survey.getChannel();
       }),
   ])
     .spread((a, surveyChannel) => {
-      if (!surveyChannel) { throw new Error('Survey not linked to a channel.'); }
+      if (!surveyChannel) throw new Error('Survey not linked to a channel.');
       if (!_.filter(adminChannels, adminChannel => adminChannel.id === surveyChannel.id).length) {
         throw new Error('Admin does not have access to specified survey.');
       }

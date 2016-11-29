@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class SurveyForm extends Component {
 	constructor(props) {
 		super(props);
@@ -10,12 +9,8 @@ class SurveyForm extends Component {
 			name: '',
 			description: '',
 			questions: [],
-			options: []
+			sample: 100
 		};
-	}
-
-	componentDidMount() {
-		this.setState({options: [{value: 'one', label: 'one'}]})
 	}
 
 	render() {
@@ -23,38 +18,37 @@ class SurveyForm extends Component {
 
 		return(
 			<div id='surveyform' className='container-fluid'>
-				<h3>Create a Survey for {this.props.channel.name} {console.log(this.state)}</h3>
+				<h3>Create a Survey for {this.props.channel.name}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>
 
 					<label className='pt-label'>Survey Name
 					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='text' name='name' dir='auto' />
+					    <input  className='pt-input' type='text' name='name' />
 					  </div>
 					</label>
 
 					<label className='pt-label'>Description
 					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='text' name='description' dir='auto' />
+					    <input className='pt-input' type='text' name='description' />
 					  </div>
 					</label>
 
-					<label className='pt-label'>Participants</label>
-					<Select 
-						name='userIds'
-						placeholder='Leave blank to select all users from the channel'
-						options={this.state.options}
-						multi={true}
-						joinValues={true}
-					/>
+					<hr />
+
+					<label className='pt-label'>Sample Size (% of Channel Users)</label>
+						<p>Leave blank to select all users from the channel, or enter a NUMBER to select that % of channel users as a random sample.</p>
+					  <div className='pt-input-group'>
+					    <input className='pt-input' type='text' name='sample' placeholder='%' />
+					  </div>
 
 					<br />
 
 					{this.state.questions.map((question, i) => (
 						<label className='pt-label' key={i + 1}>Question {i + 1}
 						  <div className='pt-input-group'>
-						    <input  className='pt-input' name={`question${i + 1}`} type='text' dir='auto' />
+						    <input  className='pt-input' name={`question${i + 1}`} type='text' />
 						  </div>
 
 						  <div className='pt-select'>
@@ -77,6 +71,8 @@ class SurveyForm extends Component {
 						<button type='submit' className='pt-button pt-intent-success'>Submit</button>
 					</div>
 				</form>
+				<br />
+				<br />
 
 		  </div>
 		)
@@ -92,6 +88,7 @@ class SurveyForm extends Component {
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
+			sample: e.target.sample.value && typeof e.target.sample.value === 'number' ? e.target.sample.value : 100,
 			questions: this.state.questions
 			.map((question, i) => (
 				e.target[`question${i + 1}`].value ?

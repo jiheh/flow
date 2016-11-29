@@ -72,11 +72,20 @@ router.get('/channelUsers', (req, res, next) => {
 }); 
 
 router.get('/allUsers/:channelId',(req,res) =>{
-  console.log('in route')
   User.findAll({
     include:[{
-      model:UserInfo, as:'UserInfo'
+      model:UserInfo, as:'UserInfo',
+    },{
+      model:Channel
     }]
+  })
+  .then(users =>{
+    return users.filter(user =>{
+      return user.channels.filter(channel =>{
+        console.log(channel.id,req.params.channelId)
+        return channel.id === parseInt(req.params.channelId)
+      }).length > 0
+    })
   })
   .then(users =>{
     res.send(users)

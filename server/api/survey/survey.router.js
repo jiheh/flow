@@ -37,15 +37,20 @@ router.post('/chrome', (req, res, next) => {
     .then((user) => {
       if (!user) throw new Error('User not found.');
 
-      const { surveys } = user;
-      const filteredSurveys = surveys.map((survey) => {
-        let questions = survey.questions.filter((question) => {
-          return question.responses.length === 0;
+      let { surveys } =  user ;
+      surveys.forEach((survey) => {
+        const { questions } = survey;
+        let newQuestions = [];
+        questions.forEach((question) => {
+          const { responses } = question;
+          if (responses.filter(response => response.user_id === user.id).length === 0) {
+            newQuestions.push(question);
+          }
         });
-        survey.questions = questions;
-        return survey;
-      });
-      res.json(filteredSurveys.filter(survey => survey.questions.length > 0));
+        survey.questions = newQuestions;
+      })
+      res.json(surveys.filter(survey => survey.questions.length > 0));
+      // res.json(filteredSurveys.filter(survey => survey.questions.length > 0));
     })
     .catch(next);
 });
@@ -171,6 +176,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
             model: User,
             include: [{
               model: UserInfo,
+              as: 'UserInfo',
               attributes: ['name', 'email'],
             }],
           }],

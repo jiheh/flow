@@ -19,7 +19,7 @@ class SurveyForm extends Component {
 
 		return(
 			<div id='surveyform' className='container-fluid'>
-				<h3>Create a Survey for {this.props.channel.name}{console.log('STATE', this.state.questions)}</h3>
+				<h3>Create a Survey for {this.props.channel.name}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>
@@ -123,7 +123,9 @@ class SurveyForm extends Component {
 
 				let responseFields = [];
 				for (let j = 0; j <= 3; j++) {
-					e.target[`responseOptions${i + 1}-${j}`] && responseFields.push(e.target[`responseOptions${i + 1}-${j}`].value);
+					if(e.target[`responseOptions${i + 1}-${j}`] && e.target[`responseOptions${i + 1}-${j}`].value) {
+						responseFields.push(e.target[`responseOptions${i + 1}-${j}`].value);
+					}
 				}
 
 				return (

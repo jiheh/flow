@@ -27,7 +27,6 @@ export default function reducer (currentAdmin = null, action) {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const login = credentials => (dispatch) => {
-  console.log('login')
   axios.post('/auth/login', credentials)
   .then(res => {
     dispatch(set(JSON.parse(res.config.data).email))

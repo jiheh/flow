@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './NewSurveyForm.scss';
 
 class SurveyForm extends Component {
 	constructor(props) {
@@ -14,6 +15,8 @@ class SurveyForm extends Component {
 	}
 
 	render() {
+		let responses = {};
+
 		return(
 			<div id='surveyform' className='container-fluid'>
 				<h3>Create a Survey for {this.props.channel.name}</h3>
@@ -61,11 +64,17 @@ class SurveyForm extends Component {
 						  </div>
 
 						  <br />
-						  <div className='pt-input-group'>
+						  <div>
 						  	<input  className='pt-input' name={`responseOptions${i + 1}-A`} type='text' placeholder='Choice A' />
 						    <input  className='pt-input' name={`responseOptions${i + 1}-B`} type='text' placeholder='Choice B' />
 						    <input  className='pt-input' name={`responseOptions${i + 1}-C`} type='text' placeholder='Choice C' />
 						    <input  className='pt-input' name={`responseOptions${i + 1}-D`} type='text' placeholder='Choice D' />
+						  </div>
+
+						  <br />
+						  <div>
+						  	<input  className='pt-input' name={`responseOptions${i + 1}-min`} type='text' placeholder='Minimum #' />
+						    <input  className='pt-input' name={`responseOptions${i + 1}-max`} type='text' placeholder='Maximum #' />
 						  </div>
 						 </label>
 

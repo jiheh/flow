@@ -5,6 +5,7 @@
   "main": "server/start.js",
   "scripts": {
     "start": "webpack -w",
+    "server": "nodemon server/start.js",
     "test": "mocha --watch --compilers js:babel-register server/api/**/*.test.js",
     "seed": "node seed.js"
   },
@@ -70,6 +71,7 @@
     "friendly-errors-webpack-plugin": "^1.1.0",
     "lorem-ipsum": "^1.0.3",
     "mocha": "^3.1.2",
+    "nodemon": "^1.11.0",
     "npm-install-webpack-plugin": "^4.0.4",
     "progress-bar-webpack-plugin": "^1.9.0",
     "reload-server-webpack-plugin": "^1.0.1"

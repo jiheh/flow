@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const ReloadServerPlugin = require('reload-server-webpack-plugin');
 const chalk = require('chalk');
 const path = require('path');
 

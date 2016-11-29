@@ -6,6 +6,7 @@ import quote from './quote';
 import surveyQuestions from './surveyQuestions';
 import announcements from './announcements';
 import invites from './invites';
+import currentChannels from './currentChannels';
 import surveys from './surveys';
 import settings from './settings';
 import docker from './docker';
@@ -15,6 +16,7 @@ export default outerReducer(combineReducers({
   meditationWidget,
   announcements,
   invites,
+  currentChannels,
   quote,
   surveys,
   surveyQuestions,

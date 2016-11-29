@@ -4,6 +4,7 @@ const Channel = require('./channel.model');
 const User = require('../user/user.model');
 
 // Get all Channels for a specific admin
+
 router.get('/allChannels/', (req, res, next) => {
   if (!req.user) res.status(403).send();
   else {
@@ -19,5 +20,20 @@ router.get('/allChannels/', (req, res, next) => {
   }
 });
 
+router.post('/chrome/allChannels', (req, res, next) => {
+  const { hash } = req.body;
+
+  User.findOne({
+    where: { hash },
+  })
+    .then((user) => {
+      return user.getChannels();
+    })
+    .then((channels) => {
+      let channelNames = Object.keys(channels).map(channelKey => channels[channelKey].name);
+      res.send(channelNames)
+    })
+    .catch(next);
+});
 
 module.exports = router;

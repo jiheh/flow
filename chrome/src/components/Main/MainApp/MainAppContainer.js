@@ -5,15 +5,18 @@ import { setSettings } from '../../../reducers/settings';
 import { receiveAnnouncements } from '../../../reducers/announcements';
 import { receiveSurveys } from '../../../reducers/surveys';
 import { receiveInvites } from '../../../reducers/invites';
+import { updateCurrentChannels } from '../../../reducers/currentChannels';
 import store from '../../../store';
 import axios from 'axios';
 
 const mapStateToProps = ({
   showSettingsPanel,
   invites,
+  currentChannels,
 }) => ({
   showSettingsPanel,
   invites,
+  currentChannels,
 });
 
 const mapDispatchToProps = () => dispatch => ({
@@ -41,6 +44,13 @@ const mapDispatchToProps = () => dispatch => ({
       .then(res => dispatch(receiveInvites(res.data)))
       .catch(console.error); // TODO: error handling;
   },
+
+  getChannels: () => {
+    // TODO: change to production server url
+    axios.post('http://localhost:8080/api/channel/chrome/allChannels', { hash: store.getState().user.hash })
+      .then(res => dispatch(updateCurrentChannels(res.data)))
+      .catch(console.error); // TODO: error handling;
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainApp);

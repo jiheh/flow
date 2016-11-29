@@ -1,21 +1,26 @@
 import React, { PropTypes } from 'react';
+import '../Response.scss';
 
 const Emoji = ({
   questionId,
   surveyId,
   sendResponse,
 }) => (
-  <div className="response-emoji">
-    <button onClick={() => sendResponse({ surveyId, questionId, value: 'SAD' })}>
-      SAD
-    </button>
+  <div className='response-emoji'>
+    <img
+      src='http://localhost:8080/images/happy.png'
+      onClick={() => sendResponse({ surveyId, questionId, value: 'HAPPY' })}>
+    </img>
 
-    <button onClick={() => sendResponse({ surveyId, questionId, value: 'NEUTRAL' })}>
-      NEUTRAL
-    </button>
-    <button onClick={() => sendResponse({ surveyId, questionId, value: 'HAPPY' })}>
-      HAPPY
-    </button>
+    <img
+      src='http://localhost:8080/images/neutral.png'
+      onClick={() => sendResponse({ surveyId, questionId, value: 'NEUTRAL' })}>
+    </img>
+
+    <img
+      src='http://localhost:8080/images/sad.png'
+      onClick={() => sendResponse({ surveyId, questionId, value: 'SAD' })}>
+    </img>
   </div>
 );
 

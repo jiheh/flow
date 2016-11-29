@@ -25,7 +25,7 @@ export default handleActions({
     return {... state, currentChannel: payload}
   },
   RECEIVE_USERS: (state, { payload }) =>{
-    let newObj = Object.assign({},state,{users:payload})
+    let newObj = Object.assign({},state.currentChannel,{users:payload})
     return {... state, currentChannel: newObj}
   }
 }, initialState);

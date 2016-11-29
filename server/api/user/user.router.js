@@ -82,7 +82,6 @@ router.get('/allUsers/:channelId',(req,res) =>{
   .then(users =>{
     return users.filter(user =>{
       return user.channels.filter(channel =>{
-        console.log(channel.id,req.params.channelId)
         return channel.id === parseInt(req.params.channelId)
       }).length > 0
     })

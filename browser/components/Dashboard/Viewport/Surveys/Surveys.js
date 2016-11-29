@@ -1,5 +1,6 @@
 import React from 'react';
 import Survey from './Survey/SurveyContainer.js';
+import './Surveys.scss';
 
 export default ({
   toggleForm,
@@ -7,6 +8,7 @@ export default ({
 }) => (
 	<div id="surveys" className="container-fluid">
 		<h3>Surveys</h3>
+    <button id='new-form-button' className='pt-button' onClick={toggleForm}>Create a New Survey</button>
 
     {currentChannel.surveys.length > 0 &&
      currentChannel.surveys.map((survey, idx) => (
@@ -16,7 +18,5 @@ export default ({
        />
      ))
     }
-
-		<button className='pt-button' onClick={toggleForm}>Create a New Survey</button>
   </div>
 );

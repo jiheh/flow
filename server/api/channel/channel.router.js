@@ -55,14 +55,11 @@ router.post('/chrome/removeUser', (req, res, next) => {
       ourUser = user;
       return ourChannel.removeUser(user)
     })
-    .then ((whatever) => {
+    .then (() => {
       return ourUser.getChannels();
     })
     .then((channels) => {
-      // console.log("HARAMBE HABIBI INSIDE CHANNELS");
-      console.log(channels);
       let channelNames = Object.keys(channels).map(channelKey => [channels[channelKey].name, channels[channelKey].id]);
-      console.log(channelNames);
       res.send(channelNames)
     })
     .catch(next);

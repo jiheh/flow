@@ -19,13 +19,13 @@ export default ({ currentChannel }) => (
         <TabList>
           <Tab>Overview</Tab>
           <Tab>Surveys</Tab>
+          <Tab>Notifications</Tab>
           <Tab>Members</Tab>
           <Tab>Settings</Tab>
         </TabList>
 
         <TabPanel>
           <h3>Overview</h3>
-
         </TabPanel>
 
         <TabPanel>
@@ -33,8 +33,11 @@ export default ({ currentChannel }) => (
         </TabPanel>
 
         <TabPanel>
-          <MembersContainer />
+          <div/>
+        </TabPanel>
 
+        <TabPanel>
+          <MembersContainer />
         </TabPanel>
 
         <TabPanel>

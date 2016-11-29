@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './NewSurveyForm.scss';
 
 class SurveyForm extends Component {
 	constructor(props) {
@@ -9,12 +10,12 @@ class SurveyForm extends Component {
 			name: '',
 			description: '',
 			questions: [],
-			sample: 100
+			sample: 100,
+			responses: {}
 		};
 	}
 
 	render() {
-		let options=[];
 
 		return(
 			<div id='surveyform' className='container-fluid'>
@@ -52,7 +53,7 @@ class SurveyForm extends Component {
 						  </div>
 
 						  <div className='pt-select'>
-						    <select name={`response${i + 1}`}>
+						    <select name={`response${i + 1}`} onChange={this.responseFields} >
 						    	<option defaultValue='select'>Select a Response Type</option>
 						      <option value='emoji'>Emoticons</option>
 						      <option value='binary'>Binary</option>
@@ -61,7 +62,25 @@ class SurveyForm extends Component {
 						      <option value='text'>Text Box</option>
 						    </select>
 						  </div>
-						 </label>
+
+						  {this.state.responses[`response${i + 1}`] === 'multiple_choice' ? 
+							  <div>
+							  	<input className='pt-input' name={`responseOptions${i + 1}-0`} type='text' placeholder='Choice A' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-1`} type='text' placeholder='Choice B' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-2`} type='text' placeholder='Choice C' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-3`} type='text' placeholder='Choice D' />
+							  </div> :
+							  <div></div>
+							}
+
+							{this.state.responses[`response${i + 1}`] === 'slider' ?
+							  <div>
+							  	<input className='pt-input' name={`responseOptions${i + 1}-0`} type='text' placeholder='Minimum #' />
+							    <input className='pt-input' name={`responseOptions${i + 1}-1`} type='text' placeholder='Maximum #' />
+							  </div> :
+							  <div></div>
+							}
+						</label>
 					))}
 
 					<hr />
@@ -84,20 +103,41 @@ class SurveyForm extends Component {
 		});
 	};
 
+	responseFields = (e) => {
+		let targetName = e.target.name;
+		let target = {};
+		target[targetName] = e.target.value;
+
+		this.setState({
+			responses: Object.assign({}, this.state.responses, target)
+		});
+	};
+
 	submitForm = (e) => {
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
 			sample: e.target.sample.value && typeof e.target.sample.value === 'number' ? e.target.sample.value : 100,
 			questions: this.state.questions
-			.map((question, i) => (
-				e.target[`question${i + 1}`].value ?
+			.map((question, i) => {
+
+				let responseFields = [];
+				for (let j = 0; j <= 3; j++) {
+					if(e.target[`responseOptions${i + 1}-${j}`] && e.target[`responseOptions${i + 1}-${j}`].value) {
+						responseFields.push(e.target[`responseOptions${i + 1}-${j}`].value);
+					}
+				}
+
+				return (
+					e.target[`question${i + 1}`].value ?
 					{
 						text: e.target[`question${i + 1}`].value,
-						type: e.target[`response${i + 1}`].value
+						type: e.target[`response${i + 1}`].value,
+						responseOptions: responseFields
 					} :
 					null
-				))
+				)
+				})
 			.filter(el => el !== null)
 		}, () => {
 			this.props.submitSurvey(this.state)

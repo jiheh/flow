@@ -168,7 +168,6 @@ class Auth extends React.Component {
 					securityNumber:event.target.securityNumber.value
 			}
 		}
-		console.log(credentials)
 		if (login) {
 			login(credentials);
 		} else if (signup) {

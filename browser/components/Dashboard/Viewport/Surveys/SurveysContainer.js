@@ -10,7 +10,7 @@ const mapStateToProps = ({channels}) => ({
 const mapDispatchToProps = () => dispatch => ({
 	submitSurvey: form => {
 		axios.post('/api/survey', form)
-		.catch(err => console.error('Survey could not be created', err));
+		.catch(console.error);
 	}
 });
 

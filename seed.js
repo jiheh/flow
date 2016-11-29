@@ -27,7 +27,7 @@ const seedDatabase = num => {
     .then(() => seedAccounts(num))
     .then(() => seedBillings(num))
     .then(() => seedAnnouncements(50))
-    .then(() => seedSurveys(1)) // which admin gets the surveys?
+    // .then(() => seedSurveys(1)) // which admin gets the surveys?
     .then(() => {
       console.log(chalk.green('Seeding successful'));
     }, (err) => {

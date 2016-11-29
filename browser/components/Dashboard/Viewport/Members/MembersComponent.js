@@ -26,7 +26,7 @@ class MembersComponent extends Component {
 		return (
 			<div>
 			{this.state.showForm === false ?
-				<Members toggleForm={this.toggleForm} /> :
+				<Members toggleForm={this.toggleForm} currentChannel={this.props.currentChannel} /> :
 				<AddMemberForm channel={this.props.currentChannel} submitInvite={this.props.submitInvite} />
 			}
 			</div>

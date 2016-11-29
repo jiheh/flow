@@ -11,9 +11,9 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = () => dispatch => ({
-    acceptAndDeleteInvite: () => {
+    acceptAndDeleteInvite: (invite) => {
       // TODO: change to production server url
-      axios.post('http://localhost:8080/api/invites/chrome/delete', { invites: store.getState().invites })
+      axios.post('http://localhost:8080/api/invites/chrome/delete', { invite: invite })
         .then(res => dispatch(receiveInvites(res.data)))
         .catch(console.error); // TODO: error handling
     },

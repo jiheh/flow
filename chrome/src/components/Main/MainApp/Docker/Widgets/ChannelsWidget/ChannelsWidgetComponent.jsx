@@ -7,9 +7,7 @@ class ChannelsWidgetComponent extends Component {
 
   render() {
     const { invites, acceptAndDeleteInvite, showNewChannels, currentChannels, leaveChannel } = this.props;
-    console.log("Jiheh Lee - Ritterling!")
-    console.log(this.props)
-    console.log(invites);
+    
     return (
       <ChannelsWidget
         invites={invites}

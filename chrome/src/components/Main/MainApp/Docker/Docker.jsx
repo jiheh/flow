@@ -12,7 +12,7 @@ const Docker = ({
   currentChannels,
 }) => (
   <div>
-  <div className="docker" onMouseLeave={() => viewportVisible && toggleDockerViewport(activeWidget)}>
+  <div className="docker">
     {viewportVisible ? <DockerViewportContainer /> : null}
     <DockerSidebar toggleDockerViewport={toggleDockerViewport} activeWidget={activeWidget} invites={invites} currentChannels={currentChannels} />
   </div>

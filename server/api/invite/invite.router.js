@@ -21,14 +21,11 @@ const Promise = require('bluebird');
 // POST - CHROME - user receives invites
 router.post('/chrome/get', (req, res, next) => {
   const { hash } = req.body;
-  console.log("HASH INVITE")
-  console.log(hash)
+
   User.findOne({
     where: { hash },
   })
     .then((user) => {
-      console.log("INVITE HABIBI USER");
-      console.log(user)
       return UserInfo.findOne({
         where: {
           id: user.user_info_id

@@ -23,8 +23,6 @@ const DockerSidebar = ({
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings" active={activeWidget === "Settings" ? true : false}/>
 
     {window.onclick = () => {
-      console.log("keepo")
-      console.log(currentChannels)
       toggleDockerViewport(activeWidget)
     }}
 

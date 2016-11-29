@@ -21,7 +21,10 @@ class SurveysComponent extends Component {
 		return (
 			<div>
 			{this.state.showForm === false ?
-				<Surveys toggleForm={this.toggleForm} /> :
+			 <Surveys
+           toggleForm={this.toggleForm}
+           currentChannel={this.props.currentChannel}
+       /> :
 				<NewSurveyForm channel={this.props.currentChannel} submitSurvey={this.props.submitSurvey} />
 			}
 			</div>

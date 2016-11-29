@@ -34,11 +34,43 @@ router.post('/chrome/allChannels', (req, res, next) => {
     .then((channels) => {
       console.log("HARAMBE HABIBI INSIDE CHANNELS");
       console.log(channels);
-      let channelNames = Object.keys(channels).map(channelKey => channels[channelKey].name);
+      let channelNames = Object.keys(channels).map(channelKey => [channels[channelKey].name, channels[channelKey].id]);
       console.log(channelNames);
       res.send(channelNames)
     })
     .catch(next);
 });
+
+router.post('/chrome/removeUser', (req, res, next) => {
+  const { channelId, hash } = req.body;
+  let ourChannel;
+  let ourUser;
+  Channel.findOne({
+    where: {
+      id: channelId
+    }
+  })
+    .then((channel) => {
+      ourChannel = channel;
+      return User.findOne({
+        where: { hash },
+      })
+    })
+    .then((user) => {
+      ourUser = user;
+      return ourChannel.removeUser(user)
+    })
+    .then ((whatever) => {
+      return ourUser.getChannels();
+    })
+    .then((channels) => {
+      // console.log("HARAMBE HABIBI INSIDE CHANNELS");
+      console.log(channels);
+      let channelNames = Object.keys(channels).map(channelKey => [channels[channelKey].name, channels[channelKey].id]);
+      console.log(channelNames);
+      res.send(channelNames)
+    })
+    .catch(next);
+})
 
 module.exports = router;

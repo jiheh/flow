@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
 
 
 class SurveyForm extends Component {
@@ -42,7 +41,7 @@ class SurveyForm extends Component {
 					</label>
 
 					<label className='pt-label'>Participants</label>
-					<Select 
+					<Select
 						name='userIds'
 						placeholder='Leave blank to select all users from the channel'
 						options={this.state.options}

@@ -32,7 +32,8 @@ h4 {
 
 .channelInvitations {
   color: #4A4A4A;
-  font-size: 1em;
+  font-size: 2em;
+  margin: 20px 0px 0px 45px;
 }
 
 .channelInvitationsDisplayNone {
@@ -43,9 +44,46 @@ h4 {
 
 .currentChannels {
   color: #4A4A4A;
-  font-size: 1em;
+  font-size: 2em;
+  margin: 20px 0px 0px 45px;
+  padding: 0;
 }
 
+.check {
+  width: 20px;
+  padding: 10px 0px 0 0;
+  margin: 0;
+  position: absolute;
+  left: 15px;
+  opacity: 0.5;
+  transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  cursor: pointer;
+  &:hover {
+    opacity: 1.0;
+    transform: scale(1.2);
+  }
+}
+
+.cross {
+  width: 17px;
+  padding: 10px 0px 0 0;
+  margin: 0;
+  position: absolute;
+  left: 15px;
+  opacity: 0.5;
+  transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  cursor: pointer;
+  &:hover {
+    opacity: 1.0;
+    transform: scale(1.2);
+  }
+}
 
 @keyframes fadein {
   from { opacity: 0; }

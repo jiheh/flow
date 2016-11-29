@@ -1,0 +1,8 @@
+.response-emoji > img {
+	width: 32px;
+	padding: 2%;
+
+  &:hover {
+  	transform: scale(1.25)
+	}
+}

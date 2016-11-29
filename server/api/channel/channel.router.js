@@ -30,10 +30,39 @@ router.post('/chrome/allChannels', (req, res, next) => {
       return user.getChannels();
     })
     .then((channels) => {
-      let channelNames = Object.keys(channels).map(channelKey => channels[channelKey].name);
+      let channelNames = Object.keys(channels).map(channelKey => [channels[channelKey].name, channels[channelKey].id]);
       res.send(channelNames)
     })
     .catch(next);
 });
+
+router.post('/chrome/removeUser', (req, res, next) => {
+  const { channelId, hash } = req.body;
+  let ourChannel;
+  let ourUser;
+  Channel.findOne({
+    where: {
+      id: channelId
+    }
+  })
+    .then((channel) => {
+      ourChannel = channel;
+      return User.findOne({
+        where: { hash },
+      })
+    })
+    .then((user) => {
+      ourUser = user;
+      return ourChannel.removeUser(user)
+    })
+    .then (() => {
+      return ourUser.getChannels();
+    })
+    .then((channels) => {
+      let channelNames = Object.keys(channels).map(channelKey => [channels[channelKey].name, channels[channelKey].id]);
+      res.send(channelNames)
+    })
+    .catch(next);
+})
 
 module.exports = router;

@@ -46,6 +46,21 @@ const createSurveys = (adminID) => {
       return Survey.create(survey)
         // create survey based on data
         .then(newlyCreatedSurvey => {
+          // add this survey to all users in the channel
+          return Channel.findById(foundAdminChannelID)
+            .then(foundChannel => {
+              return foundChannel.getUsers();
+            })
+            .then(allChannelUsers => {
+              return Promise.all(allChannelUsers.map(user => user.addSurvey(newlyCreatedSurvey)));
+            })
+            .then(resolvedPromiseArray => {
+              console.log(`\t\t\tSurvey "${newlyCreatedSurvey.name}" has been ` +
+                          `associated with all ${resolvedPromiseArray.length} users in current channel`);
+              return newlyCreatedSurvey;
+            })
+        })
+        .then(newlyCreatedSurvey => {
           // now create questions
           return Promise.all(surveyQuestions.map(q => Question.create(q)))
                   .then(newlyCreatedQuestionsArray => {
@@ -60,10 +75,7 @@ const createSurveys = (adminID) => {
 
   })
   .then(newlyCreatedSurveysArray => {
-    console.log(`\tCreated ${newlyCreatedSurveysArray.length} surveys:`);
-    newlyCreatedSurveysArray.map(survey => {
-      console.log(`\t\t-${survey[0].name}`);
-    })
+    console.log(`\tSurvey Seeding Complete: Created ${newlyCreatedSurveysArray.length} surveys`);
   })
 
 };

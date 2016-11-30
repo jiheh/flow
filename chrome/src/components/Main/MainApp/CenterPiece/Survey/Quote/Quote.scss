@@ -3,6 +3,7 @@
 .quote {
   color: white;
   text-align: center;
+  // z-index: 30;
 
   span {
     display: block;
@@ -16,6 +17,7 @@
     transition-function: ease-in;
     -webkit-animation: dissolveInQuote 3s;
     -webkit-animation-fill-mode: forwards;
+    // z-index: 30;
   }
 
   .quote-origin {

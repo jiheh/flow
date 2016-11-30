@@ -5,14 +5,14 @@ const path = require('path');
 const router = require('express').Router(); // eslint-disable-line new-cap
 
 router.get('/:number', (req, res, next) => {
-  const quoteDir = path.join(__dirname, '..', '..', '..', 'public', 'quotes');
-  fs.readdir(quoteDir, (err, files) => {
+  const authorDir = path.join(__dirname, '..', '..', '..', 'public', 'authors');
+  fs.readdir(authorDir, (err, files) => {
     if (err) {
       next(err);
     } else {
       const numFiles = files.length;
-      const quoteToSend = files[req.params.number];
-      res.sendFile(quoteDir + '/' + quoteToSend);
+      const authorToSend = files[req.params.number];
+      res.sendFile(authorDir + '/' + authorToSend);
     }
   });
 });

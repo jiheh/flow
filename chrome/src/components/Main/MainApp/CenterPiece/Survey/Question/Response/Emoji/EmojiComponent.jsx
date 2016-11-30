@@ -79,43 +79,4 @@ class EmojiComponent extends Component {
 
 }
 
-// setTimeout(() => {
-//   sendResponse({ surveyId, questionId, value: 'HAPPY' });
-// }, 2000)
 export default EmojiComponent;
-// const Emoji = ({
-//   questionId,
-//   surveyId,
-//   sendResponse,
-// }) => (
-//   <div className='response-emoji'>
-//     <img
-//       src='http://localhost:8080/images/happy.png'
-//       onClick={() => setTimeout(() => { sendResponse({ surveyId, questionId, value: 'HAPPY' }); }, 2000)}>
-//     </img>
-//
-//     <img
-//       src='http://localhost:8080/images/neutral.png'
-//       onClick={() => setTimeout(() => { sendResponse({ surveyId, questionId, value: 'NEUTRAL' }); }, 2000)}>
-//     </img>
-//
-//     <img
-//       src='http://localhost:8080/images/sad.png'
-//       onClick={() => setTimeout(() => { sendResponse({ surveyId, questionId, value: 'SAD' }); }, 2000)}>
-//     </img>
-//   </div>
-// );
-
-
-
-
-// class QuoteComponent extends Component {
-//   static propTypes = {
-//     getQuote: PropTypes.func.isRequired,
-//     quote: quotePropTypes,
-//   };
-//
-//
-// }
-//
-// export default QuoteComponent;

@@ -29,8 +29,8 @@ const PieChartData = ({ responses }) => (
             data={responsesToData(responses)}
             cx='50%'
             cy='45%'
-            innerRadius='50%'
-            outerRadius='65%'
+            innerRadius='45%'
+            outerRadius='60%'
             paddingAngle={3}
             label={(data) => `${Math.floor(data.percent * 100)}%`}
           >

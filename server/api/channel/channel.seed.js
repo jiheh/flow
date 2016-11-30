@@ -18,7 +18,7 @@ const createChannels = (adminID, n) => {
   for (let i = 1; i <= n; i++) {
     let channelGlobal;
     const channelPromise = Channel.create({
-      name: `Fullstack ${chance.pickone(cohorts)} Cohort ${chance.integer({min:1500, max:1612})}`,
+      name: `Fullstack ${chance.pickone(cohorts)} Cohort ${chance.integer({min:1600, max:1612})}`,
       description:'Fullstack Academy of Code Cohort'
       // location: [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)],
     })

@@ -10,7 +10,7 @@ export default ({currentChannel}) => (
     <span className="mini-label">{currentChannel.numMembers}</span>
 
     <span className="pt-icon-standard pt-icon-document" ></span>
-    <span className="mini-label">37 Active Surveys</span>
+    <span className="mini-label">{currentChannel.surveys.length} Active Surveys</span>
 
   </div>
 );

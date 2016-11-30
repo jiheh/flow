@@ -131,9 +131,9 @@
     min-width: 35%;
   }
 
-  75% {
-    min-width: 100%;
-  }
+	75% {
+		min-width: 100%;
+	}
 
   100% {
     min-width: 80%;
@@ -188,7 +188,7 @@
   color: white;
   font-size: 1em;
   text-align: center;
-	width: 80%;
+	width: 10%;
 	animation-name: dissolveInTextBar;
 	animation-duration: 1.0s;
 	animation-timing-function: ease-in-out;
@@ -226,7 +226,7 @@
   }
 }
 
-@keyframes dissolveInTextBar {
+@keyframes otherDissolveInTextBar {
 	0% {
 		min-width: 35%;
 	}
@@ -238,4 +238,38 @@
 	100% {
 		min-width: 80%;
 	}
+}
+
+.newTextBarBlur {
+	padding-top: 20px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  color: white;
+  font-size: 1em;
+  text-align: center;
+	width: 10%;
+	animation-name: textBarBlur;
+	animation-duration: 1.0s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0;
+	animation-direction: alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-play-state: running;
+}
+
+@keyframes textBarBlur {
+  0% {
+    min-width: 80%;
+  }
+
+  25% {
+    min-width: 100%;
+  }
+
+  100% {
+    min-width: 35%;
+  }
 }

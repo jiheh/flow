@@ -1,7 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 
-import Text from './Text.jsx';
-
 class TextComponent extends Component {
   static propTypes = {
     questionId: PropTypes.number.isRequired,
@@ -17,12 +15,14 @@ class TextComponent extends Component {
     }
   }
 
+  componentWillUpdate() {
+  }
+
   handleInput = (evt) => {
     this.setState({ input: evt.target.value });
   }
 
   handleKeyUp = (evt, onClickFunc) => {
-    // 'enter' key was pressed
     if (evt.which == 13) {
       const { surveyId, questionId } = this.props;
       const { input } = this.state;
@@ -30,6 +30,14 @@ class TextComponent extends Component {
       console.log(onClickFunc)
       onClickFunc();
     }
+  }
+
+  handleBlur = () => {
+    this.refs.textBar.className = "newTextBarBlur";
+  }
+
+  handleFocus = () => {
+    this.refs.textBar.className = "response-input";
   }
 
   render() {
@@ -49,8 +57,10 @@ class TextComponent extends Component {
         this.refs.textBar.className = "dissolvingBiggerInput";
         setTimeout(() => {
           this.props.sendResponse({ surveyId, questionId, value: input });
-          this.refs.textBar.className = "newTextBar";
           this.refs.textBar.value = "";
+          this.refs.textBar.blur();
+          this.refs.textBar.className = "newTextBar";
+          console.log("kappaaaaaaa")
           setTimeout(() => {
             clicked = false;
           }, 1100);
@@ -67,6 +77,8 @@ class TextComponent extends Component {
           value={input}
           onInput={this.handleInput}
           onKeyUp={(evt) => this.handleKeyUp(evt, onClickFunction)}
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
           />
       </div>
     );
@@ -74,11 +86,3 @@ class TextComponent extends Component {
 }
 
 export default TextComponent;
-
-// <Text
-//   ref="textBar"
-//   handleInput={this.handleInput}
-//   handleKeyUp={(evt) => this.handleKeyUp(evt, onClickFunction)}
-//   input={input}
-//   {...this.props}
-//   />

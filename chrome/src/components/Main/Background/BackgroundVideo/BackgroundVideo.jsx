@@ -2,7 +2,7 @@ import React from 'react';
 import './BackgroundVideo.scss';
 
 const BackgroundVideo = () => (
-  <div className="backround-video-wrapper">
+  <div className="background-video-wrapper">
     <video
       className="background-video"
       src={'http://localhost:8080/api/videos/random'}

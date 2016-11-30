@@ -22,7 +22,6 @@ const MeditationWidget = ({  }) => (
     <div className="widget-contents">
       <MeditationSection meditations={meditations}/>
       <SoundSection sounds={sounds}/>
-      <VisualSection visuals={visuals}/>
     </div>
 
   </div>

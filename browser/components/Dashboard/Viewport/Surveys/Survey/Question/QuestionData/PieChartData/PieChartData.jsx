@@ -24,21 +24,22 @@ const PieChartData = ({ responses }) => (
   <div>
     {responses.length === 0 ? 'No responses.' :
      (
-        <PieChart width={350} height={300} margin={{top: 0, right: 0, bottom: 0, left: 0}}>
+        <PieChart width={350} height={350} margin={{top: 0, right: 0, bottom: 0, left: 0}}>
           <Pie
             data={responsesToData(responses)}
             cx='50%'
-            cy='50%'
+            cy='45%'
             innerRadius='50%'
             outerRadius='65%'
             paddingAngle={3}
-            label={(data) => `${data.name}: ${data.percent * 100}%`}
+            label={(data) => `${Math.floor(data.percent * 100)}%`}
           >
 
            {responsesToData(responses).map((entry, index) => {
             return(<Cell fill={COLORS[index % COLORS.length]} key={index} />)
           })}
           </Pie>
+          <Legend />
         </PieChart>
      )
     }

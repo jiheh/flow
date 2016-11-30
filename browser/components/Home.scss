@@ -1,8 +1,69 @@
 .background-image {
-  width: 100vw;
-  min-height: 100vh;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#title {
+  font-size: 6em;
+  text-align: center;
+  font-weight: 300;
+  margin-top: 10%;
+}
+
+#subtitle {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+#webapp-wrapper, #chrome-wrapper {
   position: fixed;
   top: 0;
+  width: 50vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+#webapp-wrapper {
+  left: 50vw;
+}
+
+#chrome-wrapper {
   left: 0;
-  z-index: -1;
+}
+
+#webapp-inner, #chrome-inner {
+  position: absolute;
+  top: 52%;
+  height: 25%;
+  width: 66%;
+  margin-left: 18%;
+  margin-right: 18%;
+  padding: 0;
+  background: radial-gradient(rgba(0,0,0,0.25) 35%, rgba(0,0,0,0) 70%);
+  font-family: 'Lato', sans-serif;
+  font-size: 1.3em;
+  font-weight: 300;
+  text-align: center;
+
+  a, button {
+    position: relative;
+    text-align: center;
+    width: 75%;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    font-weight: bold;
+  }
+}
+
+.header {
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+.home {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  overflow: hidden;
 }

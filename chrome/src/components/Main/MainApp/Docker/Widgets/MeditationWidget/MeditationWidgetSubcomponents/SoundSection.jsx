@@ -1,15 +1,20 @@
 import React from 'react';
 
-// import Line from '../WidgetComponents/Line.jsx';
 import '../../Widgets.scss';
+import TrackComponent from '../PlayerComponents/TrackComponent.jsx';
 
-const SoundSection = ({  }) => (
-  <div className="sounds-section">
-    <h4>SOUNDS</h4>
+const SoundSection = ({ sounds }) => (
+  <div className="sounds-section section">
+    <h4>SOOTHING SOUNDS</h4>
 
-    <div className="grid">
+    { sounds && sounds.map((track, index) => (
+      <TrackComponent
+        key         = {index}
+        trackName   = {track.name}
+        trackLength = {track.length}
+      />
+    ))}
 
-    </div>
   </div>
 );
 

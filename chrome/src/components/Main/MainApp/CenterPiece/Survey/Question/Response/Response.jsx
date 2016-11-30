@@ -1,20 +1,24 @@
 import React, { PropTypes } from 'react';
 
-import Emoji from './Emoji/Emoji.jsx';
+import EmojiComponent from './Emoji/EmojiComponent.jsx';
 import MultipleChoice from './MultipleChoice/MultipleChoice.jsx';
 import Binary from './Binary/Binary.jsx';
 import Text from './Text/TextComponent.jsx';
+
+import './Response.scss';
 
 const Response = ({
   questionId,
   surveyId,
   type,
   sendResponse,
+  questionRef,
   responseOptions,
 }) => (
   <div className="response">
     {type === 'emoji' &&
-    <Emoji
+    <EmojiComponent
+      questionRef={questionRef}
       questionId={questionId}
       surveyId={surveyId}
       sendResponse={sendResponse}

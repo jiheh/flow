@@ -37,7 +37,7 @@ router.post('/chrome', (req, res, next) => {
     .then((user) => {
       if (!user) throw new Error('User not found.');
 
-      let { surveys } =  user ;
+      let { surveys } = user ;
       surveys.forEach((survey) => {
         const { questions } = survey;
         let newQuestions = [];

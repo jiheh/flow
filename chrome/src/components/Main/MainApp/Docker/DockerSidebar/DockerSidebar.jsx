@@ -22,11 +22,12 @@ const DockerSidebar = ({
     />
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings" active={activeWidget === "Settings" ? true : false}/>
 
-    {window.onclick = () => {
-      toggleDockerViewport(activeWidget)
-    }}
 
   </div>
 );
 
 export default DockerSidebar;
+
+// {window.onclick = () => {
+//   toggleDockerViewport(activeWidget)
+// }}

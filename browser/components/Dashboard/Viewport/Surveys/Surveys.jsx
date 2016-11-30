@@ -6,7 +6,7 @@ export default ({
   toggleForm,
   currentChannel,
 }) => (
-	<div id="surveys" className="container-fluid">
+	<div id="surveys" >
 		<h3>Surveys</h3>
     <button id='new-form-button' className='pt-button' onClick={toggleForm}>Create a New Survey</button>
 

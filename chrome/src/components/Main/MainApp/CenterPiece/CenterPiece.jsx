@@ -6,9 +6,11 @@ import './CenterPiece.scss';
 
 const CenterPiece = () => (
   <div className="center-piece">
-    <Clock />
-    <Greeting />
-    <Survey />
+    <div className="clockAndGreeting">
+      <Clock />
+      <Greeting />
+    </div>
+    <Survey className="survey" />
   </div>
 );
 

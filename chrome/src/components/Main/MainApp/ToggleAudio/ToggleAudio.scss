@@ -1,7 +1,9 @@
 .audio-mode {
   position: absolute;
+  z-index: 10;
+  width: 24px;
   bottom: 15px;
-  right: 85px;
+  right: 65px;
   opacity: 0.5;
   transition-timing-function: ease-out;
   -webkit-transition-timing-function: ease-out;
@@ -10,6 +12,6 @@
   cursor: pointer;
   &:hover {
     opacity: 1.0;
-    transform: scale(1.2);
+    transform: scale(1.05);
   }
 }

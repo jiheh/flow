@@ -11,28 +11,22 @@ class Question extends Component {
 
   render() {
     const { question, surveyId } = this.props;
-    
+
     return (
       <div className="question">
         <span ref="currentQuestion">{question.text}</span>
         <Response
           questionRef={this.refs.currentQuestion}
+          responseOptions={question.responseOptions}
           questionId={question.id}
           surveyId={surveyId}
           type={question.type}
           className="responseDiv"
-          />
+        />
       </div>
     );
 
   }
 }
-
-// const Question = ({
-//   question,
-//   surveyId,
-// }) => (
-// );
-
 
 export default Question;

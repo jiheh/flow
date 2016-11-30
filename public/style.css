@@ -5,10 +5,6 @@ button:focus {
     box-shadow: none;
 }
 
-.pt-select {
-	width: 30%;
-}
-
-.pt-intent-success {
-	float: right;
+.container-fluid {
+    padding-left: none !important;
 }

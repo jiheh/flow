@@ -21,7 +21,7 @@ const Survey = db.define('survey', {
   active: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: false,
+    defaultValue: true,
   },
 }, {
   instanceMethods: {

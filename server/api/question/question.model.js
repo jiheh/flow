@@ -16,7 +16,7 @@ const Question = db.define('question', {
     allowNull: false,
   },
   responseOptions: {
-    type: Sequelize.STRING,
+    type: Sequelize.ARRAY(Sequelize.STRING),
   }
 });
 

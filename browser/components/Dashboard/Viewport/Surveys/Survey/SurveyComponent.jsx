@@ -13,8 +13,6 @@ class SurveyComponent extends Component {
     this.props.fetchSurvey(this.props.surveyId)
       .then((res) => {
         this.setState({ survey: res.data });
-        console.log('survey: ');
-        console.log(res.data);
       })
       .catch(console.error);
   }

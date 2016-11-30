@@ -1,7 +1,9 @@
 import React from 'react';
 
+import './Overview.scss';
+
 export default () => (
-	<div id="overview" className="container-fluid">
-		<h1>OVERVIEW</h1>
+	<div id="overview" className="">
+		<h1>flow</h1>
   </div>
 );

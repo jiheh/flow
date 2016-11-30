@@ -32,6 +32,10 @@ module.exports = {
         exclude: /chrome/,
         loaders: ['style', 'css', 'sass'],
       },
+      {
+        test: /\.(png)$/,
+        loader: 'url?limit=25000',
+      },
     ],
   },
   plugins: PROD ? [

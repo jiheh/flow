@@ -91,3 +91,151 @@
 		cursor: default;
 	}
 }
+
+.response-input {
+  // width: auto;
+  // min-width: 15%;
+  // position: relative;
+	width: 10%;
+	padding-top: 20px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  color: white;
+  font-size: 1em;
+  text-align: center;
+	animation-name: responseInputAnimationTest;
+	animation-duration: 1.0s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0;
+	animation-direction: alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-play-state: running;
+
+  &[type=text]:focus {
+    animation-name: responseInputAnimation;
+    animation-duration: 1.0s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+  }
+}
+
+@keyframes responseInputAnimation {
+  0% {
+    min-width: 35%;
+  }
+
+  75% {
+    min-width: 100%;
+  }
+
+  100% {
+    min-width: 80%;
+  }
+}
+
+@keyframes responseInputAnimationTest {
+  0% {
+    min-width: 80%;
+  }
+
+  75% {
+    min-width: 15%;
+  }
+
+  100% {
+    min-width: 35%;
+  }
+}
+
+.dissolvingBiggerInput {
+	-webkit-animation: dissolveBiggerInput 1s;
+	-webkit-animation-fill-mode: forwards;
+	padding-top: 20px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  color: white;
+  font-size: 1em;
+  text-align: center;
+	width: 80%;
+}
+
+@keyframes dissolveBiggerInput {
+  0% {
+		transform: scale(1.05);
+		opacity: 1;
+	}
+  100% {
+		transform: scale(1.35);
+		opacity: 0;
+	}
+}
+
+.newTextBar {
+	padding-top: 20px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  color: white;
+  font-size: 1em;
+  text-align: center;
+	width: 80%;
+	animation-name: dissolveInTextBar;
+	animation-duration: 1.0s;
+	animation-timing-function: ease-in-out;
+	animation-delay: 0;
+	animation-direction: alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-play-state: running;
+
+	&[type=text]:focus {
+		animation-name: otherDissolveInTextBar;
+		animation-duration: 1.0s;
+		animation-timing-function: ease-in-out;
+		animation-delay: 0;
+		animation-direction: alternate;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
+		animation-play-state: running;
+	}
+}
+
+@keyframes dissolveInTextBar {
+	0% {
+    min-width: 80%;
+		opacity: 0;
+  }
+
+  75% {
+    min-width: 15%;
+  }
+
+  100% {
+    min-width: 35%;
+		opacity: 1;
+  }
+}
+
+@keyframes dissolveInTextBar {
+	0% {
+		min-width: 35%;
+	}
+
+	75% {
+		min-width: 100%;
+	}
+
+	100% {
+		min-width: 80%;
+	}
+}

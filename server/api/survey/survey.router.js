@@ -49,8 +49,9 @@ router.post('/chrome', (req, res, next) => {
         });
         survey.questions = newQuestions;
       })
-      res.json(surveys.filter(survey => survey.questions.length > 0));
-      // res.json(filteredSurveys.filter(survey => survey.questions.length > 0));
+      let s = surveys.filter(survey => survey.questions.length > 0);
+      let result = s.map(s => Object.assign({}, {questions: s.questions}, {id: s.id}, {channel_id: s.channel_id}));
+      res.send(result);
     })
     .catch(next);
 });

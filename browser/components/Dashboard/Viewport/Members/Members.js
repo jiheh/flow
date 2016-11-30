@@ -9,7 +9,6 @@ export default ({ toggleForm, currentChannel }) => (
 
     <button onClick={toggleForm}>Add New Member</button>
 		<div>
-			<Grid>
 				<Row className="show-grid">
 					{
 						(
@@ -25,7 +24,6 @@ export default ({ toggleForm, currentChannel }) => (
 						)
 					}
 				</Row>
-			</Grid>
 		</div>
 
   </div>

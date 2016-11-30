@@ -49,11 +49,13 @@ class BinaryComponent extends Component {
     return (
       <div className='response-binary'>
         <img
+          className="individualEmoji"
           ref="yesIcon"
           src='http://localhost:8080/images/yes.png'
           onClick={() => onClickFunction(this.refs.yesIcon, "YES")}>
         </img>
         <img
+          className="individualEmoji"
           ref="noIcon"
           src='http://localhost:8080/images/no.png'
           onClick={() => onClickFunction(this.refs.noIcon, "NO")}>

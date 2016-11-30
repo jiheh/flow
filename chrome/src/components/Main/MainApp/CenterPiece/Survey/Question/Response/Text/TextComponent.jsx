@@ -68,7 +68,7 @@ class TextComponent extends Component {
     return (
       <div className='response-text' >
         <input
-          className='response-input'
+          className="newTextBar"
           ref="textBar"
           type='text'
           value={input}

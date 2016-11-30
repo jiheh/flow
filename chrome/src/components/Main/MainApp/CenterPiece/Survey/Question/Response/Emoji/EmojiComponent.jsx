@@ -57,18 +57,21 @@ class EmojiComponent extends Component {
     return (
       <div className='response-emoji'>
         <img
+          className="individualEmoji"
           ref="happyEmoji"
           src='http://localhost:8080/images/happy.png'
           onClick={() => onClickFunction(this.refs.happyEmoji, "HAPPY")}>
         </img>
 
         <img
+          className="individualEmoji"
           ref="neutralEmoji"
           src='http://localhost:8080/images/neutral.png'
           onClick={() => onClickFunction(this.refs.neutralEmoji, "NEUTRAL")}>
         </img>
 
         <img
+          className="individualEmoji"
           ref="sadEmoji"
           src='http://localhost:8080/images/sad.png'
           onClick={() => onClickFunction(this.refs.sadEmoji, "SAD")}>

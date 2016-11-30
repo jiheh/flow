@@ -1,9 +1,10 @@
 .viewport {
-  width: 80%;
-  height: 100%;
-  vertical-align: top;
+  padding-top: 50px;
+  margin-left: 250px;
+  width: 100%;
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
+  overflow-y: scroll;
 }
 
 .viewport-content {

@@ -2,16 +2,20 @@
 
 'use strict';
 
+const Chance = require('chance');
+const chance = new Chance();
+
 const UserInfo = require('../userInfo/userInfo.model');
 const User = require('../user/user.model');
 
-const createUsers = (n) => {
+const createUsers = (channelInstance, n) => {
   const arrToReturn = [];
+  console.log(`\tCreating ${n} Users for Channel ${channelInstance.id}`);
   for (let i = 1; i <= n; i++) {
     let userGlobal;
     const userPromise = UserInfo.create({
-      name: `user${i}`,
-      email: `user${i}@user.com`,
+      name: chance.name(),
+      email: chance.email(),
       password: '123456',
     })
       .then((userInfo) => {
@@ -19,10 +23,11 @@ const createUsers = (n) => {
         return User.create({});
       })
       .then((user) => {
-        return user.update({
-          user_info_id: userGlobal.id,
-        });
-      });
+        return user.setUserInfo(userGlobal);
+      })
+      .then((updatedUser) => {
+        return channelInstance.addUser(updatedUser, { through: 'User-ChannelItem' });
+      })
 
     arrToReturn.push(userPromise);
   }

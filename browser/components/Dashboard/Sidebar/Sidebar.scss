@@ -1,7 +1,8 @@
 .sidebar {
-  width: 20%;
-  vertical-align: top;
-  display: inline-block;
+  position: fixed;
+  top: 50px;
+  bottom: 0;
+  width: 250px;
   height: 100%;
   box-sizing: border-box;
   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 1px 1px rgba(16, 22, 26, 0.2);

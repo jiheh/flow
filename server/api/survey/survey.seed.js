@@ -32,52 +32,59 @@ const createSurveys = (adminID) => {
     ]
   })
   .then((foundAdmin) => {
-    // associating these surveys to the first channel of this admin
-    const foundAdminChannelID = foundAdmin.channels[0].id;
-    console.log(`\tCreating surveys and associating them with Admin ${adminID}, Channel ${foundAdminChannelID}`);
+    // go through each channel of the foundAdmin and add random surveys to each channel
+    const foundAdminChannels = foundAdmin.channels;
+    console.log(`\tCreating surveys for Admin ${adminID}`);
 
-    const surveys = surveyDataCreator(foundAdmin.id, foundAdminChannelID);
+    // each channel gets three random surveys
+    return Promise.map(foundAdminChannels, (channel => {
+      console.log(`\t\tChannel ${channel.id}`);
+      // pick three random surveys
+      let surveys = surveyDataCreator(4, foundAdmin.id, channel.id);
 
-    // create surveys in the array
-    return Promise.all(surveys.map(s => {
-      const survey = s;
-      const surveyQuestions = survey.questions;
+      // create surveys in the array
+      return Promise.all(surveys.map(s => {
+        const survey = s;
+        const surveyQuestions = survey.questions;
 
-      return Survey.create(survey)
-        // create survey based on data
-        .then(newlyCreatedSurvey => {
-          // add this survey to all users in the channel
-          return Channel.findById(foundAdminChannelID)
-            .then(foundChannel => {
-              return foundChannel.getUsers();
-            })
-            .then(allChannelUsers => {
-              return Promise.all(allChannelUsers.map(user => user.addSurvey(newlyCreatedSurvey)));
-            })
-            .then(resolvedPromiseArray => {
-              console.log(`\t\t\tSurvey "${newlyCreatedSurvey.name}" has been ` +
-                          `associated with all ${resolvedPromiseArray.length} users in current channel`);
-              return newlyCreatedSurvey;
+        return Survey.create(survey)
+          // create survey based on data
+          .then(newlyCreatedSurvey => {
+            console.log(`\t\tQuestions have been created for Survey ${newlyCreatedSurvey.id}`)
+            // now create questions
+            return Promise.map(surveyQuestions, (q => Question.create(q)))
+                    .then(newlyCreatedQuestionsArray => {
+                      return Promise.map(newlyCreatedQuestionsArray, (newQuestion => {
+                        // and associate those questions with the current survey
+                        return newlyCreatedSurvey.addQuestion(newQuestion);
+                      }))
+                    })
+          })
+      }))
+        .then(allSurveysForCurrentChannel => {
+          // add survey to every user in the channel
+          const flattenedSurveys = _.flattenDeep(allSurveysForCurrentChannel);
+
+          return channel.getUsers()
+            .then(allUsersFromChannel => {
+             return Promise.map(allUsersFromChannel, (user) => {
+               return Promise.map(flattenedSurveys, (survey) => {
+                 return user.addSurvey(survey);
+               })
+             });
+
             })
         })
-        .then(newlyCreatedSurvey => {
-          // now create questions
-          return Promise.all(surveyQuestions.map(q => Question.create(q)))
-                  .then(newlyCreatedQuestionsArray => {
-                    return Promise.all(newlyCreatedQuestionsArray.map(newQuestion => {
-                      // and associate those questions with the current survey
-                      return newlyCreatedSurvey.addQuestion(newQuestion);
-                    }))
-                  })
-
+        .then(r => {
+          console.log(`\t\tSurveys have been associated with users in Channel ${channel.id}`)
         })
-    }));
+        .catch(err => {
+          console.log(err);
+        })
+
+    }))
 
   })
-  .then(newlyCreatedSurveysArray => {
-    console.log(`\tSurvey Seeding Complete: Created ${newlyCreatedSurveysArray.length} surveys`);
-  })
-
 };
 
 module.exports = createSurveys;

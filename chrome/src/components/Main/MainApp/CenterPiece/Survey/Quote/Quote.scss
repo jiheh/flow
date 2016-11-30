@@ -14,6 +14,8 @@
     transition: 0.5s;
     transform: translateY(2.5px);
     transition-function: ease-in;
+    -webkit-animation: dissolveInQuote 3s;
+    -webkit-animation-fill-mode: forwards;
   }
 
   .quote-origin {
@@ -38,4 +40,13 @@
 
   }
 
+}
+
+@keyframes dissolveInQuote {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

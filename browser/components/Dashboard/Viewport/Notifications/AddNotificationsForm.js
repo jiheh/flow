@@ -6,7 +6,7 @@ class AddNotificationsForm extends Component {
 
 		this.state = {
 			email: '',
-      notifications:[],
+      notifications:['*'],
 			channelId: this.props.channel.id,
 		};
 	}
@@ -16,15 +16,18 @@ class AddNotificationsForm extends Component {
 		return(
 			<div id='addnotificationform' className='container-fluid'>
 				<h3>Add Notifications to {this.props.channel.name}</h3>
-
+				{console.log(this.state)}
 				<br />
 				<form onSubmit={this.submitForm}>
-					<label className='pt-label'>Notification Name
+				{
+					this.state.notifications.map((notif,idx) =>(
+						<div key={idx}>
+					<label className='pt-label'>Notification {idx+1 } Name
 					  <div className='pt-input-group'>
 					    <input  className='pt-input' type='notificationName' name='notificationName' dir='auto' />
 					  </div>
 					</label>
-					<label className='pt-label'>Notification Body
+					<label className='pt-label'>Notification {idx+1 } Body
 					  <div className='pt-input-group'>
 					    <input  className='pt-input' type='notificationBody' name='notificationBody' dir='auto' />
 					  </div>
@@ -34,8 +37,10 @@ class AddNotificationsForm extends Component {
 
 					<hr />
 
+					</div>
+					))}
 					<div>
-						<button type='button' className='pt-button pt-icon-add' onClick={this.newQuestion}>Add a Notification</button>
+						<button type='button' className='pt-button pt-icon-add' onClick={this.addNotification}>Add a Notification</button>
 						<button type='submit' className='pt-button pt-intent-success'>Submit</button>
 					</div>
 				</form>
@@ -44,11 +49,11 @@ class AddNotificationsForm extends Component {
 		)
 	}
 
-  addAnnouncement (){
-
+  addNotification = () => {
+		this.setState({notifications: this.state.notifications.concat(['*'])})
   }
 
-  response (){
+  response = () => {
     
   }
 

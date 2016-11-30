@@ -7,12 +7,11 @@ import { receiveNotifications } from '../../../../reducers/notifications'
 const mapStateToProps = ({notifications,channels}) => ({
   notifications: notifications,
   currentChannel: channels.currentChannel,
-	channels
 });
 
 const mapDispatchToProps = () => dispatch => ({
-	submitSurvey: form => {
-		axios.post('/api/survey', form)
+	submitNotification: form => {
+		axios.post('/api/announcements', form)
 		.catch(console.error);
 	},
   receiveNotifications: (channelId) =>{

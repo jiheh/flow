@@ -16,7 +16,6 @@ class Question extends Component {
       <div className="question">
         <span ref="currentQuestion">{question.text}</span>
         <Response
-          console={console.log("Jiheh Habibi", this.refs.currentQuestion)}
           questionRef={this.refs.currentQuestion}
           questionId={question.id}
           surveyId={surveyId}

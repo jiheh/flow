@@ -14,7 +14,8 @@ export const receiveNotifications = createAction(RECEIVE_NOTIFICATIONS);
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
   RECEIVE_NOTIFICATIONS: (state, { payload }) => {
-    return { ...state, notifications: payload };
+    console.log('payload',payload)
+    return { state, notifications: payload };
   }
 }, initialState);
 

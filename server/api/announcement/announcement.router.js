@@ -84,7 +84,7 @@ router.post('/', (req, res, next) => {
 
 // GET - fetch all announcement in one channel
 router.get('/allAnnouncements/:channelId', (req, res, next) => { 
-  console.log('**********************')
+  console.log('**********************',req.params.channelId)
   if(!req.user) throw new Error('Only admins can access announcements. Please log in.')
   Admin.findById(1)
   .then(admin => {
@@ -92,8 +92,10 @@ router.get('/allAnnouncements/:channelId', (req, res, next) => {
   })
   .then(channels => {
     return channels.filter(channel =>{
-      return channel.admin_id === req.params.channelId && admin_id === 1
-    }).length > 0
+      console.log(channel.id,parseInt(req.params.channelId),channel['Admin-ChannelItem'].admin_id,req.user.id)
+      // return channel['Admin-ChannelItem'].admin_id === parseInt(req.params.channelId) && channel['Admin-ChannelItem'].admin_id === req.user.id
+      return channel.id === parseInt(req.params.channelId) && channel['Admin-ChannelItem'].admin_id === req.user.id
+  }).length > 0
   })
   .then(val => {
     console.log("IN !!!",val)

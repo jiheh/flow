@@ -6,7 +6,8 @@ import { receiveNotifications } from '../../../../reducers/notifications'
 
 const mapStateToProps = ({notifications,channels}) => ({
   notifications: notifications,
-  currentChannel: channels.currentChannel
+  currentChannel: channels.currentChannel,
+	channels
 });
 
 const mapDispatchToProps = () => dispatch => ({

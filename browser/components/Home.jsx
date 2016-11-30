@@ -18,7 +18,7 @@ export default () => (
           Discover beautiful images, music, and personal-reflection tools everytime you open a new tab
         </p>
         <br />
-        <a className='pt-button pt-fill' role='button' tabIndex='0'>Add flow to Your Chrome Browser</a>
+        <a className='pt-button pt-fill' role='button' tabIndex='0'>Add flow to your Chrome browser</a>
       </div>
     </div>
 

@@ -33,7 +33,7 @@ export default class HomeLogin extends Component {
           className="pt-button pt-fill"
           onClick={this.open}
         >
-          Log In or Sign Up
+          Log in or Sign up
         </button>
         <LogInForm
           showModal={this.state.showModal}

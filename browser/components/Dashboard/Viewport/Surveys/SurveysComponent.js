@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Surveys from './Surveys';
-import NewSurveyForm from './NewSurveyForm';
+import Surveys from './Surveys.jsx';
+import NewSurveyForm from './NewSurveyForm.jsx';
 
 class SurveysComponent extends Component {
 

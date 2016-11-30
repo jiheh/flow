@@ -5,7 +5,7 @@ import '../../Widgets.scss';
 
 const SoundSection = ({  }) => (
   <div className="sounds-section">
-    <h4>SOUNDS</h4>
+    <h4>SOOTHING SOUNDS</h4>
 
     <div className="grid">
 

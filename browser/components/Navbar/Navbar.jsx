@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import './Navbar.scss';
+
 
 import LogInForm from './LogIn';
 
@@ -26,7 +27,7 @@ export default class Navigation extends Component {
   
     return (
 
-      <nav className="pt-navbar">
+      <nav className="nav pt-navbar">
         <div className="pt-navbar-group pt-align-left">
           <Link to='/dashboard'>
             <div className="pt-navbar-heading">Flow Administrator</div>

@@ -38,11 +38,8 @@ Organization.belongsTo(Admin, { as: 'Head' });
 Admin.hasMany(Survey); // Admin.getSurveys, get all surveys by this admin
 Survey.belongsTo(Admin, {as: 'Owner'}); // Survey.getOwner
 
-// we need to define custom through tables to effectively specify the "unique" property
-  // User.belongsToMany(Survey, {as: 'Surveys', through: 'Survey-Participant'}); // When user asks the API, "What surveys do I have for today?" User.getSurveys({where: {active...
-  // Survey.belongsToMany(User, {as: 'Participants', through: 'Survey-Participant'}); // Survey.getParticipants
-User.belongsToMany(Survey, {as: 'Surveys', through: {model: SurveyParticipant, unique: false}, foreignKey: 'survey_id'}); // When user asks the API, "What surveys do I have for today?" User.getSurveys({where: {active...
-Survey.belongsToMany(User, {as: 'Participants', through: {model: SurveyParticipant, unique: false}, foreignKey: 'participant_id'}); // Survey.getParticipants
+User.belongsToMany(Survey, {through: 'Survey-Participant'});
+Survey.belongsToMany(User, {through: 'Survey-Participant'});
 
 Survey.belongsTo(Channel);
 Channel.hasMany(Survey);

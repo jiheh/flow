@@ -10,7 +10,8 @@ export default ({ currentChannel }) => (
   <div className="viewport">
 
     {currentChannel.id &&
-     <div>
+    
+    <div>
     <ChannelHeaderContainer />
 
     <div className="viewport-content">
@@ -48,6 +49,6 @@ export default ({ currentChannel }) => (
 
     </div></div>
     }
-    {!currentChannel.id && <div>OVERVIEW</div>}
+
   </div>
 );

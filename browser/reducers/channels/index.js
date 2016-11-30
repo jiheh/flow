@@ -19,7 +19,8 @@ export const setCurrentChannel = createAction(SET_CURRENT_CHANNEL);
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
   RECEIVE_CHANNELS: (state, { payload }) => {
-    return { ...state, allChannels: payload };
+    const newCurrentChannel = payload.length ? payload[0] : {};
+    return { ...state, allChannels: payload, currentChannel: newCurrentChannel };
   },
   SET_CURRENT_CHANNEL: (state, { payload }) => {
     return { ...state, currentChannel: payload }

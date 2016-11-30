@@ -7,7 +7,7 @@ import rootReducer from './reducers';
 
 const enhancer = compose(
   applyMiddleware(thunk, createLogger()),
-  persistState(['currentAdmin']),
+  persistState(['currentAdmin', 'channels']),
 )
 
 export default createStore(rootReducer, enhancer);

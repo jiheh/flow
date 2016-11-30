@@ -82,4 +82,51 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+// GET - fetch all announcement in one channel
+router.get('/allAnnouncements/:channelId', (req, res, next) => { 
+  console.log('**********************')
+  if(!req.user) throw new Error('Only admins can access announcements. Please log in.')
+  Admin.findById(1)
+  .then(admin => {
+    return admin.getChannels()
+  })
+  .then(channels => {
+    return channels.filter(channel =>{
+      return channel.admin_id === req.params.channelId && admin_id === 1
+    }).length > 0
+  })
+  .then(val => {
+    console.log("IN !!!",val)
+    if(!val) return false
+    else{
+      return (
+         Announcement.findAll({
+          include:[{
+            model:Channel
+          }],
+          where:{
+            channel_id:req.params.channelId
+          }
+        })
+      )
+    }
+  })
+  .then(announcements => {
+    announcements ? res.send(announcements) : res.send([])
+  })
+  .catch(next)
+  // Announcement.findAll({
+  //   include:[{
+  //     model:Channel
+  //   }],
+  //   where:{
+  //     channel_id:req.params.channelId
+  //   }
+  // })
+  // .then(announcements => {
+
+  // })
+  // .then(res.send(announcements))
+})
+
 module.exports = router;

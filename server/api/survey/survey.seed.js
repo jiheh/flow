@@ -18,50 +18,45 @@ const surveyDataCreator = require('../survey.data');
 const createSurveys = (adminID) => {
   console.log(chalk.yellow(`SEEDING SURVEYS`));
   const surveysToCreate = surveyDataCreator(4, -1, -1);
+  let admin;
+  let channels;
 
   return Admin.findOne({
     where: {
       id: adminID,
     },
   })
-  .then((foundAdmin) => {
-    console.log(`\tCreating surveys for Admin ${adminID}`);
-    return Promise.map(surveysToCreate, surveyToCreate => {
-      let questionsToCreate = surveyToCreate.questions;
-      let survey;
-      return Survey.create({
-        name: surveyToCreate.name,
-        description: surveyToCreate.description,
-        active: true
-      })
-        .then(createdSurvey => {
-          survey = createdSurvey;
-          return Promise.map(questionsToCreate, question => {
-            return survey.createQuestion(question);
+    .then((foundAdmin) => {
+      console.log(`\tCreating surveys for Admin ${adminID}`);
+      admin = foundAdmin;
+      return admin.getChannels();
+    })
+    .then((foundChannels) => {
+      return Promise.map((foundChannels), channel => {
+        return Promise.map(surveysToCreate, surveyToCreate => {
+          let questionsToCreate = surveyToCreate.questions;
+          let survey;
+          return Survey.create({
+            name: surveyToCreate.name,
+            description: surveyToCreate.description,
+            active: true,
           })
-            .then(() => {
-              return survey.setOwner(foundAdmin);
-            })
-            .then(() => {
-              return foundAdmin.addSurvey(survey);
-            })
-            .then(() => {
-              return foundAdmin.getChannels();
-            })
-            .then(channels => {
-              return Promise.map(channels, channel => {
-                return survey.setChannel(channel)
-                  .then(() => {
-                    return channel.getUsers();
-                  })
-                  .then(channelUsers => {
-                    return survey.setUsers(channelUsers);
-                  });
-              });
+          .then(createdSurvey => {
+            survey = createdSurvey;
+            return Promise.map(questionsToCreate, question => {
+              return survey.createQuestion(question);
             });
+          })
+          .then(() => Promise.all([
+            survey.setOwner(admin),
+            admin.addSurvey(survey),
+            survey.setChannel(channel),
+          ]))
+          .then(() => channel.getUsers())
+          .then((users) => survey.setUsers(users));
         });
-    });
-  })
+      });
+    })
     .then(() => console.log('seeded surveys'));
 }
 

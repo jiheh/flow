@@ -3,6 +3,7 @@ import { outerReducer } from 'redux-async-initial-state';
 
 import meditationWidget from './widgets/meditationWidget';
 import quote from './quote';
+import author from './author';
 import announcements from './announcements';
 import invites from './invites';
 import currentChannels from './currentChannels';
@@ -17,6 +18,7 @@ export default outerReducer(combineReducers({
   invites,
   currentChannels,
   quote,
+  author,
   surveys,
   settings,
   docker,

@@ -1,28 +1,67 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import '../Response.scss';
 
-const Binary = ({
-  questionId,
-  surveyId,
-  sendResponse,
-}) => (
-  <div className='response-binary'>
-    <button
-      onClick={() => sendResponse({ surveyId, questionId, value: 'YES' })}
-    >
-      YES
-    </button>
-    <button
-      onClick={() => sendResponse({ surveyId, questionId, value: 'NO' })}
-    >
-      NO
-    </button>
-  </div>
-);
+class BinaryComponent extends Component {
+  constructor (props) {
+    super(props)
+  }
 
-Binary.propTypes = {
-  questionId: PropTypes.number.isRequired,
-  surveyId: PropTypes.number.isRequired,
-  sendResponse: PropTypes.func.isRequired,
-};
+  static propTypes = {
+    questionId: PropTypes.number.isRequired,
+    surveyId: PropTypes.number.isRequired,
+    sendResponse: PropTypes.func.isRequired,
+  };
 
-export default Binary;
+  componentDidMount() {
+
+  }
+
+  render() {
+    const {
+      questionId,
+      surveyId,
+      sendResponse,
+    } = this.props;
+
+    let clicked = false;
+
+    let onClickFunction = (currentRef, type) => {
+      if (!clicked) {
+        clicked = true;
+        if (type === "YES") {
+          this.refs.noIcon.className = "dissolving";
+          currentRef.className = "dissolvingBigger";
+        } else if (type === "NO") {
+          this.refs.yesIcon.className = "dissolving";
+          currentRef.className = "dissolvingBigger";
+        }
+        setTimeout(() => {
+          sendResponse({ surveyId, questionId, value: type });
+          this.refs.yesIcon.className = "individualEmoji";
+          this.refs.noIcon.className = "individualEmoji";
+          setTimeout(() => {
+            clicked = false;
+          }, 1100);
+        }, 1000)
+      }
+    }
+
+    return (
+      <div className='response-binary'>
+        <img
+          ref="yesIcon"
+          src='http://localhost:8080/images/yes.png'
+          onClick={() => onClickFunction(this.refs.yesIcon, "YES")}>
+        </img>
+        <img
+          ref="noIcon"
+          src='http://localhost:8080/images/no.png'
+          onClick={() => onClickFunction(this.refs.noIcon, "NO")}>
+        </img>
+      </div>
+    );
+  }
+
+}
+
+export default BinaryComponent;

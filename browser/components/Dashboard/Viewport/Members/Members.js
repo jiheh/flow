@@ -6,7 +6,7 @@ import './Members.scss'
 export default ({ toggleForm, currentChannel }) => (
 	<div id="members" className="container-fluid">
 		<h3>Members</h3>
-    <button onClick={toggleForm} className='pt-button'>Add New Member</button>
+    <button onClick={toggleForm} className='pt-button button-float-right'>Add New Member</button>
 		<hr />
 		<div>
 				<Row className="show-grid">

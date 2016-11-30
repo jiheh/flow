@@ -1,25 +1,32 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import './Question.scss';
 
 import Response from './Response/ResponseContainer.js';
 
-const Question = ({
-  question,
-  surveyId,
-}) => (
-  <div className="question">
-    <h2>{question.text}</h2>
-    <Response
-      questionId={question.id}
-      surveyId={surveyId}
-      type={question.type}
-      responseOptions={question.responseOptions}
-    />
-  </div>
-);
+class Question extends Component {
 
-Question.propTypes = {
-  question: PropTypes.object.isRequired,
-};
+  static propTypes = {
+    question: PropTypes.object.isRequired,
+  };
+
+  render() {
+    const { question, surveyId } = this.props;
+
+    return (
+      <div className="question">
+        <span ref="currentQuestion">{question.text}</span>
+        <Response
+          questionRef={this.refs.currentQuestion}
+          responseOptions={question.responseOptions}
+          questionId={question.id}
+          surveyId={surveyId}
+          type={question.type}
+          className="responseDiv"
+        />
+      </div>
+    );
+
+  }
+}
 
 export default Question;

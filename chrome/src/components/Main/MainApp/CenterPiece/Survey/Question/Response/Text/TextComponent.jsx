@@ -26,8 +26,6 @@ class TextComponent extends Component {
     if (evt.which == 13) {
       const { surveyId, questionId } = this.props;
       const { input } = this.state;
-      console.log("keepo kappa pog")
-      console.log(onClickFunc)
       onClickFunc();
     }
   }
@@ -60,7 +58,6 @@ class TextComponent extends Component {
           this.refs.textBar.value = "";
           this.refs.textBar.blur();
           this.refs.textBar.className = "newTextBar";
-          console.log("kappaaaaaaa")
           setTimeout(() => {
             clicked = false;
           }, 1100);

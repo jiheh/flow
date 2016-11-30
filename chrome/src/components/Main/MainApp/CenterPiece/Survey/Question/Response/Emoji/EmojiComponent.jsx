@@ -49,9 +49,6 @@ class EmojiComponent extends Component {
           this.refs.sadEmoji.className = this.refs.sadEmoji.className = "individualEmoji";
           setTimeout(() => {
             clicked = false;
-            console.log("ur a wizard harry")
-            console.log(questionRef)
-            console.log(this.refs.currentQuestion)
           }, 1100);
         }, 1000)
       }

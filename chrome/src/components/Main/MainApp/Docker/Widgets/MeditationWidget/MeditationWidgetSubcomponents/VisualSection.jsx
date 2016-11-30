@@ -4,7 +4,7 @@ import React from 'react';
 import '../../Widgets.scss';
 
 const MeditationSection = ({  }) => (
-  <div className="meditation-section">
+  <div className="meditation-section section">
     <h4>CALMING VISUALS</h4>
 
     <div className="grid">

@@ -4,7 +4,7 @@ import React from 'react';
 import '../../Widgets.scss';
 
 const SoundSection = ({  }) => (
-  <div className="sounds-section">
+  <div className="sounds-section section">
     <h4>SOOTHING SOUNDS</h4>
 
     <div className="grid">

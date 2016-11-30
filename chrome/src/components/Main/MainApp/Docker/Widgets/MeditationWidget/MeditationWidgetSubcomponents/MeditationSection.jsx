@@ -5,7 +5,7 @@ import '../../Widgets.scss';
 import '../MeditationWidget.scss';
 
 const MeditationSection = ({  }) => (
-  <div className="meditation-section">
+  <div className="meditation-section section">
     <h4>GUIDED MEDITATIONS</h4>
 
     <div className="grid">

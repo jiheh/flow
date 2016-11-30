@@ -1,23 +1,29 @@
-h4 {
-  margin: 0;
-  font-weight: 300;
+.meditation-widget {
 
-}
+  h4 {
+    margin: 0;
+    font-weight: 300;
+  }
 
-.meditation-section {
+  .meditation-section {
+    .grid {
+      display: flex;
+    }
 
-  background-color: rgba(255,255,255,0.5);
+  }
 
-  .grid {
-    display: flex;
+  .section {
+    background-color: rgba(255,255,255,0.8);
+    padding: 12px;
+  }
+
+  .sounds-section {
+
+  }
+
+  .visuals-section {
+
   }
 
 }
 
-.sounds-section {
-
-}
-
-.visuals-section {
-
-}

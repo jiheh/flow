@@ -81,8 +81,6 @@ class EmojiComponent extends Component {
 
 // setTimeout(() => {
 //   sendResponse({ surveyId, questionId, value: 'HAPPY' });
-//   console.log("MAH BOI HABIBI");
-//   console.log(this.refs.happyEmoji);
 // }, 2000)
 export default EmojiComponent;
 // const Emoji = ({

@@ -12,7 +12,6 @@ const Question = require('./api/question/question.model');
 const User = require('./api/user/user.model');
 const UserInfo = require('./api/userInfo/userInfo.model');
 const Announcement = require('./api/announcement/announcement.model');
-const SurveyParticipant = require('./api/through/survey.participant.model');
 
 // User
 User.belongsToMany(Channel, { through: 'User-ChannelItem' });

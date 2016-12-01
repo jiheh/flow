@@ -12,9 +12,7 @@ class QuoteComponent extends Component {
   };
 
   componentDidMount() {
-    let random = Math.floor(Math.random() * 15);
-    this.props.getQuote(random);
-    this.props.getAuthor(random);
+    this.props.getQuote();
   }
 
   render() {

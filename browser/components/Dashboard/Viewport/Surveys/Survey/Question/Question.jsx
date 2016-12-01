@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import QuestionData from './QuestionData/QuestionData.jsx';
+import './Question.scss';
 
 const Question = ({ question, index }) => (
   <div className="question">
     <h5>Question {index}:</h5>
-    <div>{question.text}</div>
-    <div>Type: {question.type}</div>
+    <div className="question-text">{question.text}</div>
     <br />
     <QuestionData
       type={question.type}

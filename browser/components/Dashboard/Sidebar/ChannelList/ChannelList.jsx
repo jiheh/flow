@@ -9,7 +9,7 @@ class ChannelList extends Component {
   }
 
   componentDidMount() {
-    this.props.recieveChannels()
+    /* this.props.recieveChannels()*/
   }
   render() {
     let {channels,currentChannelID,setCurrentChannel,searchInput} = this.props

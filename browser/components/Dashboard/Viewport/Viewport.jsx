@@ -11,44 +11,46 @@ export default ({ currentChannel }) => (
   <div className="viewport">
 
     {currentChannel.id &&
-     <div>
-    <ChannelHeaderContainer />
+    
+    <div>
+      <ChannelHeaderContainer />
 
-    <div className="viewport-content">
+      <div className="viewport-content">
 
-      <Tabs>
-        <TabList>
-          <Tab>Overview</Tab>
-          <Tab>Surveys</Tab>
-          <Tab>Notifications</Tab>
-          <Tab>Members</Tab>
-          <Tab>Settings</Tab>
-        </TabList>
+        <Tabs>
+          <TabList>
+            <Tab>Overview</Tab>
+            <Tab>Surveys</Tab>
+            <Tab>Notifications</Tab>
+            <Tab>Members</Tab>
+            <Tab>Settings</Tab>
+          </TabList>
 
-        <TabPanel>
-          <h3>Overview</h3>
-        </TabPanel>
+          <TabPanel>
+            <h3>Overview</h3>
+          </TabPanel>
 
-        <TabPanel>
-          <SurveysContainer />
-        </TabPanel>
+          <TabPanel>
+            <SurveysContainer />
+          </TabPanel>
 
-        <TabPanel>
-          <NotificationsContainer />
-        </TabPanel>
+          <TabPanel>
+            <NotificationsContainer />
+          </TabPanel>
 
-        <TabPanel>
-          <MembersContainer />
-        </TabPanel>
+          <TabPanel>
+            <MembersContainer />
+          </TabPanel>
 
-        <TabPanel>
-          <h3>Settings</h3>
+          <TabPanel>
+            <h3>Settings</h3>
 
-        </TabPanel>
-      </Tabs>
+          </TabPanel>
+        </Tabs>
 
-    </div></div>
+      </div>
+    </div>
     }
-    {!currentChannel.id && <div>OVERVIEW</div>}
+
   </div>
 );

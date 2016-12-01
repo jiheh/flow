@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
 import { propTypes as quotePropTypes } from '../../../../../../reducers/quote';
+import { propTypes as authorPropTypes } from '../../../../../../reducers/author';
 import Quote from './Quote.jsx';
 
 class QuoteComponent extends Component {
   static propTypes = {
     getQuote: PropTypes.func.isRequired,
     quote: quotePropTypes,
+    author: authorPropTypes,
   };
 
   componentDidMount() {

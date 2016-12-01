@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import './Quote.scss';
 
 import { propTypes as quotePropTypes } from '../../../../../../reducers/quote';
+import { propTypes as authorPropTypes } from '../../../../../../reducers/author';
 
 const Quote = ({ quote, author }) => (
   <div className = "quote">
@@ -17,6 +18,7 @@ const Quote = ({ quote, author }) => (
 
 Quote.propTypes = {
   quote: quotePropTypes,
+  author: authorPropTypes,
 };
 
 export default Quote;

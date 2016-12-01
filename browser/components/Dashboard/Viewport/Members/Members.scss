@@ -1,6 +1,7 @@
-.imgClass{
-  height:100px
-}
-.button-float-right {
-  float:right
+.member-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
 }

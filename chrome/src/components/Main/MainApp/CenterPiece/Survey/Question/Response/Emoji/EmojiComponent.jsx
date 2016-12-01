@@ -57,18 +57,21 @@ class EmojiComponent extends Component {
     return (
       <div className='response-emoji'>
         <img
+          className="individualEmoji"
           ref="happyEmoji"
           src='http://localhost:8080/images/happy.png'
           onClick={() => onClickFunction(this.refs.happyEmoji, "HAPPY")}>
         </img>
 
         <img
+          className="individualEmoji"
           ref="neutralEmoji"
           src='http://localhost:8080/images/neutral.png'
           onClick={() => onClickFunction(this.refs.neutralEmoji, "NEUTRAL")}>
         </img>
 
         <img
+          className="individualEmoji"
           ref="sadEmoji"
           src='http://localhost:8080/images/sad.png'
           onClick={() => onClickFunction(this.refs.sadEmoji, "SAD")}>
@@ -79,43 +82,4 @@ class EmojiComponent extends Component {
 
 }
 
-// setTimeout(() => {
-//   sendResponse({ surveyId, questionId, value: 'HAPPY' });
-// }, 2000)
 export default EmojiComponent;
-// const Emoji = ({
-//   questionId,
-//   surveyId,
-//   sendResponse,
-// }) => (
-//   <div className='response-emoji'>
-//     <img
-//       src='http://localhost:8080/images/happy.png'
-//       onClick={() => setTimeout(() => { sendResponse({ surveyId, questionId, value: 'HAPPY' }); }, 2000)}>
-//     </img>
-//
-//     <img
-//       src='http://localhost:8080/images/neutral.png'
-//       onClick={() => setTimeout(() => { sendResponse({ surveyId, questionId, value: 'NEUTRAL' }); }, 2000)}>
-//     </img>
-//
-//     <img
-//       src='http://localhost:8080/images/sad.png'
-//       onClick={() => setTimeout(() => { sendResponse({ surveyId, questionId, value: 'SAD' }); }, 2000)}>
-//     </img>
-//   </div>
-// );
-
-
-
-
-// class QuoteComponent extends Component {
-//   static propTypes = {
-//     getQuote: PropTypes.func.isRequired,
-//     quote: quotePropTypes,
-//   };
-//
-//
-// }
-//
-// export default QuoteComponent;

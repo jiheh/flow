@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Members from './Members';
+import Members from './Members.jsx';
 import AddMemberForm from './AddMemberForm';
 
 class MembersComponent extends Component {

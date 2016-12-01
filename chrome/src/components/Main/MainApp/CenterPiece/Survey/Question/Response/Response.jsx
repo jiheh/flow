@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 
 import EmojiComponent from './Emoji/EmojiComponent.jsx';
 import MultipleChoice from './MultipleChoice/MultipleChoice.jsx';
-import Binary from './Binary/Binary.jsx';
-import Text from './Text/TextComponent.jsx';
+import BinaryComponent from './Binary/BinaryComponent.jsx';
+import TextComponent from './Text/TextComponent.jsx';
 
 import './Response.scss';
 
@@ -33,14 +33,14 @@ const Response = ({
     />
     }
     {type === 'binary' &&
-    <Binary
+    <BinaryComponent
       questionId={questionId}
       surveyId={surveyId}
       sendResponse={sendResponse}
     />
     }
     {type === 'text' &&
-    <Text
+    <TextComponent
       questionId={questionId}
       surveyId={surveyId}
       sendResponse={sendResponse}

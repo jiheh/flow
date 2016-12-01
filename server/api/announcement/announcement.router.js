@@ -42,7 +42,7 @@ router.post('/chrome', (req, res, next) => {
 
 // POST - admin creates announcement
 router.post('/', (req, res, next) => {
-  const { channelIds, title, content } = req.body;
+  const { channelIds, title, contents } = req.body;
 
   if (!req.user || !channelIds.length) { throw HttpError(403); } // eslint-disable-line new-cap
 

@@ -3,6 +3,7 @@ import './Viewport.scss';
 import ChannelHeaderContainer from './ChannelHeader/ChannelHeaderContainer';
 import SurveysContainer from './Surveys/SurveysContainer';
 import MembersContainer from './Members/MembersContainer';
+import NotificationsContainer from './Notifications/NotificationsContainer'
 
 import {Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
 
@@ -34,7 +35,7 @@ export default ({ currentChannel }) => (
           </TabPanel>
 
           <TabPanel>
-            <div/>
+            <NotificationsContainer />
           </TabPanel>
 
           <TabPanel>

@@ -145,7 +145,7 @@ router.post('/', (req, res, next) => {
         ]);
       })
       .then(() => {
-        res.status(201).send();
+        res.status(201).send(survey);
       });
     })
   .catch(next);

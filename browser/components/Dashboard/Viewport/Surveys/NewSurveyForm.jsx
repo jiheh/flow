@@ -114,6 +114,7 @@ class SurveyForm extends Component {
 	};
 
 	submitForm = (e) => {
+    e.preventDefault();
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,

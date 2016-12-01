@@ -49,6 +49,7 @@
     "react-addons-css-transition-group": "^15.4.1",
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
+    "react-motion": "^0.4.5",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-tagcloud": "^1.0.0",

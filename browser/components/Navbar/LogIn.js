@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import { Modal, Button } from 'react-bootstrap';
 import { Spinner } from '@blueprintjs/core';
 
 export default class LogInForm extends Component {
@@ -34,51 +33,38 @@ export default class LogInForm extends Component {
 
   signup = () => {
     browserHistory.push('/signup');
-    this.props.close();
   }
 
   render() {
-    const { showModal, close } = this.props;
-
     return (
       <div>
-        <Modal show={showModal} onHide={close}>
-
-          <Modal.Header closeButton>
-            <Modal.Title>Log In</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  name="email" 
-                  type="email"
-                  className="form-control"
-                />
-              </div>
-              <div>
-                  <label>Password</label>
-                  <input 
-                    name="password"
-                    type="password"
-                    className="form-control"
-                  />
-              </div>
-              <br />
-
-              {this.state.loginSpinner ? <Spinner />
-              : <Button type="submit">Submit</Button>
-              }
-            </form>
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button onClick={this.signup}>Create an Organization</Button>
-          </Modal.Footer>
-
-        </Modal>
+        <form onSubmit={this.onSubmit}>
+          <div style={{ textAlign: 'center' }}>
+            <h5>Log In</h5>
+          </div>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              name="email"
+              type="email"
+              className="form-control"
+            />
+          </div>
+          <div>
+              <label>Password</label>
+              <input
+                name="password"
+                type="password"
+                className="form-control"
+              />
+          </div>
+          <br />
+          {this.state.loginSpinner ? <Spinner />
+          : <button className="pt-button pt-intent-primary" type="submit">Submit</button>
+          }
+          <strong style={{ marginLeft: '12px', marginRight: '12px' }}>or</strong>
+          <button className="pt-button pt-intent-success" onClick={this.signup}>Create an Organization</button>
+        </form>
       </div>
     );
   }

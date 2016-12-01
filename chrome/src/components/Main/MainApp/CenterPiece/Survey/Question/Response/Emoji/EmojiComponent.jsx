@@ -44,9 +44,9 @@ class EmojiComponent extends Component {
         setTimeout(() => {
           sendResponse({ surveyId, questionId, value: type });
           if (this.refs.happyEmoji && this.refs.neutralEmoji && this.refs.sadEmoji) {
-            this.refs.happyEmoji.className = this.refs.happyEmoji.className = "individualEmoji";
-            this.refs.neutralEmoji.className = this.refs.neutralEmoji.className = "individualEmoji";
-            this.refs.sadEmoji.className = this.refs.sadEmoji.className = "individualEmoji";
+            this.refs.happyEmoji.className = "individualEmoji";
+            this.refs.neutralEmoji.className = "individualEmoji";
+            this.refs.sadEmoji.className = "individualEmoji";
           }
           setTimeout(() => {
             clicked = false;

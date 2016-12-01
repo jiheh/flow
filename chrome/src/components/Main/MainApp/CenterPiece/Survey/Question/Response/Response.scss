@@ -291,3 +291,27 @@
     min-width: 35%;
   }
 }
+
+.response-multiple-choice > ul li {
+	display: inline;
+	list-style: none;
+	font-size: 17px;
+	color: white;
+	padding: 30px;
+}
+
+// .response-multiple-choice > ul > li > img {
+// 	display: block;
+// }
+
+.response-multiple-choice {
+	padding-top: 10px;
+}
+
+.response-multiple-choice > ul {
+	padding: 0;
+}
+
+.response-choice {
+	cursor: default;
+}

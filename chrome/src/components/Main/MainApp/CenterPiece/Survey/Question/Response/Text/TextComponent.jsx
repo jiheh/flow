@@ -55,9 +55,11 @@ class TextComponent extends Component {
         this.refs.textBar.className = "dissolvingBiggerInput";
         setTimeout(() => {
           this.props.sendResponse({ surveyId, questionId, value: input });
-          this.refs.textBar.value = "";
-          this.refs.textBar.blur();
-          this.refs.textBar.className = "newTextBar";
+          if (this.refs.textBar) {
+            this.refs.textBar.value = "";
+            this.refs.textBar.blur();
+            this.refs.textBar.className = "newTextBar";
+          }
           setTimeout(() => {
             clicked = false;
           }, 1100);

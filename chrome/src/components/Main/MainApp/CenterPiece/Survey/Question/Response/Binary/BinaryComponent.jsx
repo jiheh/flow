@@ -37,8 +37,10 @@ class BinaryComponent extends Component {
         }
         setTimeout(() => {
           sendResponse({ surveyId, questionId, value: type });
-          this.refs.yesIcon.className = "individualEmoji";
-          this.refs.noIcon.className = "individualEmoji";
+          if (this.refs.yesIcon && this.refs.noIcon) {
+            this.refs.yesIcon.className = "individualEmoji";
+            this.refs.noIcon.className = "individualEmoji";
+          }
           setTimeout(() => {
             clicked = false;
           }, 1100);

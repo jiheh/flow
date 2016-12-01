@@ -9,6 +9,12 @@ class Question extends Component {
     question: PropTypes.object.isRequired,
   };
 
+  componentWillUpdate() {
+    console.log("habibi");
+    console.log(this.refs.currentQuestion);
+    this.refs.currentQuestion.className = "questionSpan";
+  }
+
   render() {
     const { question, surveyId } = this.props;
 

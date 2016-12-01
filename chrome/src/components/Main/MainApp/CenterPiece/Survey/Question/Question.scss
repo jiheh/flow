@@ -3,19 +3,18 @@
   font-size: 1.5em;
   font-weight: 400;
   text-align: center;
-  // -webkit-animation: questionFade 4s;
-
-  // background-color: red;
 }
 
-// @keyframes questionFade {
-//   from { opacity: 0; font-size: 1.5em; }
-//   to { opacity: 1 ; font-size: 3.5em; }
-// }
-// .responseDiv {
-//   background-color: red;
-//   z-index: 99;
-//   width: 100%;
-//   height: 100%;
-//   // align-self: center;
-// }
+.questionSpan {
+  -webkit-animation: questionDissolveIn 1s;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes questionDissolveIn {
+  from {
+		opacity: 0;
+	}
+  to {
+		opacity: 1;
+	}
+}

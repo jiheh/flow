@@ -34,29 +34,10 @@ export default class Navigation extends Component {
           </Link>
         </div>
         <div className="pt-navbar-group pt-align-right">
-          
-          
+        <button className="pt-button pt-minimal" onClick={logoutAdmin}>Log Out</button>
 
-          {currentAdmin ?
-            (
-              <button className="pt-button pt-minimal" onClick={logoutAdmin}>Log Out</button>
-            ) : (
-              <button className="pt-button pt-minimal" onClick={this.open}>Log In</button>
-            )
-          }    
-          
         </div>
-
-        <LogInForm
-          showModal={this.state.showModal}
-          close={this.close}
-          login={loginAdmin}
-        />
-
       </nav>
-
-
-
     );
   }
 }

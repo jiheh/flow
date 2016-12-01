@@ -42,7 +42,7 @@ router.post('/chrome', (req, res, next) => {
 
 // POST - admin creates announcement
 router.post('/', (req, res, next) => {
-  const { channelIds, title, content } = req.body;
+  const { channelIds, title, contents } = req.body;
 
   if (!req.user || !channelIds.length) { throw HttpError(403); } // eslint-disable-line new-cap
 
@@ -81,54 +81,5 @@ router.post('/', (req, res, next) => {
   })
     .catch(next);
 });
-
-// GET - fetch all announcement in one channel
-router.get('/allAnnouncements/:channelId', (req, res, next) => { 
-  console.log('**********************',req.params.channelId)
-  if(!req.user) throw new Error('Only admins can access announcements. Please log in.')
-  Admin.findById(1)
-  .then(admin => {
-    return admin.getChannels()
-  })
-  .then(channels => {
-    return channels.filter(channel =>{
-      console.log(channel.id,parseInt(req.params.channelId),channel['Admin-ChannelItem'].admin_id,req.user.id)
-      // return channel['Admin-ChannelItem'].admin_id === parseInt(req.params.channelId) && channel['Admin-ChannelItem'].admin_id === req.user.id
-      return channel.id === parseInt(req.params.channelId) && channel['Admin-ChannelItem'].admin_id === req.user.id
-  }).length > 0
-  })
-  .then(val => {
-    console.log("IN !!!",val)
-    if(!val) return false
-    else{
-      return (
-         Announcement.findAll({
-          include:[{
-            model:Channel
-          }],
-          where:{
-            channel_id:req.params.channelId
-          }
-        })
-      )
-    }
-  })
-  .then(announcements => {
-    announcements ? res.send(announcements) : res.send([])
-  })
-  .catch(next)
-  // Announcement.findAll({
-  //   include:[{
-  //     model:Channel
-  //   }],
-  //   where:{
-  //     channel_id:req.params.channelId
-  //   }
-  // })
-  // .then(announcements => {
-
-  // })
-  // .then(res.send(announcements))
-})
 
 module.exports = router;

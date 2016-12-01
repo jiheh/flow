@@ -66,6 +66,11 @@
 	cursor: default;
 }
 
+.dissolvingQuestion {
+	-webkit-animation: dissolveQuestion 1s;
+	-webkit-animation-fill-mode: forwards;
+}
+
 @keyframes dissolve {
   from {
 		opacity: 0.5;
@@ -74,6 +79,15 @@
   to {
 		opacity: 0;
 		cursor: default;
+	}
+}
+
+@keyframes dissolveQuestion {
+  from {
+		opacity: 1;
+	}
+  to {
+		opacity: 0;
 	}
 }
 

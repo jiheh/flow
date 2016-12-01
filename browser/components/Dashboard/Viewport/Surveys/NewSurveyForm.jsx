@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import './NewSurveyForm.scss';
 
 class SurveyForm extends Component {
+  static propTypes = {
+    toggleForm: PropTypes.func.isRequired,
+  }
+
 	constructor(props) {
 		super(props);
 
@@ -114,6 +118,7 @@ class SurveyForm extends Component {
 	};
 
 	submitForm = (e) => {
+    e.preventDefault();
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
@@ -141,6 +146,9 @@ class SurveyForm extends Component {
 			.filter(el => el !== null)
 		}, () => {
 			this.props.submitSurvey(this.state)
+        .then(() => {
+         this.props.toggleForm();
+        });
 		})
 	};
 

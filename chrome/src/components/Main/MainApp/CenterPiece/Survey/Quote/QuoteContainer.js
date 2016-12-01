@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { setQuote } from '../../../../../../reducers/quote';
 import { setAuthor } from '../../../../../../reducers/author';
+import stockQuotes from './StockQuotes';
+import Chance from 'chance';
+const chance = new Chance();
 
 import QuoteComponent from './QuoteComponent.jsx';
 
@@ -15,20 +18,25 @@ const mapStateToProps = ({
 
 
 const mapDispatchToProps = () => dispatch => ({
-  getQuote: (number) => {
-    // TODO: CHANGE TO PRODUCTION SERVER
-    axios.get(`http://localhost:8080/api/quotes/${number}`)
-      .then(res => dispatch(setQuote(res.data)))
-    // TODO: error handling
-      .catch(console.error);
-  },
+  // gets random quote from server
+  getQuote: () => {
 
-  getAuthor: (number) => {
-    // TODO: CHANGE TO PRODUCTION SERVER
-    axios.get(`http://localhost:8080/api/authors/${number}`)
-      .then(res => dispatch(setAuthor(res.data)))
-    // TODO: error handling
-      .catch(console.error);
+    if (navigator.onLine) {
+      // TODO: CHANGE TO PRODUCTION SERVER
+      axios.get(`http://localhost:8080/api/quotes/random`)
+        .then(res => {
+          dispatch(setQuote(res.data.quote));
+          dispatch(setAuthor(res.data.author));
+        })
+        // TODO: error handling
+        .catch(console.error);
+    } else {
+      const quote = chance.pickone(stockQuotes);
+      dispatch(setQuote(quote.quote));
+      dispatch(setAuthor(quote.author));
+    }
+
+
   },
 
   saveSettings: (settings) => {

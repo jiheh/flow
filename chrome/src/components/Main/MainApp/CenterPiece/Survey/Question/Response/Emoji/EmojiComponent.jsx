@@ -20,14 +20,11 @@ class EmojiComponent extends Component {
       questionId,
       surveyId,
       sendResponse,
-      questionRef,
-      refs,
     } = this.props;
 
     let clicked = false;
 
     let onClickFunction = (currentRef, type) => {
-      console.log("EYYY HABBIBIII: ", document.getElementById("test"))
       if (!clicked) {
         clicked = true;
         if (type === "HAPPY") {
@@ -43,7 +40,7 @@ class EmojiComponent extends Component {
           this.refs.neutralEmoji.className = "dissolving";
           currentRef.className = "dissolvingBigger";
         }
-        document.getElementById("test").className = "dissolvingQuestion";
+        document.getElementById("questionPrompt").className = "dissolvingQuestion";
         setTimeout(() => {
           sendResponse({ surveyId, questionId, value: type });
           if (this.refs.happyEmoji && this.refs.neutralEmoji && this.refs.sadEmoji) {

@@ -12,18 +12,14 @@ const Response = ({
   surveyId,
   type,
   sendResponse,
-  questionRef,
   responseOptions,
-  refs,
 }) => (
   <div className="response">
     {type === 'emoji' &&
     <EmojiComponent
-      questionRef={console.log()}
       questionId={questionId}
       surveyId={surveyId}
       sendResponse={sendResponse}
-      refs={refs}
     />
     }
     {type === 'multiple_choice' &&

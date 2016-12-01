@@ -35,6 +35,7 @@ class BinaryComponent extends Component {
           this.refs.yesIcon.className = "dissolving";
           currentRef.className = "dissolvingBigger";
         }
+        document.getElementById("questionPrompt").className = "dissolvingQuestion";
         setTimeout(() => {
           sendResponse({ surveyId, questionId, value: type });
           if (this.refs.yesIcon && this.refs.noIcon) {

@@ -15,18 +15,14 @@ const mapStateToProps = ({
 
 
 const mapDispatchToProps = () => dispatch => ({
-  getQuote: (number) => {
+  // gets random quote from server
+  getQuote: () => {
     // TODO: CHANGE TO PRODUCTION SERVER
-    axios.get(`http://localhost:8080/api/quotes/${number}`)
-      .then(res => dispatch(setQuote(res.data)))
-    // TODO: error handling
-      .catch(console.error);
-  },
-
-  getAuthor: (number) => {
-    // TODO: CHANGE TO PRODUCTION SERVER
-    axios.get(`http://localhost:8080/api/authors/${number}`)
-      .then(res => dispatch(setAuthor(res.data)))
+    axios.get(`http://localhost:8080/api/quotes/random`)
+      .then(res => {
+        dispatch(setQuote(res.data.quote));
+        dispatch(setAuthor(res.data.author));
+      })
     // TODO: error handling
       .catch(console.error);
   },

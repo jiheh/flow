@@ -10,14 +10,12 @@ const mapStateToProps = ({channels}) => ({
 
 const mapDispatchToProps = () => dispatch => ({
 	submitSurvey: form => {
-		axios.post('/api/survey', form)
+		return axios.post('/api/survey', form)
       .then(survey => {
         // console.log('posted survey: ');
         // console.log(survey);
         dispatch(addSurveyToCurrent(survey.data));
-        window.location.reload();
       })
-		.catch(console.error);
   }
 });
 

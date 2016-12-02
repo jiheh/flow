@@ -9,12 +9,14 @@ const Button = ({
   active,
   invites,
 }) => (
-
-  <img
-    className={`docker-button ${active ? 'active-button' : ''} ${invites && invites.length && widgetName === "Channels" ? "flashing" : ""}`}
-    src={buttonImg}
-    onClick={() => toggleDockerViewport(widgetName)}
-  />
+  <span className="buttonHoverTextTrigger">
+    <span className="buttonHoverText">{widgetName}</span>
+    <img
+      className={`docker-button ${active ? 'active-button' : ''} ${invites && invites.length && widgetName === "Channels" ? "flashing" : ""}`}
+      src={buttonImg}
+      onClick={() => toggleDockerViewport(widgetName)}
+    />
+  </span>
 
 );
 

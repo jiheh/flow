@@ -25,13 +25,21 @@ router.post('/', (req, res, next) => {
         let userInfo;
         if (!foundUserInfo) {
           // UserInfo not found, try create
+          let newUser;
           return UserInfo.create(req.body)
             .then((createdUserInfo) => {
               userInfo = createdUserInfo;
               return User.create();
             })
             .then((user) => {
-              return user.setUserInfo(userInfo);
+              newUser = user;
+              return Channel.findById(1)
+            })
+            .then((channel) => {
+              return channel.addUser(newUser);
+            })
+            .then(() => {
+              return newUser.setUserInfo(userInfo);
             })
             .then((user) => {
               res.json(user.hash);
@@ -61,7 +69,7 @@ router.post('/', (req, res, next) => {
   })
     .catch(next);
 });
- 
+
 router.get('/allUsers/:channelId',(req,res) =>{
   if(!req.user) throw new Error('Only Admins have access to this users.')
   User.findAll({
@@ -69,11 +77,11 @@ router.get('/allUsers/:channelId',(req,res) =>{
   .then(users =>{
     return users.filter(user =>{
       return user.channels.filter(channel =>{
-        let channelIdCheck = channel.id === parseInt(req.params.channelId) 
+        let channelIdCheck = channel.id === parseInt(req.params.channelId)
         let adminIdCheck = channel.admins.filter(admin =>{
           return admin.id === req.user.id
         }).length > 0
-        return channelIdCheck && adminIdCheck 
+        return channelIdCheck && adminIdCheck
       }).length > 0
     })
   })

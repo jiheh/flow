@@ -6,9 +6,27 @@ const UserInfo = require('../userInfo/userInfo.model');
 const Admin = require('../admin/admin.model');
 
 const createAdmins = (n) => {
+  const arrToReturn = [];
+
+  console.log(`\tCreating Global Admin`);
+
+  let globalChannelAdmin;
+  const globalChannelAdminPromise = UserInfo.create({
+    name: "Clement Mihailescu",
+    email: "clementadmin@clementadmin.com",
+    password: "clementadmin123456",
+  })
+  .then((userInfo) => {
+    globalChannelAdmin = userInfo;
+    return Admin.create({});
+  })
+  .then((admin) => {
+    return admin.update({ user_info_id: globalChannelAdmin.id });
+  });
+  arrToReturn.push(globalChannelAdminPromise);
+
   console.log(`\tCreating ${n} Admins`);
 
-  const arrToReturn = [];
   for (let i = 0; i < n; i++) {
     let userGlobal;
     const userPromise = UserInfo.create({
@@ -19,7 +37,8 @@ const createAdmins = (n) => {
     .then((userInfo) => {
       userGlobal = userInfo;
       return Admin.create({});
-    }).then((admin) => {
+    })
+    .then((admin) => {
       return admin.update({ user_info_id: userGlobal.id });
     });
 

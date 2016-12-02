@@ -17,17 +17,6 @@ class SettingsWidget extends Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log("joey salads")
-    console.log(this.refs)
-    //this.refs.viewport.className = 'settings-viewport-off';
-    if (!this.state.viewSettings) {
-      // this.refs.viewporton.style.display = 'none';
-    } else {
-      // this.refs.viewporton.style.display = 'inline';
-    }
-  }
-
   toggleSettings = () => {
     this.refs.settings.className = this.refs.settings.className === 'settings-gear' ?
     'settings-gear-on' : 'settings-gear';

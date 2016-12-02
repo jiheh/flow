@@ -12,13 +12,11 @@ const Response = ({
   surveyId,
   type,
   sendResponse,
-  questionRef,
   responseOptions,
 }) => (
   <div className="response">
     {type === 'emoji' &&
     <EmojiComponent
-      questionRef={questionRef}
       questionId={questionId}
       surveyId={surveyId}
       sendResponse={sendResponse}

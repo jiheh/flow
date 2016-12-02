@@ -13,7 +13,6 @@ class EmojiComponent extends Component {
   };
 
   componentDidMount() {
-
   }
 
   render() {
@@ -21,7 +20,6 @@ class EmojiComponent extends Component {
       questionId,
       surveyId,
       sendResponse,
-      questionRef,
     } = this.props;
 
     let clicked = false;
@@ -42,11 +40,14 @@ class EmojiComponent extends Component {
           this.refs.neutralEmoji.className = "dissolving";
           currentRef.className = "dissolvingBigger";
         }
+        document.getElementById("questionPrompt").className = "dissolvingQuestion";
         setTimeout(() => {
           sendResponse({ surveyId, questionId, value: type });
-          this.refs.happyEmoji.className = this.refs.happyEmoji.className = "individualEmoji";
-          this.refs.neutralEmoji.className = this.refs.neutralEmoji.className = "individualEmoji";
-          this.refs.sadEmoji.className = this.refs.sadEmoji.className = "individualEmoji";
+          if (this.refs.happyEmoji && this.refs.neutralEmoji && this.refs.sadEmoji) {
+            this.refs.happyEmoji.className = "individualEmoji";
+            this.refs.neutralEmoji.className = "individualEmoji";
+            this.refs.sadEmoji.className = "individualEmoji";
+          }
           setTimeout(() => {
             clicked = false;
           }, 1100);

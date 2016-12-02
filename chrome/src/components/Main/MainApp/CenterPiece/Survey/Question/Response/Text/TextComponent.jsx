@@ -53,11 +53,14 @@ class TextComponent extends Component {
         clicked = true;
         console.log(this.refs)
         this.refs.textBar.className = "dissolvingBiggerInput";
+        document.getElementById("questionPrompt").className = "dissolvingQuestion";
         setTimeout(() => {
           this.props.sendResponse({ surveyId, questionId, value: input });
-          this.refs.textBar.value = "";
-          this.refs.textBar.blur();
-          this.refs.textBar.className = "newTextBar";
+          if (this.refs.textBar) {
+            this.refs.textBar.value = "";
+            this.refs.textBar.blur();
+            this.refs.textBar.className = "newTextBar";
+          }
           setTimeout(() => {
             clicked = false;
           }, 1100);

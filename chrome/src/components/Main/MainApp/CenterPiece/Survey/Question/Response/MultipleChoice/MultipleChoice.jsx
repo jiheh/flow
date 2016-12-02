@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+import '../Response.scss';
+
 class MultipleChoice extends Component {
   constructor(props) {
     super(props)
@@ -22,27 +24,58 @@ class MultipleChoice extends Component {
 
     let clicked = false;
 
-    let onClickFunction = (currentRef, type) => {
+    let onClickFunction = (idx, type) => {
       if (!clicked) {
         clicked = true;
-        if (type === "HAPPY") {
-          this.refs.neutralEmoji.className = "dissolving";
-          this.refs.sadEmoji.className = "dissolving";
-          currentRef.className = "dissolvingBigger";
-        } else if (type === "NEUTRAL") {
-          this.refs.happyEmoji.className = "dissolving";
-          this.refs.sadEmoji.className = "dissolving";
-          currentRef.className = "dissolvingBigger";
-        } else if (type === "SAD") {
-          this.refs.happyEmoji.className = "dissolving";
-          this.refs.neutralEmoji.className = "dissolving";
-          currentRef.className = "dissolvingBigger";
+        if (idx === 0) {
+          this.refs[1].className = "dissolving";
+          this.refs[2].className = "dissolving";
+          this.refs[3].className = "dissolving";
+          this.refs[idx].className = "dissolvingBigger";
+          this.refs[8].className = "dissolvingMultiple";
+          this.refs[12].className = "dissolvingMultiple";
+          this.refs[16].className = "dissolvingMultiple";
+          this.refs[4].className = "dissolvingBigger";
+        } else if (idx === 1) {
+          this.refs[2].className = "dissolving";
+          this.refs[3].className = "dissolving";
+          this.refs[0].className = "dissolving";
+          this.refs[idx].className = "dissolvingBigger";
+          this.refs[12].className = "dissolvingMultiple";
+          this.refs[16].className = "dissolvingMultiple";
+          this.refs[4].className = "dissolvingMultiple";
+          this.refs[8].className = "dissolvingBigger";
+        } else if (idx === 2) {
+          this.refs[3].className = "dissolving";
+          this.refs[0].className = "dissolving";
+          this.refs[1].className = "dissolving";
+          this.refs[idx].className = "dissolvingBigger";
+          this.refs[16].className = "dissolvingMultiple";
+          this.refs[4].className = "dissolvingMultiple";
+          this.refs[8].className = "dissolvingMultiple";
+          this.refs[12].className = "dissolvingBigger";
+        } else if (idx === 3) {
+          this.refs[0].className = "dissolving";
+          this.refs[1].className = "dissolving";
+          this.refs[2].className = "dissolving";
+          this.refs[idx].className = "dissolvingBigger";
+          this.refs[4].className = "dissolvingMultiple";
+          this.refs[8].className = "dissolvingMultiple";
+          this.refs[12].className = "dissolvingMultiple";
+          this.refs[16].className = "dissolvingBigger";
         }
         setTimeout(() => {
-          sendResponse({ surveyId, questionId, value: type });
-          this.refs.happyEmoji.className = this.refs.happyEmoji.className = "individualEmoji";
-          this.refs.neutralEmoji.className = this.refs.neutralEmoji.className = "individualEmoji";
-          this.refs.sadEmoji.className = this.refs.sadEmoji.className = "individualEmoji";
+          sendResponse({ surveyId, questionId, value: type })
+          if (this.refs[0] && this.refs[1] && this.refs[2] && this.refs[3]) {
+            this.refs[0].className = "individualEmoji";
+            this.refs[1].className = "individualEmoji";
+            this.refs[2].className = "individualEmoji";
+            this.refs[3].className = "individualEmoji";
+            this.refs[4].className = "multipleText";
+            this.refs[8].className = "multipleText";
+            this.refs[12].className = "multipleText";
+            this.refs[16].className = "multipleText";
+          }
           setTimeout(() => {
             clicked = false;
           }, 1100);
@@ -52,14 +85,23 @@ class MultipleChoice extends Component {
 
     return (
       <div className='response-multiple-choice'>
-        {responseOptions.length && responseOptions.map((option, idx) => (
-           <button
-            className="response-choice"
-            onClick={() => sendResponse({ surveyId, questionId, value: option })}
-           >
-             {option}
-           </button>
-        ))}
+        <ul>
+          {responseOptions.length && responseOptions.map((option, idx) => (
+             <li
+              className="response-choice"
+              onClick={() => console.log("keepo")}
+              key={idx}
+             ><div className="multipleText"
+             ref={(idx + 1) * 4}
+             >{option}</div><img
+             className="individualEmoji"
+             ref={idx}
+             src='http://localhost:8080/images/button2.png'
+             onClick={() => onClickFunction(idx, option)}
+             ></img>
+           </li>
+          ))}
+        </ul>
       </div>
     );
   }

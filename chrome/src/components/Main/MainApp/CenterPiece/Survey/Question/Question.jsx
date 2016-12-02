@@ -9,14 +9,17 @@ class Question extends Component {
     question: PropTypes.object.isRequired,
   };
 
+  componentWillUpdate() {
+    this.refs.currentQuestion.className = "questionSpan";
+  }
+
   render() {
     const { question, surveyId } = this.props;
 
     return (
       <div className="question">
-        <span ref="currentQuestion">{question.text}</span>
+        <span id="questionPrompt" ref="currentQuestion">{question.text}</span>
         <Response
-          questionRef={this.refs.currentQuestion}
           responseOptions={question.responseOptions}
           questionId={question.id}
           surveyId={surveyId}

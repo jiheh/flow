@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import logoutButton from './z-logout.png';
 
 const Logout = ({ logout }) => (
-  <span className="logoutHoverTrigger">
-    <span className="logoutHover">Logout</span>
+  <span className="hoverTextTrigger">
+    <span className="hoverText">Logout</span>
     <img
       src={logoutButton}
       className="settings-button"

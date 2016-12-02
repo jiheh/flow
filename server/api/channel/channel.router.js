@@ -20,6 +20,32 @@ router.get('/allChannels/', (req, res, next) => {
   }
 });
 
+
+router.post('/', (req, res, next) => {
+  if (!req.user) res.status(403).send();
+  else {
+    let admin;
+    let channelId;
+    Admin.findByUserInfoId(req.user.id)
+      .then((foundAdmin) => {
+        admin = foundAdmin;
+        return Channel.create(req.body)
+      })
+      .then((createdChannel) => {
+        channelId = createdChannel.id;
+        return createdChannel.addAdmin(admin);
+      })
+      .then((createdChannel) => {
+        return Channel.findOne({
+          where: { id: channelId },
+          include: [{ all: true }],
+        });
+      })
+      .then((foundChannel) => res.send(foundChannel))
+      .catch(next);
+  }
+})
+
 router.post('/chrome/allChannels', (req, res, next) => {
   const { hash } = req.body;
 

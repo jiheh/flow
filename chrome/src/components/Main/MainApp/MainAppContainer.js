@@ -1,7 +1,6 @@
 /* global chrome */
 import { connect } from 'react-redux';
 import MainApp from './MainAppComponent.jsx';
-import { setSettings } from '../../../reducers/settings';
 import { receiveSurveys } from '../../../reducers/surveys';
 import { receiveInvites } from '../../../reducers/invites';
 import { updateCurrentChannels } from '../../../reducers/currentChannels';
@@ -19,9 +18,6 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = () => dispatch => ({
-  saveSettings: (settings) => {
-    dispatch(setSettings(settings));
-  },
 
   getSurveys: () => {
     // TODO: change to production server url

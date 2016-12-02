@@ -10,9 +10,7 @@ import './Main.scss';
 
 class MainComponent extends Component {
   static propTypes = {
-    settings: settingsPropTypes,
     user: userPropTypes,
-    saveSettings: PropTypes.func.isRequired,
   };
 
   render() {

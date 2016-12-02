@@ -59,7 +59,7 @@ export default class LogInForm extends Component {
               />
           </div>
           <br />
-          {this.state.loginSpinner ? <Spinner />
+          {this.state.loginSpinner ? <Spinner className="pt-small" />
           : <button className="pt-button pt-intent-primary" type="submit">Submit</button>
           }
           <strong style={{ marginLeft: '12px', marginRight: '12px' }}>or</strong>

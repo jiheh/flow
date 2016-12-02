@@ -7,7 +7,8 @@ const ToggleBackgroundMode = ({
   toggleBackgroundMode,
   settings,
 }) => (
-  <span>
+  <span className="hoverTextTrigger">
+    <span className="hoverText">{settings.showVideo ? "Photo" : "Video"}</span>
     <img
       src={settings.showVideo ? photoLogo : videoLogo}
       className="settings-button"

@@ -18,6 +18,10 @@ class SettingsWidget extends Component {
   }
 
   toggleSettings = () => {
+    this.refs.settings.className = this.refs.settings.className === 'settings-gear' ?
+    'settings-gear-on' : 'settings-gear';
+
+
     this.setState({
       viewSettings: !this.state.viewSettings
     })
@@ -29,6 +33,7 @@ class SettingsWidget extends Component {
     return (
       <div>
         <img
+          ref='settings'
           src={settingsGear}
           className='settings-gear'
           onClick={this.toggleSettings}

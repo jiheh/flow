@@ -12,9 +12,11 @@ class NotificationsComponent extends Component {
   }
 
   showForm = () => {
-    this.setState({
-      shouldShowForm: true
-    })
+    this.setState({ shouldShowForm: true })
+  }
+
+  toggleForm = () => {
+    this.setState({ shouldShowForm: !this.state.shouldShowForm})
   }
 
 
@@ -23,7 +25,7 @@ class NotificationsComponent extends Component {
       <div>
         {
           this.state.shouldShowForm ?
-          <AddNotificationsForm channel={this.props.currentChannel} submitNotification={this.props.submitNotification}/>
+          <AddNotificationsForm channel={this.props.currentChannel} submitNotification={this.props.submitNotification} toggleForm={this.toggleForm}/>
            :
           <div>
             <h3>Notifications</h3>

@@ -48,6 +48,7 @@ router.post('/', (req, res, next) => {
 
   db.transaction((t) => {
     let tempAdmin;
+    let announc;
     return Admin.findByUserInfoId(req.user.id)
       .then((admin) => {
         if (!admin) { throw new Error('Admin not found.'); }
@@ -61,6 +62,7 @@ router.post('/', (req, res, next) => {
       })
 
       .then((announcement) => {
+        announc = announcement
         return Promise.map(channelIds, (id) => {
           let channel;
           return Channel.findById(id)
@@ -77,9 +79,12 @@ router.post('/', (req, res, next) => {
             });
         });
       })
-      .then(() => res.status(201).send());
+      .then(() => {
+        res.send(announc)
+      })
   })
     .catch(next);
 });
+
 
 module.exports = router;

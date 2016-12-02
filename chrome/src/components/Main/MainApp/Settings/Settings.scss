@@ -2,13 +2,14 @@
   position: absolute;
   z-index: 10;
   bottom: 15px;
-  right: 20px;
+  right: 12px;
 }
 
 .settings-gear, .settings-button {
   width: 24px;
   opacity: 0.5;
-  padding-left: 15px;
+  padding-left: 8px;
+  padding-right: 8px;
   transition-timing-function: ease-out;
   -webkit-transition-timing-function: ease-out;
   transition: 0.5s;
@@ -45,7 +46,7 @@
   bottom: 15px;
 
   z-index: 10;
-  transform: translateX(-35px);
+  transform: translateX(-30px);
   transition: transform 1s;
   -webkit-animation: fadein 2s 1 alternate forwards;
 }
@@ -61,12 +62,49 @@
   bottom: 15px;
 
   z-index: 10;
-  transform: translateX(35px);
+  transform: translateX(30px);
   transition: transform 1s;
   -webkit-animation: fadeout .48s 1 alternate forwards;
+  cursor: default;
 }
 
 @keyframes fadeout {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+.hoverText {
+  position: absolute;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  opacity: 0;
+  transition: 0.5s;
+  transition-function: ease-in;
+}
+
+.hoverTextTrigger:hover {
+  .hoverText {
+    transform: translateY(-25px);
+    opacity: 1;
+  }
+}
+
+.settingsHoverText {
+  position: absolute;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  opacity: 0;
+  transition: 0.5s;
+  transition-function: ease-in;
+  bottom: 25px;
+  right: 12px;
+}
+
+.settingsHoverTextTrigger:hover {
+  .settingsHoverText {
+    transform: translateY(-25px);
+    opacity: 1;
+  }
 }

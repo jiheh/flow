@@ -134,7 +134,6 @@ router.post('/', (req, res, next) => {
         }
 
         return Promise.map(channelUsers, channelUser => {
-          console.log('********',survey)
           return survey.addUser(channelUser);
         });
       })

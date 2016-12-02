@@ -89,3 +89,22 @@
     opacity: 1;
   }
 }
+
+.settingsHoverText {
+  position: absolute;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  opacity: 0;
+  transition: 0.5s;
+  transition-function: ease-in;
+  bottom: 25px;
+  right: 12px;
+}
+
+.settingsHoverTextTrigger:hover {
+  .settingsHoverText {
+    transform: translateY(-25px);
+    opacity: 1;
+  }
+}

@@ -34,12 +34,15 @@ class SettingsWidget extends Component {
 
     return (
       <div>
-        <img
-          ref='settings'
-          src={settingsGear}
-          className='settings-gear'
-          onClick={this.toggleSettings}
-        />
+        <span className="settingsHoverTextTrigger">
+          <span className="settingsHoverText">Settings</span>
+          <img
+            ref='settings'
+            src={settingsGear}
+            className='settings-gear'
+            onClick={this.toggleSettings}
+          />
+        </span>
 
         {
           this.state.viewSettings ?

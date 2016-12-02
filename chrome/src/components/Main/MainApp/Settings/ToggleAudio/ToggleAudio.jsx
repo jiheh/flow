@@ -7,7 +7,8 @@ const ToggleAudio = ({
   toggleAudio,
   settings,
 }) => (
-  <span>
+  <span className="hoverTextTrigger">
+    <span className="hoverText">Audio</span>
     <img
       src={settings.playAudio ? noaudio : audio}
       className="settings-button"

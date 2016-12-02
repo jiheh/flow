@@ -24,6 +24,7 @@ const chance = new require('chance')();
 // supertest.post...
 
 const seedDatabase = num => {
+    let globalChannelAdmin;
     let adminGlobal;
     let channelGlobal;
     db.sync({ force: true })
@@ -31,10 +32,15 @@ const seedDatabase = num => {
       console.log(chalk.yellow('CREATING ADMINS'));
       return seedAdmins(1)
     })
-    .spread((admin) => {
+    .spread((channelGlobalAdmin, admin) => {
       console.log(chalk.yellow('CREATING CHANNELS FOR ADMIN'))
+      globalChannelAdmin = channelGlobalAdmin;
       adminGlobal = admin;
-      return seedChannels(admin.id, 5)
+      // global channel creation
+      return seedChannels(globalChannelAdmin.id, null, true);
+    })
+    .then(() => {
+      return seedChannels(adminGlobal.id, 5)
     })
     .then((newChannels) => {
       channelGlobal = newChannels;
@@ -60,6 +66,10 @@ const seedDatabase = num => {
       console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));
       return seedResponses();
     })
+    // .then(() => {
+    //   // global channel creation
+    //   return seedChannels(globalChannelAdmin.id, null, true);
+    // })
     // .then(() => seedAccounts(num))
     // .then(() => seedBillings(num))
 
@@ -75,4 +85,3 @@ const seedDatabase = num => {
 };
 
 seedDatabase(10);
-

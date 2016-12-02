@@ -10,7 +10,7 @@ export default ({ toggleForm, currentChannel }) => (
 		<div className="member-grid">
 					{
 						(
-							currentChannel.users && currentChannel.users[0].UserInfo && currentChannel.users.map((user,idx) =>(
+							currentChannel.users && currentChannel.users.length && currentChannel.users[0].UserInfo && currentChannel.users.map((user,idx) => (
 								<Member
 									key={idx}
 									userName={user.UserInfo.name}

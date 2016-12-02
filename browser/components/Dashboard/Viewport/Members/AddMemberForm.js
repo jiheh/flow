@@ -40,6 +40,7 @@ class AddMemberForm extends Component {
 	}
 
 	submitForm = (e) => {
+		e.preventDefaut();
 		this.setState({
 			email: e.target.email.value,
 		}, () => {

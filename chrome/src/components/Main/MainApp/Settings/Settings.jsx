@@ -17,14 +17,27 @@ class SettingsWidget extends Component {
     }
   }
 
+  componentDidUpdate() {
+    console.log("joey salads")
+    console.log(this.refs)
+    //this.refs.viewport.className = 'settings-viewport-off';
+    if (!this.state.viewSettings) {
+      // this.refs.viewporton.style.display = 'none';
+    } else {
+      // this.refs.viewporton.style.display = 'inline';
+    }
+  }
+
   toggleSettings = () => {
     this.refs.settings.className = this.refs.settings.className === 'settings-gear' ?
     'settings-gear-on' : 'settings-gear';
-
-
-    this.setState({
-      viewSettings: !this.state.viewSettings
-    })
+    if (this.state.viewSettings) this.refs.viewport.className = 'settings-viewport-off';
+    let timeout = this.state.viewSettings ? 600 : 0;
+    setTimeout(() => {
+      this.setState({
+        viewSettings: !this.state.viewSettings
+      })
+    }, timeout);
   }
 
   render() {
@@ -41,7 +54,7 @@ class SettingsWidget extends Component {
 
         {
           this.state.viewSettings ?
-            <div className='settings-viewport'>
+            <div ref='viewport' className='settings-viewport'>
               <ToggleBackgroundComponent settings={settings} saveSettings={saveSettings} />
               <ToggleAudioComponent settings={settings} saveSettings={saveSettings} />
               <LogoutContainer />

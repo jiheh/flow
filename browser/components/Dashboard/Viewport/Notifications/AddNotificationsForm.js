@@ -37,12 +37,16 @@ class AddNotificationsForm extends Component {
 	}
 
 	submitForm2 = (e) => {
+		e.preventDefault()
 		let form = {
 			channelIds:[this.state.channelId],
 			title:e.target.notificationName.value,
 			contents:e.target.notificationBody.value
 		}
 		this.props.submitNotification(form)
+		.then(() => {
+			this.props.toggleForm()
+		})
 	};
 
 

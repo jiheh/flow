@@ -16,12 +16,10 @@
     .sidebar-nav-search {
       padding: 10px;
 
-    .search-icon {
-      margin: 10px 0 0 20px;
+      .search-icon {
+        margin: 10px 0 0 20px;
+      }
     }
-
-    }
-
   }
 
   .channel-item {
@@ -48,11 +46,10 @@
       padding: 1px 3px;
       color: gray;
     }
-
   }
 
   #channel_searchbox {
-    width: 84%;
+    width: 87%;
   }
 
   .active {
@@ -65,6 +62,5 @@
 
 #channel-button {
   border-radius: 50%;
-  padding: 3px 6px;
-  margin: 10px 9px;
+  margin: 13px 8px;
 }

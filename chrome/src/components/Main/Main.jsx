@@ -9,9 +9,9 @@ import './Main.scss';
 
 
 const Main = ({
-  user,
+  user, interpolatingStyle
 }) => (
-  <div className="main">
+  <div className="main" style={interpolatingStyle}>
     <Background />
     {user.name ? <MainApp /> : <Login />}
   </div>

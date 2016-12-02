@@ -22,15 +22,8 @@ export const propTypes = PropTypes.shape({
 export const SET_SETTINGS = 'SET_SETTINGS';
 export const setSettings = createAction(SET_SETTINGS);
 
-export const SET_SETTING = 'SET_SETTING';
-export const setSetting = createAction(SET_SETTING);
-
 export default handleActions({
   SET_SETTINGS: (state, { payload }) => {
     return payload;
-  },
-
-  SET_SETTING: (state, { payload }) => {
-    return { ...state, ...payload };
   },
 }, initialState);

@@ -4,7 +4,7 @@ import ToggleAudio from './ToggleAudio.jsx';
 import {
   propTypes as settingsPropTypes,
   initialState as defaultSettings,
-} from '../../../../reducers/settings';
+} from '../../../../../reducers/settings';
 
 class ToggleAudioComponent extends Component {
   static propTypes = {
@@ -21,7 +21,6 @@ class ToggleAudioComponent extends Component {
       }
     );
   }
-
 
   render() {
     const { settings } = this.props;

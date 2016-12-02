@@ -20,9 +20,6 @@ const DockerSidebar = ({
       invites={invites}
       currentChannels={currentChannels}
     />
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings" active={activeWidget === "Settings" ? true : false}/>
-
-
   </div>
 );
 

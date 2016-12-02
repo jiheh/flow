@@ -54,3 +54,19 @@
   from { opacity: 0; }
   to { opacity: 1 ; }
 }
+
+.settings-viewport-off {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+
+  z-index: 10;
+  transform: translateX(35px);
+  transition: transform 1s;
+  -webkit-animation: fadeout .48s 1 alternate forwards;
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

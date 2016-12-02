@@ -20,11 +20,13 @@ class SettingsWidget extends Component {
   toggleSettings = () => {
     this.refs.settings.className = this.refs.settings.className === 'settings-gear' ?
     'settings-gear-on' : 'settings-gear';
-
-
-    this.setState({
-      viewSettings: !this.state.viewSettings
-    })
+    if (this.state.viewSettings) this.refs.viewport.className = 'settings-viewport-off';
+    let timeout = this.state.viewSettings ? 600 : 0;
+    setTimeout(() => {
+      this.setState({
+        viewSettings: !this.state.viewSettings
+      })
+    }, timeout);
   }
 
   render() {
@@ -41,7 +43,7 @@ class SettingsWidget extends Component {
 
         {
           this.state.viewSettings ?
-            <div className='settings-viewport'>
+            <div ref='viewport' className='settings-viewport'>
               <ToggleBackgroundComponent settings={settings} saveSettings={saveSettings} />
               <ToggleAudioComponent settings={settings} saveSettings={saveSettings} />
               <LogoutContainer />

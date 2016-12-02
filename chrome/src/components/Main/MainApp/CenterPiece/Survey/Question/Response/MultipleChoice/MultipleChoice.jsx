@@ -32,21 +32,37 @@ class MultipleChoice extends Component {
           this.refs[2].className = "dissolving";
           this.refs[3].className = "dissolving";
           this.refs[idx].className = "dissolvingBigger";
+          this.refs[8].className = "dissolvingMultiple";
+          this.refs[12].className = "dissolvingMultiple";
+          this.refs[16].className = "dissolvingMultiple";
+          this.refs[4].className = "dissolvingBigger";
         } else if (idx === 1) {
           this.refs[2].className = "dissolving";
           this.refs[3].className = "dissolving";
           this.refs[0].className = "dissolving";
           this.refs[idx].className = "dissolvingBigger";
+          this.refs[12].className = "dissolvingMultiple";
+          this.refs[16].className = "dissolvingMultiple";
+          this.refs[4].className = "dissolvingMultiple";
+          this.refs[8].className = "dissolvingBigger";
         } else if (idx === 2) {
           this.refs[3].className = "dissolving";
           this.refs[0].className = "dissolving";
           this.refs[1].className = "dissolving";
           this.refs[idx].className = "dissolvingBigger";
+          this.refs[16].className = "dissolvingMultiple";
+          this.refs[4].className = "dissolvingMultiple";
+          this.refs[8].className = "dissolvingMultiple";
+          this.refs[12].className = "dissolvingBigger";
         } else if (idx === 3) {
           this.refs[0].className = "dissolving";
           this.refs[1].className = "dissolving";
           this.refs[2].className = "dissolving";
           this.refs[idx].className = "dissolvingBigger";
+          this.refs[4].className = "dissolvingMultiple";
+          this.refs[8].className = "dissolvingMultiple";
+          this.refs[12].className = "dissolvingMultiple";
+          this.refs[16].className = "dissolvingBigger";
         }
         setTimeout(() => {
           sendResponse({ surveyId, questionId, value: type })
@@ -55,6 +71,10 @@ class MultipleChoice extends Component {
             this.refs[1].className = "individualEmoji";
             this.refs[2].className = "individualEmoji";
             this.refs[3].className = "individualEmoji";
+            this.refs[4].className = "multipleText";
+            this.refs[8].className = "multipleText";
+            this.refs[12].className = "multipleText";
+            this.refs[16].className = "multipleText";
           }
           setTimeout(() => {
             clicked = false;
@@ -71,12 +91,15 @@ class MultipleChoice extends Component {
               className="response-choice"
               onClick={() => console.log("keepo")}
               key={idx}
-             >{option}<img
+             ><div className="multipleText"
+             ref={(idx + 1) * 4}
+             >{option}</div><img
              className="individualEmoji"
              ref={idx}
-             src='http://localhost:8080/images/button.png'
+             src='http://localhost:8080/images/button2.png'
              onClick={() => onClickFunction(idx, option)}
-             ></img></li>
+             ></img>
+           </li>
           ))}
         </ul>
       </div>

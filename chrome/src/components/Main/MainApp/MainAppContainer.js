@@ -2,7 +2,6 @@
 import { connect } from 'react-redux';
 import MainApp from './MainAppComponent.jsx';
 import { setSettings } from '../../../reducers/settings';
-import { receiveAnnouncements } from '../../../reducers/announcements';
 import { receiveSurveys } from '../../../reducers/surveys';
 import { receiveInvites } from '../../../reducers/invites';
 import { updateCurrentChannels } from '../../../reducers/currentChannels';
@@ -22,13 +21,6 @@ const mapStateToProps = ({
 const mapDispatchToProps = () => dispatch => ({
   saveSettings: (settings) => {
     dispatch(setSettings(settings));
-  },
-
-  getAnnouncements: () => {
-    // TODO: change to production server url
-    axios.post('http://localhost:8080/api/announcements/chrome', { hash: store.getState().user.hash })
-      .then(res => dispatch(receiveAnnouncements(res.data.reverse())))
-      .catch(console.error); // TODO: error handling
   },
 
   getSurveys: () => {

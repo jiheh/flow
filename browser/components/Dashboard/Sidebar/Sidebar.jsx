@@ -7,17 +7,18 @@ const Sidebar = ({
   handleSearchInput,
   searchInput,
 }) => (
-  <div className="sidebar">
-    <div className="sidebar-nav">
-      <div className="pt-input-group .modifier sidebar-nav-search">
-        <span className="pt-icon pt-icon-search search-icon" />
+  <div className='sidebar'>
+    <div className='sidebar-nav'>
+      <div className='pt-input-group .modifier sidebar-nav-search'>
+        <span className='pt-icon pt-icon-search search-icon' />
         <input
-          className="pt-input"
-          type="search"
-          placeholder="Search channels..."
-          id="channel_searchbox"
+          className='pt-input'
+          type='search'
+          placeholder='Search channels...'
+          id='channel_searchbox'
           onInput={handleSearchInput}
         />
+        <button type='button' id='channel-button' className='pt-button pt-icon-plus pt-minimal'></button>
       </div>
     </div>
     <ChannelListContainer

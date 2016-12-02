@@ -7,6 +7,7 @@ class SidebarComponent extends Component {
     super(props);
     this.state = {
       searchInput: '',
+      showNewChannelPopover: false,
     };
   }
 
@@ -14,11 +15,17 @@ class SidebarComponent extends Component {
     this.setState({ searchInput: evt.target.value });
   }
 
+  toggleNewChannelPopover = () => {
+    this.setState({ showNewChannelPopover: !this.state.showNewChannelPopover });
+  }
+
   render() {
     return (
       <Sidebar
         handleSearchInput={this.handleSearchInput}
         searchInput={this.state.searchInput}
+        toggleNewChannelPopover={this.toggleNewChannelPopover}
+        showNewChannelPopover={this.state.showNewChannelPopover}
       />
     );
   }

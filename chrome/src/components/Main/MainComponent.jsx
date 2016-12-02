@@ -7,9 +7,7 @@ import { initialState as defaultSettings } from '../../reducers/settings';
 
 class MainComponent extends Component {
   static propTypes = {
-    settings: settingsPropTypes,
     user: userPropTypes,
-    saveSettings: PropTypes.func.isRequired,
   };
 
   render() {

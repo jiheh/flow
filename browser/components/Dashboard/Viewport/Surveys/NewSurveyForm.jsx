@@ -30,13 +30,13 @@ class SurveyForm extends Component {
 
 					<label className='pt-label'>Survey Name
 					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='text' name='name' />
+					    <input  className='pt-input' type='text' name='name' required />
 					  </div>
 					</label>
 
 					<label className='pt-label'>Description
 					  <div className='pt-input-group'>
-					    <input className='pt-input' type='text' name='description' />
+					    <input className='pt-input' type='text' name='description' required />
 					  </div>
 					</label>
 
@@ -53,12 +53,12 @@ class SurveyForm extends Component {
 					{this.state.questions.map((question, i) => (
 						<label className='pt-label' key={i + 1}>Question {i + 1}
 						  <div className='pt-input-group'>
-						    <input  className='pt-input' name={`question${i + 1}`} type='text' />
+						    <input  className='pt-input' name={`question${i + 1}`} type='text' required />
 						  </div>
 
 						  <div className='pt-select'>
-						    <select name={`response${i + 1}`} onChange={this.responseFields} >
-						    	<option defaultValue='select'>Select a Response Type</option>
+						    <select name={`response${i + 1}`} onChange={this.responseFields} required>
+						    	<option value=''>Select a Response Type</option>
 						      <option value='emoji'>Emoticons</option>
 						      <option value='binary'>Binary</option>
 						      <option value='slider'>Slider</option>

@@ -33,7 +33,7 @@ class ChannelsWidget extends Component {
                 showNewChannels(currentChannels, invite);
                 acceptAndDeleteInvite(invite);
               }} />{invite.channelName} (pending)</div>
-          }) : null }
+            }) : null }
           </div>
 
         </div>

@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
+import heart from './heart.png';
 import './Quote.scss';
 
 import { propTypes as quotePropTypes } from '../../../../../../reducers/quote';
 import { propTypes as authorPropTypes } from '../../../../../../reducers/author';
 
-const Quote = ({ quote, author }) => (
+const Quote = ({ quote, author, fillHeart }) => (
   <div className = "quote">
     <span className="quote-text">
       "{quote}"
     </span>
     <span className="quote-origin">
-      - {author}
+      - {author}<img id="heart" onClick={() => fillHeart() } className="heart" src={heart}></img>
     </span>
   </div>
 

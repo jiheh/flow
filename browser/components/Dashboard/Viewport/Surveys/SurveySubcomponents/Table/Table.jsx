@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Table.scss';
+import TableRow from './TableRow.jsx';
 
 // active: boolean
 // admin_id: integer
@@ -44,19 +45,11 @@ export default ({ surveys }) => (
 
       {
         surveys.map((survey, index2) => (
-          <tr className="table-row" key={index2}>
-              {
-                variables.map((variable, index3) => {
-
-                  switch(variable) {
-                    // different variables can be rendered differently
-                    default:
-                      return <td className="table-td" key={index3}>{survey[variable.id]}</td>;
-                  }
-
-                })
-              }
-          </tr>
+          <TableRow
+            key={index2}
+            clickHandler={() => console.log(`Clicked Survey ${survey.name}`)}
+            variables={variables}
+            survey={survey} />
         ))
       }
 

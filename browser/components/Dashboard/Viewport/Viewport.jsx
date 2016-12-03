@@ -5,13 +5,14 @@ import SurveysContainer from './Surveys/SurveysContainer';
 import MembersContainer from './Members/MembersContainer';
 import NotificationsContainer from './Notifications/NotificationsContainer'
 
-import {Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
+import { Overlay, Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
+
 
 export default ({ currentChannel }) => (
   <div className="viewport">
 
     {currentChannel.id &&
-    
+
     <div>
       <ChannelHeaderContainer />
 
@@ -51,6 +52,8 @@ export default ({ currentChannel }) => (
       </div>
     </div>
     }
+
+
 
   </div>
 );

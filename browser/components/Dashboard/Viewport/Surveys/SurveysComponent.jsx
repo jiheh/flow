@@ -20,6 +20,7 @@ class SurveysComponent extends Component {
 	}
 
 	toggleExistingSurveyEditor = (surveyID) => {
+		console.log(surveyID);
 		this.setState({showModal: !this.state.showModal, modalType: "existing_survey", currentSurveyID: surveyID });
 	}
 

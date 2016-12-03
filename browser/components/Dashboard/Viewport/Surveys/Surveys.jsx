@@ -3,7 +3,7 @@ import React from 'react';
 import './Surveys.scss';
 import Table from './SurveySubcomponents/Table/Table.jsx';
 import NewSurveyForm from './SurveySubcomponents/NewSurveyForm/NewSurveyForm.jsx'
-import ExistingSurvey from './SurveySubcomponents/ExistingSurveyEditor/ExistingSurveyEditor.jsx'
+import ExistingSurveyEditor from './SurveySubcomponents/ExistingSurveyEditor/ExistingSurveyEditor.jsx'
 
 import '../Viewport.scss';
 
@@ -53,7 +53,7 @@ export default ({
         }
         {
           modalType === 'existing_survey'
-            ? <ExistingSurveyEditor currentSurveyID={currentSurveyID} />
+            ? <ExistingSurveyEditor surveyID={currentSurveyID} />
             : null
         }
 

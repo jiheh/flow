@@ -3,7 +3,7 @@ import './Table.scss';
 
 export default ({ survey, variables, clickHandler }) => (
 
-  <tr className="table-row" onClick={() => clickHandler()}>
+  <tr className="table-row" onClick={() => clickHandler(survey.id)}>
     {
       variables.map((variable, index3) => {
 

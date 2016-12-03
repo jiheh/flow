@@ -32,7 +32,7 @@ const variables = [
   },
 ]
 
-export default ({ surveys }) => (
+export default ({ surveys, toggleExistingSurveyEditor }) => (
   <table className="survey-table">
 
     <tbody>
@@ -47,7 +47,7 @@ export default ({ surveys }) => (
         surveys.map((survey, index2) => (
           <TableRow
             key={index2}
-            clickHandler={() => console.log(`Clicked Survey ${survey.name}`)}
+            clickHandler={(channelID) => toggleExistingSurveyEditor(channelID)}
             variables={variables}
             survey={survey} />
         ))

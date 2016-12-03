@@ -13,8 +13,12 @@ const createUsers = (channelInstance, n) => {
   console.log(`\tCreating ${n} Users for Channel ${channelInstance.id}`);
   for (let i = 1; i <= n; i++) {
     let userGlobal;
+    let name = chance.name()
+    while(name.length > 11){
+      name = chance.name()
+    }
     const userPromise = UserInfo.create({
-      name: chance.name(),
+      name: name,
       email: chance.email(),
       password: '123456',
     })

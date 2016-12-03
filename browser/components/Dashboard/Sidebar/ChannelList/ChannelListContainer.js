@@ -6,7 +6,8 @@ import { setCurrentChannel,receiveChannels } from '../../../../reducers/channels
 
 const mapStateToProps = ({channels}) => ({
   channels,
-  currentChannelID: channels.currentChannel.id
+  currentChannelID: channels.currentChannel.id,
+  currentChannel: channels.currentChannel
 });
 
 const mapDispatchToProps = () => dispatch => ({

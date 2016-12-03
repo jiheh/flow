@@ -8,7 +8,7 @@ class MainAppComponent extends Component {
     getInvites: PropTypes.func.isRequired,
     getChannels: PropTypes.func.isRequired,
   }
-
+  
   componentDidMount() {
     this.props.getSurveys();
     this.props.getInvites();

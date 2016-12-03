@@ -38,17 +38,42 @@ router.post('/chrome', (req, res, next) => {
       if (!user) throw new Error('User not found.');
 
       let { surveys } = user ;
+
       surveys.forEach((survey) => {
-        const { questions } = survey;
         let newQuestions = [];
-        questions.forEach((question) => {
-          const { responses } = question;
-          if (responses.filter(response => response.user_id === user.id).length === 0) {
-            newQuestions.push(question);
+        const { questions } = survey;
+
+        if (survey.frequency.length) {
+          let now = new Date();
+
+          for (let i = 0; i < survey.frequency.length - 1; i++) {
+            if (now > survey.frequency[i] && now < survey.frequency[i + 1]) {
+              questions.forEach(question => {
+                const { responses } = question;
+                let userResponses = responses.filter(response => response.user_id === user.id);
+
+                if (userResponses.filter(response => (
+                  response.created_at > survey.frequency[i] && response.created_at < survey.frequency[i + 1]
+                  )).length === 0) {
+                  newQuestions.push(question);
+                }
+              });
+            }
           }
-        });
+        }
+
+        else if (survey.frequency.length === 0) {
+          questions.forEach((question) => {
+            const { responses } = question;
+            if (responses.filter(response => response.user_id === user.id).length === 0) {
+              newQuestions.push(question);
+            }
+          });
+        }
+
         survey.questions = newQuestions;
-      })
+      });
+
       let s = surveys.filter(survey => survey.questions.length > 0);
       let result = s.map(s => Object.assign({}, {questions: s.questions}, {id: s.id}, {channel_id: s.channel_id}));
       res.send(result);
@@ -63,6 +88,7 @@ router.post('/', (req, res, next) => {
     channelId, // number
     name, // string - survey name
     description, // string - survey description
+    frequency, // array of dates
     questions, // array of objects
     sample, // integer
   } = req.body;
@@ -96,6 +122,7 @@ router.post('/', (req, res, next) => {
           return Survey.create({
             name,
             description,
+            frequency
           });
         }
       })

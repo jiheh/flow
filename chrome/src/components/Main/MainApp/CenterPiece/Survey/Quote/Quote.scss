@@ -79,8 +79,8 @@
   -webkit-transition-timing-function: ease-out;
   transition: 0.5s;
   -webkit-transition: 0.5s;
+  // -webkit-animation: heartfadein 0.25s 1 alternate forwards;
   cursor: pointer;
-  -webkit-animation: heartfadein 1s 1 alternate forwards;
 
 
   &:hover {

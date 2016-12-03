@@ -22,7 +22,7 @@ class AddMemberForm extends Component {
 
 					<label className='pt-label'>User E-mail
 					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='email' name='email' dir='auto' />
+					    <input  className='pt-input' type='email' name='email' dir='auto' required/>
 					  </div>
 					</label>
 
@@ -40,10 +40,14 @@ class AddMemberForm extends Component {
 	}
 
 	submitForm = (e) => {
+		e.preventDefault();
 		this.setState({
 			email: e.target.email.value,
 		}, () => {
 			this.props.submitInvite(this.state)
+			.then(() => {
+				this.props.toggleForm()
+			})
 		})
 	};
 

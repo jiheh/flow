@@ -23,6 +23,9 @@ const Survey = db.define('survey', {
     allowNull: false,
     defaultValue: true,
   },
+  frequency: {
+    type: Sequelize.ARRAY(Sequelize.DATE)
+  }
 }, {
   instanceMethods: {
     // How many questions does this survey have?

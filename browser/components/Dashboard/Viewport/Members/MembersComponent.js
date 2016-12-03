@@ -9,25 +9,39 @@ class MembersComponent extends Component {
 		super(props);
 
 		this.state = {
-			showForm: false
+			showForm: false,
+			currentChannel: {}
 		}
 	}
+
 
 	componentDidMount() {
 		if(Object.keys(this.props.currentChannel).length) this.props.receiveUsers(this.props.currentChannel.id)
 	}
 
-
 	toggleForm = () => {
-		this.setState({showForm: `${!this.state.showForm}`});
+		this.setState({showForm: !this.state.showForm});
+	}
+
+	checkNewChannel = () => {
+		if(this.state.currentChannel.id !== this.props.currentChannel.id){
+			this.props.receiveUsers(this.props.currentChannel.id)
+			.then(() =>{
+				this.setState({currentChannel: this.props.currentChannel})
+			})
+		}
 	}
 
 	render() {
 		return (
 			<div>
-			{this.state.showForm === false ?
-				<Members toggleForm={this.toggleForm} currentChannel={this.props.currentChannel} /> :
-				<AddMemberForm channel={this.props.currentChannel} submitInvite={this.props.submitInvite} />
+			{
+				this.checkNewChannel()
+			}
+			{
+				!this.state.showForm ?
+				<Members toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} /> :
+				<AddMemberForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
 			}
 			</div>
 		)

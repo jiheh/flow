@@ -15,14 +15,14 @@ class AddMemberForm extends Component {
 
 		return(
 			<div id='addmemberform' className='container-fluid'>
-				<h3>Add a member to {this.props.channel.name} {console.log(this.state)}</h3>
+				<h3>Add a member to {this.props.channel.name}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>
 
 					<label className='pt-label'>User E-mail
 					  <div className='pt-input-group'>
-					    <input  className='pt-input' type='email' name='email' dir='auto' />
+					    <input  className='pt-input' type='email' name='email' dir='auto' required/>
 					  </div>
 					</label>
 
@@ -40,10 +40,14 @@ class AddMemberForm extends Component {
 	}
 
 	submitForm = (e) => {
+		e.preventDefault();
 		this.setState({
 			email: e.target.email.value,
 		}, () => {
 			this.props.submitInvite(this.state)
+			.then(() => {
+				this.props.toggleForm()
+			})
 		})
 	};
 

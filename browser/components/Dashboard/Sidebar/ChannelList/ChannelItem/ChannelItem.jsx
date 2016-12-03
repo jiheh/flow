@@ -6,9 +6,7 @@ export default ({channel, currentChannelID, setCurrentChannel}) => (
     <h5>{channel.name}</h5>
     <p>{channel.description}</p>
     <span className="pt-icon-standard pt-icon-people" ></span>
-    {
-        <span className="mini-label">{channel.users.length}</span>
-    }
+    <span className="mini-label">{channel.users.length}</span>
   </div>
 );
 

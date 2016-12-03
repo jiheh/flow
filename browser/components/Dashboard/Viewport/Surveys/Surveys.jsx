@@ -7,7 +7,7 @@ import ExistingSurvey from './SurveySubcomponents/ExistingSurveyEditor/ExistingS
 
 import '../Viewport.scss';
 
-import { Overlay } from '@blueprintjs/core';
+import { Dialog } from '@blueprintjs/core';
 
 export default ({
   toggleNewSurveyForm,
@@ -36,14 +36,13 @@ export default ({
       <Table surveys={currentChannel.surveys} toggleExistingSurveyEditor={toggleExistingSurveyEditor}/>
     </div>
 
-    <Overlay 	className="pt-overlay-scroll-container"
+    <Dialog
               isOpen={showModal}
               inline={false}
-              canOutsideClickClose={true}
               autoFocus={true}
-              enforceFocus={true}
-              canEscapeKeyClose={true}>
-      <div className="pt-card modal survey-modal">
+              canOutsideClickClose={false}
+              canEscapeKeyClose={false}
+              onClose={() => toggleNewSurveyForm()}>
         {
           modalType === 'new_survey'
             ? <NewSurveyForm
@@ -57,9 +56,8 @@ export default ({
             ? <ExistingSurveyEditor currentSurveyID={currentSurveyID} />
             : null
         }
-      </div>
 
-    </Overlay>
+    </Dialog>
 
   </div>
 

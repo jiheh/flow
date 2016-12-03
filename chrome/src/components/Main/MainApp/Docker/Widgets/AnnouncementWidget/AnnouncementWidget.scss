@@ -3,7 +3,7 @@
   width: 100%;
 
   .single-announcement-content {
-    cursor: pointer;
+    // cursor: pointer;
     padding: 12px;
     background-color: rgba(255,255,255,0.6);
     transition: 0.2s;
@@ -29,4 +29,42 @@
 
 .inactive {
   opacity: 0.3;
+}
+
+// .single-announcement-content > img {
+//   width: 32%;
+//   border: 1px solid #7D7D7D;
+//   position: relative;
+//   z-index: 10;
+//   cursor: pointer;
+// }
+
+.square {
+  width: 33%;
+  height: 14%;
+  background-color: white;
+  opacity: 1;
+  position: relative;
+  // display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  z-index: 20;
+}
+
+.square > img {
+  width: 100%;
+  border: 1px solid #7D7D7D;
+  position: absolute;
+  z-index: 10;
+  opacity: 0.6;
+  cursor: pointer;
+  align-self: stretch;
+  // display: none;
+  // display: block;
+}
+
+.square > p {
+  position: absolute;
+  // text-align: center;
+  align-self: center;
 }

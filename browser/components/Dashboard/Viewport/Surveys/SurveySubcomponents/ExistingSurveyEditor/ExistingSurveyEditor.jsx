@@ -1,38 +1,84 @@
 import React, { Component, PropTypes } from 'react';
 import './ExistingSurveyEditor.scss';
 import { Popover, PopoverInteractionKind, Position } from '@blueprintjs/core';
+import axios from 'axios';
+
 
 class SurveyForm extends Component {
 
   static propTypes = {
-    toggleNewSurveyForm: PropTypes.func.isRequired,
+    toggleExistingSurveyEditor: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      channelId: this.props.channel.id,
+      surveyID: this.props.currentSurveyID,
       name: '',
       description: '',
       questions: [],
-      sample: 100,
-      responses: {}
-    };
+      active: true,
+
+      dataLoaded: false,
+      edited: false,
+      saved: false,
+    }
+
+  }
+
+  componentDidMount(){
+
+    axios.get(`api/survey/survey/${this.props.surveyID}`)
+      .then(data => data.data)
+      .then(surveyData => {
+
+        // all fields sent by server
+        const { active,
+                admin_id,
+                channel_id,
+                created_at,
+                description,
+                id,
+                name,
+                owner_id,
+                questions
+              } = surveyData;
+
+        // setting local state of form
+        this.setState({
+          dataLoaded: true,
+          name,
+          description,
+          questions,
+          active,
+        })
+
+      })
+
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
 
-    const { surveyID } = this.props;
+    const { currentSurveyID, toggleExistingSurveyEditor } = this.props;
+
+    const closeConfirmPopover = (
+      <div>
+        <h5>Are you sure you want to close?</h5>
+        <p>Your changes will be discarded</p>
+        <button className="pt-button pt-intent-danger pt-fill"
+                onClick={() => this.props.toggleNewSurveyForm()}>
+          Close
+        </button>
+      </div>
+    )
 
     return(
       <div>
-        <div className="pt-dialog-header">
 
-          <span className="pt-icon-large pt-icon-clipboard"></span>
-          <h5></h5>
-
-        </div>
 
       </div>
     )

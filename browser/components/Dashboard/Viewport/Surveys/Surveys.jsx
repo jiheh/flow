@@ -53,7 +53,9 @@ export default ({
         }
         {
           modalType === 'existing_survey'
-            ? <ExistingSurveyEditor surveyID={currentSurveyID} />
+            ? <ExistingSurveyEditor
+                  surveyID={currentSurveyID}
+                  toggleExistingSurveyEditor={toggleExistingSurveyEditor}/>
             : null
         }
 

@@ -51,7 +51,6 @@ class TextComponent extends Component {
     let onClickFunction = () => {
       if (!clicked) {
         clicked = true;
-        console.log(this.refs)
         this.refs.textBar.className = "dissolvingBiggerInput";
         document.getElementById("questionPrompt").className = "dissolvingQuestion";
         setTimeout(() => {

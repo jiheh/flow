@@ -1,20 +1,20 @@
 import React, { PropTypes } from 'react';
-import { propTypes as settingsPropTypes } from '../../../../reducers/settings';
-import './ToggleBackgroundMode.scss';
-import photoLogo from './photo-camera.png';
-import videoLogo from './video-camera.png';
+import { propTypes as settingsPropTypes } from '../../../../../reducers/settings';
+import photoLogo from './z-photo-camera.png';
+import videoLogo from './z-video-camera.png';
 
 const ToggleBackgroundMode = ({
   toggleBackgroundMode,
   settings,
 }) => (
-  <div className="toggle-background-mode">
+  <span className="hoverTextTrigger">
+    <span className="hoverText">{settings.showVideo ? "Photo" : "Video"}</span>
     <img
       src={settings.showVideo ? photoLogo : videoLogo}
-      className="background-mode"
+      className="settings-button"
       onClick={toggleBackgroundMode}
     />
-  </div>
+  </span>
 );
 
 ToggleBackgroundMode.propTypes = {

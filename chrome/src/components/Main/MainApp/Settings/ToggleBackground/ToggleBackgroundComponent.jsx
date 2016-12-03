@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
-import ToggleBackgroundMode from './ToggleBackgroundMode.jsx';
+import ToggleBackground from './ToggleBackground.jsx';
 import {
   propTypes as settingsPropTypes,
   initialState as defaultSettings,
-} from '../../../../reducers/settings';
+} from '../../../../../reducers/settings';
 
-class ToggleBackgroundModeComponent extends Component {
+class ToggleBackgroundComponent extends Component {
   static propTypes = {
     settings: settingsPropTypes,
     saveSettings: PropTypes.func,
@@ -22,12 +22,11 @@ class ToggleBackgroundModeComponent extends Component {
     );
   }
 
-
   render() {
     const { settings } = this.props;
 
     return (
-      <ToggleBackgroundMode
+      <ToggleBackground
         toggleBackgroundMode={this.toggleBackgroundMode}
         settings={settings}
       />
@@ -35,4 +34,4 @@ class ToggleBackgroundModeComponent extends Component {
   }
 }
 
-export default ToggleBackgroundModeComponent;
+export default ToggleBackgroundComponent;

@@ -11,8 +11,7 @@ const mapStateToProps = ({channels}) => ({
 
 const mapDispatchToProps = () => dispatch => ({
 	submitInvite: form => {
-		axios.post('/api/invites/webapp', form)
-		.catch(err => console.error('Member could not be added', err));
+		return axios.post('/api/invites/webapp', form)
 	},
 	receiveUsers: (channelId) =>{
 		return axios.get(`/api/users/allUsers/${channelId}`)

@@ -10,24 +10,19 @@ const DockerSidebar = ({
   currentChannels,
 }) => (
   <div className="docker-sidebar">
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Announcements" active={activeWidget === "Announcements" ? true : false}/>
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Meditation" active={activeWidget === "Meditation" ? true : false}/>
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Reflection" active={activeWidget === "Reflection" ? true : false}/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Announcements" active={activeWidget === "Announcements"}/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Reflection" active={activeWidget === "Reflection"}/>
     <Button
       toggleDockerViewport={toggleDockerViewport}
       widgetName="Channels"
-      active={activeWidget === "Channels" ? true : false}
+      active={activeWidget === "Channels"}
       invites={invites}
       currentChannels={currentChannels}
     />
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Settings" active={activeWidget === "Settings" ? true : false}/>
-
-
   </div>
 );
 
 export default DockerSidebar;
 
-// {window.onclick = () => {
-//   toggleDockerViewport(activeWidget)
-// }}
+
+// <Button toggleDockerViewport={toggleDockerViewport} widgetName="Meditation" active={activeWidget === "Meditation"}/>

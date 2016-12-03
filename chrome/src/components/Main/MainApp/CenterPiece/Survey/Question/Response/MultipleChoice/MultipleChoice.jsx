@@ -89,7 +89,6 @@ class MultipleChoice extends Component {
           {responseOptions.length && responseOptions.map((option, idx) => (
              <li
               className="response-choice"
-              onClick={() => console.log("keepo")}
               key={idx}
              ><div className="multipleText"
              ref={(idx + 1) * 4}

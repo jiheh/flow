@@ -7,6 +7,11 @@ class AnnouncementWidgetComponent extends Component {
   static propTypes = {
     announcements: announcementsPropTypes,
     unread: announcementsPropTypes,
+    getAnnouncements: PropTypes.func.isRequired,
+  }
+
+  componentDidMount() {
+    this.props.getAnnouncements();
   }
 
   render() {

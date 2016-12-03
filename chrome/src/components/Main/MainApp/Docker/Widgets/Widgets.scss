@@ -32,8 +32,9 @@ h4 {
 
 .channelInvitations {
   color: #4A4A4A;
-  font-size: 2em;
+  font-size: 1.2em;
   margin: 20px 0px 0px 45px;
+  font-weight: 400;
 }
 
 .channelInvitationsDisplayNone {
@@ -44,13 +45,14 @@ h4 {
 
 .currentChannels {
   color: #4A4A4A;
-  font-size: 2em;
+  font-size: 1.2em;
+  font-weight: 400;
   margin: 20px 0px 0px 45px;
   padding: 0;
 }
 
 .check {
-  width: 20px;
+  width: 15px;
   padding: 10px 0px 0 0;
   margin: 0;
   position: absolute;
@@ -68,8 +70,8 @@ h4 {
 }
 
 .cross {
-  width: 17px;
-  padding: 10px 0px 0 0;
+  width: 13px;
+  // padding: 10px 0px 0 0;
   margin: 0;
   position: absolute;
   left: 15px;

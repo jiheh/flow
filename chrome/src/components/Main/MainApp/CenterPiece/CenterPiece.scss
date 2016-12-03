@@ -1,19 +1,13 @@
 .center-piece {
   position: relative;
-  // top: 65%;
-  // left: 50%;
   width: 100%;
   height: 100%;
-  // text-align: center;
-  // transform: translate(-50%, -80%);
   //background: radial-gradient(rgba(0,0,0,0.25) 35%, rgba(0,0,0,0) 70%);
   z-index: -1;
 
   -webkit-animation: fade 2s;
   animation-timing-function: ease-in;
-  // -webkit-transform: rotateZ(360deg);
    -webkit-transform: translateY(-6%);
-  // background-color: red;
   display: flex;
   justify-content: center;
 
@@ -30,7 +24,6 @@
     z-index: 5;
     width: 100%;
     margin: 0 auto;
-    // background-color: blue;
     align-self: center;
   }
 }

@@ -19,9 +19,8 @@ class MembersComponent extends Component {
 		if(Object.keys(this.props.currentChannel).length) this.props.receiveUsers(this.props.currentChannel.id)
 	}
 
-
 	toggleForm = () => {
-		this.setState({showForm: `${!this.state.showForm}`});
+		this.setState({showForm: !this.state.showForm});
 	}
 
 	checkNewChannel = () => {
@@ -40,9 +39,9 @@ class MembersComponent extends Component {
 				this.checkNewChannel()
 			}
 			{
-				this.state.showForm === false  ?
+				!this.state.showForm ?
 				<Members toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} /> :
-				<AddMemberForm channel={this.props.currentChannel} submitInvite={this.props.submitInvite} />
+				<AddMemberForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
 			}
 			</div>
 		)

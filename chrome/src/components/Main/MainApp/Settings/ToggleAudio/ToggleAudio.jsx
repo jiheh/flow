@@ -1,20 +1,20 @@
 import React, { PropTypes } from 'react';
-import { propTypes as settingsPropTypes } from '../../../../reducers/settings';
-import './ToggleAudio.scss';
-import audio from './audio.png';
-import noaudio from './noaudio.png';
+import { propTypes as settingsPropTypes } from '../../../../../reducers/settings';
+import audio from './z-audio.png';
+import noaudio from './z-noaudio.png';
 
 const ToggleAudio = ({
   toggleAudio,
   settings,
 }) => (
-  <div>
+  <span className="hoverTextTrigger">
+    <span className="hoverText">Audio</span>
     <img
       src={settings.playAudio ? noaudio : audio}
-      className="audio-mode"
+      className="settings-button"
       onClick={toggleAudio}
     />
-  </div>
+  </span>
 );
 
 ToggleAudio.propTypes = {

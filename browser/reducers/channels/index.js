@@ -11,14 +11,16 @@ export const RECEIVE_CHANNELS = 'RECEIVE_CHANNELS';
 export const SET_CURRENT_CHANNEL = 'SET_CURRENT_CHANNEL';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_SURVEY_TO_CURRENT = 'ADD_SURVEY_TO_CURRENT';
-export const ADD_NOTIFICATION_TO_CURRENT = 'ADD_NOTIFICATION_TO_CURRENT'
+export const ADD_NOTIFICATION_TO_CURRENT = 'ADD_NOTIFICATION_TO_CURRENT';
+export const ADD_CHANNEL = 'ADD_CHANNEL';
 
 /* ------------   ACTION CREATORS     ------------------ */
 export const receiveChannels = createAction(RECEIVE_CHANNELS);
 export const receiveUsers = createAction(RECEIVE_USERS);
 export const setCurrentChannel = createAction(SET_CURRENT_CHANNEL);
 export const addSurveyToCurrent = createAction(ADD_SURVEY_TO_CURRENT);
-export const addNotificationToCurrent = createAction(ADD_NOTIFICATION_TO_CURRENT)
+export const addNotificationToCurrent = createAction(ADD_NOTIFICATION_TO_CURRENT);
+export const addChannel = createAction(ADD_CHANNEL);
 
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
@@ -65,6 +67,10 @@ export default handleActions({
       }
     });
     return { currentChannel: newCurrent, allChannels: newAll };
-  }
+  },
+
+  ADD_CHANNEL: (state, { payload }) => {
+    return { ...state, allChannels: [payload, ...state.allChannels] };
+  },
 }, initialState);
 

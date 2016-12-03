@@ -8,7 +8,6 @@
   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 1px 1px rgba(16, 22, 26, 0.2);
 
 
-
   .sidebar-nav {
     background-color: rgba(0,0,0, 0.05);
     height: 50px;
@@ -17,12 +16,22 @@
     .sidebar-nav-search {
       padding: 10px;
 
-    .search-icon {
-      margin: 10px 0 0 20px;
+      .search-icon {
+        margin: 10px 0 0 20px;
+      }
     }
 
-    }
+    .pt-popover-target {
+      position: static;
+      display: inline;
 
+      #channel-button {
+        border-radius: 50%;
+        margin-right: 8px;
+        position: absolute;
+        right: 0;
+      }
+    }
   }
 
   .channel-item {
@@ -49,11 +58,10 @@
       padding: 1px 3px;
       color: gray;
     }
-
   }
 
   #channel_searchbox {
-    width: 100%;
+    width: 87%;
   }
 
   .active {
@@ -62,6 +70,4 @@
       background-color: #D8E1E8;
     }
   }
-
-
 }

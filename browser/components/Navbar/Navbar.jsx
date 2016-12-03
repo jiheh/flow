@@ -27,14 +27,14 @@ export default class Navigation extends Component {
   
     return (
 
-      <nav className="nav pt-navbar">
-        <div className="pt-navbar-group pt-align-left">
-          <Link to='/dashboard'>
-            <div className="pt-navbar-heading">Flow Administrator</div>
-          </Link>
+      <nav className='nav pt-navbar'>
+        <div className='pt-navbar-group pt-align-left'>
+            <div className='pt-navbar-heading' onClick={() => browserHistory.push('/')}>
+              Flow Administrator
+            </div>
         </div>
-        <div className="pt-navbar-group pt-align-right">
-        <button className="pt-button pt-minimal" onClick={logoutAdmin}>Log Out</button>
+        <div className='pt-navbar-group pt-align-right'>
+        <button className='pt-button pt-minimal' onClick={logoutAdmin}>Log Out</button>
 
         </div>
       </nav>
@@ -43,6 +43,6 @@ export default class Navigation extends Component {
 }
 
 
-// <span className="pt-navbar-divider"></span>
+// <span className='pt-navbar-divider'></span>
 
 

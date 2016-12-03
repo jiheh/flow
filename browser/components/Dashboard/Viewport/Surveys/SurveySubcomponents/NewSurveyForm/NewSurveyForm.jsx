@@ -14,9 +14,11 @@ class SurveyForm extends Component {
 			channelId: this.props.channel.id,
 			name: '',
 			description: '',
+			frequency: [],
 			questions: [],
 			sample: 100,
-			responses: {}
+			responses: {},
+			repeat: false
 		};
 	}
 
@@ -77,6 +79,39 @@ class SurveyForm extends Component {
 						</div>
 
 						<br />
+						<br />
+
+						<label className='pt-control pt-checkbox pt-large'>
+							<input type='checkbox' onChange={this.repeatSurvey} />
+							<span className='pt-control-indicator'></span>
+							Would you like the survey questions to be asked repeatedly?
+						</label>
+
+						{this.state.repeat ?
+							<div>
+								<br />
+								<label className='pt-label'>Start Date: the first day the survey questions are asked
+									<div className='pt-input-group'>
+										<input className='pt-input' type='text' name='start' placeholder='i.e. 2016-01-01 00:00' />
+									</div>
+								</label>
+
+								<label className='pt-label'>End Date: the last day thes survey questions are asked
+									<div className='pt-input-group'>
+										<input className='pt-input' type='text' name='end' placeholder='i.e. 2017-01-01 00:00' />
+									</div>
+								</label>
+
+								<label className='pt-label'>Frequency: the number of times to repeat survey questions, including start and end dates
+									<div className='pt-input-group'>
+										<input className='pt-input' type='text' name='frequency' placeholder='i.e. 13' />
+									</div>
+								</label>
+							</div>
+							: <div></div>
+						}
+
+						<hr />
 
 						{this.state.questions.map((question, i) => (
 							<label className='pt-label' key={i + 1}>Question {i + 1}
@@ -115,8 +150,6 @@ class SurveyForm extends Component {
 							</label>
 						))}
 
-						<hr />
-
 						<div>
 							<button type='button' className='pt-button pt-icon-add' onClick={this.newQuestion}>Add a Question</button>
 							<button type='submit' className='pt-button pt-intent-success'>Submit</button>
@@ -134,6 +167,12 @@ class SurveyForm extends Component {
 		});
 	};
 
+	repeatSurvey = (e) => {
+		this.setState({
+			repeat: !this.state.repeat
+		})
+	}
+
 	responseFields = (e) => {
 		let targetName = e.target.name;
 		let target = {};
@@ -146,9 +185,19 @@ class SurveyForm extends Component {
 
 	submitForm = (e) => {
 		e.preventDefault();
+		let surveyDates = [];
+		if (this.state.repeat === true) {
+			let distance = ((new Date(e.target.end.value) - new Date(e.target.start.value)) / (parseInt(e.target.frequency.value) - 1))
+
+			for (let i = 0; i < parseInt(e.target.frequency.value); i++) {
+				surveyDates.push(new Date(Date.parse(new Date(e.target.start.value)) + (distance * i)))
+			}
+		}
+
 		this.setState({
 			name: e.target.name.value,
 			description: e.target.description.value,
+			frequency: surveyDates,
 			sample: e.target.sample.value && typeof e.target.sample.value === 'number' ? e.target.sample.value : 100,
 			questions: this.state.questions
 				.map((question, i) => {
@@ -174,10 +223,9 @@ class SurveyForm extends Component {
 		}, () => {
 			this.props.submitSurvey(this.state)
 				.then(() => {
-					this.props.toggleNewSurveyForm();
+					this.props.toggleForm();
 				});
 		})
-
 	};
 
 };

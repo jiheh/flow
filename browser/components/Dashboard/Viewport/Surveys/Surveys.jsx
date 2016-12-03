@@ -19,7 +19,6 @@ export default ({
   showModal,
 }) => (
 	<div id="surveys" >
-
     <div className="pt-navbar survey-navbar">
       <div className="pt-navbar-group pt-align-right">
         <button id='new-form-button' className='pt-button pt-intent-primary' onClick={() => toggleNewSurveyForm()}>Create a New Survey</button>
@@ -60,7 +59,6 @@ export default ({
         }
 
     </Dialog>
-
   </div>
 
 );

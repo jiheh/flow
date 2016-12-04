@@ -9,15 +9,19 @@ const chance = new Chance();
 
 import QuoteComponent from './QuoteComponent.jsx';
 
+import { toggleFavoriteQuote } from '../../../../../../reducers/favoriteQuotes';
+
 const mapStateToProps = ({
   settings,
   quote,
   author,
+  favoriteQuotes,
 }) => ({
   heartClassName: settings.heartClassName,
   quote,
   author,
   settings,
+  favoriteQuotes,
 });
 
 
@@ -46,6 +50,9 @@ const mapDispatchToProps = () => dispatch => ({
     dispatch(setSettings(settings));
   },
 
+  toggleFavorite: (quote, author) => {
+    dispatch(toggleFavoriteQuote({quote, author}));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuoteComponent);

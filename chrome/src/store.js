@@ -10,7 +10,7 @@ import rootReducer from './reducers';
 // keys from redux store which will be loaded from
 // chrome storage api when app loads, and automatically
 // saved to chrome storage when any action changes their value
-const keysToPersistInChrome = ['settings', 'user', 'currentChannels'];
+const keysToPersistInChrome = ['settings', 'user', 'currentChannels', 'favoriteQuotes'];
 
 // load values for keys to persist from storage into redux store
 // perform any initial server requests that are independent

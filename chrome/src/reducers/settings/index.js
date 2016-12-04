@@ -10,7 +10,6 @@ import { LOGOUT } from '../user';
 
 export const initialState = {
   // default settings
-  heartClassName: 'heart',
   showVideo: false,
   playAudio: false,
 };

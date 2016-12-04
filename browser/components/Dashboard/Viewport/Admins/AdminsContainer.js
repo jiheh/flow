@@ -5,8 +5,12 @@ import axios from 'axios';
 
 
 
-const mapStateToProps = ({channels}) => ({
-	currentChannel: channels.currentChannel
+const mapStateToProps = ({
+	channels,
+	isOrgHead,
+}) => ({
+	currentChannel: channels.currentChannel,
+	isOrgHead,
 });
 
 const mapDispatchToProps = () => dispatch => ({

@@ -4,10 +4,10 @@ import './Admins.scss'
 import Admin from './AdminsSubcomponents/Admin.jsx';
 import Navbar from './AdminsSubcomponents/AdminNavbar.jsx';
 
-export default ({ toggleForm, currentChannel }) => (
+export default ({ toggleForm, currentChannel, isOrgHead }) => (
 	<div id="admins" className="">
 		<h3>Admins</h3>
-		<Navbar newAdminFunction={toggleForm} />
+		<Navbar newAdminFunction={toggleForm} isOrgHead={isOrgHead} />
 		<div className="admin-grid">
 					{
 						(

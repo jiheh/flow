@@ -15,7 +15,7 @@ class AddAdminForm extends Component {
 
 		return(
 			<div id='addmemberform' className='container-fluid'>
-				<h3>Add a member to {this.props.channel.name}</h3>
+				<h3>Add an admin to {this.props.channel.name}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>

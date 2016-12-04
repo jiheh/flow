@@ -17,8 +17,6 @@ class AdminsComponent extends Component {
 
 	componentDidMount() {
 		if (Object.keys(this.props.currentChannel).length) this.props.receiveAdmins(this.props.currentChannel.id)
-		console.log("COMPONENT DID MOUNT")
-		console.log(this.props.currentChannel)
 	}
 
 	toggleForm = () => {
@@ -42,7 +40,7 @@ class AdminsComponent extends Component {
 			}
 			{
 				!this.state.showForm ?
-				<Admins toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} /> :
+				<Admins toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} isOrgHead={this.props.isOrgHead} /> :
 				<AddAdminForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
 			}
 			</div>

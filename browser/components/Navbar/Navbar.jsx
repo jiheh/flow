@@ -21,10 +21,10 @@ export default class Navigation extends Component {
   close = () => {
     this.setState({showModal: false})
   }
-  
+
   render() {
-    const { loginAdmin, logoutAdmin, currentAdmin } = this.props;
-  
+    const { loginAdmin, logoutAdmin, currentAdmin, isOrgHead } = this.props;
+    console.log("IS ORG HEAD: ", isOrgHead);
     return (
 
       <nav className='nav pt-navbar'>
@@ -44,5 +44,3 @@ export default class Navigation extends Component {
 
 
 // <span className='pt-navbar-divider'></span>
-
-

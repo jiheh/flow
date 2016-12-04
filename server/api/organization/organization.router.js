@@ -2,13 +2,43 @@ const router = require('express').Router(); // eslint-disable-line new-cap
 const Organization = require('./organization.model')
 const Account = require('../account/account.model')
 const Billing = require('../billing/billing.model')
+const UserInfo = require('../userInfo/userInfo.model');
 const axios = require('axios')
 const adminMethods = require('../admin/admin.methods')
 const Admin = require('../admin/admin.model')
 
 //Create a new Organization returns Head Admin
+router.post('/isOrgHead', (req, res, next) => {
+  console.log("IN HERE")
+  const { adminEmail } = req.body;
+  let admin;
+  UserInfo.findOne({
+    where: {
+      email: adminEmail
+    }
+  })
+  .then((userInfo) => {
+    console.log("userInfo: ", userInfo)
+    return Admin.findByUserInfoId(userInfo.id);
+  })
+  .then((currentAdmin) => {
+    console.log("admin: ", currentAdmin)
+    admin = currentAdmin;
+    return Organization.findOne({
+      where: {
+        head_id: admin.id
+      }
+    });
+  })
+  .then((organization) => {
+    console.log("organization: ", organization)
+    res.json(organization);
+  })
+  .catch(next);
+});
+
 router.post('/',(req,res,next) =>{
-  let globalOrganization; 
+  let globalOrganization;
   Organization.create({
     name:req.body.organizationName,
     type:req.body.organizationType,
@@ -24,7 +54,7 @@ router.post('/',(req,res,next) =>{
       }
     })
   })
-  .then(account =>{  
+  .then(account =>{
     return globalOrganization.setAccount(account)
   })
   .then(() =>{
@@ -47,9 +77,9 @@ router.post('/',(req,res,next) =>{
         securityNumber:req.body.billing.securityNumber
       })
     }
-    return 
+    return
   })
-  .then(billing =>{ 
+  .then(billing =>{
     if(billing) return globalOrganization.update({billing_id:billing.id})
     return globalOrganization
   })

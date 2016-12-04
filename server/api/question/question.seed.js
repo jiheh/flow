@@ -1,1 +1,0 @@
-// it made more sense to seed questions in the 'survey' seedfile.

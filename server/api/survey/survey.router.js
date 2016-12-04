@@ -93,7 +93,7 @@ router.post('/', (req, res, next) => {
     sample, // integer
   } = req.body;
 
-  if (!req.user) res.status(403).send();
+  if (!req.user) return res.status(403).send();
 
   db.transaction((t) => {
     let channel;

@@ -13,27 +13,16 @@ class QuoteComponent extends Component {
     saveSettings: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      kappa: 1
-    }
-    // this.fillHeart = this.fillHeart.bind(this);
-  }
-
   componentDidMount() {
-    // this.state.kappa = document.getElementById('heart').className;
-    // console.log(this.state.kappa)
     this.props.getQuote();
   }
 
-  fillHeart() {
-    const { settings } = this.props;
+  fillHeart(settings, saveSettings) {
     let heart = document.getElementById('heart');
     if (heart.className === 'heart') {
       heart.className = 'filledHeart';
       heart.src = require('./filledHeart.png');
-      this.props.saveSettings(
+      saveSettings(
         {...settings,
           heartClassName: 'filledHeart',
         }
@@ -41,7 +30,7 @@ class QuoteComponent extends Component {
     } else {
       heart.className = 'heart';
       heart.src = require('./heart.png');
-      this.props.saveSettings(
+      saveSettings(
         {...settings,
           heartClassName: 'heart',
         }
@@ -55,15 +44,18 @@ class QuoteComponent extends Component {
       heartClassName,
       quote,
       author,
+      settings,
+      saveSettings,
     } = this.props;
-    console.log("habibi")
-    console.log(heartClassName)
+
     return (
       <Quote
         quote={quote}
         author={author}
         fillHeart={this.fillHeart}
-        heartClassName={this.heartClassName}
+        heartClassName={heartClassName}
+        settings={settings}
+        saveSettings={saveSettings}
   />
     );
   }

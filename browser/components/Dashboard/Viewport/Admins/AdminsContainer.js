@@ -10,13 +10,13 @@ const mapStateToProps = ({channels}) => ({
 });
 
 const mapDispatchToProps = () => dispatch => ({
-	// submitInvite: form => {
-	// 	return axios.post('/api/invites/webapp', form)
-	// },
+	submitInvite: form => {
+		return axios.post('/api/invites/webapp', form)
+	},
 	receiveAdmins: (channelId) =>{
 		return axios.get(`/api/users/allAdmins/${channelId}`)
-		.then(admins =>{
-			dispatch(receiveAdmins(users.data))
+		.then(res =>{
+			dispatch(receiveAdmins(res.data))
 		})
 		.catch(err => console.error('Admins for this channel can not be found', err))
 	}

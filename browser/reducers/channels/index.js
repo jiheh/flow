@@ -35,20 +35,26 @@ export default handleActions({
   },
   RECEIVE_USERS: (state, { payload }) =>{
     let newCurrentChannel = { ...state.currentChannel, users: payload }
-    let newChannels = state.allChannels.map(channel =>{
-      if(channel.id === newCurrentChannel.id) return newCurrentChannel
-      return channel
-    })
-    return Object.assign({},state,{
+    let newChannels = state.allChannels.map(channel => {
+      if (channel.id === newCurrentChannel.id) return newCurrentChannel;
+      return channel;
+    });
+    return Object.assign({}, state, {
       currentChannel: newCurrentChannel,
-      allChannels: newChannels
-    })
+      allChannels: newChannels,
+    });
   },
-  // RECEIVE_ADMINS: (state, { payload }) => {
-  //   let newCurrentChannel = { ...state.currentChannel, users: payload }
-  //
-  //   return { ...state, currentChannel: payload }
-  // },
+  RECEIVE_ADMINS: (state, { payload }) => {
+    let newCurrentChannel = { ...state.currentChannel, admins: payload }
+    let newChannels = state.allChannels.map(channel => {
+      if (channel.id === newCurrentChannel.id) return newCurrentChannel;
+      return channel;
+    });
+    return Object.assign({}, state, {
+      currentChannel: newCurrentChannel,
+      allChannels: newChannels,
+    });
+  },
   ADD_SURVEY_TO_CURRENT: (state, { payload }) => {
     const newCurrent = {...state.currentChannel,
                         surveys: [payload, ...state.currentChannel.surveys]

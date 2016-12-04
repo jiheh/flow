@@ -24,7 +24,7 @@ export default ({ currentChannel }) => (
             <Tab>Surveys</Tab>
             <Tab>Notifications</Tab>
             <Tab>Members</Tab>
-            <Tab>Settings</Tab>
+            <Tab>Admins</Tab>
           </TabList>
 
           <TabPanel>

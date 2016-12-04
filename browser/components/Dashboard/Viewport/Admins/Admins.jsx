@@ -11,11 +11,11 @@ export default ({ toggleForm, currentChannel }) => (
 		<div className="admin-grid">
 					{
 						(
-							currentChannel.users && currentChannel.users.length > 0 && currentChannel.users[0].UserInfo && currentChannel.users.map((user,idx) => (
+							currentChannel.admins && currentChannel.admins.length > 0 && currentChannel.admins[0].UserInfo && currentChannel.admins.map((admin,idx) => (
 								<Admin
 									key={idx}
-									userName={user.UserInfo.name}
-									userEmail={user.UserInfo.email}
+									adminName={admin.UserInfo.name}
+									adminEmail={admin.UserInfo.email}
 								/>
 						))
 						)

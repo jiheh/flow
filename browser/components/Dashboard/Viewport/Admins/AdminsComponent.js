@@ -17,6 +17,8 @@ class AdminsComponent extends Component {
 
 	componentDidMount() {
 		if (Object.keys(this.props.currentChannel).length) this.props.receiveAdmins(this.props.currentChannel.id)
+		console.log("COMPONENT DID MOUNT")
+		console.log(this.props.currentChannel)
 	}
 
 	toggleForm = () => {

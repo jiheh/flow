@@ -88,15 +88,28 @@ router.get('/allUsers/:channelId', (req,res) => {
     })
   })
   .then(users => {
-    res.send(users)
+    res.send(users);
   })
-  .catch(err => console.error('Cant get all users',err))
+  .catch(err => console.error('Cant get all users', err));
 });
 
 router.get('/allAdmins/:channelId', (req, res) => {
   if (!req.user) throw new Error('Only Admins have access to these users.');
-
-  
+  Channel.findById(req.params.channelId)
+  .then((channel) => {
+    return channel.getAdmins({
+      include: [{
+        model: UserInfo,
+        as: 'UserInfo'
+      }]
+    });
+  })
+  .then((admins) => {
+    console.log("ADMINS")
+    console.log(admins)
+    res.send(admins);
+  })
+  .catch(err => console.error("Can't get all admins", err));
 });
 
 

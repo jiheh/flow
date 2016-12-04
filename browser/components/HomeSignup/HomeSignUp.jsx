@@ -15,7 +15,7 @@ class HomeSignUp extends React.Component {
 
 	render() {
 		return (
-			<div className="signin-container">}
+			<div className="signin-container">
 				<form onSubmit={this.submitForm}>
 
 					<label className='pt-label'>Organization Name

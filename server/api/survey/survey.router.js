@@ -44,7 +44,7 @@ router.post('/chrome', (req, res, next) => {
         let newQuestions = [];
         const { questions } = survey;
 
-        if (survey.frequency.length) {
+        if (survey.frequency && survey.frequency.length) {
           let now = new Date();
 
           for (let i = 0; i < survey.frequency.length - 1; i++) {
@@ -63,7 +63,7 @@ router.post('/chrome', (req, res, next) => {
           }
         }
 
-        else if (survey.frequency.length === 0) {
+        else if (!survey.frequency || survey.frequency.length === 0) {
           questions.forEach((question) => {
             const { responses } = question;
             if (responses.filter(response => response.user_id === user.id).length === 0) {

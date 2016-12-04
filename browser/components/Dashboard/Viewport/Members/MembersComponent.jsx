@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import Members from './Members.jsx';
-import AddMemberForm from './AddMemberForm';
+import NewMemberForm from './NewMemberForm.jsx';
+
+import {Dialog} from '@blueprintjs/core';
 
 class MembersComponent extends Component {
 
@@ -20,8 +22,16 @@ class MembersComponent extends Component {
 		if(Object.keys(this.props.currentChannel).length) this.props.receiveUsers(this.props.currentChannel.id)
 	}
 
-	toggleForm = () => {
-		this.setState({showForm: !this.state.showForm});
+	toggleNewMemberForm = () => {
+		this.setState({showForm: !this.state.showForm, dialogType: 'new_member'});
+	}
+
+	toggleExistingMemberEditor = (memberID) => {
+		console.log("show existing member info");
+	}
+
+	closeForm = () => {
+		this.setState({showForm: false, dialogType: null});
 	}
 
 	checkNewChannel = () => {
@@ -34,12 +44,32 @@ class MembersComponent extends Component {
 	}
 
 	render() {
+
+		const { submitInvite, receiveUsers } = this.props;
+
 		return (
-			<div id="memebrsSection">
+			<div id="members_section">
 				{this.checkNewChannel()}
 
-				<Members toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} />
-				<AddMemberForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
+				<Members toggleNewMemberForm={this.toggleNewMemberForm}
+								 toggleExistingMemberEditor={this.toggleExistingMemberEditor}
+								 currentChannel={this.state.currentChannel} />
+
+				<Dialog
+							inline={false}
+							isOpen={this.state.showForm}
+							onClose={() => this.state.closeForm}>
+					{
+						this.state.dialogType === 'new_member'
+							? <NewMemberForm
+									channel={this.state.currentChannel}
+									submitInvite={submitInvite}
+									closeForm={this.closeForm}
+									/>
+							: null
+					}
+				</Dialog>
+
 
 			</div>
 		)
@@ -47,3 +77,8 @@ class MembersComponent extends Component {
 };
 
 export default MembersComponent;
+
+
+{/*<AddMemberForm channel={this.state.currentChannel}*/}
+							 {/*submitInvite={this.props.submitInvite}*/}
+							 {/*toggleNewMemberForm={this.toggleNewMemberForm}/>*/}

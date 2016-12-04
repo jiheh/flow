@@ -36,9 +36,5 @@ export const login = credentials => (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch(remove());
   axios.get('/auth/logout')
-    .catch(err => console.error('logout unsuccessful', err));
-};
-
-export const setAdmin = newAdmin => (dispatch) => {
-  dispatch(set(newAdmin.email));
+  .catch(err => console.error('logout unsuccessful', err));
 };

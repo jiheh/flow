@@ -29,19 +29,19 @@ class HomeSignUp extends React.Component {
 					  </div>
 					</label>
 
-
-				  <div className='pt-select'>
-				    <select
-				    	name='orgType'
-				    	onChange={this.changeOrganizationType}
-				    	required
-				    >
-				    	<option value=''>Select an Organization Type</option>
-				      <option value='University'>University</option>
-				      <option value='Business'>Gusiness</option>
-				      <option value='NGO'>NGO</option>
-				    </select>
-				  </div>
+					<label className='pt-label'>Organization Type
+					  <div className='pt-select'>
+					    <select
+					    	name='orgType'
+					    	onChange={this.changeOrganizationType}
+					    	required
+					    >
+					      <option value='University'>University</option>
+					      <option value='Business'>Business</option>
+					      <option value='NGO'>NGO</option>
+					    </select>
+					  </div>
+					</label>
 
 
 					<label className='pt-label'>Address
@@ -66,34 +66,39 @@ class HomeSignUp extends React.Component {
 					  </div>
 					</label>
 
-				  <div className='pt-select'>
-				    <select
-				    	name='accountType'
-				    	onChange={this.changeAccountType}
-				    	required
-				    >
-				    	<option value=''>Select an Account Type</option>
-				      <option value='basic'>Basic</option>
-				      <option value='medium'>Medium</option>
-				      <option value='pro'>Pro</option>
-				    </select>
-				  </div>
+					<hr />
+
+					<label className='pt-label'>Account Type
+					  <div className='pt-select'>
+					    <select
+					    	name='accountType'
+					    	onChange={this.changeAccountType}
+					    	required
+					    >
+					      <option value='basic'>Basic</option>
+					      <option value='medium'>Medium</option>
+					      <option value='pro'>Pro</option>
+					    </select>
+					  </div>
+					 </label>
 
 					{ this.state.accountType !== 'basic' ?
 						<div>
 
-						  <div className='pt-select'>
-						    <select
-						    	name='cardType'
-						    	onChange={this.changeOrganizationType}
-						    	required
-						    >
-						    	<option value=''>Select a Card Type</option>
-						      <option value='visa'>Visa</option>
-						      <option value='mastercard'>Mastercard</option>
-						      <option value='maestro'>Maestro</option>
-						    </select>
-						  </div>
+							<label className='pt-label'>Credit Card Type
+							  <div className='pt-select'>
+							    <select
+							    	name='cardType'
+							    	onChange={this.changeOrganizationType}
+							    	required
+							    >
+							    	<option value=''>Select a Card Type</option>
+							      <option value='visa'>Visa</option>
+							      <option value='mastercard'>Mastercard</option>
+							      <option value='maestro'>Maestro</option>
+							    </select>
+							  </div>
+							</label>
 
 							<label className='pt-label'>Card Number
 							  <div className='pt-input-group'>
@@ -132,6 +137,8 @@ class HomeSignUp extends React.Component {
 					:
 						<div />
 					}
+
+					<hr />
 
 					<label className='pt-label'>Admin Name
 					  <div className='pt-input-group'>
@@ -174,7 +181,6 @@ class HomeSignUp extends React.Component {
 	}
 
 	submitForm = (event) => { 
-		console.log('I SUBMITTED THE FORM')
 		event.preventDefault();
 		let { createOrg } = this.props;
 
@@ -189,6 +195,7 @@ class HomeSignUp extends React.Component {
 				email: event.target.email.value,
 				password: event.target.password.value
 			}
+
 		if(this.state.accountType !== 'basic'){
 			credentials.billing = {
 					cardType:this.state.cardType,
@@ -197,9 +204,7 @@ class HomeSignUp extends React.Component {
 					securityNumber:event.target.securityNumber.value
 			}
 		}
-		console.log('credentials', credentials)
-		createOrg(credentials)
-		.then(() => browserHistory.push('/dashboard'));
+		createOrg(credentials);
 	}
 
 	changeOrganizationType = (event) => {

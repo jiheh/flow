@@ -1,18 +1,26 @@
 import { connect } from 'react-redux';
-import { setAdmin } from '../../reducers/auth';
-
+import { browserHistory } from 'react-router';
 import axios from 'axios';
+
+import { login } from '../../reducers/auth';
+import { receiveChannels } from  '../../reducers/channels';
 
 import HomeSignUp from './HomeSignUp.jsx';
 
 const mapDispatchSignup = () => dispatch => ({ 
 	createOrg: credentials => {
-		console.log('THIS IS IN THE CONTAINER')
-	  return axios.post('/api/organization/', credentials)
-	  .then(headAdmin =>{
-	    return headAdmin
-	  })
-	  .then(res => dispatch(setAdmin(res.data)))
+		axios.post('/api/organization/', credentials)
+  	.then(() => (
+  		dispatch(login({
+  			email: credentials.email,
+  			password: credentials.password
+  		}))
+  	))
+  	.then(() => axios.get('/api/channel/allChannels/'))
+    .then(channels => {
+      dispatch(receiveChannels(channels.data));
+      browserHistory.push('/dashboard');
+  	})
 	  .catch(err => console.error('Signup unsuccessful', err));
 	}
 })

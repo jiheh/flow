@@ -32,6 +32,7 @@ passport.use(new (require('passport-local').Strategy) ({
 router.post('/login',
   passport.authenticate('local'),
     function (req, res, next) {
+      console.log(req.body)
       res.redirect('/');
     }
 );

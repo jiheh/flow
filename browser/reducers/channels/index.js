@@ -25,7 +25,6 @@ export const addChannel = createAction(ADD_CHANNEL);
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
   RECEIVE_CHANNELS: (state, { payload }) => {
-    const newCurrentChannel = payload.length ? payload[0] : {};
     return { ...state, allChannels: payload};
   },
   SET_CURRENT_CHANNEL: (state, { payload }) => {

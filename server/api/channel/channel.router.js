@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
   else {
     let admin;
     let channelId;
-    Admin.findByUserInfoId(req.user.id)
+    Admin.findById(req.user.id)
       .then((foundAdmin) => {
         admin = foundAdmin;
         return Channel.create(req.body)

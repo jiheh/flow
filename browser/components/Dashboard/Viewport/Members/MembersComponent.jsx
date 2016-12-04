@@ -10,6 +10,7 @@ class MembersComponent extends Component {
 
 		this.state = {
 			showForm: false,
+			dialogType: null,
 			currentChannel: {}
 		}
 	}
@@ -34,15 +35,12 @@ class MembersComponent extends Component {
 
 	render() {
 		return (
-			<div>
-			{
-				this.checkNewChannel()
-			}
-			{
-				!this.state.showForm ?
-				<Members toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} /> :
+			<div id="memebrsSection">
+				{this.checkNewChannel()}
+
+				<Members toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} />
 				<AddMemberForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
-			}
+
 			</div>
 		)
 	}

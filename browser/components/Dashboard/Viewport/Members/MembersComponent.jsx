@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import Members from './Members.jsx';
-import NewMemberForm from './NewMemberForm.jsx';
+import NewMemberForm from './MembersSubcomponents/NewMemberForm.jsx';
+import ExistingMemberEditor from './MembersSubcomponents/ExistingMemberEditor.jsx';
 
 import {Dialog} from '@blueprintjs/core';
 
@@ -13,7 +14,8 @@ class MembersComponent extends Component {
 		this.state = {
 			showForm: false,
 			dialogType: null,
-			currentChannel: {}
+			currentChannel: {},
+			currentMemberId: -1,
 		}
 	}
 
@@ -27,7 +29,8 @@ class MembersComponent extends Component {
 	}
 
 	toggleExistingMemberEditor = (memberID) => {
-		console.log("show existing member info");
+		this.setState({currentMemberId: memberID});
+		this.setState({showForm: !this.state.showForm, dialogType: 'existing_member'});
 	}
 
 	closeForm = () => {
@@ -52,7 +55,7 @@ class MembersComponent extends Component {
 				{this.checkNewChannel()}
 
 				<Members toggleNewMemberForm={this.toggleNewMemberForm}
-								 toggleExistingMemberEditor={this.toggleExistingMemberEditor}
+								 toggleExistingMemberEditor={(userId) => this.toggleExistingMemberEditor(userId)}
 								 currentChannel={this.state.currentChannel} />
 
 				<Dialog
@@ -66,7 +69,10 @@ class MembersComponent extends Component {
 									submitInvite={submitInvite}
 									closeForm={this.closeForm}
 									/>
-							: null
+							: <ExistingMemberEditor
+									closeForm={this.closeForm}
+									currentMemberId={this.currentMemberId}
+									/>
 					}
 				</Dialog>
 

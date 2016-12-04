@@ -3,7 +3,7 @@ import './Members.scss'
 
 import Member from './MembersSubcomponents/Member.jsx';
 
-export default ({ toggleNewMemberForm, currentChannel }) => (
+export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChannel }) => (
 	<div id="members" className="">
 		<nav className="pt-navbar">
 			<div className="pt-navbar-group pt-align-left">
@@ -21,7 +21,9 @@ export default ({ toggleNewMemberForm, currentChannel }) => (
 						(
 							currentChannel.users && currentChannel.users.length > 0 && currentChannel.users[0].UserInfo && currentChannel.users.map((user,idx) => (
 								<Member
+									toggleExistingMemberEditor={(userId) => toggleExistingMemberEditor(userId)}
 									key={idx}
+									userId={user.UserInfo.id}
 									userName={user.UserInfo.name}
 									userEmail={user.UserInfo.email}
 								/>

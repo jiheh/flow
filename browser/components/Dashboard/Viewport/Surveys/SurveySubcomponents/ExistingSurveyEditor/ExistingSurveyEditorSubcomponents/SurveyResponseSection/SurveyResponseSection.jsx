@@ -4,9 +4,14 @@ import './SurveyResponseSection.scss';
 import { } from '@blueprintjs/core';
 
 
-export default ({ questions }) => (
+export default ({ frequency, currentChannelNumUsers, questions }) => (
   <div className="pt-card pt-fill">
+    {console.log('frequency')}
+    {console.log(frequency)}
+    {console.log('currentChannelNumUsers')}
+    {console.log(currentChannelNumUsers)}
     {questions && questions.map((question, index) => {
+      console.log('question');
       console.log(question);
 
       return (

@@ -223,7 +223,7 @@ class SurveyForm extends Component {
 		}, () => {
 			this.props.submitSurvey(this.state)
 				.then(() => {
-					this.props.toggleForm();
+					this.props.toggleNewSurveyForm();
 				});
 		})
 	};

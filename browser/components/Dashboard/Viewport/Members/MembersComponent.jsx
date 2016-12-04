@@ -68,10 +68,11 @@ class MembersComponent extends Component {
 									channel={this.state.currentChannel}
 									submitInvite={submitInvite}
 									closeForm={this.closeForm}
+									allChannelMembers={this.state.currentChannel.users}
 									/>
 							: <ExistingMemberEditor
 									closeForm={this.closeForm}
-									currentMemberId={this.currentMemberId}
+									currentMemberId={this.state.currentMemberId}
 									/>
 					}
 				</Dialog>

@@ -38,7 +38,7 @@ class ExistingMemberEditor extends Component {
 
         <div className='pt-dialog-body'>
 
-          {console.log(currentMemberId)}
+          Current Member ID: {currentMemberId}
 
         </div>
       </div>

@@ -1,20 +1,13 @@
 import React from 'react';
 import './Members.scss'
+import Navbar from './MembersSubcomponents/MemberNavbar.jsx';
 
 import Member from './MembersSubcomponents/Member.jsx';
 
 export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChannel }) => (
 	<div id="members" className="">
-		<nav className="pt-navbar">
-			<div className="pt-navbar-group pt-align-left">
-				<input className="pt-input" placeholder="Search members..." type="text" />
-			</div>
 
-			<div className="pt-navbar-group pt-align-right">
-				<button onClick={() => toggleNewMemberForm() }className="pt-button pt-intent-primary pt-icon-plus">Add Member</button>
-			</div>
-
-		</nav>
+		<Navbar toggleNewMemberForm={toggleNewMemberForm} />
 
 		<div className="member-grid">
 					{

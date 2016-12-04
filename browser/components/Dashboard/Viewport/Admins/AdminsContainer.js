@@ -15,7 +15,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = () => dispatch => ({
 	submitInvite: form => {
-		return axios.post('/api/invites/webapp', form)
+		return axios.post(`/api/invites/addAdmin`, form)
 	},
 	receiveAdmins: (channelId) =>{
 		return axios.get(`/api/users/allAdmins/${channelId}`)

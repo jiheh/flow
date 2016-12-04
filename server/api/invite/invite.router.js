@@ -92,9 +92,7 @@ router.post('/chrome/delete', (req, res, next) => {
     .then((invites) => {
       res.send(invites);
     })
-    .catch(next)
-
-
+    .catch(next);
 })
 
 // POST - admin creates announcement
@@ -102,6 +100,31 @@ router.post('/webapp', (req, res, next) => {
   Invite.create(req.body)
     .then((invite) => {
       res.status(201).send()
+    })
+    .catch(next);
+});
+
+router.post('/addAdmin', (req, res, next) => {
+  const { email, channelId } = req.body;
+  let channel;
+  console.log("hit the route")
+  Channel.findById(channelId)
+    .then((currentChannel) => {
+      console.log("found channel")
+      channel = currentChannel;
+      return UserInfo.findOne({
+        where: {
+          email: email
+        }
+      });
+    })
+    .then((userInfo) => {
+      console.log("found userinfo")
+      return Admin.findByUserInfoId(userInfo.id);
+    })
+    .then((admin) => {
+      console.log("found admin")
+      channel.addAdmin(admin);
     })
     .catch(next);
 });

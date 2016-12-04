@@ -24,16 +24,16 @@ class ChannelsWidget extends Component {
 
         <div className="widget-contents">
           { currentChannels && currentChannels.map((channel, index) => {
-            return <div className="currentChannels" key={index}><img className="cross" src={cross} onClick={() => {
+            return channel[0] !== "Global Channel" ? <div className="currentChannels" key={index}><img className="cross" src={cross} onClick={() => {
                 leaveChannel(channel[1]);
-              }} />{channel[0]}</div>
+              }} />{channel[0]}</div> : null;
           }) }
           { invites.length ? invites.map((invite, index) => {
             return <div className="channelInvitations" ref={index} key={index}><img className="check" src={check} onClick={() => {
                 showNewChannels(currentChannels, invite);
                 acceptAndDeleteInvite(invite);
               }} />{invite.channelName} (pending)</div>
-          }) : null }
+            }) : null }
           </div>
 
         </div>

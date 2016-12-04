@@ -39,11 +39,6 @@ export const logout = () => (dispatch) => {
     .catch(err => console.error('logout unsuccessful', err));
 };
 
-export const signup = credentials => (dispatch) => {
-  axios.post('/api/organization/', credentials)
-    .then(headAdmin =>{
-      return headAdmin
-    })
-    .then(res => dispatch(set(res.data)))
-    .catch(err => console.error('Signup unsuccessful', err));
+export const setAdmin = newAdmin => (dispatch) => {
+  dispatch(set(newAdmin.email));
 };

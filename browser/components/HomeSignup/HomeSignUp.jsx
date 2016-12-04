@@ -1,4 +1,6 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+
 import './HomeSignUp.scss';
 
 class HomeSignUp extends React.Component {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { set } from '../../reducers/auth';
-import { browserHistory } from 'react-router';
+import { setAdmin } from '../../reducers/auth';
+
 import axios from 'axios';
 
 import HomeSignUp from './HomeSignUp.jsx';
@@ -12,7 +12,7 @@ const mapDispatchSignup = () => dispatch => ({
 	  .then(headAdmin =>{
 	    return headAdmin
 	  })
-	  .then(res => dispatch(set(res.data)))
+	  .then(res => dispatch(setAdmin(res.data)))
 	  .catch(err => console.error('Signup unsuccessful', err));
 	}
 })

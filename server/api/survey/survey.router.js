@@ -276,17 +276,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
       if (!_.filter(adminChannels, adminChannel => adminChannel.id === surveyChannel.id).length) {
         throw new Error('Admin does not have access to specified survey.');
       }
-
-      return survey;
-    })
-    .then(surveyToCount => {
-      // count number of users
-      return surveyToCount.countUsers();
-    })
-    .then(userCount => {
-      console.log('((((((((((((((((((((((()))))))))))))))))))')
-      console.log(userCount)
-      survey.numUsers = userCount;
+    
       res.json(survey);
     })
     .catch(next);

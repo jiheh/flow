@@ -1,0 +1,39 @@
+.admin-card {
+
+  width: 280px;
+  margin: 10px;
+
+  .admin-card-image {
+    vertical-align: top;
+    display: inline-block;
+    width: 48px;
+
+    img {
+      width: 100%;
+      opacity: 0.5;
+    }
+  }
+
+  .admin-card-info {
+    padding-left: 15px;
+    vertical-align: top;
+    display: inline-block;
+  }
+
+}
+.admin-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  .pt-input-group {
+    width: 250px;
+    display: inline-block;
+  }
+
+  #admin-add{
+    margin-left:15px;
+    display: inline-block;
+  }
+
+}

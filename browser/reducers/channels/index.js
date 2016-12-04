@@ -13,6 +13,7 @@ export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_SURVEY_TO_CURRENT = 'ADD_SURVEY_TO_CURRENT';
 export const ADD_NOTIFICATION_TO_CURRENT = 'ADD_NOTIFICATION_TO_CURRENT';
 export const ADD_CHANNEL = 'ADD_CHANNEL';
+export const RECEIVE_ADMINS = 'RECEIVE_ADMINS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 export const receiveChannels = createAction(RECEIVE_CHANNELS);
@@ -21,6 +22,7 @@ export const setCurrentChannel = createAction(SET_CURRENT_CHANNEL);
 export const addSurveyToCurrent = createAction(ADD_SURVEY_TO_CURRENT);
 export const addNotificationToCurrent = createAction(ADD_NOTIFICATION_TO_CURRENT);
 export const addChannel = createAction(ADD_CHANNEL);
+export const receiveAdmins = createAction(RECEIVE_ADMINS);
 
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
@@ -34,7 +36,7 @@ export default handleActions({
   RECEIVE_USERS: (state, { payload }) =>{
     let newCurrentChannel = { ...state.currentChannel, users: payload }
     let newChannels = state.allChannels.map(channel =>{
-      if(channel.id === newCurrentChannel.id) return newCurrentChannel 
+      if(channel.id === newCurrentChannel.id) return newCurrentChannel
       return channel
     })
     return Object.assign({},state,{
@@ -42,6 +44,11 @@ export default handleActions({
       allChannels: newChannels
     })
   },
+  // RECEIVE_ADMINS: (state, { payload }) => {
+  //   let newCurrentChannel = { ...state.currentChannel, users: payload }
+  //
+  //   return { ...state, currentChannel: payload }
+  // },
   ADD_SURVEY_TO_CURRENT: (state, { payload }) => {
     const newCurrent = {...state.currentChannel,
                         surveys: [payload, ...state.currentChannel.surveys]
@@ -73,4 +80,3 @@ export default handleActions({
     return { ...state, allChannels: [payload, ...state.allChannels] };
   },
 }, initialState);
-

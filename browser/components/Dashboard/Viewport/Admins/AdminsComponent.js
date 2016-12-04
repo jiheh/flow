@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Members from './Members.jsx';
-import AddMemberForm from './AddMemberForm';
+import Admins from './Admins.jsx';
+import AddAdminForm from './AddAdminForm';
 
-class MembersComponent extends Component {
+class AdminsComponent extends Component {
 
 	constructor(props) {
 		super(props);
@@ -16,7 +16,7 @@ class MembersComponent extends Component {
 
 
 	componentDidMount() {
-		if (Object.keys(this.props.currentChannel).length) this.props.receiveUsers(this.props.currentChannel.id)
+		if (Object.keys(this.props.currentChannel).length) this.props.receiveAdmins(this.props.currentChannel.id)
 	}
 
 	toggleForm = () => {
@@ -25,7 +25,7 @@ class MembersComponent extends Component {
 
 	checkNewChannel = () => {
 		if(this.state.currentChannel.id !== this.props.currentChannel.id){
-			this.props.receiveUsers(this.props.currentChannel.id)
+			this.props.receiveAdmins(this.props.currentChannel.id)
 			.then(() =>{
 				this.setState({currentChannel: this.props.currentChannel})
 			})
@@ -40,12 +40,12 @@ class MembersComponent extends Component {
 			}
 			{
 				!this.state.showForm ?
-				<Members toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} /> :
-				<AddMemberForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
+				<Admins toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} /> :
+				<AddAdminForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
 			}
 			</div>
 		)
 	}
 };
 
-export default MembersComponent;
+export default AdminsComponent;

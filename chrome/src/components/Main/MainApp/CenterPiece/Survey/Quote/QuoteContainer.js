@@ -9,9 +9,11 @@ const chance = new Chance();
 import QuoteComponent from './QuoteComponent.jsx';
 
 const mapStateToProps = ({
+  settings,
   quote,
   author,
 }) => ({
+  heartClassName: settings.heartClassName,
   quote,
   author,
 });
@@ -20,8 +22,9 @@ const mapStateToProps = ({
 const mapDispatchToProps = () => dispatch => ({
   // gets random quote from server
   getQuote: () => {
-
+    console.log("Getting quote")
     if (navigator.onLine) {
+      console.log("in the if")
       // TODO: CHANGE TO PRODUCTION SERVER
       axios.get(`http://localhost:8080/api/quotes/random`)
         .then(res => {
@@ -31,6 +34,7 @@ const mapDispatchToProps = () => dispatch => ({
         // TODO: error handling
         .catch(console.error);
     } else {
+      console.log("in the else")
       const quote = chance.pickone(stockQuotes);
       dispatch(setQuote(quote.quote));
       dispatch(setAuthor(quote.author));

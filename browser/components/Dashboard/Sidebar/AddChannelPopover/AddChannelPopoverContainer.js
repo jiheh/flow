@@ -7,7 +7,6 @@ const mapDispatch = () => dispatch => ({
   submitChannel: (channel) => {
     return axios.post('/api/channel', channel)
       .then(res => {
-        console.log(res);
         dispatch(addChannel(res.data));
       });
   },

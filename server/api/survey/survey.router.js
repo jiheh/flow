@@ -1,3 +1,4 @@
+
 'use strict';
 
 // eslint-disable-next-line new-cap
@@ -94,7 +95,6 @@ router.post('/', (req, res, next) => {
   } = req.body;
 
   if (!req.user) return res.status(403).send();
-  console.log('IDDDDD', req.user)
 
   db.transaction((t) => {
     let channel;

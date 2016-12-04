@@ -106,7 +106,8 @@ router.post('/webapp', (req, res, next) => {
 
 router.post('/addAdmin', (req, res, next) => {
   const { email, channelId } = req.body;
-  let channel;
+  let channel,
+      userInfo;
   console.log("hit the route")
   Channel.findById(channelId)
     .then((currentChannel) => {
@@ -118,12 +119,20 @@ router.post('/addAdmin', (req, res, next) => {
         }
       });
     })
-    .then((userInfo) => {
+    .then((currentUserInfo) => {
       console.log("found userinfo")
-      return Admin.findByUserInfoId(userInfo.id);
+      console.log(currentUserInfo)
+      userInfo = currentUserInfo;
+      return Admin.create();
     })
     .then((admin) => {
       console.log("found admin")
+      console.log(admin)
+      return admin.setUserInfo(userInfo);
+    })
+    .then((admin) => {
+      console.log("about to add to channel")
+      console.log(admin)
       channel.addAdmin(admin);
     })
     .catch(next);

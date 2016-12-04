@@ -277,9 +277,66 @@ router.get('/survey/:surveyId', (req, res, next) => {
         throw new Error('Admin does not have access to specified survey.');
       }
 
+      return survey;
+    })
+    .then(surveyToCount => {
+      // count number of users
+      return surveyToCount.countUsers();
+    })
+    .then(userCount => {
+      console.log('((((((((((((((((((((((()))))))))))))))))))')
+      console.log(userCount)
+      survey.numUsers = userCount;
       res.json(survey);
     })
     .catch(next);
 });
+
+router.delete('/survey/:surveyId', (req, res, next) => {
+  const { surveyId } = req.params;
+
+  let admin;
+  let survey;
+
+  if (!req.user) return res.status(403).send();
+
+  return Promise.all([
+    Admin.findByUserInfoId(req.user.id)
+      .then((foundAdmin) => {
+        admin = foundAdmin;
+        return admin.getChannels();
+      })
+      .then((foundAdminChannels) => {
+        if (!foundAdminChannels) throw new Error('Admin does not have any channels.');
+        adminChannels = foundAdminChannels;
+      }),
+    Survey.findOne({
+      where: {
+        id: surveyId,
+      }
+    })
+      .then((foundSurvey) => {
+        if (!foundSurvey) throw new Error('Survey not found.');
+        survey = foundSurvey;
+        return survey.getChannel();
+      }),
+  ])
+    .spread((a, surveyChannel) => {
+      if (!surveyChannel) throw new Error('Survey not linked to a channel.');
+      if (!_.filter(adminChannels, adminChannel => adminChannel.id === surveyChannel.id).length) {
+        throw new Error('Admin does not have access to specified survey.');
+      }
+
+      return Survey.delete({
+        where: {
+          id: survey.id
+        }
+      })
+    })
+    .then(deletedSurvey => {
+      res.sendStatus(201);
+    })
+    .catch(next);
+})
 
 module.exports = router;

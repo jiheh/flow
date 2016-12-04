@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import './ExistingSurveyEditor.scss';
-import { Popover, PopoverInteractionKind, Position } from '@blueprintjs/core';
+import { Popover, PopoverInteractionKind, Position, Tabs, TabList, Tab, TabPanel } from '@blueprintjs/core';
+
+import SurveyResponseSection from './ExistingSurveyEditorSubcomponents/SurveyResponseSection/SurveyResponseSection.jsx'
+
 import axios from 'axios';
 
 
@@ -33,16 +36,12 @@ class SurveyForm extends Component {
       .then(data => data.data)
       .then(surveyData => {
 
-        // all fields sent by server
+        // extract only the fields that we need to visualize/edit
         const { active,
-                admin_id,
-                channel_id,
-                created_at,
                 description,
-                id,
                 name,
-                owner_id,
-                questions
+                frequency,
+                questions,
               } = surveyData;
 
         // setting local state of form
@@ -63,22 +62,35 @@ class SurveyForm extends Component {
 
   render() {
 
-    const { currentSurveyID, toggleExistingSurveyEditor } = this.props;
-
-    const closeConfirmPopover = (
-      <div>
-        <h5>Are you sure you want to close?</h5>
-        <p>Your changes will be discarded</p>
-        <button className="pt-button pt-intent-danger pt-fill"
-                onClick={() => this.props.toggleNewSurveyForm()}>
-          Close
-        </button>
-      </div>
-    )
+    const { currentChannel, currentSurveyID, toggleExistingSurveyEditor } = this.props;
 
     return(
       <div>
+        <div className="pt-dialog-header">
+          <span className="pt-icon-large pt-icon-clipboard"></span>
+          <h5>Survey</h5>
 
+            <button aria-label="Close"
+                    className="pt-dialog-close-button pt-icon-small-cross"
+                    onClick={() => toggleExistingSurveyEditor()}/>
+
+        </div>
+
+          <div className="pt-dialog-body">
+            <h3>{this.state.dataLoaded ? this.state.name : 'Loading...'}</h3>
+            <Tabs>
+              <TabList>
+                <Tab >Questions</Tab>
+                <Tab aria-selected="true">Responses</Tab>
+              </TabList>
+              <TabPanel>
+                  Questions
+              </TabPanel>
+              <TabPanel>
+                  <SurveyResponseSection currentChannel={currentChannel} questions={this.state.questions} />
+              </TabPanel>
+            </Tabs>
+          </div>
 
       </div>
     )

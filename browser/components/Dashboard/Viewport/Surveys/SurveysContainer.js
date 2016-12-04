@@ -5,7 +5,7 @@ import { addSurveyToCurrent } from '../../../../reducers/channels';
 import axios from 'axios';
 
 const mapStateToProps = ({channels}) => ({
-  currentChannel: channels.currentChannel
+  currentChannel: channels.currentChannel,
 });
 
 const mapDispatchToProps = () => dispatch => ({

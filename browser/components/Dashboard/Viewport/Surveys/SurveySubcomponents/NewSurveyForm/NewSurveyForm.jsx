@@ -11,7 +11,7 @@ class SurveyForm extends Component {
 		super(props);
 
 		this.state = {
-			channelId: this.props.channel.id,
+			channelId: this.props.currentChannel.id,
 			name: '',
 			description: '',
 			frequency: [],
@@ -24,7 +24,7 @@ class SurveyForm extends Component {
 
 	render() {
 
-		const { channel } = this.props;
+		const { currentChannel } = this.props;
 
 		const closeConfirmPopover = (
 			<div>
@@ -41,7 +41,7 @@ class SurveyForm extends Component {
 			<div>
 				<div className="pt-dialog-header">
 					<span className="pt-icon-large pt-icon-clipboard"></span>
-					<h5>Create a Survey for {channel.name}</h5>
+					<h5>Create a Survey for {currentChannel.name}</h5>
 
 					<Popover content={closeConfirmPopover}
 									 interactionKind={PopoverInteractionKind.CLICK}

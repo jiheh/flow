@@ -36,6 +36,7 @@ export default ({
     </div>
 
     <Dialog
+              style={{width:'80%', top:'10%', backgroundColor: 'white'}}
               isOpen={showModal}
               inline={false}
               autoFocus={true}
@@ -46,13 +47,14 @@ export default ({
           modalType === 'new_survey'
             ? <NewSurveyForm
             toggleNewSurveyForm={toggleNewSurveyForm}
-            channel={currentChannel}
+            currentChannel={currentChannel}
             submitSurvey={submitSurvey} />
             : null
         }
         {
           modalType === 'existing_survey'
             ? <ExistingSurveyEditor
+                  currentChannel={currentChannel}
                   surveyID={currentSurveyID}
                   toggleExistingSurveyEditor={toggleExistingSurveyEditor}/>
             : null

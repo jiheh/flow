@@ -12,7 +12,7 @@ const Survey = ({ survey }) => (
     {survey.questions.length > 0 && survey.questions.map((question, idx) => (
     	<div key={idx}>
     		<br />
-          <Question question={question} index={idx + 1} key={idx}/>
+          <Question question={question} index={idx + 1} key={idx} survey={survey}/>
       </div>
      ))}
     </div>

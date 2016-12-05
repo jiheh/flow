@@ -106,15 +106,16 @@ router.post('/webapp', (req, res, next) => {
     .catch(next);
 });
 
+// POST - org head adds an admin to a channel
 router.post('/addAdmin', (req, res, next) => {
   if (!req.user) return res.status(403).send();
 
   const { email, channelId } = req.body;
-  let channel;
+  let selectedChannel, newAdmin;
 
   Channel.findById(channelId)
     .then((currentChannel) => {
-      channel = currentChannel;
+      selectedChannel = currentChannel;
       return UserInfo.findOne({
         where: {
           email: email
@@ -129,11 +130,22 @@ router.post('/addAdmin', (req, res, next) => {
       });
     })
     .spread((admin, created) => {
-      console.log('FOUND OR CREATED', admin)
-      return admin.addChannel(channel);
+      newAdmin = admin;
+      return selectedChannel.hasAdmin(admin);
     })
-    .then((admin) => {
-      res.send(admin);
+    .then(check => {
+      if (check) throw new Error('User is already an admin on the channel');
+
+      return selectedChannel.addAdmin(newAdmin);
+    })
+    .then(() => {
+      return selectedChannel.getAdmins({
+        where: {id: newAdmin.id}
+      });
+    })
+    .then(admins => {
+      console.log(admins[0])
+      res.send(admins[0]);
     })
     .catch(next);
 });

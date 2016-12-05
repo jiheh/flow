@@ -79,21 +79,38 @@ class SurveyForm extends Component {
         </div>
 
           <div className="pt-dialog-body">
-            <h3>{this.state.dataLoaded ? this.state.name : 'Loading...'}</h3>
-            <Tabs>
-              <TabList>
-                <Tab >Questions</Tab>
-                <Tab aria-selected="true">Responses</Tab>
-              </TabList>
-              <TabPanel>
-                  Questions
-              </TabPanel>
-              <TabPanel>
-                  <SurveyResponseSection  currentChannelNumUsers={currentChannel.users.length}
-                                          questions={this.state.questions}
-                                          frequency={this.state.frequency}/>
-              </TabPanel>
-            </Tabs>
+
+            {this.state.dataLoaded 
+              ?
+              <div>
+                <h3>{this.state.name}</h3>
+                <Tabs>
+                  <TabList>
+                    <Tab >Questions</Tab>
+                    <Tab aria-selected="true">Responses</Tab>
+                  </TabList>
+                  <TabPanel>
+                      Questions
+                  </TabPanel>
+                  <TabPanel>
+                      <SurveyResponseSection  currentChannelNumUsers={currentChannel.users.length}
+                                              questions={this.state.questions}
+                                              frequency={this.state.frequency}/>
+                  </TabPanel>
+                </Tabs>
+              </div>
+              :
+              <div className="pt-spinner pt-small">
+                <div className="pt-spinner-svg-container">
+                  <svg viewBox="0 0 100 100">
+                    <path className="pt-spinner-track" d="M 50,50 m 0,-44.5 a 44.5,44.5 0 1 1 0,89 a 44.5,44.5 0 1 1 0,-89"></path>
+                    <path className="pt-spinner-head" d="M 94.5 50 A 44.5 44.5 0 0 0 50 5.5"></path>
+                  </svg>
+                </div>
+              </div>
+            }
+
+
           </div>
 
       </div>

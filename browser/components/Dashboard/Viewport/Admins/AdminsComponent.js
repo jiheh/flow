@@ -39,8 +39,8 @@ class AdminsComponent extends Component {
 			}
 			{
 				!this.state.showForm ?
-				<Admins toggleForm={this.toggleForm} currentChannel={this.state.currentChannel} isOrgHead={this.props.isOrgHead} /> :
-				<AddAdminForm channel={this.state.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
+				<Admins toggleForm={this.toggleForm} currentChannel={this.props.currentChannel} isOrgHead={this.props.isOrgHead} /> :
+				<AddAdminForm channel={this.props.currentChannel} submitInvite={this.props.submitInvite} toggleForm={this.toggleForm}/>
 			}
 			</div>
 		)

@@ -140,7 +140,8 @@ router.post('/addAdmin', (req, res, next) => {
     })
     .then(() => {
       return selectedChannel.getAdmins({
-        where: {id: newAdmin.id}
+        where: { id: newAdmin.id },
+        include: [{ model: UserInfo, as: 'UserInfo' }]
       });
     })
     .then(admins => {

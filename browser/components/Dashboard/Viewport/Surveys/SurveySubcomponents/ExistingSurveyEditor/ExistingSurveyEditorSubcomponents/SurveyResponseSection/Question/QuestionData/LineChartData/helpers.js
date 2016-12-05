@@ -14,25 +14,10 @@ export const generateSurveyBounds = (surveyBounds) => {
 }
 
 export const generateTimeStamp = (str) => {
-	// return convertToTimestamp(regexMagic(str))
   return Date.parse(str)
 }
 
-export const regexMagic = (str) => {
-  console.log('before parse',str)
-  // 	str = str.replace("T",',')
-	// str = str.replace("Z",'')
-	// return str.split(/[\s,:,-]+/)
-  return str
-}
 
-export const convertToTimestamp = (arr) => {
-  // arr = arr.map(e => parseInt(e))
-  // console.log('before timestamp',arr)
-  // const timeStamp = Date.parse(new Date(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5]))
-  // return timeStamp
-  return Date.parse(arr)
-}
 
 export const fittingAlgo = (responses, objectBounds) => {
 	responses.forEach((e,idx) => {

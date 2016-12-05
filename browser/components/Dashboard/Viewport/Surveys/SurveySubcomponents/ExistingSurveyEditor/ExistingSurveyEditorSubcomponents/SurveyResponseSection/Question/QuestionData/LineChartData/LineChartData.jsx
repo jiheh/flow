@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
-import {generateSurveyBounds, generateTimeStamp, regexMagic, convertToTimestamp, fittingAlgo, convertToRealDate, generateData, doAverage, convertData } from  './helpers'
+import {generateSurveyBounds, convertToTimestamp, fittingAlgo, convertToRealDate, generateData, doAverage, convertData } from  './helpers'
 
 import './LineChartData.scss';
 
@@ -16,10 +16,6 @@ const data = [
 
 const LineChartData = ({ responses, survey }) => (
   <div>
-    {console.log('survey',survey.name,'surveyFrequency',survey.frequency)}
-    {console.log('responses',responses.length)}
-    {console.log('data Object',generateData(survey.frequency,responses))}
-    {console.log('Converted Data',convertData(generateData(survey.frequency,responses)))}
     {responses.length === 0 ? 'No responses.' :
      (
       <LineChart width={600} height={300} data={convertData(generateData(survey.frequency,responses))} margin={{top: 5, right: 30, left: 20, bottom: 5}}>

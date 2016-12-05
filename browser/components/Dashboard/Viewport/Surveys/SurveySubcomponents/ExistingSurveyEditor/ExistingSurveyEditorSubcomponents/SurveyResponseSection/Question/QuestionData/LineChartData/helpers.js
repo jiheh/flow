@@ -14,36 +14,25 @@ export const generateSurveyBounds = (surveyBounds) => {
 }
 
 export const generateTimeStamp = (str) => {
-	return convertToTimestamp(regexMagic(str))
+	// return convertToTimestamp(regexMagic(str))
+  return Date.parse(str)
 }
 
 export const regexMagic = (str) => {
-  	str = str.replace("T",',')
-	str = str.replace("Z",'')
-	return str.split(/[\s,:,-]+/)
+  console.log('before parse',str)
+  // 	str = str.replace("T",',')
+	// str = str.replace("Z",'')
+	// return str.split(/[\s,:,-]+/)
+  return str
 }
 
 export const convertToTimestamp = (arr) => {
-  arr = arr.map(e => parseInt(e))
-  const timeStamp = Date.parse(new Date(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5]))
-  return timeStamp
+  // arr = arr.map(e => parseInt(e))
+  // console.log('before timestamp',arr)
+  // const timeStamp = Date.parse(new Date(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5]))
+  // return timeStamp
+  return Date.parse(arr)
 }
-
-const responses = [{
-    created_at: "2016-12-04T23:50:05.291Z",
-    id: 26,
-    question_id: 4,
-    updated_at: "2016-12-04T23:50:06.465Z",
-    user_id: 10,
-    value: "Very Proficient"
-  },{
-    created_at: "2016-12-04T23:00:05.291Z",
-    id: 26,
-    question_id: 4,
-    updated_at: "2016-12-04T23:50:06.465Z",
-    user_id: 10,
-    value: "Very Proficient"
-}]
 
 export const fittingAlgo = (responses, objectBounds) => {
 	responses.forEach((e,idx) => {
@@ -65,8 +54,9 @@ export const fittingAlgo = (responses, objectBounds) => {
 }
 
 export const convertToRealDate = (timestamp) => {
+  console.log('timestamp',timestamp)
   let date = new Date(timestamp)	
-  return date.toString().split(' ').slice(1).slice(0,4).join(' ')
+  return date.toString().split(' ').slice(1).slice(0,3).join(' ')
 }
 
 export const generateData = (surveyBounds,responses) => {
@@ -90,7 +80,7 @@ export const convertData = (obj) => {
 		if(responses) data.push({time:convertToRealDate(parseInt(time)),response:responses})
 		else data.push({time:convertToRealDate(parseInt(time))})
 	}
-	return data
+	return data.slice(0,data.length-1)
 }
 
 

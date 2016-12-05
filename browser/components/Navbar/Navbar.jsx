@@ -24,9 +24,8 @@ export default class Navigation extends Component {
 
   render() {
     const { logoutAdmin, currentAdmin, isOrgHead } = this.props;
-    console.log("IS ORG HEAD: ", isOrgHead);
+    
     return (
-
       <nav className='nav pt-navbar'>
         <div className='pt-navbar-group pt-align-left'>
             <div className='pt-navbar-heading' onClick={() => browserHistory.push('/')}>

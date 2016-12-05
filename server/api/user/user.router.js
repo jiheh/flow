@@ -105,8 +105,6 @@ router.get('/allAdmins/:channelId', (req, res) => {
     });
   })
   .then((admins) => {
-    console.log("ADMINS")
-    console.log(admins)
     res.send(admins);
   })
   .catch(err => console.error("Can't get all admins", err));

@@ -30,14 +30,14 @@ router.post('/chrome/get', (req, res, next) => {
         where: {
           id: user.user_info_id
         }
-      })
+      });
     })
     .then((userInfo) => {
       return Invite.findAll({
         where: {
           email: userInfo.email
         }
-      })
+      });
     })
     .then((invites) => {
       res.send(invites);
@@ -60,7 +60,7 @@ router.post('/chrome/delete', (req, res, next) => {
         where: {
           user_info_id: userInfo.id
         }
-      })
+      });
     })
     .then((foundUser) => {
       if (!foundUser) throw new Error('User not found.');
@@ -69,7 +69,7 @@ router.post('/chrome/delete', (req, res, next) => {
         where: {
           id: invite.channelId
         }
-      })
+      });
     })
     .then((channel) => {
       return channel.addUser(user);
@@ -80,40 +80,41 @@ router.post('/chrome/delete', (req, res, next) => {
           email: invite.email,
           channelId: invite.channelId
         }
-      })
+      });
     })
     .then((number) => {
       return Invite.findAll({
         where: {
           email: userInfoEmail
         }
-      })
+      });
     })
     .then((invites) => {
       res.send(invites);
     })
     .catch(next);
-})
+});
 
 // POST - admin creates invitation
 router.post('/webapp', (req, res, next) => {
   if (!req.user) return res.status(403).send();
-  
+
   Invite.create(req.body)
     .then((invite) => {
-      res.status(201).send()
+      res.status(201).send();
     })
     .catch(next);
 });
 
 router.post('/addAdmin', (req, res, next) => {
+  if (!req.user) return res.status(403).send();
+
   const { email, channelId } = req.body;
   let channel,
       userInfo;
-  console.log("hit the route")
+
   Channel.findById(channelId)
     .then((currentChannel) => {
-      console.log("found channel")
       channel = currentChannel;
       return UserInfo.findOne({
         where: {
@@ -122,20 +123,19 @@ router.post('/addAdmin', (req, res, next) => {
       });
     })
     .then((currentUserInfo) => {
-      console.log("found userinfo")
-      console.log(currentUserInfo)
+      if (!currentUserInfo) throw new Error('Only flow extension users may be added as an admin of a channel.');
       userInfo = currentUserInfo;
-      return Admin.create();
+      return Admin.findOrCreate({
+        where: {user_info_id: currentUserInfo.id}
+      });
     })
     .then((admin) => {
-      console.log("found admin")
-      console.log(admin)
-      return admin.setUserInfo(userInfo);
+      console.log('FOUND OR CREATED', admin)
+      return channel.addAdmin(admin);
     })
-    .then((admin) => {
-      console.log("about to add to channel")
-      console.log(admin)
-      channel.addAdmin(admin);
+    .then((newAdmin) => {
+      console.log('ASSOCIATED', newAdmin)
+      res.send(newAdmin);
     })
     .catch(next);
 });

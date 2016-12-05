@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AdminsComponent from './AdminsComponent';
-import { receiveAdmins } from '../../../../reducers/channels'
+import { receiveAdmins, addAdminToCurrent } from '../../../../reducers/channels'
 import axios from 'axios';
 
 
@@ -15,7 +15,11 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = () => dispatch => ({
 	submitInvite: form => {
-		return axios.post(`/api/invites/addAdmin`, form)
+		return axios.post('/api/invites/addAdmin', form)
+		.then(admin => {
+			dispatch(addAdminToCurrent(admin.data))
+		})
+		.catch(err => console.error('Admin could not be added to the channel', err))
 	},
 	receiveAdmins: (channelId) =>{
 		return axios.get(`/api/users/allAdmins/${channelId}`)

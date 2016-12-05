@@ -14,10 +14,9 @@ class AdminsComponent extends Component {
 		}
 	}
 
-
-	componentDidMount() {
-		if (Object.keys(this.props.currentChannel).length) this.props.receiveAdmins(this.props.currentChannel.id)
-	}
+	// componentDidMount() {
+	// 	if (Object.keys(this.props.currentChannel).length) this.props.receiveAdmins(this.props.currentChannel.id)
+	// }
 
 	toggleForm = () => {
 		this.setState({showForm: !this.state.showForm});

@@ -29,7 +29,7 @@ router.post('/isOrgHead', (req, res, next) => {
     });
   })
   .then((organization) => {
-    if (organization) res.send(true);
+    if (organization) return res.send(true);
     res.send(false);
   })
   .catch(next);

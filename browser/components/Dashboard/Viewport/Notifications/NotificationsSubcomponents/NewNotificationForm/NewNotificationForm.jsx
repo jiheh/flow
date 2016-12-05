@@ -11,8 +11,9 @@ class NotificationForm extends Component {
 		super(props);
 
 		this.state = {
-			title: '',
-			contents: '',
+			notificationName: '',
+			notificationBody: '',
+			channelId: this.props.currentChannelID,
 		};
 	}
 

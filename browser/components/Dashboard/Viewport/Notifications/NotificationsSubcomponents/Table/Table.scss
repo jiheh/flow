@@ -1,0 +1,32 @@
+$padding-vertical: 10px;
+$padding-horizontal: 10px;
+
+.notification-table {
+
+  width: 100%;
+
+  .table-header {
+    border-bottom: solid 1px #D8E1E8;
+  }
+
+  .table-row{
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: #EBF1F5;
+    }
+  }
+
+  .table-th {
+    padding: $padding-vertical $padding-horizontal;
+    font-weight: normal;
+    color: #394B59;
+  }
+
+  .table-td {
+    color: #5C7080;
+    padding: $padding-vertical $padding-horizontal;
+  }
+
+}

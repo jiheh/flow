@@ -6,6 +6,11 @@
   display: block;
 }
 
+.modal {
+  position: relative;
+  z-index: 20;
+}
+
 .viewport-content {
   padding: 0 15px;
 }

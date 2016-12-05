@@ -29,7 +29,7 @@ const seedDatabase = num => {
     db.sync({ force: true })
     .then(() => {
       console.log(chalk.yellow('CREATING ADMINS'));
-      return seedAdmins(6)
+      return seedAdmins(6);
     })
     .then((admins) => {
       console.log(chalk.yellow('CREATING CHANNELS'))
@@ -43,22 +43,26 @@ const seedDatabase = num => {
       const channels = _.flattenDeep(newChannels);
       // return an array of promises to create N users for each channel
       return Promise.all(channels.map(channel => {
-        return seedUsers(channel, chance.integer({min:10, max:50}))
+        return seedUsers(channel, chance.integer({min:10, max:50}));
       }))
     })
     .then(() => {
       console.log(chalk.yellow('CREATING ANNOUNCEMENTS FOR EACH CHANNEL'));
       return Promise.all(currentChannels.map((channel, idx) => {
-        seedAnnouncements(currentAdmins[idx], channel, chance.integer({min:3, max: 20}), idx)
+        seedAnnouncements(currentAdmins[idx], channel, chance.integer({min:3, max: 20}), idx);
       }))
     })
     .then(() => {
       console.log(chalk.yellow('CREATING ORGANIZATIONS'));
-      return seedOrganization(currentAdmins)
+      return seedOrganization(currentAdmins);
     })
     .then(() => {
-      console.log(chalk.yellow(`SEEDING SURVEYS`));
-      return seedSurveys(1)
+      console.log(chalk.yellow(`SEEDING NORMAL SURVEYS`));
+      return seedSurveys(1);
+    })
+    .then(() => {
+      console.log(chalk.yellow(`SEEDING RECURRING GLOBAL SURVEYS`));
+      return seedGlobalSurveys();
     })
     .then(() => {
       console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));

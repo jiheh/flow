@@ -15,11 +15,9 @@ app.use(bodyParser.json());
 
 const session = require('express-session');
 
-app.use(session({
-  secret: 'supersecret',
-  resave: false,
-  saveUninitialized: true,
-  // cookie: {maxAge: 3600000}
+app.use(require('cookie-session') ({
+  name: 'session',
+  keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
 }));
 
 app.use(passport.initialize());

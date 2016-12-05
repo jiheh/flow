@@ -10,6 +10,7 @@ const db = require('../../_db');
 const User = require('./user.model');
 const UserInfo = require('../userInfo/userInfo.model');
 const Channel = require('../channel/channel.model');
+const Survey = require('../survey/survey.model');
 const Admin = require('../admin/admin.model')
 
 router.post('/', (req, res, next) => {
@@ -33,7 +34,7 @@ router.post('/', (req, res, next) => {
             })
             .then((user) => {
               newUser = user;
-              return Channel.findById(1)
+              return Channel.findById(1);
             })
             .then((channel) => {
               return channel.addUser(newUser);
@@ -41,8 +42,15 @@ router.post('/', (req, res, next) => {
             .then(() => {
               return newUser.setUserInfo(userInfo);
             })
-            .then((user) => {
-              res.json(user.hash);
+            .then(() => {
+              return Survey.findById(1);
+            })
+            .then((survey) => {
+              console.log(survey)
+              survey.addUser(newUser)
+            })
+            .then(() => {
+              res.json(newUser.hash);
             });
         } else { // eslint-disable-line no-else-return
           // UserInfo found, check password, find User and return hash
@@ -70,27 +78,45 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/allUsers/:channelId',(req,res) =>{
+router.get('/allUsers/:channelId', (req,res) => {
   // if (req.user === undefined)
-  if(!req.user) throw new Error('Only Admins have access to this users.')
+  if (!req.user) throw new Error('Only Admins have access to these users.');
 
   User.findAll({
   include:[{model: UserInfo, as: 'UserInfo'},{model: Channel,include:[{model:Admin,through:'Admin-ChannelItem'}]}]})
   .then(users =>{
-    return users.filter(user =>{
-      return user.channels.filter(channel =>{
+    return users.filter(user => {
+      return user.channels.filter(channel => {
         let channelIdCheck = channel.id === parseInt(req.params.channelId)
-        let adminIdCheck = channel.admins.filter(admin =>{
+        let adminIdCheck = channel.admins.filter(admin => {
           return admin.id === req.user.id
         }).length > 0
         return channelIdCheck && adminIdCheck
       }).length > 0
     })
   })
-  .then(users =>{
-    res.send(users)
+  .then(users => {
+    res.send(users);
   })
-  .catch(err => console.error('Cant get all users',err))
-})
+  .catch(err => console.error('Cant get all users', err));
+});
+
+router.get('/allAdmins/:channelId', (req, res) => {
+  if (!req.user) throw new Error('Only Admins have access to these users.');
+  Channel.findById(req.params.channelId)
+  .then((channel) => {
+    return channel.getAdmins({
+      include: [{
+        model: UserInfo,
+        as: 'UserInfo'
+      }]
+    });
+  })
+  .then((admins) => {
+    res.send(admins);
+  })
+  .catch(err => console.error("Can't get all admins", err));
+});
+
 
 module.exports = router;

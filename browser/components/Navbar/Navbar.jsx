@@ -21,16 +21,15 @@ export default class Navigation extends Component {
   close = () => {
     this.setState({showModal: false})
   }
-  
-  render() {
-    const { loginAdmin, logoutAdmin, currentAdmin } = this.props;
-  
-    return (
 
+  render() {
+    const { logoutAdmin, currentAdmin, isOrgHead } = this.props;
+    
+    return (
       <nav className='nav pt-navbar'>
         <div className='pt-navbar-group pt-align-left'>
             <div className='pt-navbar-heading' onClick={() => browserHistory.push('/')}>
-              Flow Administrator
+              {isOrgHead ? `Flow - Organization Head` : `Flow - Administrator`}
             </div>
         </div>
         <div className='pt-navbar-group pt-align-right'>
@@ -44,5 +43,3 @@ export default class Navigation extends Component {
 
 
 // <span className='pt-navbar-divider'></span>
-
-

@@ -12,7 +12,9 @@ export const SET_CURRENT_CHANNEL = 'SET_CURRENT_CHANNEL';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_SURVEY_TO_CURRENT = 'ADD_SURVEY_TO_CURRENT';
 export const ADD_NOTIFICATION_TO_CURRENT = 'ADD_NOTIFICATION_TO_CURRENT';
+export const ADD_ADMIN_TO_CURRENT = 'ADD_ADMIN_TO_CURRENT';
 export const ADD_CHANNEL = 'ADD_CHANNEL';
+export const RECEIVE_ADMINS = 'RECEIVE_ADMINS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 export const receiveChannels = createAction(RECEIVE_CHANNELS);
@@ -20,7 +22,9 @@ export const receiveUsers = createAction(RECEIVE_USERS);
 export const setCurrentChannel = createAction(SET_CURRENT_CHANNEL);
 export const addSurveyToCurrent = createAction(ADD_SURVEY_TO_CURRENT);
 export const addNotificationToCurrent = createAction(ADD_NOTIFICATION_TO_CURRENT);
+export const addAdminToCurrent = createAction(ADD_ADMIN_TO_CURRENT);
 export const addChannel = createAction(ADD_CHANNEL);
+export const receiveAdmins = createAction(RECEIVE_ADMINS);
 
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
@@ -32,14 +36,25 @@ export default handleActions({
   },
   RECEIVE_USERS: (state, { payload }) =>{
     let newCurrentChannel = { ...state.currentChannel, users: payload }
-    let newChannels = state.allChannels.map(channel =>{
-      if(channel.id === newCurrentChannel.id) return newCurrentChannel 
-      return channel
-    })
-    return Object.assign({},state,{
+    let newChannels = state.allChannels.map(channel => {
+      if (channel.id === newCurrentChannel.id) return newCurrentChannel;
+      return channel;
+    });
+    return Object.assign({}, state, {
       currentChannel: newCurrentChannel,
-      allChannels: newChannels
-    })
+      allChannels: newChannels,
+    });
+  },
+  RECEIVE_ADMINS: (state, { payload }) => {
+    let newCurrentChannel = { ...state.currentChannel, admins: payload }
+    let newChannels = state.allChannels.map(channel => {
+      if (channel.id === newCurrentChannel.id) return newCurrentChannel;
+      return channel;
+    });
+    return Object.assign({}, state, {
+      currentChannel: newCurrentChannel,
+      allChannels: newChannels,
+    });
   },
   ADD_SURVEY_TO_CURRENT: (state, { payload }) => {
     const newCurrent = {...state.currentChannel,
@@ -67,9 +82,20 @@ export default handleActions({
     });
     return { currentChannel: newCurrent, allChannels: newAll };
   },
-
+  ADD_ADMIN_TO_CURRENT: (state, { payload }) => {
+    const newCurrent = {...state.currentChannel,
+                        admins: [payload, ...state.currentChannel.admins]
+                       };
+    const newAll = state.allChannels.map(channel => {
+      if (channel.id === state.currentChannel.id) {
+        return newCurrent;
+      } else {
+        return channel;
+      }
+    });
+    return { currentChannel: newCurrent, allChannels: newAll };
+  },
   ADD_CHANNEL: (state, { payload }) => {
     return { ...state, allChannels: [payload, ...state.allChannels] };
   },
 }, initialState);
-

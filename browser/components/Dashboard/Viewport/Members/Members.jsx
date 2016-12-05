@@ -1,25 +1,22 @@
 import React from 'react';
 import './Members.scss'
-
-import Member from './MembersSubcomponents/Member.jsx';
 import Navbar from './MembersSubcomponents/MemberNavbar.jsx';
 
-export default ({ toggleForm, currentChannel }) => (
-	<div id="members">
+import Member from './MembersSubcomponents/Member.jsx';
+
+export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChannel }) => (
+	<div id="members" className="">
 		<h3>Members</h3>
-		<button type="button"
-            id="member-add"
-            className="pt-button pt-icon-add pt-intent-primary"
-            onClick={() => toggleForm()}>
-      Add Member
-    </button>
-		<Navbar />
+		<Navbar toggleNewMemberForm={toggleNewMemberForm} />
+		
 		<div className="member-grid">
 					{
 						(
 							currentChannel.users && currentChannel.users.length > 0 && currentChannel.users[0].UserInfo && currentChannel.users.map((user,idx) => (
 								<Member
+									toggleExistingMemberEditor={(userId) => toggleExistingMemberEditor(userId)}
 									key={idx}
+									userId={user.UserInfo.id}
 									userName={user.UserInfo.name}
 									userEmail={user.UserInfo.email}
 								/>

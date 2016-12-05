@@ -1,13 +1,46 @@
 const router = require('express').Router(); // eslint-disable-line new-cap
+
 const Organization = require('./organization.model');
 const Account = require('../account/account.model');
 const Billing = require('../billing/billing.model');
+const UserInfo = require('../userInfo/userInfo.model');
 const adminMethods = require('../admin/admin.methods');
 const Admin = require('../admin/admin.model');
 
-//Create a new Organization returns Head Admin
+// Checks if admin is an organization head
+router.post('/isOrgHead', (req, res, next) => {
+
+  const { adminEmail } = req.body;
+  let admin;
+  UserInfo.findOne({
+    where: {
+      email: adminEmail
+    }
+  })
+  .then((userInfo) => {
+    return Admin.findByUserInfoId(userInfo.id);
+  })
+  .then((currentAdmin) => {
+    admin = currentAdmin;
+    return Organization.findOne({
+      where: {
+        head_id: admin.id
+      }
+    });
+  })
+  .then((organization) => {
+    if (organization) return res.send(true);
+    res.send(false);
+  })
+  .catch(next);
+});
+
+
+
+// Create a new Organization returns Head Admin
 router.post('/', (req, res, next) => {
   let globalOrganization; 
+
   Organization.create({
     name: req.body.organizationName,
     type: req.body.organizationType,
@@ -59,7 +92,8 @@ router.post('/', (req, res, next) => {
   .then(headAdmin => {
     res.status(209).send(headAdmin);
   })
-  .catch(err => console.log(err));
+  .catch(console.error);
 });
+
 
 module.exports = router;

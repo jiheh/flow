@@ -2,11 +2,6 @@ import React, { PropTypes } from 'react';
 
 import '../../AnnouncementWidget/AnnouncementWidget.scss';
 import Line from '../../WidgetComponents/Line.jsx';
-import one from './37.jpg';
-import two from './31.jpg';
-import three from './33.jpg';
-// const two = require('./31.jpg');
-// const three = require('./33.jpg');
 
 const Flows = () => (
 
@@ -31,13 +26,3 @@ Flows.propTypes = {
 
 
 export default Flows;
-
-// <img src={one}></img>
-// <img src={two}></img>
-// <img src={three}></img>
-// <img src={one}></img>
-// <img src={two}></img>
-// <img src={three}></img>
-// <img src={one}></img>
-// <img src={two}></img>
-// <img src={three}></img>

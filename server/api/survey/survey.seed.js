@@ -16,7 +16,6 @@ const Admin = require('../admin/admin.model');
 const surveyDataCreator = require('../survey.data');
 
 const createSurveys = (adminID) => {
-  console.log(chalk.yellow(`SEEDING SURVEYS`));
   const surveysToCreate = surveyDataCreator(4, -1, -1);
   let admin;
   let channels;
@@ -27,13 +26,13 @@ const createSurveys = (adminID) => {
     },
   })
     .then((foundAdmin) => {
-      console.log(`\tCreating surveys for Admin ${adminID}`);
       admin = foundAdmin;
       return admin.getChannels();
     })
     .then((foundChannels) => {
       return Promise.map((foundChannels), channel => {
         return Promise.map(surveysToCreate, surveyToCreate => {
+          console.log("Creating survey");
           let questionsToCreate = surveyToCreate.questions;
           let survey;
           return Survey.create({
@@ -53,7 +52,9 @@ const createSurveys = (adminID) => {
             survey.setChannel(channel),
           ]))
           .then(() => channel.getUsers())
-          .then((users) => survey.setUsers(users));
+          .then((users) => {
+            return survey.setUsers(users)
+          });
         });
       });
     })

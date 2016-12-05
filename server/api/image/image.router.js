@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router(); // eslint-disable-line new-cap
 
-let counter = 0;
+let counter = 23;
 
 router.get('/random', (req, res, next) => {
   const imageDir = path.join(__dirname, '..', '..', '..', 'public', 'backgroundImages');

@@ -87,7 +87,7 @@ class AddMemberForm extends Component {
 																type='email'
 																name='email'
 																dir='auto'
-																autocomplete="off"
+																autoComplete="off"
 																required
 																value={this.state.currentEmail}
 																onChange={(e) => this.handleEmailInputChange(e)}/>

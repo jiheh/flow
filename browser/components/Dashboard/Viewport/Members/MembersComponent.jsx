@@ -20,9 +20,9 @@ class MembersComponent extends Component {
 	}
 
 
-	componentDidMount() {
-		if(Object.keys(this.props.currentChannel).length) this.props.receiveUsers(this.props.currentChannel.id)
-	}
+	// componentDidMount() {
+	// 	if(Object.keys(this.props.currentChannel).length) this.props.receiveUsers(this.props.currentChannel.id)
+	// }
 
 	toggleNewMemberForm = () => {
 		this.setState({showForm: !this.state.showForm, dialogType: 'new_member'});

@@ -13,7 +13,6 @@ const mapDispatchToProps = () => dispatch => ({
 	submitNotification: form => {
 		return axios.post('/api/announcements/', form)
 		.then(announcement => {
-			console.log('in here',announcement)
 			dispatch(addNotificationToCurrent(announcement.data))
 		})
 		.catch(console.error);

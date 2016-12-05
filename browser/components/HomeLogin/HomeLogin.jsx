@@ -10,8 +10,6 @@ export default class HomeLogin extends Component {
     loginAdmin: PropTypes.func.isRequired,
   }
 
-
-
   render() {
     const { loginAdmin } = this.props;
 

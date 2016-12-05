@@ -40,7 +40,7 @@ export const fittingAlgo = (responses, objectBounds) => {
 
 export const convertToRealDate = (timestamp) => {
   let date = new Date(timestamp)	
-  return date.toString().split(' ').slice(1).slice(0,3).join(' ')
+  return date.toString().split(' ').slice(1).slice(0,4).join(' ')
 }
 
 export const generateData = (surveyBounds,responses) => {

@@ -6,7 +6,7 @@ import Visualizer from './Question/QuestionData/QuestionData.jsx';
 import { } from '@blueprintjs/core';
 
 
-export default ({ frequency, currentChannelNumUsers, questions }) => (
+export default ({ frequency, currentChannelNumUsers, questions, survey }) => (
   <div className="pt-card pt-fill">
     {questions && questions.map((question, index) => {
       return (
@@ -14,7 +14,7 @@ export default ({ frequency, currentChannelNumUsers, questions }) => (
           <h4>{question.text}</h4>
           <span className="pt-tag pt-round">{question.type}</span>
           
-          <Visualizer type={question.type} responses={question.responses} survey={question} />
+          <Visualizer type={question.type} responses={question.responses} survey={survey} />
         </div>
       )
     })}

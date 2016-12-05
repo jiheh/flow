@@ -13,4 +13,4 @@ const server = app.listen(port, (err) => {
     });
 });
 
-module.exports = server;
+module.exports = server

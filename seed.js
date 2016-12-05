@@ -56,7 +56,10 @@ const seedDatabase = num => {
       console.log(chalk.yellow('CREATING ORGANIZATIONS'));
       return seedOrganization(currentAdmins)
     })
-    .then(() => seedSurveys(1)) // which admin gets the surveys?
+    .then(() => {
+      console.log(chalk.yellow(`SEEDING SURVEYS`));
+      return seedSurveys(1)
+    })
     .then(() => {
       console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));
       return seedResponses();

@@ -7,7 +7,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const chalk = require('chalk');
 const path = require('path');
 
-const PROD = (process.env.NODE_ENV === 'production');
+const PROD = (process.env.NODE_ENV == 'production');
 
 module.exports = {
   entry: './browser/app.js',

@@ -110,8 +110,7 @@ router.post('/addAdmin', (req, res, next) => {
   if (!req.user) return res.status(403).send();
 
   const { email, channelId } = req.body;
-  let channel,
-      userInfo;
+  let channel;
 
   Channel.findById(channelId)
     .then((currentChannel) => {
@@ -124,17 +123,17 @@ router.post('/addAdmin', (req, res, next) => {
     })
     .then((currentUserInfo) => {
       if (!currentUserInfo) throw new Error('Only flow extension users may be added as an admin of a channel.');
-      userInfo = currentUserInfo;
+
       return Admin.findOrCreate({
         where: {user_info_id: currentUserInfo.id}
       });
     })
     .then((admin) => {
       console.log('FOUND OR CREATED', admin)
-      return channel.addAdmin(admin);
+      return channel.addAdmin(admin[0]);
     })
     .then((newAdmin) => {
-      console.log('ASSOCIATED', newAdmin)
+      console.log('ASSOCIATED', newAdmin[0].data)
       res.send(newAdmin);
     })
     .catch(next);

@@ -12,6 +12,8 @@ const UserInfo = require('../userInfo/userInfo.model');
 const Channel = require('../channel/channel.model');
 const Admin = require('../admin/admin.model')
 
+
+// login or create new user
 router.post('/', (req, res, next) => {
   // eslint-disable-next-line no-unused-vars
   db.transaction((t) => {
@@ -42,6 +44,7 @@ router.post('/', (req, res, next) => {
               return newUser.setUserInfo(userInfo);
             })
             .then((user) => {
+              res.status(201);
               res.json(user.hash);
             });
         } else { // eslint-disable-line no-else-return
@@ -62,6 +65,7 @@ router.post('/', (req, res, next) => {
             })
             .then((user) => {
               if (!user) { throw new Error('User not found.'); }
+              res.status(302)
               res.json(user.hash);
             });
         }
@@ -88,9 +92,20 @@ router.get('/allUsers/:channelId',(req,res) =>{
     })
   })
   .then(users =>{
-    res.send(users)
+    res.json(users)
   })
   .catch(err => console.error('Cant get all users',err))
+})
+
+// temporary delete route
+router.delete('/:userId', (req, res) => {
+
+  const userId = req.params.userId;
+
+  if(!req.user) throw new Error('Only Admins have access to this users.')
+
+  User.findById(userId, {include: [{model: UserInfo}]})
+
 })
 
 module.exports = router;

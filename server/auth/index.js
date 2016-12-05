@@ -8,7 +8,7 @@ const UserInfo = require('../api/userInfo/userInfo.model');
 
 module.exports = router;
 
-passport.use(new (require('passport-local').Strategy) ({
+passport.use(new (require('passport-local').Strategy)({
   usernameField: 'email',
   passwordField: 'password'
   }, (email, password, done) => {
@@ -28,10 +28,17 @@ passport.use(new (require('passport-local').Strategy) ({
   });
 }));
 
+// router.post('/login', (req, res, next) => {
+//
+//   console.log(req.body)
+//   res.sendStatus(200)
+//
+//   }
+// );
 
-router.post('/login',
-  passport.authenticate('local'),
+router.post('/login', passport.authenticate('local'),
     function (req, res, next) {
+      res.status(200);
       res.redirect('/');
     }
 );

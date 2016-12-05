@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const Admin = require('../api/admin/admin.model');
 const UserInfo = require('../api/userInfo/userInfo.model');
 const passport = require('passport');
+const db = require('../db'); // this must be here for tests to work
 
 app.use(require('./logging.middleware'));
 app.use(require('./statics.middleware'));

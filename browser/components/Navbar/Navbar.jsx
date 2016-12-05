@@ -23,7 +23,7 @@ export default class Navigation extends Component {
   }
 
   render() {
-    const { loginAdmin, logoutAdmin, currentAdmin, isOrgHead } = this.props;
+    const { logoutAdmin, currentAdmin, isOrgHead } = this.props;
     console.log("IS ORG HEAD: ", isOrgHead);
     return (
 

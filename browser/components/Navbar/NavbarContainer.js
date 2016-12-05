@@ -16,10 +16,6 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	loginAdmin: (admin) => {
-		dispatch(login(admin));
-	},
-
   logoutAdmin: () => {
     dispatch(logout());
     dispatch(setCurrentChannel({}));

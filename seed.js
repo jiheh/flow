@@ -63,7 +63,7 @@ const seedDatabase = num => {
     })
     .then(() => {
       console.log(chalk.yellow(`SEEDING NORMAL SURVEYS`));
-      return seedSurveys(1);
+      return seedSurveys(2);
     })
     .then(() => {
       console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));

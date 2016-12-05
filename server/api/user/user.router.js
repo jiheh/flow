@@ -10,6 +10,7 @@ const db = require('../../_db');
 const User = require('./user.model');
 const UserInfo = require('../userInfo/userInfo.model');
 const Channel = require('../channel/channel.model');
+const Survey = require('../survey/survey.model');
 const Admin = require('../admin/admin.model')
 
 router.post('/', (req, res, next) => {
@@ -33,7 +34,7 @@ router.post('/', (req, res, next) => {
             })
             .then((user) => {
               newUser = user;
-              return Channel.findById(1)
+              return Channel.findById(1);
             })
             .then((channel) => {
               return channel.addUser(newUser);
@@ -41,8 +42,15 @@ router.post('/', (req, res, next) => {
             .then(() => {
               return newUser.setUserInfo(userInfo);
             })
-            .then((user) => {
-              res.json(user.hash);
+            .then(() => {
+              return Survey.findById(1);
+            })
+            .then((survey) => {
+              console.log(survey)
+              survey.addUser(newUser)
+            })
+            .then(() => {
+              res.json(newUser.hash);
             });
         } else { // eslint-disable-line no-else-return
           // UserInfo found, check password, find User and return hash

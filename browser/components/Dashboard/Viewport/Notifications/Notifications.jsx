@@ -5,14 +5,14 @@ import { Dialog } from '@blueprintjs/core';
 import NewNotificationForm from './NotificationsSubcomponents/NewNotificationForm/NewNotificationForm.jsx';
 import ExistingNotificationEditor from './NotificationsSubcomponents/ExistingNotificationEditor/ExistingNotificationEditor.jsx';
 
-const Notifications = ({ currentNotificationID, notifications, showModal, modalType, toggleNewNotificationForm, toggleExistingNotificationEditor, submitNotification }) => (
+const Notifications = ({ currentChannelID, currentNotificationID, notifications, showModal, modalType, toggleNewNotificationForm, toggleExistingNotificationEditor, submitNotification }) => (
   <div className="notifications">
   	<div className="pt-card">
     	<Table notifications={notifications} toggleExistingNotificationEditor={toggleExistingNotificationEditor} />
 	</div>
 
     <Dialog
-              style={{width:'80%', top:'10%', backgroundColor: 'white'}}
+              style={{backgroundColor: 'white'}}
               isOpen={showModal}
               inline={false}
               autoFocus={true}
@@ -23,6 +23,7 @@ const Notifications = ({ currentNotificationID, notifications, showModal, modalT
           modalType === 'new_notification'
             ? <NewNotificationForm
             toggleNewNotificationForm={toggleNewNotificationForm}
+            currentChannelID={currentChannelID}
             submitNotification={submitNotification} />
             : null
         }

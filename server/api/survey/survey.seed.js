@@ -30,7 +30,6 @@ const createSurveys = (adminID) => {
       return admin.getChannels();
     })
     .then((foundChannels) => {
-      console.log(foundChannels)
       return Promise.map((foundChannels), channel => {
         return Promise.map(surveysToCreate, surveyToCreate => {
           console.log("Creating survey");
@@ -53,7 +52,9 @@ const createSurveys = (adminID) => {
             survey.setChannel(channel),
           ]))
           .then(() => channel.getUsers())
-          .then((users) => survey.setUsers(users));
+          .then((users) => {
+            return survey.setUsers(users)
+          });
         });
       });
     })

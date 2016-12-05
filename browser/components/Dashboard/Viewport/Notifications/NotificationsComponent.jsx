@@ -52,6 +52,7 @@ class NotificationsComponent extends Component {
           toggleExistingNotificationEditor={this.toggleExistingNotificationEditor}
           submitNotification={submitNotification}
           modalType={this.state.modalType}
+          currentChannelID={this.props.currentChannel.id}
           notifications={this.props.currentChannel.announcements}/> 
       </div>
     );

@@ -3,8 +3,8 @@ import HomeLogin from './HomeLogin/HomeLoginContainer.js';
 import './Home.scss';
 
 export default () => (
-  <div className='home'>
-    <img className='background-image' src='/api/images/random' />
+  <div className='home' style={{backgroundImage: 'url(/api/images/random)'}}>
+    <div className='color-filter'/>
 
     <div className='banner text-center text-inverted'>
       <p id='title'>flow</p>

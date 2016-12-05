@@ -25,11 +25,11 @@ const Quote = ({
       "{quote}"
     </span>
     <span className="quote-origin">
-      - {author}
+      {author}
       <img
           id="heart"
           onClick={() => toggleFavorite(quote, author)}
-          className={isFavorited(quote, author) ? 'filledHeart' : 'heart'}
+          className={`heart ${isFavorited(quote, author) ? 'filledHeart' : ''}`}
           src={isFavorited(quote, author) ? filledHeart : heart}></img>
     </span>
   </div>

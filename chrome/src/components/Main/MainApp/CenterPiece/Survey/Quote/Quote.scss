@@ -1,4 +1,5 @@
 // Quote animations
+$transition-time: 0.35s;
 
 .quote {
   color: white;
@@ -12,10 +13,10 @@
   .quote-text {
     font-size: 20px;
     font-weight: 300;
-    transition: 0.5s;
+    transition: $transition-time;
     transform: translateY(2.5px);
     transition-function: ease-in;
-    -webkit-animation: dissolveInQuote 1s;
+    -webkit-animation: dissolveInQuote $transition-time;
     -webkit-animation-fill-mode: forwards;
     // position: relative;
     // z-index: 30;
@@ -23,9 +24,9 @@
 
   .quote-origin {
     font-size: 1em;
-    font-weight: 400;
+    font-weight: 300;
     opacity: 0;
-    transition: 0.5s;
+    transition: $transition-time;
     transform: translateY(-5px);
     transition-function: ease-in;
   }
@@ -55,42 +56,24 @@
 }
 
 .heart {
-  width: 20px;
+  width: 16px;
   padding-left: 15px;
-  position: absolute;
-  opacity: 0.5;
+  opacity: 0.45;
   transition: ease-out;
   -webkit-transition-timing-function: ease-out;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
+  transition: $transition-time;
+  -webkit-transition: $transition-time;
   cursor: pointer;
 
   &:hover {
-    opacity: 1.0;
-    transform: scale(1.05)
+    opacity: 0.85;
   }
 }
 
 .filledHeart {
-  width: 20px;
-  padding-left: 15px;
-  position: absolute;
-  transition: ease-out;
-  -webkit-transition-timing-function: ease-out;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  // -webkit-animation: heartfadein 0.25s 1 alternate forwards;
-  cursor: pointer;
-
+  opacity: 0.85;
 
   &:hover {
-    transform: scale(1.05)
+    opacity: 1.0;
   }
-}
-
-// -webkit-transition: opacity 3s ease-in-out;
-
-@keyframes heartfadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }

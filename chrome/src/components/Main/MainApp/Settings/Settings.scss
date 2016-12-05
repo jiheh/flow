@@ -1,6 +1,8 @@
-$icon-width: 20px;
-$icon-height: 20px;
+$icon-size: 20px;
+$icon-width: $icon-size+10px;
+$icon-height: $icon-size;
 $icon-margin: 2.5px;
+
 $label-width: 40px;
 $transition-time: 0.15s;
 $transition-type: ease-out;
@@ -20,7 +22,7 @@ $settings-container-right: 10px;
 		width: $label-width;
 		height: $icon-height;
 		display: inline-block;
-		background-size: 20px;
+		background-size: $icon-size;
 		background-repeat: no-repeat;
 		background-position: center;
 		position: relative;

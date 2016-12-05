@@ -10,7 +10,7 @@ const MainApp = ({
   invites,
   currentChannels,
 }) => (
-  <div className="main-app">
+  <div className="main-app" >
     <DockerContainer invites={invites} currentChannels={currentChannels} />
     <SettingsContainer />
     <CenterPiece />

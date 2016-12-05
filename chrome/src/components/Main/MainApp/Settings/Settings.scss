@@ -1,11 +1,12 @@
 $icon-width: 20px;
 $icon-height: 20px;
 $icon-margin: 2.5px;
+$label-width: 40px;
 $transition-time: 0.15s;
 $transition-type: ease-out;
 
-$settings-container-bottom: 35px;
-$settings-container-right: 25px;
+$settings-container-bottom: 20px;
+$settings-container-right: 10px;
 
 .settings-container {
 	display: flex;
@@ -16,8 +17,7 @@ $settings-container-right: 25px;
 
 	.setting {
 		cursor: pointer;
-		width: 100%;
-		min-width: $icon-width;
+		width: $label-width;
 		height: $icon-height;
 		display: inline-block;
 		background-size: 20px;
@@ -51,9 +51,11 @@ $settings-container-right: 25px;
 	}
 
 	.sub-setting {
+		z-index:-10;
 		opacity: 0;
 		margin: 0 -16px;
-		transition: 0.5s;
+		transition: $transition-time;
+		visibility: hidden;
 
 		.setting-label {
 			visibility: hidden;

@@ -7,7 +7,8 @@ import LineChartData from './LineChartData/LineChartData.jsx'
 const QuestionData = ({ type, responses, survey }) => (
   <div>
     {responses.length === 0 && 'No responses.'}
-    {responses.length > 0 && (type==='emoji' || type==='multiple_choice' || type==='binary') && <LineChartData responses={responses} survey={survey} />}
+    {responses.length > 0 && (type==='emoji' || type==='multiple_choice' || type==='binary') && !survey.frequency &&<PieChartData responses={responses} />}
+    {responses.length > 0 && (type==='emoji' || type==='multiple_choice' || type==='binary') && survey.frequency && <LineChartData responses={responses} survey={survey} />}
     {responses.length > 0 && type==='text' && <TextData responses={responses} />}
   </div>
 );
@@ -19,5 +20,3 @@ QuestionData.propTypes = {
   // surveys: PropTypes.array.isRequired
 
 export default QuestionData;
-
-// {responses.length > 0 && (type==='emoji' || type==='multiple_choice' || type==='binary') && <PieChartData responses={responses} />}

@@ -17,7 +17,6 @@ const generateTimeStamp = (str) => {
 	return convertToTimestamp(regexMagic(str))
 }
 
-
 const regexMagic = (str) => {
   	str = str.replace("T",',')
 	str = str.replace("Z",'')
@@ -57,9 +56,32 @@ const fittingAlgo = (responses, objectBounds) => {
 			if(firstTimeStamp > timeBounds[i] && firstTimeStamp < timeBounds[i + 1]){
 				objectBounds[timeBounds[i].toString()].listOfValues.push(first)
 				added = true
+        break;
 			}
 			else if(i === timeBounds.length -2 && !added) objectBounds[timeBounds[i].toString()].listOfValues.push(first)
 		}
 	})
 
 }
+
+const convertToRealDate = (timestamp) => {
+  return new Date(timestamp)
+}
+
+const generateData = (surveyBounds,responses) => {
+  let globalObj = generateSurveyBounds(survey.frequency)
+  fittingAlgo(responses,globalObj)
+  return globalObj
+}
+
+const doAverage = (objectBounds) => {
+   //
+} 
+
+
+
+
+
+
+
+

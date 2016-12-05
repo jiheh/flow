@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import QuestionData from './QuestionData/QuestionData.jsx';
 import './Question.scss';
 
-const Question = ({ question, index }) => (
+const Question = ({ question, index, survey }) => (
   <div className="question">
     <h5>Question {index}:</h5>
     <div className="question-text">{question.text}</div>
@@ -10,6 +10,7 @@ const Question = ({ question, index }) => (
     <QuestionData
       type={question.type}
       responses={question.responses}
+      survey={survey}
     />
   </div>
 );
@@ -18,5 +19,6 @@ Question.propTypes = {
   question: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
 };
+// surveys: PropTypes.array.isRequired
 
 export default Question;

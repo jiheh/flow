@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import SurveysComponent from './SurveysComponent';
+import SurveysComponent from './SurveysComponent.jsx';
 import { addSurveyToCurrent } from '../../../../reducers/channels';
 
 import axios from 'axios';
 
 const mapStateToProps = ({channels}) => ({
-  currentChannel: channels.currentChannel
+  currentChannel: channels.currentChannel,
 });
 
 const mapDispatchToProps = () => dispatch => ({

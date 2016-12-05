@@ -11,7 +11,7 @@ const Question = db.define('question', {
       notEmpty: true,
     },
   },
-  type:{
+  type: {
     type: Sequelize.ENUM('multiple_choice', 'emoji', 'slider', 'text', 'binary'),
     allowNull: false,
   },

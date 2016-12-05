@@ -55,7 +55,7 @@ class SurveyForm extends Component {
 
 					<label className='pt-control pt-checkbox pt-large'>
 					  <input type='checkbox' onChange={this.repeatSurvey} />
-					  <span className='pt-control-indicator'></span> 
+					  <span className='pt-control-indicator'></span>
 					   Would you like the survey questions to be asked repeatedly?
 					</label>
 
@@ -68,7 +68,7 @@ class SurveyForm extends Component {
 							  </div>
 							</label>
 
-							<label className='pt-label'>End Date: the last day thes survey questions are asked
+							<label className='pt-label'>End Date: the last day the survey questions are asked
 							  <div className='pt-input-group'>
 							    <input className='pt-input' type='text' name='end' placeholder='i.e. 2017-01-01 00:00' />
 							  </div>
@@ -102,7 +102,7 @@ class SurveyForm extends Component {
 						    </select>
 						  </div>
 
-						  {this.state.responses[`response${i + 1}`] === 'multiple_choice' ? 
+						  {this.state.responses[`response${i + 1}`] === 'multiple_choice' ?
 							  <div>
 							  	<input className='pt-input' name={`responseOptions${i + 1}-0`} type='text' placeholder='Choice A' />
 							    <input className='pt-input' name={`responseOptions${i + 1}-1`} type='text' placeholder='Choice B' />
@@ -162,7 +162,7 @@ class SurveyForm extends Component {
     if (this.state.repeat === true) {
 	    let distance = ((new Date(e.target.end.value) - new Date(e.target.start.value)) / (parseInt(e.target.frequency.value) - 1))
 
-			for (let i = 0; i < parseInt(e.target.frequency.value); i++) {
+			for (let i = 0; i <= parseInt(e.target.frequency.value); i++) {
 			  surveyDates.push(new Date(Date.parse(new Date(e.target.start.value)) + (distance * i)))
 			}
 		}

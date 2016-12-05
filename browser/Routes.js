@@ -5,7 +5,7 @@ import Root from './components/Root.jsx';
 import Home from './components/Home.jsx';
 import HomeSignUpContainer from './components/HomeSignUp/HomeSignUpContainer';
 import DashboardContainer from './components/Dashboard/DashboardContainer';
-import OverviewContainer from './components/Dashboard/Viewport/Overview/OverviewContainer';
+import OrganizationContainer from './components/Dashboard/Viewport/Organization/OrganizationContainer';
 import NotificationsContainer from './components/Dashboard/Viewport/Notifications/NotificationsContainer';
 import SurveysContainer from './components/Dashboard/Viewport/Surveys/SurveysContainer';
 import SettingsContainer from './components/Dashboard/Viewport/Settings/SettingsContainer';
@@ -19,7 +19,7 @@ const Routes = () => (
       <Route path='signup' component={HomeSignUpContainer} />
 
       <Route path='dashboard' component={DashboardContainer}>
-        <Route path='/overview' component={OverviewContainer} />
+        <Route path='/overview' component={OrganizationContainer} />
       	<Route path='/notifications' component={NotificationsContainer} />
       	<Route path='/surveys' component={SurveysContainer} />
       	<Route path='/settings' component={SettingsContainer} />

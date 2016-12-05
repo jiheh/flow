@@ -22,9 +22,7 @@ const mapDispatch = dispatch => ({
     .then(res => {
       dispatch(isOrgHead(res.data));
       browserHistory.push('/dashboard');
-      // return res.data;
     })
-    .catch(console.error); // TODO: error handling;
   },
 });
 

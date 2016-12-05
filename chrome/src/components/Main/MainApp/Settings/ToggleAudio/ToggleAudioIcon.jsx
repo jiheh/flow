@@ -2,19 +2,21 @@ import React, { PropTypes } from 'react';
 import { propTypes as settingsPropTypes } from '../../../../../reducers/settings';
 import audio from './z-audio.png';
 import noaudio from './z-noaudio.png';
+import '../Settings.scss';
 
 const ToggleAudio = ({
   toggleAudio,
   settings,
 }) => (
-  <span className="hoverTextTrigger">
-    <span className="hoverText">Audio</span>
-    <img
-      src={settings.playAudio ? noaudio : audio}
-      className="settings-button"
-      onClick={toggleAudio}
-    />
-  </span>
+  <div  className="setting sub-setting" 
+        id="setting_toggle_audio"
+        style={{backgroundImage: `url(${settings.playAudio ? noaudio : audio})`}}
+        onClick={toggleAudio}
+        >
+    <div className="setting-label">
+      <span className="setting-label-span">Audio</span>
+    </div>
+  </div>
 );
 
 ToggleAudio.propTypes = {

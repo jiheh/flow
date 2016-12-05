@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 
-import Logout from './Logout.jsx';
+import Logout from './LogoutIcon.jsx';
 import { logoutUser } from '../../../../../reducers/user';
 import { clearCurrentChannels } from '../../../../../reducers/currentChannels';
 
-const mapStateToProps = null;
+const mapStateToProps = () => (state, ownProps) => ({
+	settings: ownProps.settings,	
+})
 
 const mapDispatchToProps = () => dispatch => ({
   logout: () => {

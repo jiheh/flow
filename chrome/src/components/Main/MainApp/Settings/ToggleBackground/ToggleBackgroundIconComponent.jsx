@@ -1,23 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 
-import ToggleAudio from './ToggleAudio.jsx';
+import ToggleBackground from './ToggleBackgroundIcon.jsx';
 import {
   propTypes as settingsPropTypes,
   initialState as defaultSettings,
 } from '../../../../../reducers/settings';
 
-class ToggleAudioComponent extends Component {
+class ToggleBackgroundComponent extends Component {
   static propTypes = {
     settings: settingsPropTypes,
     saveSettings: PropTypes.func,
   }
 
-  toggleAudio = () => {
+  toggleBackgroundMode = () => {
     const { settings } = this.props;
 
     this.props.saveSettings(
       {...settings,
-        playAudio: !settings.playAudio,
+        showVideo: !settings.showVideo,
       }
     );
   }
@@ -26,12 +26,12 @@ class ToggleAudioComponent extends Component {
     const { settings } = this.props;
 
     return (
-      <ToggleAudio
-        toggleAudio={this.toggleAudio}
+      <ToggleBackground
+        toggleBackgroundMode={this.toggleBackgroundMode}
         settings={settings}
       />
     );
   }
 }
 
-export default ToggleAudioComponent;
+export default ToggleBackgroundComponent;

@@ -2,6 +2,7 @@ const router = require('express').Router(); // eslint-disable-line new-cap
 const Admin = require('../admin/admin.model');
 const Channel = require('./channel.model');
 const User = require('../user/user.model');
+const Organization = require('../organization/organization.model');
 
 // Get all Channels for a specific admin
 
@@ -25,26 +26,38 @@ router.post('/', (req, res, next) => {
   if (!req.user) res.status(403).send();
   else {
     let admin;
+    let organization
     let channelId;
-    Admin.findByUserInfoId(req.user.id)
-      .then((foundAdmin) => {
-        admin = foundAdmin;
-        return Channel.create(req.body)
-      })
-      .then((createdChannel) => {
-        channelId = createdChannel.id;
-        return createdChannel.addAdmin(admin);
-      })
-      .then((createdChannel) => {
-        return Channel.findOne({
-          where: { id: channelId },
-          include: [{ all: true }],
-        });
-      })
-      .then((foundChannel) => res.send(foundChannel))
-      .catch(next);
+    Admin.findById(req.user.id)
+    .then((foundAdmin) => {
+      admin = foundAdmin;
+      return Organization.findOne({
+        where: { head_id: admin.id}
+      });
+    })
+    .then(foundOrganization => {
+      if (!foundOrganization) throw new Error('Only head admins have access to create channels.');
+      organization = foundOrganization;
+
+      return Channel.create(req.body)       
+    })
+    .then((createdChannel) => {
+      channelId = createdChannel.id;
+      return createdChannel.setOrganization(organization);
+    })
+    .then((createdChannel) => {
+      return createdChannel.addAdmin(admin);
+    })
+    .then(() => {
+      return Channel.findOne({
+        where: { id: channelId },
+        include: [{ all: true }],
+      });
+    })
+    .then((foundChannel) => res.send(foundChannel))
+    .catch(next);
   }
-})
+});
 
 router.post('/chrome/allChannels', (req, res, next) => {
   const { hash } = req.body;

@@ -6,7 +6,7 @@ export const IS_ORG_HEAD = 'IS_ORG_HEAD';
 export const isOrgHead = createAction(IS_ORG_HEAD);
 
 export default handleActions({
-  IS_ORG_HEAD: (state, { payload }) => {
-    return {... state, allChannels: payload};
+  IS_ORG_HEAD: (state = initialState, { payload }) => {
+    return payload;
   },
 }, initialState);

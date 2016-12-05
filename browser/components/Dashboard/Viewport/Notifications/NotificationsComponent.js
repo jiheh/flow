@@ -29,7 +29,7 @@ class NotificationsComponent extends Component {
            :
           <div>
             <h3>Notifications</h3>
-            <button id='new-form-button' className='xq-button' onClick={this.showForm}>Create a New Announcement</button>
+            <button id='new-form-button' className='pt-button pt-icon-add pt-intent-primary' onClick={this.showForm}>Create a New Announcement</button>
             <Notifications notifications={this.props.currentChannel.announcements}/>
            </div>
         }

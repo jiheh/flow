@@ -14,10 +14,11 @@ const mapDispatchToProps = () => dispatch => ({
   setCurrentChannel: (channel) => {
     dispatch(setCurrentChannel(channel));
   },
-  recieveChannels: () => {
+  receiveChannels: () => {
     axios.get(`/api/channel/allChannels/`)
     .then(channels => {
-       dispatch(receiveChannels(channels.data))
+       dispatch(receiveChannels(channels.data));
+       dispatch(setCurrentChannel(channels.data[0]));
     })
   }
 });;

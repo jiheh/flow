@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { login, logout } from '../../reducers/auth';
+import { setCurrentChannel, receiveChannels } from '../../reducers/channels';
 import { browserHistory } from 'react-router';
 import Navigation from './Navbar.jsx';
 import store from '../../store';
@@ -20,7 +21,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 
   logoutAdmin: () => {
-    dispatch(logout())
+    dispatch(logout());
+    dispatch(setCurrentChannel({}));
+    dispatch(receiveChannels([]));
     browserHistory.push('/');
   },
 })

@@ -30,7 +30,7 @@ export default class Navigation extends Component {
       <nav className='nav pt-navbar'>
         <div className='pt-navbar-group pt-align-left'>
             <div className='pt-navbar-heading' onClick={() => browserHistory.push('/')}>
-              {isOrgHead ? `Flow Organization Head of ${isOrgHead.allChannels.name}` : `Flow Administrator`}
+              {isOrgHead ? `Flow - Organization Head` : `Flow - Administrator`}
             </div>
         </div>
         <div className='pt-navbar-group pt-align-right'>

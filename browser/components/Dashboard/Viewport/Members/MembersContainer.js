@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import MembersComponent from './MembersComponent';
+import MembersComponent from './MembersComponent.jsx';
 import { receiveUsers } from '../../../../reducers/channels'
 import axios from 'axios';
 

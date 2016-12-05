@@ -5,9 +5,15 @@ import Member from './MembersSubcomponents/Member.jsx';
 import Navbar from './MembersSubcomponents/MemberNavbar.jsx';
 
 export default ({ toggleForm, currentChannel }) => (
-	<div id="members" className="">
+	<div id="members">
 		<h3>Members</h3>
-		<Navbar newMemberFunction={toggleForm} />
+		<button type="button"
+            id="member-add"
+            className="pt-button pt-icon-add pt-intent-primary"
+            onClick={() => toggleForm()}>
+      Add Member
+    </button>
+		<Navbar />
 		<div className="member-grid">
 					{
 						(

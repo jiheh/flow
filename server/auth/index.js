@@ -63,5 +63,3 @@ router.get('/me', (req, res, next) => {
     res.sendStatus(401);
   }
 });
-
-router.use('/google', require('./google'));

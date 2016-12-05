@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Question from './Question/Question.jsx';
+import Question from '../SurveySubcomponents/ExistingSurveyEditor/ExistingSurveyEditorSubcomponents/SurveyResponseSection/Question/Question.jsx';
 import './Survey.scss';
 
 const Survey = ({ survey }) => (

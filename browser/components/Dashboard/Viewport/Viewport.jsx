@@ -6,7 +6,8 @@ import MembersContainer from './Members/MembersContainer';
 import NotificationsContainer from './Notifications/NotificationsContainer'
 import AdminsContainer from './Admins/AdminsContainer';
 
-import {Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
+import { Overlay, Tab, Tabs, TabList, TabPanel, } from '@blueprintjs/core';
+
 
 export default ({ currentChannel }) => (
   <div className="viewport">
@@ -51,6 +52,8 @@ export default ({ currentChannel }) => (
       </div>
     </div>
     }
+
+
 
   </div>
 );

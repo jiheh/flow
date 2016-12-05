@@ -59,10 +59,6 @@ $transition-time: 0.35s;
   width: 16px;
   padding-left: 15px;
   opacity: 0.45;
-  transition: ease-out;
-  -webkit-transition-timing-function: ease-out;
-  transition: $transition-time;
-  -webkit-transition: $transition-time;
   cursor: pointer;
 
   &:hover {

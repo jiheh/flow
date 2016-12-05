@@ -47,7 +47,7 @@ module.exports = {
       renderThrottle: 64,
       complete: chalk.bgCyan('  '),
     }),
-    new require('npm-install-webpack-plugin')(),
-    new require('friendly-errors-webpack-plugin')(),
+    new (require('npm-install-webpack-plugin'))(),
+    new (require('friendly-errors-webpack-plugin'))(),
   ],
 };

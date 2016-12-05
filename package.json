@@ -4,8 +4,8 @@
   "description": "fostering well-being",
   "main": "server/start.js",
   "scripts": {
-    "start": "webpack -w",
-    "server": "nodemon server/start.js",
+    "start": "webpack && node server/start.js",
+    "server": "webpack -w && nodemon server/start.js",
     "test": "mocha --watch --compilers js:babel-register server/api/**/*.test.js",
     "seed": "node seed.js"
   },
@@ -19,6 +19,9 @@
     "url": "https://github.com/jiheh/flow/issues"
   },
   "homepage": "https://github.com/jiheh/flow#readme",
+  "engines": {
+    "node": "6.9.1"
+  },
   "dependencies": {
     "@blueprintjs/core": "^1.1.0",
     "axios": "^0.15.0",
@@ -39,6 +42,7 @@
     "express-session": "^1.14.2",
     "file-loader": "^0.9.0",
     "lodash": "^4.16.4",
+    "lorem-ipsum": "^1.0.3",
     "morgan": "^1.6.1",
     "node-sass": "^3.13.0",
     "passport": "^0.3.2",
@@ -70,10 +74,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "chance": "^1.0.4",
     "expect": "^1.20.2",
     "friendly-errors-webpack-plugin": "^1.1.0",
-    "lorem-ipsum": "^1.0.3",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "npm-install-webpack-plugin": "^4.0.4",

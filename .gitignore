@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 public/bundle*
 npm-debug.log
+/*.env
 
 chrome/node_modules
 chrome/bundle*

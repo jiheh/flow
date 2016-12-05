@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class AddMemberForm extends Component {
+class AddAdminForm extends Component {
 	constructor(props) {
 		super(props);
 
@@ -15,7 +15,7 @@ class AddMemberForm extends Component {
 
 		return(
 			<div id='addmemberform' className='container-fluid'>
-				<h3>Add a Member to {this.props.channel.name}</h3>
+				<h3>Add an Admin to {this.props.channel.name}</h3>
 
 				<br />
 				<form onSubmit={this.submitForm}>
@@ -53,4 +53,4 @@ class AddMemberForm extends Component {
 
 };
 
-export default AddMemberForm;
+export default AddAdminForm;

@@ -39,7 +39,6 @@ export const fittingAlgo = (responses, objectBounds) => {
 }
 
 export const convertToRealDate = (timestamp) => {
-  console.log('timestamp',timestamp)
   let date = new Date(timestamp)	
   return date.toString().split(' ').slice(1).slice(0,3).join(' ')
 }

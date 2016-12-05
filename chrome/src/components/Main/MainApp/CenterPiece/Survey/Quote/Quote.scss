@@ -11,11 +11,11 @@
 
   .quote-text {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 300;
     transition: 0.5s;
     transform: translateY(2.5px);
     transition-function: ease-in;
-    -webkit-animation: dissolveInQuote 3s;
+    -webkit-animation: dissolveInQuote 1s;
     -webkit-animation-fill-mode: forwards;
     // position: relative;
     // z-index: 30;

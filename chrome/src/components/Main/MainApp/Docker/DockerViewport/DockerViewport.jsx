@@ -4,7 +4,7 @@ import './DockerViewport.scss';
 
 import AnnouncementWidget from '../Widgets/AnnouncementWidget/AnnouncementWidgetContainer';
 import MeditationWidget from '../Widgets/MeditationWidget/MeditationWidgetContainer';
-import ReflectionWidget from '../Widgets/ReflectionWidget/ReflectionWidgetContainer';
+import FlowsWidget from '../Widgets/FlowsWidget/FlowsWidgetContainer';
 import ChannelsWidget from '../Widgets/ChannelsWidget/ChannelsWidgetContainer';
 
 const DockerViewport = ({
@@ -16,7 +16,7 @@ const DockerViewport = ({
   <div className="docker-viewport" >
     {activeWidget === 'Announcements' ? <AnnouncementWidget /> : null}
     {activeWidget === 'Meditation' ? <MeditationWidget /> : null}
-    {activeWidget === 'Reflection' ? <ReflectionWidget /> : null}
+    {activeWidget === 'Flows' ? <FlowsWidget /> : null}
     {activeWidget === 'Channels' ? <ChannelsWidget invites={invites} currentChannels={currentChannels} /> : null}
   </div>
 );

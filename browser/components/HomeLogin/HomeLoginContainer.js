@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
-import { login } from '../../reducers/auth';
-import HomeLogin from './HomeLogin.jsx';
-import axios from 'axios';
-import { receiveChannels } from  '../../reducers/channels';
 import { browserHistory } from 'react-router';
+import axios from 'axios';
+
+import { login } from '../../reducers/auth';
+import { receiveChannels } from  '../../reducers/channels';
+
+import HomeLogin from './HomeLogin.jsx';
 
 const mapDispatch = dispatch => ({
   loginAdmin: (admin) => {

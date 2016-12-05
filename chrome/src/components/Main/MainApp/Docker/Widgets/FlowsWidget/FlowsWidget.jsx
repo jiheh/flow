@@ -1,20 +1,23 @@
 import React from 'react';
-
+import FlowIntroduction from './FlowSubcomponents/FlowIntroduction.jsx';
+import Flows from './FlowSubcomponents/Flows.jsx';
 import Line from '../WidgetComponents/Line.jsx';
 import '../Widgets.scss';
 
-const ReflectionWidget = ({  }) => (
-  <div className="reflection-widget widget">
+const FlowsWidget = ({  }) => (
+  <div className="flows-widget widget">
 
     <div className="widget-nav">
       <h4 className="widget-title">
-        REFLECTION
+        FLOWS
       </h4>
     </div>
 
     <Line />
 
     <div className="widget-contents">
+      <FlowIntroduction />
+      <Flows />
     </div>
 
   </div>
@@ -24,4 +27,4 @@ const ReflectionWidget = ({  }) => (
 //   meditationWidget: propTypes,
 // };
 
-export default ReflectionWidget;
+export default FlowsWidget;

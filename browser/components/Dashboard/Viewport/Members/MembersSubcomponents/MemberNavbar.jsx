@@ -2,6 +2,7 @@ import React from 'react';
 
 import Member from './MembersSubcomponents.scss';
 
+
 export default ({ toggleNewMemberForm }) => (
   <nav className="pt-navbar">
     <div className="pt-navbar-group pt-align-left">

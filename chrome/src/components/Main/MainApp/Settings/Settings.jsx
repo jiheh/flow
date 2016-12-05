@@ -31,7 +31,6 @@ class SettingsWidget extends Component {
 
   render() {
     const { settings, saveSettings } = this.props;
-
     return (
       <div>
         <span className="settingsHoverTextTrigger">

@@ -8,7 +8,7 @@ export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChanne
 	<div id="members" className="">
 
 		<Navbar toggleNewMemberForm={toggleNewMemberForm} />
-
+		
 		<div className="member-grid">
 					{
 						(

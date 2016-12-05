@@ -97,8 +97,10 @@ router.post('/chrome/delete', (req, res, next) => {
 
 })
 
-// POST - admin creates announcement
+// POST - admin creates invitation
 router.post('/webapp', (req, res, next) => {
+  if (!req.user) return res.status(403).send();
+  
   Invite.create(req.body)
     .then((invite) => {
       res.status(201).send()

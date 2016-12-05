@@ -64,7 +64,7 @@ export const convertData = (obj) => {
 		if(responses) data.push({time:convertToRealDate(parseInt(time)),response:responses})
 		else data.push({time:convertToRealDate(parseInt(time))})
 	}
-	return data.slice(0,data.length-1)
+	return data
 }
 
 

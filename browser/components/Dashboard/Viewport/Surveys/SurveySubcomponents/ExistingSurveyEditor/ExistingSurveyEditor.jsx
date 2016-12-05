@@ -23,6 +23,7 @@ class SurveyForm extends Component {
       questions: [],
       active: true,
       frequency: null,
+      survey: {},
 
       dataLoaded: false,
       edited: false,
@@ -53,6 +54,7 @@ class SurveyForm extends Component {
           questions,
           active,
           frequency,
+          survey: surveyData,
         })
 
       })
@@ -95,6 +97,7 @@ class SurveyForm extends Component {
                   <TabPanel>
                       <SurveyResponseSection  currentChannelNumUsers={currentChannel.users.length}
                                               questions={this.state.questions}
+                                              survey={this.state.survey}
                                               frequency={this.state.frequency}/>
                   </TabPanel>
                 </Tabs>

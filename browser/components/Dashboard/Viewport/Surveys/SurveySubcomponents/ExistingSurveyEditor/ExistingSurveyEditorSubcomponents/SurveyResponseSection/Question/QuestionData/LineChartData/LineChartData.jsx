@@ -4,16 +4,6 @@ import {generateSurveyBounds, convertToTimestamp, fittingAlgo, convertToRealDate
 
 import './LineChartData.scss';
 
-const data = [
-      {name: 'Page A', uv: 4000, pv: 'aoisnfoiansfoina', amt: 2400},
-      {name: 'Page B', uv: 3000, pv: 'af0ampowmop', amt: 2210},
-      {name: 'Page C', uv: 2000, pv: 'aaksf0-k-', amt: 2290},
-      {name: 'Page B', uv: 3000, pv: 'af0ampowmop', amt: 2210},
-      {name: 'Page C', uv: 2000, pv: 'aaksf0-k-', amt: 2290},
-];
-
-
-
 const LineChartData = ({ responses, survey }) => (
   <div>
     {responses.length === 0 ? 'No responses.' :
@@ -31,11 +21,8 @@ const LineChartData = ({ responses, survey }) => (
   </div>  
 );
 
-
-
 LineChartData.propTypes = {
   responses: PropTypes.array.isRequired,
 };
-  // surveys: PropTypes.array.isRequired
 
 export default LineChartData;

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { generateSurveyDates } from  './helpers'
 import './LineChartData.scss';
 
 const data = [
@@ -15,6 +16,8 @@ const data = [
 
 const LineChartData = ({ responses, survey }) => (
   <div>
+    {console.log('survey',survey)}
+    {console.log('responses',responses) }
     {responses.length === 0 ? 'No responses.' :
      (
         <LineChart width={600} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>

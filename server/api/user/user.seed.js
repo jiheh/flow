@@ -10,7 +10,7 @@ const User = require('../user/user.model');
 
 const createUsers = (channelInstance, n) => {
   const arrToReturn = [];
-  console.log(`\tCreating ${n} Users for Channel ${channelInstance.id}`);
+  console.log(`Creating ${n} Users for ${channelInstance.name}`);
   for (let i = 1; i <= n; i++) {
     let userGlobal;
     let name = chance.name()

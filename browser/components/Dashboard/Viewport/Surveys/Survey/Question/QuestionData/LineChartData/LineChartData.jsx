@@ -25,7 +25,7 @@ const LineChartData = ({ responses, survey }) => (
     {responses.length === 0 ? 'No responses.' :
      (
         <LineChart width={600} height={600} data={convertData(generateData(survey.frequency,responses))} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-       <XAxis dataKey="time" scale="auto" interval="auto"/>
+       <XAxis dataKey="time" scale="auto"/>
        <YAxis type="category" scale="auto"/>
        <CartesianGrid strokeDasharray="3 3"/>
        <Tooltip/>

@@ -65,7 +65,7 @@ export const fittingAlgo = (responses, objectBounds) => {
 }
 
 export const convertToRealDate = (timestamp) => {
-  let date = new Date(timeStamp)	
+  let date = new Date(timestamp)	
   return date.toString().split(' ').slice(1).slice(0,4).join(' ')
 }
 

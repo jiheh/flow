@@ -14,7 +14,8 @@ router.get('/random', (req, res, next) => {
       next(err);
     } else {
       const numFiles = files.length;
-      const imageToSend = files[epochDays % numFiles];
+      // const imageToSend = files[epochDays % numFiles];
+      const imageToSend = files[files.length - 1];
       // const imageToSend = files[Math.floor(Math.random() * numFiles)];
       const imagePath = path.join(imageDir, imageToSend);
       res.sendFile(imagePath);

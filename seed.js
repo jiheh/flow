@@ -12,6 +12,7 @@ const seedChannels = require('./server/api/channel/channel.seed');
 const seedOrganization = require('./server/api/organization/organization.seed');
 const seedAnnouncements = require('./server/api/announcement/announcement.seed');
 const seedSurveys = require('./server/api/survey/survey.seed');
+const seedGlobalSurveys = require('./server/api/survey/globalSurvey.seed');
 const seedResponses = require('./server/api/response/response.seed');
 const test = require('./server/api/admin/admin.methods');
 // const seedAccounts = require('./server/api/account/account.seed');
@@ -57,24 +58,17 @@ const seedDatabase = num => {
       return seedOrganization(currentAdmins);
     })
     .then(() => {
-      console.log(chalk.yellow(`SEEDING NORMAL SURVEYS`));
-      return seedSurveys(1);
-    })
-    .then(() => {
       console.log(chalk.yellow(`SEEDING RECURRING GLOBAL SURVEYS`));
       return seedGlobalSurveys();
+    })
+    .then(() => {
+      console.log(chalk.yellow(`SEEDING NORMAL SURVEYS`));
+      return seedSurveys(1);
     })
     .then(() => {
       console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));
       return seedResponses();
     })
-    // .then(() => {
-    //   // global channel creation
-    //   return seedChannels(globalChannelAdmin.id, null, true);
-    // })
-    // .then(() => seedAccounts(num))
-    // .then(() => seedBillings(num))
-
     .then(() => {
       console.log(chalk.green('Seeding successful'));
     }, (err) => {

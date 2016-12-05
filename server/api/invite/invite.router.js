@@ -128,13 +128,12 @@ router.post('/addAdmin', (req, res, next) => {
         where: {user_info_id: currentUserInfo.id}
       });
     })
-    .then((admin) => {
+    .spread((admin, created) => {
       console.log('FOUND OR CREATED', admin)
-      return channel.addAdmin(admin[0]);
+      return admin.addChannel(channel);
     })
-    .then((newAdmin) => {
-      console.log('ASSOCIATED', newAdmin[0].data)
-      res.send(newAdmin);
+    .then((admin) => {
+      res.send(admin);
     })
     .catch(next);
 });

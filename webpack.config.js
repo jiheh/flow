@@ -1,9 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const NpmInstallPlugin = require('npm-install-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+
 const chalk = require('chalk');
 const path = require('path');
 
@@ -43,13 +41,13 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),
   ] : [
-    new ProgressBarPlugin({
+    new require('progress-bar-webpack-plugin')({
       format: `${chalk.inverse('webpack:')} ${chalk.cyan('|')}:bar${chalk.cyan('|')} ${chalk.yellow.bold(':percent')} `,
       clear: false,
       renderThrottle: 64,
       complete: chalk.bgCyan('  '),
     }),
-    new NpmInstallPlugin(),
-    new FriendlyErrorsWebpackPlugin(),
+    new require('npm-install-webpack-plugin')(),
+    new require('friendly-errors-webpack-plugin')(),
   ],
 };

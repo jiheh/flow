@@ -21,9 +21,9 @@ const createSurveyData = (numberOfSurveysToCreate, adminID, channelID) => {
   let allSurveys = [
 
     {
-      name: "Yale College Wellbeing Check-in",
+      name: "Fullstack Academy College Wellbeing Check-in",
       description: "This survey is a daily mood check-in to see how you're doing, and " +
-      "is administered by Yale Mental Health Services. For more information" +
+      "is administered by Fullstack Academy Mental Health Services. For more information" +
       " please contact 6509467649. Remember, all responses are anonymous.",
       active: true,
       owner_id: adminID,
@@ -49,31 +49,31 @@ const createSurveyData = (numberOfSurveysToCreate, adminID, channelID) => {
         {
           text: "How proficient are you with React?",
           type: "multiple_choice",
-          responseOptions: ['Not at all', 'Somewhat', 'Decent', 'Very proficient', 'Fluent'],
+          responseOptions: ['Not at all', 'Somewhat', 'Very proficient', 'Fluent'],
         },
         {
           text: "How proficient are you with Sequelize?",
           type: "multiple_choice",
-          responseOptions: ['Not at all', 'Somewhat', 'Decent', 'Very proficient', 'Fluent'],
+          responseOptions: ['Not at all', 'Somewhat', 'Very proficient', 'Fluent'],
         },
         {
           text: "How proficient are you with Node.js?",
           type: "multiple_choice",
-          responseOptions: ['Not at all', 'Somewhat', 'Decent', 'Very proficient', 'Fluent'],
+          responseOptions: ['Not at all', 'Somewhat', 'Very proficient', 'Fluent'],
         },
       ],
     },
 
     {
-      name: "Harambe Check-in",
-      description: "This survey is administered by the Yale Record, to see your opinion on Harambe",
+      name: "Capstone Check-in",
+      description: "This survey is administered by the Fullstack Academy Record, to see how you feel about Capstone.",
       active: true,
       owner_id: adminID,
       admin_id: adminID,
       channel_id: channelID,
       questions: [
         {
-          text: "Do you think Harambe deserved its fate?",
+          text: "Do you like Capstone?",
           type: "binary",
           responseOptions: [],
         }
@@ -81,7 +81,7 @@ const createSurveyData = (numberOfSurveysToCreate, adminID, channelID) => {
     },
 
     {
-      name: "Yale Faculty Job Satisfaction Survey",
+      name: "Fullstack Academy Faculty Job Satisfaction Survey",
       description: "This survey is designed to learn more about how faculty feel about job satisfaction. " +
       "All responses are anonymous.",
       active: true,
@@ -129,7 +129,7 @@ const createSurveyData = (numberOfSurveysToCreate, adminID, channelID) => {
     // you can add your own surveys by following this format:
     {
       name: "Career Survey",
-      description: "This survey is administered by the Yale Office of Career Services.",
+      description: "This survey is administered by the Fullstack Academy Office of Career Services.",
       active: false,
       owner_id: adminID,
       admin_id: adminID,

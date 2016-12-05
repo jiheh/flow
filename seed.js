@@ -24,26 +24,21 @@ const chance = new require('chance')();
 // supertest.post...
 
 const seedDatabase = num => {
-    let globalChannelAdmin;
-    let adminGlobal;
-    let channelGlobal;
+    let currentAdmins;
+    let currentChannels;
     db.sync({ force: true })
     .then(() => {
       console.log(chalk.yellow('CREATING ADMINS'));
-      return seedAdmins(1)
+      return seedAdmins(6)
     })
-    .spread((channelGlobalAdmin, admin) => {
-      console.log(chalk.yellow('CREATING CHANNELS FOR ADMIN'))
-      globalChannelAdmin = channelGlobalAdmin;
-      adminGlobal = admin;
+    .then((admins) => {
+      console.log(chalk.yellow('CREATING CHANNELS'))
+      currentAdmins = admins;
       // global channel creation
-      return seedChannels(globalChannelAdmin.id, null, true);
-    })
-    .then(() => {
-      return seedChannels(adminGlobal.id, 5)
+      return seedChannels(admins, 6);
     })
     .then((newChannels) => {
-      channelGlobal = newChannels;
+      currentChannels = newChannels;
       console.log(chalk.yellow('CREATING USERS FOR EACH CHANNEL'));
       const channels = _.flattenDeep(newChannels);
       // return an array of promises to create N users for each channel
@@ -53,15 +48,18 @@ const seedDatabase = num => {
     })
     .then(() => {
       console.log(chalk.yellow('CREATING ANNOUNCEMENTS FOR EACH CHANNEL'));
-      return Promise.all(channelGlobal.map(channel => {
-        seedAnnouncements(adminGlobal, channel, chance.integer({min:3, max: 20}))
+      return Promise.all(currentChannels.map((channel, idx) => {
+        seedAnnouncements(currentAdmins[idx], channel, chance.integer({min:3, max: 20}), idx)
       }))
     })
     .then(() => {
       console.log(chalk.yellow('CREATING ORGANIZATIONS'));
-      return seedOrganization(adminGlobal, 1)
+      return seedOrganization(currentAdmins)
     })
-    .then(() => seedSurveys(1)) // which admin gets the surveys?
+    .then(() => {
+      console.log(chalk.yellow(`SEEDING SURVEYS`));
+      return seedSurveys(1)
+    })
     .then(() => {
       console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));
       return seedResponses();

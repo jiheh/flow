@@ -47,6 +47,7 @@
 }
 
 .buttonHoverText {
+  user-select: none;
   position: absolute;
   right: 25px;
   color: white;

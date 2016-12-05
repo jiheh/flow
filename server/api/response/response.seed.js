@@ -1,4 +1,4 @@
-const User= require('../user/user.model');
+const User = require('../user/user.model');
 const Chance = require('chance');
 const chance = new Chance();
 const Promise = require('bluebird');
@@ -6,7 +6,7 @@ const Response = require('../response/response.model');
 
 const createResponses = () =>{
 
-  console.log(`\tGenerating responses for all user questions`);
+  console.log(`Generating responses for all user questions`);
 
   return User.findAll()
     .then(allUsers => { // find all users

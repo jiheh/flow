@@ -70,27 +70,45 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/allUsers/:channelId',(req,res) =>{
+router.get('/allUsers/:channelId', (req,res) => {
   // if (req.user === undefined)
-  if(!req.user) throw new Error('Only Admins have access to this users.')
+  if (!req.user) throw new Error('Only Admins have access to these users.');
 
   User.findAll({
   include:[{model: UserInfo, as: 'UserInfo'},{model: Channel,include:[{model:Admin,through:'Admin-ChannelItem'}]}]})
   .then(users =>{
-    return users.filter(user =>{
-      return user.channels.filter(channel =>{
+    return users.filter(user => {
+      return user.channels.filter(channel => {
         let channelIdCheck = channel.id === parseInt(req.params.channelId)
-        let adminIdCheck = channel.admins.filter(admin =>{
+        let adminIdCheck = channel.admins.filter(admin => {
           return admin.id === req.user.id
         }).length > 0
         return channelIdCheck && adminIdCheck
       }).length > 0
     })
   })
-  .then(users =>{
-    res.send(users)
+  .then(users => {
+    res.send(users);
   })
-  .catch(err => console.error('Cant get all users',err))
-})
+  .catch(err => console.error('Cant get all users', err));
+});
+
+router.get('/allAdmins/:channelId', (req, res) => {
+  if (!req.user) throw new Error('Only Admins have access to these users.');
+  Channel.findById(req.params.channelId)
+  .then((channel) => {
+    return channel.getAdmins({
+      include: [{
+        model: UserInfo,
+        as: 'UserInfo'
+      }]
+    });
+  })
+  .then((admins) => {
+    res.send(admins);
+  })
+  .catch(err => console.error("Can't get all admins", err));
+});
+
 
 module.exports = router;

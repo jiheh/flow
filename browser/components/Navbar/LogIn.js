@@ -31,40 +31,38 @@ export default class LogInForm extends Component {
     }
   }
 
-  signup = () => {
-    browserHistory.push('/signup');
-  }
-
   render() {
     return (
-      <div>
+      <div id='log-in-form'>
         <form onSubmit={this.onSubmit}>
           <div style={{ textAlign: 'center' }}>
             <h5>Log In</h5>
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label>Email</label>
             <input
-              name="email"
-              type="email"
-              className="form-control"
+              name='email'
+              type='email'
+              className='form-control'
+              required
             />
           </div>
           <div>
               <label>Password</label>
               <input
-                name="password"
-                type="password"
-                className="form-control"
+                name='password'
+                type='password'
+                className='form-control'
+                required
               />
           </div>
           <br />
-          {this.state.loginSpinner ? <Spinner className="pt-small" />
-          : <button className="pt-button pt-intent-primary" type="submit">Submit</button>
+          {this.state.loginSpinner ? <Spinner className='pt-small' />
+          : <button className='pt-button pt-intent-primary' type='submit'>Submit</button>
           }
-          <strong style={{ marginLeft: '12px', marginRight: '12px' }}>or</strong>
-          <button className="pt-button pt-intent-success" onClick={this.signup}>Create an Organization</button>
+          <strong style={{ marginLeft: '16px'}}>or</strong>
         </form>
+        <button id='create-org-button' className='pt-button pt-intent-success' onClick={() => browserHistory.push('/signup')}>Create an Organization</button>
       </div>
     );
   }

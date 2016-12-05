@@ -8,58 +8,68 @@ const Chance = require('chance');
 const chance = new Chance();
 
 // creates N channels for a specific admin
-const createChannels = (adminID, n, isGlobal) => {
+const createChannels = (admins, n) => {
 
-  console.log(`\tCreating ${n} Channels for Admin ${adminID}`);
+  // console.log(`\tCreating ${n} Channels for Admin ${adminID}`);
 
-  const cohorts = ['Junior', 'Senior'];
-
+  const channelsObject = {
+    0: {
+      name: 'Global Channel',
+      description: 'Flow Channel For Every User'
+    },
+    1: {
+      name: 'Fullstack Academy 1607 Cohort',
+      description: 'Fullstack Academy of Code Cohort'
+    },
+    2: {
+      name: 'Fullstack Academy 1608 Cohort',
+      description: 'Fullstack Academy of Code Cohort'
+    },
+    3: {
+      name: 'Fullstack Academy 1609 Cohort',
+      description: 'Fullstack Academy of Code Cohort'
+    },
+    4: {
+      name: 'Fullstack Academy 1610 Cohort',
+      description: 'Fullstack Academy of Code Cohort'
+    },
+    5: {
+      name: 'Fullstack Academy 1611 Cohort',
+      description: 'Fullstack Academy of Code Cohort'
+    },
+  }
+  console.log(`Creating Global Channel and Fullstack Academy Cohorts 1607-1611`)
   const arrToReturn = [];
-  if (!isGlobal) {
-    for (let i = 1; i <= n; i++) {
-      let channelGlobal;
-      const channelPromise = Channel.create({
-        name: `Fullstack ${chance.pickone(cohorts)} Cohort ${chance.integer({min:1600, max:1612})}`,
-        description:'Fullstack Academy of Code Cohort'
-        // location: [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)],
-      })
-      .then((channel) => {
-        channelGlobal = channel;
-        return Admin.findById(adminID);
-      })
-      .then((admin) => {
-        return channelGlobal.addAdmin(admin);
-      })
-      .then(() => {
-        return channelGlobal;
-      })
-      // .then(() => { // this code is moved to the main seed file.
-      //   return User.findById(i);
-      // })
-      // .then((user) => {
-      //   if(user){
-      //     return channelGlobal.addUser(user);
-      //   }
-      // });
-      arrToReturn.push(channelPromise);
-    }
-  } else {
-    let globalChannel;
-    const globalChannelPromise = Channel.create({
-      name: "Global Channel",
-      description: "Flow Channel For Every User"
+  for (let i = 0; i < n; i++) {
+    let currentChannel;
+    const channelPromise = Channel.create({
+      name: channelsObject[i].name,
+      description: channelsObject[i].description
     })
     .then((channel) => {
-      globalChannel = channel;
-      return Admin.findById(adminID);
+      currentChannel = channel;
+      if (i === 0) {
+        Admin.findById(admins[0].id)
+        .then((admin) => {
+          currentChannel.addAdmin(admin);
+        });
+      } else {
+        for (let j = 1; j < 6; j++) {
+          Admin.findById(admins[j].id)
+          .then((admin) => {
+            currentChannel.addAdmin(admin);
+          });
+        }
+      }
+      return currentChannel;
     })
-    .then((admin) => {
-      return globalChannel.addAdmin(admin);
-    })
-    .then(() => {
-      return globalChannel;
-    })
-    arrToReturn.push(globalChannelPromise);
+    // .then((admin) => {
+    //   return currentChannel.addAdmin(admin);
+    // })
+    // .then(() => {
+    //   return currentChannel;
+    // })
+    arrToReturn.push(channelPromise);
   }
   return Promise.all(arrToReturn);
 };

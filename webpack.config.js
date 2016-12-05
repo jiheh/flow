@@ -8,6 +8,7 @@ const chalk = require('chalk');
 const path = require('path');
 
 const PROD = (process.env.NODE_ENV == 'production');
+console.log(PROD);
 
 module.exports = {
   entry: './browser/app.js',

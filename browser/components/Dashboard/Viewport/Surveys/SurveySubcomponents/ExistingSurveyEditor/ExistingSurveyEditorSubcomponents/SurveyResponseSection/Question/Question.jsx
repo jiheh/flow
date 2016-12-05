@@ -4,7 +4,6 @@ import './Question.scss';
 
 const Question = ({ question, index, survey }) => (
   <div className="question">
-  {console.log('passed form container survey',survey)}
     <h5>Question {index}:</h5>
     <div className="question-text">{question.text}</div>
     <br />

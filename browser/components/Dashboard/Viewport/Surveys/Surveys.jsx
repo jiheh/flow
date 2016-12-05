@@ -20,13 +20,12 @@ export default ({
 }) => (
 	<div id="surveys" >
     <div className="pt-navbar survey-navbar">
+      <div className="pt-navbar-group pt-align-left">
+        <input className="pt-input" placeholder="Search Surveys..." type="text" />
+      </div>
+
       <div className="pt-navbar-group pt-align-right">
         <button id='new-form-button' className='pt-button pt-intent-primary' onClick={() => toggleNewSurveyForm()}>Create a New Survey</button>
-
-        <div className="pt-input-group">
-          <span className="pt-icon pt-icon-search"></span>
-          <input id="survey_search_input" className="pt-input" type="search" placeholder="Search input" dir="auto" />
-        </div>
       </div>
 
     </div>

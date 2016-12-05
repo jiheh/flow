@@ -1,3 +1,4 @@
+
 'use strict';
 
 // eslint-disable-next-line new-cap
@@ -43,7 +44,7 @@ router.post('/chrome', (req, res, next) => {
         let newQuestions = [];
         const { questions } = survey;
 
-        if (survey.frequency.length) {
+        if (survey.frequency && survey.frequency.length) {
           let now = new Date();
 
           for (let i = 0; i < survey.frequency.length - 1; i++) {
@@ -62,7 +63,7 @@ router.post('/chrome', (req, res, next) => {
           }
         }
 
-        else if (survey.frequency.length === 0) {
+        else if (!survey.frequency || survey.frequency.length === 0) {
           questions.forEach((question) => {
             const { responses } = question;
             if (responses.filter(response => response.user_id === user.id).length === 0) {
@@ -93,7 +94,7 @@ router.post('/', (req, res, next) => {
     sample, // integer
   } = req.body;
 
-  if (!req.user) res.status(403).send();
+  if (!req.user) return res.status(403).send();
 
   db.transaction((t) => {
     let channel;
@@ -101,13 +102,12 @@ router.post('/', (req, res, next) => {
     let admin;
     return Promise.all([
       Channel.findById(channelId)
-        .then((foundChannel) => {
-
-          if (!foundChannel) throw new Error('ChannelItem not found.');
-
-          channel = foundChannel;
-        }),
-      Admin.findByUserInfoId(req.user.id),
+      .then((foundChannel) => {
+        if (!foundChannel) throw new Error('ChannelItem not found.');
+        
+        channel = foundChannel;
+      }),
+      Admin.findById(req.user.id),
     ])
       .spread((a, foundAdmin) => {
         admin = foundAdmin;
@@ -237,7 +237,7 @@ router.get('/survey/:surveyId', (req, res, next) => {
   let adminChannels;
 
   return Promise.all([
-    Admin.findByUserInfoId(req.user.id)
+    Admin.findById(req.user.id)
       .then((foundAdmin) => {
         admin = foundAdmin;
         return admin.getChannels();

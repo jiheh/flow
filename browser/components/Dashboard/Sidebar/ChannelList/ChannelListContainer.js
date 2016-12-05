@@ -6,17 +6,19 @@ import { setCurrentChannel,receiveChannels } from '../../../../reducers/channels
 
 const mapStateToProps = ({channels}) => ({
   channels,
-  currentChannelID: channels.currentChannel.id
+  currentChannelID: channels.currentChannel.id,
+  currentChannel: channels.currentChannel
 });
 
 const mapDispatchToProps = () => dispatch => ({
   setCurrentChannel: (channel) => {
     dispatch(setCurrentChannel(channel));
   },
-  recieveChannels: () => {
+  receiveChannels: () => {
     axios.get(`/api/channel/allChannels/`)
     .then(channels => {
-       dispatch(receiveChannels(channels.data))
+       dispatch(receiveChannels(channels.data));
+       dispatch(setCurrentChannel(channels.data[0]));
     })
   }
 });;

@@ -35,6 +35,10 @@ module.exports = {
         test: /\.(png)$/,
         loader: 'url?limit=25000',
       },
+      {
+        test: /\.(jpg)$/,
+        loader: 'url?limit=25000',
+      },
     ],
   },
   plugins: PROD ? [

@@ -49,7 +49,7 @@ router.post('/', (req, res, next) => {
   db.transaction((t) => {
     let tempAdmin;
     let announc;
-    return Admin.findByUserInfoId(req.user.id)
+    return Admin.findById(req.user.id)
       .then((admin) => {
         if (!admin) { throw new Error('Admin not found.'); }
         tempAdmin = admin;

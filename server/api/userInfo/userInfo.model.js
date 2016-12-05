@@ -40,6 +40,7 @@ const UserInfo = db.define('userInfo', {
     },
   },
 }, {
+  // Does not allow admin and extension user to use the same e-mail address
   indexes: [{
     fields: ['email'],
     unique: true,

@@ -25,14 +25,21 @@ export const addChannel = createAction(ADD_CHANNEL);
 /* ------------   REDUCER     ------------------ */
 export default handleActions({
   RECEIVE_CHANNELS: (state, { payload }) => {
-    const newCurrentChannel = payload.length ? payload[0] : {};
-    return { ...state, allChannels: payload, currentChannel: newCurrentChannel };
+    return { ...state, allChannels: payload};
   },
   SET_CURRENT_CHANNEL: (state, { payload }) => {
     return { ...state, currentChannel: payload }
   },
   RECEIVE_USERS: (state, { payload }) =>{
-    return { ...state, currentChannel: { ...state.currentChannel, users: payload } }
+    let newCurrentChannel = { ...state.currentChannel, users: payload }
+    let newChannels = state.allChannels.map(channel =>{
+      if(channel.id === newCurrentChannel.id) return newCurrentChannel 
+      return channel
+    })
+    return Object.assign({},state,{
+      currentChannel: newCurrentChannel,
+      allChannels: newChannels
+    })
   },
   ADD_SURVEY_TO_CURRENT: (state, { payload }) => {
     const newCurrent = {...state.currentChannel,

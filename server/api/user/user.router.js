@@ -72,9 +72,8 @@ router.post('/', (req, res, next) => {
 
 router.get('/allUsers/:channelId',(req,res) =>{
   // if (req.user === undefined)
-  console.log(req.user);
   if(!req.user) throw new Error('Only Admins have access to this users.')
-  console.log("In the route yo")
+
   User.findAll({
   include:[{model: UserInfo, as: 'UserInfo'},{model: Channel,include:[{model:Admin,through:'Admin-ChannelItem'}]}]})
   .then(users =>{

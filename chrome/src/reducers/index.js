@@ -11,6 +11,7 @@ import surveys from './surveys';
 import settings from './settings';
 import docker from './docker';
 import user from './user';
+import favoriteQuotes from './favoriteQuotes';
 
 export default outerReducer(combineReducers({
   meditationWidget,
@@ -23,4 +24,5 @@ export default outerReducer(combineReducers({
   settings,
   docker,
   user,
+  favoriteQuotes,
 }));

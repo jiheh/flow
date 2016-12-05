@@ -6,7 +6,7 @@ const namespace = cls.createNamespace('clsNamespace');
 
 Sequelize.cls = namespace;
 
-const databaseURI = 'postgres://localhost:5432/flow';
+const databaseURI = process.env.DATABASE_URL || 'postgres://localhost:5432/flow';
 
 const db = new Sequelize(databaseURI, {
   define: {

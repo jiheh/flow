@@ -1,6 +1,6 @@
 //Still working on this
 
-const generateSurveyBounds = (surveyBounds) => {
+export const generateSurveyBounds = (surveyBounds) => {
   const boundsObject = {}
   surveyBounds.forEach(e => {
     const timeStampedElement = generateTimeStamp(e)
@@ -13,17 +13,17 @@ const generateSurveyBounds = (surveyBounds) => {
   return boundsObject
 }
 
-const generateTimeStamp = (str) => {
+export const generateTimeStamp = (str) => {
 	return convertToTimestamp(regexMagic(str))
 }
 
-const regexMagic = (str) => {
+export const regexMagic = (str) => {
   	str = str.replace("T",',')
 	str = str.replace("Z",'')
 	return str.split(/[\s,:,-]+/)
 }
 
-const convertToTimestamp = (arr) => {
+export const convertToTimestamp = (arr) => {
   arr = arr.map(e => parseInt(e))
   const timeStamp = Date.parse(new Date(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5]))
   return timeStamp
@@ -45,7 +45,7 @@ const responses = [{
     value: "Very Proficient"
 }]
 
-const fittingAlgo = (responses, objectBounds) => {
+export const fittingAlgo = (responses, objectBounds) => {
 	responses.forEach((e,idx) => {
 		let first = responses[idx]
 		let firstTimeStamp = generateTimeStamp(first['created_at'])
@@ -64,24 +64,40 @@ const fittingAlgo = (responses, objectBounds) => {
 
 }
 
-const convertToRealDate = (timestamp) => {
-  return new Date(timestamp)
+export const convertToRealDate = (timestamp) => {
+  let date = new Date(timeStamp)	
+  let newDate = date.toString().split(' ').slice(1)
+	newDate.pop()
+	newDate.pop()
+	return newDate.join(' ')
 }
 
-const generateData = (surveyBounds,responses) => {
-  let globalObj = generateSurveyBounds(survey.frequency)
+export const generateData = (surveyBounds,responses) => {
+  let globalObj = generateSurveyBounds(surveyBounds)
   fittingAlgo(responses,globalObj)
   return globalObj
 }
 
-const doAverage = (objectBounds) => {
+export const doAverage = (objectBounds) => {
    //
 } 
 
+export const convertData = (obj) => {
+  let data = []
+	let keys = Object.keys(obj)
+	for(var i in keys){
+		let time = keys[i]
+		let responses = obj[time].listOfValues[0]
+		if(responses) responses = responses.value
+		// console.log('time',convertToRealDate(parseInt(time)),' value',responses)
+		if(responses) data.push({time:convertToRealDate(parseInt(time)),response:responses})
+		else data.push({time:convertToRealDate(parseInt(time))})
+	}
+	return data
+}
 
 
 
-
-
+// {generateSurveyBounds, generateTimeStamp, regexMagic, convertToTimestamp, fittingAlgo, convertToRealDate, generateData, doAverage }
 
 

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
-import { generateSurveyDates } from  './helpers'
+import {generateSurveyBounds, generateTimeStamp, regexMagic, convertToTimestamp, fittingAlgo, convertToRealDate, generateData, doAverage, convertData } from  './helpers'
+
 import './LineChartData.scss';
 
 const data = [
@@ -14,19 +15,22 @@ const data = [
 ];
 
 
+
 const LineChartData = ({ responses, survey }) => (
   <div>
-    {console.log('survey',survey.name,'surveyFrequency',survey.frequency.length)}
+    {console.log('survey',survey.name,'surveyFrequency',survey.frequency)}
     {console.log('responses',responses.length)}
+    {console.log('data Object',generateData(survey.frequency,responses))}
+    {console.log('Converted Data',convertData(generateData(survey.frequency,responses)))}
     {responses.length === 0 ? 'No responses.' :
      (
-        <LineChart width={600} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-       <XAxis dataKey="pv"/>
-       <YAxis type="category"/>
+        <LineChart width={600} height={600} data={convertData(generateData(survey.frequency,responses))} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+       <XAxis dataKey="time" scale="auto" interval="auto"/>
+       <YAxis type="category" scale="auto"/>
        <CartesianGrid strokeDasharray="3 3"/>
        <Tooltip/>
        <Legend />
-       <Line type="monotone" dataKey="name" stroke="#8884d8" activeDot={{r: 8}}/>
+       <Line type="monotone" dataKey="response" stroke="#8884d8" activeDot={{r: 8}}/>
       </LineChart>
      )
     }

@@ -4,12 +4,12 @@ import Response from './Response.jsx';
 import axios from 'axios';
 import { removeQuestion } from '../../../../../../../reducers/surveys';
 import store from '../../../../../../../store.js';
+import api from '../../../../../../../api.js';
 
 const mapDispatchToProps = () => dispatch => ({
   sendResponse: ({ surveyId, questionId, value }) => {
     dispatch(removeQuestion({ surveyId, questionId }));
-    // TODO: change to production server url
-    axios.post('http://localhost:8080/api/responses/chrome', {
+    axios.post(`${api}responses/chrome`, {
       questionId,
       value,
       hash: store.getState().user.hash,

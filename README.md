@@ -4,7 +4,7 @@
 ## Get started
 
 ### Deployed Apps
-The flow chrome extension will soon be available on the chrome app store.
+The flow chrome extension (beta) is available on the Chrome Web Store.
 
 The web app is available at [get-flow.herokuapp.com](https://get-flow.herokuapp.com). Please note that it takes a while for the web app to start up.
 

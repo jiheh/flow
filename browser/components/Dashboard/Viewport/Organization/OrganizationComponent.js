@@ -10,7 +10,6 @@ class OrganizationComponent extends Component {
     return (
       <div>
         <div>
-          <h3>Organization</h3>
           <Organization organization={this.props.organization} />
          </div>
       </div>

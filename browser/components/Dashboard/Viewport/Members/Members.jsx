@@ -6,7 +6,6 @@ import Member from './MembersSubcomponents/Member.jsx';
 
 export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChannel }) => (
 	<div id="members" className="">
-		<h3>Members</h3>
 		<Navbar toggleNewMemberForm={toggleNewMemberForm} />
 		
 		<div className="member-grid">

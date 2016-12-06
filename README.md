@@ -14,16 +14,16 @@ See the instructions below if you would rather delve into the developer side of 
 ```shell
 npm install
 npm run server
-npm start (separate terminal)
+npm start // separate terminal
 ```
 
 ### Chrome Extension
-Go to the Chrome folder
+Go to the chrome folder
 ```
 npm install
 npm start
 ```
-* In a chrome browser, go to chrome extensions [(chrome://extensions/)](chrome://extensions/)
-* heck the 'Developer mode' box
+* In a chrome browser, go to chrome extensions (chrome://extensions/)
+* Check the 'Developer Mode' box
 * Load unpacked extension and select the chrome folder
-* Open a new tab!
+* Open a new tab and enjoy!

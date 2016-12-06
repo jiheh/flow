@@ -9,7 +9,7 @@ export const generateSurveyBounds = (surveyBounds) => {
   		listOfValues:[]
     }
   })
-  
+
   return boundsObject
 }
 
@@ -25,7 +25,7 @@ export const fittingAlgo = (responses, objectBounds) => {
 		let firstTimeStamp = generateTimeStamp(first['created_at'])
 		const timeBounds = Object.keys(objectBounds).map(e => parseInt(e))
 		let added = false
-		
+
 		for(var i = 0; i < timeBounds.length - 1; i++){
 			if(firstTimeStamp > timeBounds[i] && firstTimeStamp < timeBounds[i + 1]){
 				objectBounds[timeBounds[i].toString()].listOfValues.push(first)
@@ -39,7 +39,7 @@ export const fittingAlgo = (responses, objectBounds) => {
 }
 
 export const convertToRealDate = (timestamp) => {
-  let date = new Date(timestamp)	
+  let date = new Date(timestamp)
   return date.toString().split(' ').slice(1).slice(0,4).join(' ')
 }
 
@@ -51,7 +51,7 @@ export const generateData = (surveyBounds,responses) => {
 
 export const doAverage = (objectBounds) => {
    //
-} 
+}
 
 export const convertData = (obj) => {
   let data = []
@@ -64,11 +64,9 @@ export const convertData = (obj) => {
 		if(responses) data.push({time:convertToRealDate(parseInt(time)),response:responses})
 		else data.push({time:convertToRealDate(parseInt(time))})
 	}
-	return data
+	return data.slice(0, data.length - 1);
 }
 
 
 
 // {generateSurveyBounds, generateTimeStamp, regexMagic, convertToTimestamp, fittingAlgo, convertToRealDate, generateData, doAverage }
-
-

@@ -8,8 +8,8 @@ let counter = 23;
 
 router.get('/random', (req, res, next) => {
   const imageDir = path.join(__dirname, '..', '..', '..', 'public', 'backgroundImages');
-  const now = new Date();
-  const epochDays = Math.floor(now/8.64e7);
+  // const now = new Date();
+  // const epochDays = Math.floor(now/8.64e7);
 
   fs.readdir(imageDir, (err, files) => {
     if (err) {
@@ -17,9 +17,7 @@ router.get('/random', (req, res, next) => {
     } else {
       const numFiles = files.length;
       // const imageToSend = files[epochDays % numFiles];
-      // const imageToSend = files[files.length - 1];
-      const imageToSend = files[counter++];
-      // const imageToSend = files[Math.floor(Math.random() * numFiles)];
+      const imageToSend = files[Math.floor(Math.random() * numFiles)];
       const imagePath = path.join(imageDir, imageToSend);
       res.sendFile(imagePath);
     }

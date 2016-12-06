@@ -46,8 +46,7 @@ router.post('/', (req, res, next) => {
               return Survey.findById(1);
             })
             .then((survey) => {
-              console.log(survey)
-              survey.addUser(newUser)
+              return survey.addUser(newUser);
             })
             .then(() => {
               res.json(newUser.hash);

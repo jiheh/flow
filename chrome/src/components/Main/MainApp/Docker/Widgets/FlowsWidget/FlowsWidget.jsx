@@ -9,7 +9,7 @@ const FlowsWidget = ({  }) => (
 
     <div className="widget-nav">
       <h4 className="widget-title">
-        FLOWS
+        FLOW
       </h4>
     </div>
 

@@ -50,7 +50,7 @@ const seedDatabase = num => {
     .then(() => {
       console.log(chalk.yellow('CREATING ANNOUNCEMENTS FOR EACH CHANNEL'));
       return Promise.all(currentChannels.map((channel, idx) => {
-        seedAnnouncements(currentAdmins[idx], channel, chance.integer({min:3, max: 20}), idx);
+        if (idx !== 0) seedAnnouncements(currentAdmins[idx], channel, chance.integer({min:3, max: 20}), idx);
       }))
     })
     .then(() => {

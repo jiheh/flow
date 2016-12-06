@@ -4,7 +4,7 @@ import { receiveInvites } from '../../../../../../reducers/invites';
 import { updateCurrentChannels } from '../../../../../../reducers/currentChannels';
 import store from '../../../../../../store';
 import axios from 'axios';
-import api from '../../../../../../api.js';
+import server from '../../../../../../server.js';
 
 const mapStateToProps = ({
   invites,
@@ -16,7 +16,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = () => dispatch => ({
     acceptAndDeleteInvite: (invite) => {
-      axios.post(`${api}invites/chrome/delete`, { invite: invite })
+      axios.post(`${server}api/invites/chrome/delete`, { invite: invite })
         .then(res => {
           dispatch(receiveInvites([...res.data]))
         })
@@ -33,7 +33,7 @@ const mapDispatchToProps = () => dispatch => ({
     },
 
     leaveChannel: (channelId) => {
-      axios.post(`${api}channel/chrome/removeUser`, {
+      axios.post(`${server}api/channel/chrome/removeUser`, {
         channelId: channelId,
         hash: store.getState().user.hash,
       })

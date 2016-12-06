@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import '../Response.scss';
+import server from '../../../../../../../../server.js';
 
 class EmojiComponent extends Component {
   constructor (props) {
@@ -60,21 +61,21 @@ class EmojiComponent extends Component {
         <img
           className="individualEmoji"
           ref="happyEmoji"
-          src='http://localhost:8080/images/happy.png'
+          src=`${server}images/happy.png`
           onClick={() => onClickFunction(this.refs.happyEmoji, "HAPPY")}>
         </img>
 
         <img
           className="individualEmoji"
           ref="neutralEmoji"
-          src='http://localhost:8080/images/neutral.png'
+          src=`${server}images/neutral.png`
           onClick={() => onClickFunction(this.refs.neutralEmoji, "NEUTRAL")}>
         </img>
 
         <img
           className="individualEmoji"
           ref="sadEmoji"
-          src='http://localhost:8080/images/sad.png'
+          src=`${server}images/sad.png`
           onClick={() => onClickFunction(this.refs.sadEmoji, "SAD")}>
         </img>
       </div>

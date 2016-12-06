@@ -61,11 +61,11 @@ class MembersComponent extends Component {
 
 				<nav className="pt-navbar">
 			    <div className="pt-navbar-group pt-align-left">
-			      <input className="pt-input" placeholder="Search members..." type="text" onInput={this.handleSearchInput} />
+			      <input className="pt-input" placeholder="Search Members..." type="text" onInput={this.handleSearchInput} />
 			    </div>
 
 			    <div className="pt-navbar-group pt-align-right">
-			      <button onClick={this.toggleNewMemberForm}className="pt-button pt-intent-primary pt-icon-plus">Add Member</button>
+			      <button onClick={this.toggleNewMemberForm} className="pt-button pt-intent-primary pt-icon-plus">Add Member</button>
 			    </div>
 			  </nav>
 

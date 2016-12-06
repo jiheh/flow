@@ -10,7 +10,12 @@ class NotificationsComponent extends Component {
       showModal: false,
       modalType: '',
       currentNotificationID: null,
+      searchInput: ''
     };
+  }
+
+  handleSearchInput = (evt) => {
+    this.setState({ searchInput: evt.target.value });
   }
 
   closeForm = () => {
@@ -34,7 +39,7 @@ class NotificationsComponent extends Component {
       <div>
         <div className="pt-navbar notifications-navbar">
           <div className="pt-navbar-group pt-align-left">
-            <input className="pt-input" placeholder="Search Notifications..." type="text" />
+            <input className="pt-input" placeholder="Search Notifications..." type="text" onInput={this.handleSearchInput} />
           </div>
 
           <div className="pt-navbar-group pt-align-right">
@@ -53,7 +58,9 @@ class NotificationsComponent extends Component {
           submitNotification={submitNotification}
           modalType={this.state.modalType}
           currentChannelID={this.props.currentChannel.id}
-          notifications={this.props.currentChannel.announcements}/> 
+          notifications={this.props.currentChannel.announcements}
+          searchInput={this.state.searchInput}
+        />
       </div>
     );
   }

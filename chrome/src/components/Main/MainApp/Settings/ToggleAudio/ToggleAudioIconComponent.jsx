@@ -8,27 +8,23 @@ import {
 
 class ToggleAudioComponent extends Component {
   static propTypes = {
-    settings: settingsPropTypes,
-    saveSettings: PropTypes.func,
+    playAudio: PropTypes.bool,
+    turnAudioOn: PropTypes.func,
   }
 
   toggleAudio = () => {
-    const { settings } = this.props;
+    const { turnAudioOn } = this.props;
 
-    this.props.saveSettings(
-      {...settings,
-        playAudio: !settings.playAudio,
-      }
-    );
+    turnAudioOn(!this.props.playAudio)
   }
 
   render() {
-    const { settings } = this.props;
+    const { playAudio } = this.props;
 
     return (
       <ToggleAudio
         toggleAudio={this.toggleAudio}
-        settings={settings}
+        playAudio={playAudio}
       />
     );
   }

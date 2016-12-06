@@ -1,16 +1,15 @@
 import React, { PropTypes } from 'react';
-import { propTypes as settingsPropTypes } from '../../../../../reducers/settings';
 import audio from './z-audio.png';
 import noaudio from './z-noaudio.png';
 import '../Settings.scss';
 
 const ToggleAudio = ({
   toggleAudio,
-  settings,
+  playAudio,
 }) => (
-  <div  className="setting sub-setting" 
+  <div  className="setting sub-setting"
         id="setting_toggle_audio"
-        style={{backgroundImage: `url(${settings.playAudio ? noaudio : audio})`}}
+        style={{backgroundImage: `url(${playAudio ? noaudio : audio})`}}
         onClick={toggleAudio}
         >
     <div className="setting-label">
@@ -21,7 +20,7 @@ const ToggleAudio = ({
 
 ToggleAudio.propTypes = {
   toggleAudio: PropTypes.func.isRequired,
-  settings: settingsPropTypes,
+  playAudio: PropTypes.bool,
 };
 
 export default ToggleAudio;

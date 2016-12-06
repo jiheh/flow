@@ -22,13 +22,13 @@ class SettingsWidget extends Component {
   }
 
   render() {
-    const { settings, saveSettings } = this.props;
+    const { settings, saveSettings, turnAudioOn, playAudio } = this.props;
     return (
       <div className={`settings-container ${this.state.viewSettings ? 'settings-container-expanded' : ''}`}>
 
         <ToggleSettingsIcon toggleSettings={this.toggleSettings} />
         <ToggleBackgroundIcon settings={settings} saveSettings={saveSettings} />
-        <ToggleAudioIcon settings={settings} saveSettings={saveSettings} />
+        <ToggleAudioIcon playAudio={playAudio} turnAudioOn={turnAudioOn} />
         <LogoutIcon settings={settings} saveSettings={saveSettings} />
 
       </div>

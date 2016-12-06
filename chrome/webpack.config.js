@@ -44,6 +44,7 @@ module.exports = {
   plugins: PROD ? [
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),
+    new webpack.EnvironmentPlugin(["NODE_ENV"]),
   ] : [
     new ProgressBarPlugin({
       format: `${chalk.inverse('webpack:')} ${chalk.cyan('|')}:bar${chalk.cyan('|')} ${chalk.yellow.bold(':percent')}`,

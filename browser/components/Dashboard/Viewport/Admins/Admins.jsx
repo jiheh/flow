@@ -6,7 +6,6 @@ import Navbar from './AdminsSubcomponents/AdminNavbar.jsx';
 
 export default ({ toggleForm, currentChannel, isOrgHead }) => (
 	<div id="admins" className="">
-		<h3>Admins</h3>
 		<Navbar newAdminFunction={toggleForm} isOrgHead={isOrgHead} />
 		<div className="admin-grid">
 					{

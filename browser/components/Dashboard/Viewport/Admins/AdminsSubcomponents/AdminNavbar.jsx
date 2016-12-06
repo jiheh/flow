@@ -3,19 +3,19 @@ import React from 'react';
 import Admin from './AdminsSubcomponents.scss';
 
 export default ({ newAdminFunction, isOrgHead }) => (
-  <div>
-    <hr />
-    <div className="admin-navbar">
-      <div className="pt-input-group">
-        <span className="pt-icon pt-icon-search"></span>
-        <input className="pt-input" default type="search" placeholder="Search Admins" dir="auto"></input>
-      </div>
-      { isOrgHead ? <button type="button"
-              id="admin-add"
-              className="pt-button pt-icon-add pt-intent-primary"
-              onClick={() => newAdminFunction()}>
-        Add Admin
-      </button> : null }
+  <nav className="pt-navbar">
+    <div className="pt-navbar-group pt-align-left">
+      <input className="pt-input" placeholder="Search Admins..." type="text" />
     </div>
-  </div>
+
+    <div className="pt-navbar-group pt-align-right">
+      { isOrgHead ?
+      <button
+        onClick={() => newAdminFunction() }
+        className="pt-button pt-icon-add pt-intent-primary"
+      >Add Admin</button>
+      : null }
+    </div>
+
+  </nav>
 );

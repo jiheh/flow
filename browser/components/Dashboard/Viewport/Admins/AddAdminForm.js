@@ -26,8 +26,6 @@ class AddAdminForm extends Component {
 					  </div>
 					</label>
 
-					<br />
-
 					<hr />
 
 					<div>

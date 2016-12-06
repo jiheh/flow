@@ -96,7 +96,7 @@ class MultipleChoice extends Component {
              >{option}</div><img
              className="individualEmoji"
              ref={idx}
-             src=`{server}images/button2.png`
+             src={`{server}images/button2.png`}
              onClick={() => onClickFunction(idx, option)}
              ></img>
            </li>

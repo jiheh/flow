@@ -61,21 +61,21 @@ class EmojiComponent extends Component {
         <img
           className="individualEmoji"
           ref="happyEmoji"
-          src=`${server}images/happy.png`
+          src={`${server}images/happy.png`}
           onClick={() => onClickFunction(this.refs.happyEmoji, "HAPPY")}>
         </img>
 
         <img
           className="individualEmoji"
           ref="neutralEmoji"
-          src=`${server}images/neutral.png`
+          src={`${server}images/neutral.png`}
           onClick={() => onClickFunction(this.refs.neutralEmoji, "NEUTRAL")}>
         </img>
 
         <img
           className="individualEmoji"
           ref="sadEmoji"
-          src=`${server}images/sad.png`
+          src={`${server}images/sad.png`}
           onClick={() => onClickFunction(this.refs.sadEmoji, "SAD")}>
         </img>
       </div>

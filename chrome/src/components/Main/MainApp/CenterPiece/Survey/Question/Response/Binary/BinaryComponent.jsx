@@ -55,13 +55,13 @@ class BinaryComponent extends Component {
         <img
           className="individualEmoji"
           ref="yesIcon"
-          src=`${server}images/yes.png`
+          src={`${server}images/yes.png`}
           onClick={() => onClickFunction(this.refs.yesIcon, "YES")}>
         </img>
         <img
           className="individualEmoji"
           ref="noIcon"
-          src=`${server}images/no.png`
+          src={`${server}images/no.png`}
           onClick={() => onClickFunction(this.refs.noIcon, "NO")}>
         </img>
       </div>

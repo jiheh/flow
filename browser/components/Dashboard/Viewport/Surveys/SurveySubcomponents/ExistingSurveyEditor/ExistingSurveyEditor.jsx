@@ -86,21 +86,10 @@ class SurveyForm extends Component {
               ?
               <div>
                 <h3>{this.state.name}</h3>
-                <Tabs>
-                  <TabList>
-                    <Tab >Questions</Tab>
-                    <Tab aria-selected="true">Responses</Tab>
-                  </TabList>
-                  <TabPanel>
-                      Questions
-                  </TabPanel>
-                  <TabPanel>
                       <SurveyResponseSection  currentChannelNumUsers={currentChannel.users.length}
                                               questions={this.state.questions}
                                               survey={this.state.survey}
                                               frequency={this.state.frequency}/>
-                  </TabPanel>
-                </Tabs>
               </div>
               :
               <div className="pt-spinner pt-small">

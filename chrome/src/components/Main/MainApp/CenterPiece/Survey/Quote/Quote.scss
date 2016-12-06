@@ -56,10 +56,12 @@ $transition-time: 0.35s;
 }
 
 .heart {
+  position: relative;
   width: 16px;
-  padding-left: 15px;
+  padding-left: 10px;
   opacity: 0.45;
   cursor: pointer;
+  top: 4px;
 
   &:hover {
     opacity: 0.85;
@@ -67,7 +69,7 @@ $transition-time: 0.35s;
 }
 
 .filledHeart {
-  opacity: 0.85;
+  opacity: 0.80;
 
   &:hover {
     opacity: 1.0;

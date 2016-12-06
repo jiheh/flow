@@ -10,7 +10,7 @@ const DockerSidebar = ({
   currentChannels,
 }) => (
   <div className="docker-sidebar">
-    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Flows" active={activeWidget === "Flows"}/>
+    <Button toggleDockerViewport={toggleDockerViewport} widgetName="Flow" active={activeWidget === "Flow"}/>
     <Button toggleDockerViewport={toggleDockerViewport} widgetName="Announcements" active={activeWidget === "Announcements"}/>
     <Button
       toggleDockerViewport={toggleDockerViewport}

@@ -16,7 +16,6 @@ router.get('/random', (req, res, next) => {
       const numFiles = files.length;
       // const videoToSend = files[epochDays % numFiles];
       const videoToSend = files[Math.floor(Math.random() * numFiles)];
-      const videoPath = path.join(videoDir, videoToSend);
       res.redirect(`/backgroundVideos/${videoToSend}`);
     }
   });

@@ -18,8 +18,7 @@ router.get('/random', (req, res, next) => {
       const numFiles = files.length;
       // const imageToSend = files[epochDays % numFiles];
       const imageToSend = files[Math.floor(Math.random() * numFiles)];
-      const imagePath = path.join(imageDir, imageToSend);
-      res.sendFile(imagePath);
+      res.redirect(`/backgroundImages/${imageToSend}`);
     }
   });
 });

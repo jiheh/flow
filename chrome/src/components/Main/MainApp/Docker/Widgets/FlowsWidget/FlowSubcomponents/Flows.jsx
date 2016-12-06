@@ -8,11 +8,11 @@ const Flows = () => (
   <div className="single-announcement">
     <div className="single-announcement-content">
       <h4>
-        Daily Flows
+        Beta is out!
       </h4>
-      <div className="square"><p>PRODUCTIVITY</p></div>
-      <div className="square"><p>WELL-BEING</p></div>
-      <div className="square"><p>HAPPINESS</p></div>
+      <p>
+        The Flow beta version has now been deployed.
+      </p>
     </div>
 
     <Line />

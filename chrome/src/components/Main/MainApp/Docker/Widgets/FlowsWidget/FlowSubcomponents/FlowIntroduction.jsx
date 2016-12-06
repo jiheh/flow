@@ -11,7 +11,7 @@ const FlowIntroduction = () => (
         Welcome to Flow!
       </h4>
       <p>
-        Flow is your personal dashboard, your online sanctuary, your home away from home. Pick your three daily flows below.
+        Flow is your personal dashboard, your online sanctuary, your home away from home. Enjoy life, and go with the flow!
       </p>
     </div>
 

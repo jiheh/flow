@@ -16,6 +16,7 @@ class MembersComponent extends Component {
 			dialogType: null,
 			currentChannel: {},
 			currentMemberId: -1,
+			searchInput: ''
 		}
 	}
 
@@ -23,6 +24,10 @@ class MembersComponent extends Component {
 	// componentDidMount() {
 	// 	if(Object.keys(this.props.currentChannel).length) this.props.receiveUsers(this.props.currentChannel.id)
 	// }
+
+	handleSearchInput = (evt) => {
+    this.setState({ searchInput: evt.target.value });
+  }
 
 	toggleNewMemberForm = () => {
 		this.setState({showForm: !this.state.showForm, dialogType: 'new_member'});
@@ -54,9 +59,19 @@ class MembersComponent extends Component {
 			<div id="members_section">
 				{this.checkNewChannel()}
 
-				<Members toggleNewMemberForm={this.toggleNewMemberForm}
-								 toggleExistingMemberEditor={(userId) => this.toggleExistingMemberEditor(userId)}
-								 currentChannel={this.state.currentChannel} />
+				<nav className="pt-navbar">
+			    <div className="pt-navbar-group pt-align-left">
+			      <input className="pt-input" placeholder="Search members..." type="text" onInput={this.handleSearchInput} />
+			    </div>
+
+			    <div className="pt-navbar-group pt-align-right">
+			      <button onClick={this.toggleNewMemberForm}className="pt-button pt-intent-primary pt-icon-plus">Add Member</button>
+			    </div>
+			  </nav>
+
+				<Members toggleExistingMemberEditor={(userId) => this.toggleExistingMemberEditor(userId)}
+								 currentChannel={this.state.currentChannel}
+								 searchInput={this.state.searchInput} />
 
 				<Dialog
 							inline={false}

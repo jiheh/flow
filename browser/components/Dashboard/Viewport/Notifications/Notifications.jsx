@@ -1,19 +1,42 @@
 import React from 'react';
+import Table from './NotificationsSubcomponents/Table/Table.jsx';
+import { Dialog } from '@blueprintjs/core';
 
-const Notifications = ({ notifications }) => (
+import NewNotificationForm from './NotificationsSubcomponents/NewNotificationForm/NewNotificationForm.jsx';
+import ExistingNotificationEditor from './NotificationsSubcomponents/ExistingNotificationEditor/ExistingNotificationEditor.jsx';
+
+const Notifications = ({ currentChannelID, currentNotificationID, notifications, showModal, modalType, toggleNewNotificationForm, toggleExistingNotificationEditor, submitNotification }) => (
   <div className="notifications">
-  	<hr />
-    {notifications.length > 0 && notifications.map((notification, idx) => (
-    	<div key={idx}>
-    		<br />
-					<h4>{notification.title}</h4>
-					<p>{notification.contents}</p>
-      </div>
-     ))
-		}
+  	<div className="pt-card">
+    	<Table notifications={notifications} toggleExistingNotificationEditor={toggleExistingNotificationEditor} />
+	</div>
+
+    <Dialog
+              style={{backgroundColor: 'white'}}
+              isOpen={showModal}
+              inline={false}
+              autoFocus={true}
+              canOutsideClickClose={false}
+              canEscapeKeyClose={false}
+              onClose={() => toggleNewNotificationForm()}>
+        {
+          modalType === 'new_notification'
+            ? <NewNotificationForm
+            toggleNewNotificationForm={toggleNewNotificationForm}
+            currentChannelID={currentChannelID}
+            submitNotification={submitNotification} />
+            : null
+        }
+        {
+          modalType === 'existing_notification'
+            ? <ExistingNotificationEditor
+                  notificationID={currentNotificationID}
+                  toggleExistingNotificationEditor={toggleExistingNotificationEditor}/>
+            : null
+        }
+
+    </Dialog>	
   </div>
 );
-
-
 
 export default Notifications;

@@ -1,3 +1,5 @@
+$transition-time: 0.15s;
+
 .docker-button {
   opacity:0.45;
   display: block;
@@ -6,12 +8,12 @@
   margin-right: 10px;
   transition-timing-function: ease-out;
   -webkit-transition-timing-function: ease-out;
-  transition: 0.25s;
-  -webkit-transition: 0.25s;
+  transition: $transition-time;
+  -webkit-transition: $transition-time;
   cursor: pointer;
   &:hover {
     opacity: 1.0;
-    transform: scale(1.05);
+    // transform: scale(1.05);
   }
 }
 
@@ -21,7 +23,7 @@
 
 .flashing {
   animation-name: flashingButton;
-  animation-duration: 1.0s;
+  animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
@@ -32,30 +34,36 @@
 
 @keyframes flashingButton {
   0% {
-    transform: scale(1);
+    // transform: scale(1);
     opacity: 0.45;
   }
 
-  100% {
-    transform: scale(1.25);
+  50% {
     opacity: 1.0;
+  }
+
+  100% {
+    // transform: scale(1.25);
+    opacity: 0.45;
   }
 }
 
 .buttonHoverText {
+  user-select: none;
   position: absolute;
-  right: 20px;
+  right: 25px;
   color: white;
   font-size: 1em;
-  font-weight: 400;
+  font-weight: 300;
   opacity: 0;
-  transition: 0.5s;
-  transition-function: ease-in;
+  transition: $transition-time;
+  transition-function: ease-out;
+  
 }
 
 .buttonHoverTextTrigger:hover {
   .buttonHoverText {
-    transform: translateX(-25px);
+    transform: translateX(-10px);
     opacity: 1;
   }
 }

@@ -6,9 +6,10 @@ import BackgroundAudio from './BackgroundAudio/BackgroundAudio.jsx';
 
 const Background = ({
   showVideo,
-  playAudio
+  playAudio,
+  interpolatingStyle,
 }) => (
-  <div>
+  <div >
     {playAudio ?
       <BackgroundAudio />
     : <div></div>

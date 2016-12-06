@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
-import settingsGear from './z-settings.png';
 import './Settings.scss';
 
-import ToggleBackgroundComponent from './ToggleBackground/ToggleBackgroundComponent.jsx';
-import ToggleAudioComponent from './ToggleAudio/ToggleAudioComponent.jsx';
-import LogoutContainer from './Logout/LogoutContainer';
+import ToggleSettingsIcon from './ToggleSettings/ToggleSettingsIcon.jsx'
+import ToggleBackgroundIcon from './ToggleBackground/ToggleBackgroundIconComponent.jsx'
+import ToggleAudioIcon from './ToggleAudio/ToggleAudioIconComponent.jsx'
+import LogoutIcon from './Logout/LogoutIconContainer.js'
+
 
 class SettingsWidget extends Component {
 
@@ -18,40 +18,19 @@ class SettingsWidget extends Component {
   }
 
   toggleSettings = () => {
-    this.refs.settings.className = this.refs.settings.className === 'settings-gear' ?
-    'settings-gear-on' : 'settings-gear';
-    if (this.state.viewSettings) this.refs.viewport.className = 'settings-viewport-off';
-    let timeout = this.state.viewSettings ? 600 : 0;
-    setTimeout(() => {
-      this.setState({
-        viewSettings: !this.state.viewSettings
-      })
-    }, timeout);
+    this.setState({viewSettings: !this.state.viewSettings});
   }
 
   render() {
     const { settings, saveSettings } = this.props;
     return (
-      <div>
-        <span className="settingsHoverTextTrigger">
-          <span className="settingsHoverText">Settings</span>
-          <img
-            ref='settings'
-            src={settingsGear}
-            className='settings-gear'
-            onClick={this.toggleSettings}
-          />
-        </span>
+      <div className={`settings-container ${this.state.viewSettings ? 'settings-container-expanded' : ''}`}>
 
-        {
-          this.state.viewSettings ?
-            <div ref='viewport' className='settings-viewport'>
-              <ToggleBackgroundComponent settings={settings} saveSettings={saveSettings} />
-              <ToggleAudioComponent settings={settings} saveSettings={saveSettings} />
-              <LogoutContainer />
-            </div>
-            : <div></div>
-        }
+        <ToggleSettingsIcon toggleSettings={this.toggleSettings} />
+        <ToggleBackgroundIcon settings={settings} saveSettings={saveSettings} />
+        <ToggleAudioIcon settings={settings} saveSettings={saveSettings} />
+        <LogoutIcon settings={settings} saveSettings={saveSettings} />
+
       </div>
     )
   }

@@ -33,10 +33,6 @@ module.exports = [
 		author: "Maya Angelou",
 	},
 	{
-		quote: "They don't think it be like it is, but it do.",
-		author: "Oscar Gamble",
-	},
-	{
 		quote: "By failing to prepare, you are preparing to fail.",
 		author: "Benjamin Franklin",
 	},

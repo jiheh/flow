@@ -15,7 +15,7 @@ export default () => (
       <div id='chrome-inner'>
         <p className='header'>Users</p>
         <p className='homepage-text'>
-          Discover beautiful images, music, and personal-reflection tools everytime you open a new tab
+          Discover beautiful images, motivational quotes, relaxing music, and personal-reflection tools everytime you open a new tab
         </p>
         <br />
         <a className='pt-button' role='button' tabIndex='0'>Add flow to your Chrome browser</a>
@@ -26,7 +26,7 @@ export default () => (
       <div id='webapp-inner'>
         <p className='header'>Organizations</p>
         <p className='homepage-text'>
-          Discover a web application that allows you to connect to your members and track their mental wellness
+          Discover a web application that allows you to connect to your community members and track their mental wellness
         </p>
         <br />
         <HomeLogin />

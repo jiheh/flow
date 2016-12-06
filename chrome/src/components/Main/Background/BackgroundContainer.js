@@ -3,9 +3,10 @@ import Background from './Background.jsx';
 
 const mapStateToProps = ({
   settings,
+  playAudio,
 }) => ({
   showVideo: settings.showVideo,
-  playAudio: settings.playAudio,
+  playAudio,
 });
 
 export default connect(mapStateToProps, null)(Background);

@@ -12,6 +12,7 @@ import settings from './settings';
 import docker from './docker';
 import user from './user';
 import favoriteQuotes from './favoriteQuotes';
+import playAudio from './playAudio';
 
 export default outerReducer(combineReducers({
   meditationWidget,
@@ -25,4 +26,5 @@ export default outerReducer(combineReducers({
   docker,
   user,
   favoriteQuotes,
+  playAudio,
 }));

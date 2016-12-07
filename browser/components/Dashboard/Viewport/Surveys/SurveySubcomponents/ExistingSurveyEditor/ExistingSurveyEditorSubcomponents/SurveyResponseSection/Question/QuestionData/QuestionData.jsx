@@ -8,7 +8,7 @@ const QuestionData = ({ type, responses, survey }) => (
   <div>
     {responses.length === 0 && 'No responses.'}
     {responses.length > 0 && (type==='emoji' || type==='multiple_choice' || type==='binary') && (!survey.frequency || survey.frequency.length === 0) && <PieChartData responses={responses} />}
-    {responses.length > 0 && (type==='emoji' || type==='multiple_choice' || type==='binary') && (survey.frequency.length > 0) && <LineChartData responses={responses} survey={survey} />}
+    {responses.length > 0 && (type==='emoji' || type==='multiple_choice' || type==='binary') && (survey.frequency && survey.frequency.length > 0) && <LineChartData responses={responses} survey={survey} />}
     {responses.length > 0 && type==='text' && <TextData responses={responses} />}
   </div>
 );

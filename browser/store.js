@@ -8,7 +8,7 @@ import rootReducer from './reducers';
 const PROD = (process.env.NODE_ENV === 'production');
 
 const enhancer = compose(
-  applyMiddleware(PROD ? thunk : ...[thunk, createLogger()]),
+  applyMiddleware(PROD ? thunk : [thunk, createLogger()]),
   persistState(['currentAdmin']),
 )
 

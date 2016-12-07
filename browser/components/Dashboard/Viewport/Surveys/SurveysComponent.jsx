@@ -50,6 +50,7 @@ class SurveysComponent extends Component {
 
 				<Surveys
 					toggleExistingSurveyEditor={this.toggleExistingSurveyEditor}
+					toggleNewSurveyForm={this.toggleNewSurveyForm}
 					currentChannel={currentChannel}
 					modalType={this.state.modalType}
 					showModal={this.state.showModal}

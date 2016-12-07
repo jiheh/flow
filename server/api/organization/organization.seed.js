@@ -11,7 +11,7 @@ const createOrganizations = (admins) =>{
   let globalOrg;
   let fullstackOrg;
 
-  Organization.create({
+  return Organization.create({
     name: 'Global Organization',
     type: 'Global',
     address: 'Flow Avenue',
@@ -32,26 +32,26 @@ const createOrganizations = (admins) =>{
     return globalOrg.setHead(admins[0]);
   });
 
-  return Organization.create({
-    name:`Fullstack Academy`,
-    type:`University`,
-    address:'5 Hanover Square',
-    email:`fullstack@organization.com`,
-    phone:`12345678`,
-    numberOfStudents:chance.integer({min: 10, max: 50}),
-  })
-  .then((organization) => {
-    fullstackOrg = organization;
-    return admins[1].getChannels();
-  })
-  .then((channels) => {
-    return Promise.all(channels.map((channel) => {
-      return channel.setOrganization(fullstackOrg);
-    }))
-  })
-  .then(() => {
-    return fullstackOrg.setHead(admins[1]);
-  });
+  // return Organization.create({
+  //   name:`Fullstack Academy`,
+  //   type:`University`,
+  //   address:'5 Hanover Square',
+  //   email:`fullstack@organization.com`,
+  //   phone:`12345678`,
+  //   numberOfStudents:chance.integer({min: 10, max: 50}),
+  // })
+  // .then((organization) => {
+  //   fullstackOrg = organization;
+  //   return admins[1].getChannels();
+  // })
+  // .then((channels) => {
+  //   return Promise.all(channels.map((channel) => {
+  //     return channel.setOrganization(fullstackOrg);
+  //   }))
+  // })
+  // .then(() => {
+  //   return fullstackOrg.setHead(admins[1]);
+  // });
 
 }
 

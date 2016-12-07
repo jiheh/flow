@@ -11,6 +11,7 @@ import { Dialog } from '@blueprintjs/core';
 
 export default ({
   toggleExistingSurveyEditor,
+  toggleNewSurveyForm,
   currentChannel,
   modalType,
   submitSurvey,

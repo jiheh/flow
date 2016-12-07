@@ -11,7 +11,7 @@ const BackgroundImage = () => (
     className="background-image"
     style={navigator.onLine ?
       { backgroundImage: `url(${server}api/images/random)` }
-      : { backgroundImage: `url(assets/img/fallback-img/${chance.integer({ min: 1, max: 24 })}.jpg)` }}
+      : { backgroundImage: `url(assets/img/fallback-img/${chance.integer({ min: 1, max: 19 })}.jpg)` }}
   />
 );
 

@@ -36,6 +36,11 @@ module.exports = {
       },
     ],
   },
+  // new webpack.DefinePlugin({
+  //   'process.env': {
+  //     NODE_ENV: JSON.stringify('production')
+  //   }
+  // }),
   plugins: PROD ? [
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),

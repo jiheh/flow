@@ -4,7 +4,7 @@
   "description": "fostering well-being",
   "main": "server/start.js",
   "scripts": {
-    "start": "webpack && node server/start.js",
+    "start": "node seed.js && webpack && node server/start.js",
     "server": "webpack -w && nodemon server/start.js",
     "test": "mocha --watch --compilers js:babel-register server/api/**/*.test.js",
     "seed": "node seed.js"

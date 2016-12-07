@@ -3,7 +3,7 @@ import './Table.scss';
 
 export default ({ notification, variables, clickHandler }) => (
 
-  <tr className="table-row" onClick={() => clickHandler(notification.id)}>
+  <tr className="table-row">
     {
       variables.map((variable, index3) => {
 
@@ -21,7 +21,6 @@ export default ({ notification, variables, clickHandler }) => (
   </tr>
 );
 
-
-
+// onClick={() => clickHandler(notification.id)}
 
 

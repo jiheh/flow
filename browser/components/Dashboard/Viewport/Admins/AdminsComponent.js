@@ -68,4 +68,4 @@ class AdminsComponent extends Component {
 	}
 };
 
-export default AdminsComponent;
+export default AdminsComponent

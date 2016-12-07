@@ -24,6 +24,6 @@ export default ({ currentChannel, searchInput }) => (
 		</div>
 
   </div>
-);
+)
 
 // <Navbar newAdminFunction={toggleForm} isOrgHead={isOrgHead} />

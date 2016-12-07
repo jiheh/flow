@@ -64,6 +64,7 @@ class MultipleChoice extends Component {
           this.refs[12].className = "dissolvingMultiple";
           this.refs[16].className = "dissolvingBigger";
         }
+        document.getElementById("questionPrompt").className = "dissolvingQuestion";
         setTimeout(() => {
           sendResponse({ surveyId, questionId, value: type })
           if (this.refs[0] && this.refs[1] && this.refs[2] && this.refs[3]) {

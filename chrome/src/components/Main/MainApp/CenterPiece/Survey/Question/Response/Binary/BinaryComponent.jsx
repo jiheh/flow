@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import '../Response.scss';
+import server from '../../../../../../../../server.js';
 
 class BinaryComponent extends Component {
   constructor (props) {
@@ -54,13 +55,13 @@ class BinaryComponent extends Component {
         <img
           className="individualEmoji"
           ref="yesIcon"
-          src='http://localhost:8080/images/yes.png'
+          src={`${server}images/yes.png`}
           onClick={() => onClickFunction(this.refs.yesIcon, "YES")}>
         </img>
         <img
           className="individualEmoji"
           ref="noIcon"
-          src='http://localhost:8080/images/no.png'
+          src={`${server}images/no.png`}
           onClick={() => onClickFunction(this.refs.noIcon, "NO")}>
         </img>
       </div>

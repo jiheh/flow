@@ -1,11 +1,13 @@
 import React from 'react';
 import './BackgroundAudio.scss';
 
+import server from '../../../../server.js';
+
 const BackgroundVideo = () => (
   <div className="backround-audio-wrapper">
     <audio
       className="background-audio"
-      src={'http://localhost:8080/api/songs/random'}
+      src={`${server}api/songs/random`}
       autoPlay
       loop
     />

@@ -3,6 +3,7 @@ import AnnouncementWidgetComponent from './AnnouncementWidgetComponent.jsx';
 import { receiveAnnouncements } from '../../../../../../reducers/announcements';
 import store from '../../../../../../store';
 import axios from 'axios';
+import server from '../../../../../../server.js';
 
 const mapStateToProps = ({
   announcements,
@@ -13,8 +14,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = () => dispatch => ({
   getAnnouncements: () => {
-    // TODO: change to production server url
-    axios.post('http://localhost:8080/api/announcements/chrome', { hash: store.getState().user.hash })
+    axios.post(`${server}api/announcements/chrome`, { hash: store.getState().user.hash })
       .then(res => dispatch(receiveAnnouncements(res.data.reverse())))
       .catch(console.error); // TODO: error handling
   },

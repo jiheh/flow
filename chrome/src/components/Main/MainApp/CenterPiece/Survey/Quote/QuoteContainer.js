@@ -1,3 +1,4 @@
+/* global navigator */
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { setQuote } from '../../../../../../reducers/quote';
@@ -10,6 +11,8 @@ const chance = new Chance();
 import QuoteComponent from './QuoteComponent.jsx';
 
 import { toggleFavoriteQuote } from '../../../../../../reducers/favoriteQuotes';
+
+import server from '../../../../../../server.js';
 
 const mapStateToProps = ({
   settings,
@@ -29,8 +32,7 @@ const mapDispatchToProps = () => dispatch => ({
   // gets random quote from server
   getQuote: () => {
     if (navigator.onLine) {
-      // TODO: CHANGE TO PRODUCTION SERVER
-      axios.get(`http://localhost:8080/api/quotes/random`)
+      axios.get(`${server}api/quotes/random`)
         .then(res => {
           dispatch(setQuote(res.data.quote));
           dispatch(setAuthor(res.data.author));

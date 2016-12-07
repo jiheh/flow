@@ -6,6 +6,7 @@ import { receiveInvites } from '../../../reducers/invites';
 import { updateCurrentChannels } from '../../../reducers/currentChannels';
 import store from '../../../store';
 import axios from 'axios';
+import server from '../../../server.js';
 
 const mapStateToProps = ({
   showSettingsPanel,
@@ -20,22 +21,19 @@ const mapStateToProps = ({
 const mapDispatchToProps = () => dispatch => ({
 
   getSurveys: () => {
-    // TODO: change to production server url
-    axios.post('http://localhost:8080/api/survey/chrome', { hash: store.getState().user.hash })
+    axios.post(`${server}api/survey/chrome`, { hash: store.getState().user.hash })
       .then(res => dispatch(receiveSurveys(res.data)))
       .catch(console.error); // TODO: error handling;
   },
 
   getInvites: () => {
-    // TODO: change to production server url
-    axios.post('http://localhost:8080/api/invites/chrome/get', { hash: store.getState().user.hash })
+    axios.post(`${server}api/invites/chrome/get`, { hash: store.getState().user.hash })
       .then(res => dispatch(receiveInvites(res.data)))
       .catch(console.error); // TODO: error handling;
   },
 
   getChannels: () => {
-    // TODO: change to production server url
-    axios.post('http://localhost:8080/api/channel/chrome/allChannels', { hash: store.getState().user.hash })
+    axios.post(`${server}api/channel/chrome/allChannels`, { hash: store.getState().user.hash })
       .then(res => dispatch(updateCurrentChannels(res.data)))
       .catch(console.error); // TODO: error handling;
   }

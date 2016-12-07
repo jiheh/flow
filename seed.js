@@ -30,29 +30,29 @@ const seedDatabase = num => {
     db.sync({ force: true })
     .then(() => {
       console.log(chalk.yellow('CREATING ADMINS'));
-      return seedAdmins(6);
+      return seedAdmins(1);
     })
     .then((admins) => {
       console.log(chalk.yellow('CREATING CHANNELS'))
       currentAdmins = admins;
       // global channel creation
-      return seedChannels(admins, 6);
+      return seedChannels(admins, 1);
     })
-    .then((newChannels) => {
-      currentChannels = newChannels;
-      console.log(chalk.yellow('CREATING USERS FOR EACH CHANNEL'));
-      const channels = _.flattenDeep(newChannels);
-      // return an array of promises to create N users for each channel
-      return Promise.all(channels.map(channel => {
-        return seedUsers(channel, chance.integer({min:10, max:50}));
-      }))
-    })
-    .then(() => {
-      console.log(chalk.yellow('CREATING ANNOUNCEMENTS FOR EACH CHANNEL'));
-      return Promise.all(currentChannels.map((channel, idx) => {
-        if (idx !== 0) seedAnnouncements(currentAdmins[idx], channel, chance.integer({min:3, max: 20}), idx);
-      }))
-    })
+    // .then((newChannels) => {
+    //   currentChannels = newChannels;
+    //   console.log(chalk.yellow('CREATING USERS FOR EACH CHANNEL'));
+    //   const channels = _.flattenDeep(newChannels);
+    //   // return an array of promises to create N users for each channel
+    //   return Promise.all(channels.map(channel => {
+    //     return seedUsers(channel, chance.integer({min:10, max:50}));
+    //   }))
+    // })
+    // .then(() => {
+    //   console.log(chalk.yellow('CREATING ANNOUNCEMENTS FOR EACH CHANNEL'));
+    //   return Promise.all(currentChannels.map((channel, idx) => {
+    //     if (idx !== 0) seedAnnouncements(currentAdmins[idx], channel, chance.integer({min:3, max: 20}), idx);
+    //   }))
+    // })
     .then(() => {
       console.log(chalk.yellow('CREATING ORGANIZATIONS'));
       return seedOrganization(currentAdmins);
@@ -61,14 +61,14 @@ const seedDatabase = num => {
       console.log(chalk.yellow(`SEEDING RECURRING GLOBAL SURVEYS`));
       return seedGlobalSurveys();
     })
-    .then(() => {
-      console.log(chalk.yellow(`SEEDING NORMAL SURVEYS`));
-      return seedSurveys(2);
-    })
-    .then(() => {
-      console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));
-      return seedResponses();
-    })
+    // .then(() => {
+    //   console.log(chalk.yellow(`SEEDING NORMAL SURVEYS`));
+    //   return seedSurveys(2);
+    // })
+    // .then(() => {
+    //   console.log(chalk.yellow('CREATING RESPONSES FOR USERS'));
+    //   return seedResponses();
+    // })
     .then(() => {
       console.log(chalk.green('Seeding successful'));
     }, (err) => {

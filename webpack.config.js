@@ -36,14 +36,15 @@ module.exports = {
       },
     ],
   },
-  // new webpack.DefinePlugin({
-  //   'process.env': {
-  //     NODE_ENV: JSON.stringify('production')
-  //   }
-  // }),
   plugins: PROD ? [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),
+    new webpack.EnvironmentPlugin(["NODE_ENV"]),
   ] : [
     new require('progress-bar-webpack-plugin')({
       format: `${chalk.inverse('webpack:')} ${chalk.cyan('|')}:bar${chalk.cyan('|')} ${chalk.yellow.bold(':percent')} `,

@@ -76,7 +76,7 @@ const seedDatabase = num => {
       console.error(chalk.red('Error while seeding'));
       console.error(err.stack);
     })
-    .catch(console.error);
+    .finally(() => db.close())
 };
 
 seedDatabase(10);

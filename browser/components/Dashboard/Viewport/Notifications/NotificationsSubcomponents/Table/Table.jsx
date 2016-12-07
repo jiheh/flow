@@ -14,7 +14,7 @@ const variables = [
   },
 ]
 
-export default ({ notifications, toggleExistingNotificationEditor }) => (
+export default ({ notifications, toggleExistingNotificationEditor, searchInput }) => (
   <table className="survey-table">
     <tbody>
       <tr className="table-header">
@@ -23,7 +23,10 @@ export default ({ notifications, toggleExistingNotificationEditor }) => (
         ))}
       </tr>
       {
-        notifications.map((notification, index2) => (
+        notifications && notifications
+          .filter(notification => notification.title.toLowerCase().includes(searchInput)
+                    || notification.contents.toLowerCase().includes(searchInput))
+          .map((notification, index2) => (
           <TableRow
             key={index2}
             clickHandler={(channelID) => toggleExistingNotificationEditor(channelID)}

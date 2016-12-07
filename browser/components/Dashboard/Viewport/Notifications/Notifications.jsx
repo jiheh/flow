@@ -5,10 +5,10 @@ import { Dialog } from '@blueprintjs/core';
 import NewNotificationForm from './NotificationsSubcomponents/NewNotificationForm/NewNotificationForm.jsx';
 import ExistingNotificationEditor from './NotificationsSubcomponents/ExistingNotificationEditor/ExistingNotificationEditor.jsx';
 
-const Notifications = ({ currentChannelID, currentNotificationID, notifications, showModal, modalType, toggleNewNotificationForm, toggleExistingNotificationEditor, submitNotification }) => (
+const Notifications = ({ currentChannelID, currentNotificationID, notifications, showModal, modalType, toggleNewNotificationForm, toggleExistingNotificationEditor, submitNotification, searchInput }) => (
   <div className="notifications">
   	<div className="pt-card">
-    	<Table notifications={notifications} toggleExistingNotificationEditor={toggleExistingNotificationEditor} />
+    	<Table notifications={notifications} toggleExistingNotificationEditor={toggleExistingNotificationEditor} searchInput={searchInput} />
 	</div>
 
     <Dialog

@@ -10,28 +10,19 @@ import '../Viewport.scss';
 import { Dialog } from '@blueprintjs/core';
 
 export default ({
-  toggleNewSurveyForm,
   toggleExistingSurveyEditor,
   currentChannel,
   modalType,
   submitSurvey,
   currentSurveyID,
   showModal,
+  searchInput
 }) => (
 	<div id="surveys" >
-    <div className="pt-navbar survey-navbar">
-      <div className="pt-navbar-group pt-align-left">
-        <input className="pt-input" placeholder="Search Surveys..." type="text" />
-      </div>
-
-      <div className="pt-navbar-group pt-align-right">
-        <button id='new-form-button' className='pt-button pt-intent-primary' onClick={() => toggleNewSurveyForm()}>Create a New Survey</button>
-      </div>
-
-    </div>
-
     <div className="pt-card">
-      <Table surveys={currentChannel.surveys} toggleExistingSurveyEditor={toggleExistingSurveyEditor}/>
+      <Table surveys={currentChannel.surveys} toggleExistingSurveyEditor={toggleExistingSurveyEditor}
+        searchInput={searchInput}
+      />
     </div>
 
     <Dialog

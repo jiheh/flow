@@ -32,7 +32,7 @@ const variables = [
   },
 ]
 
-export default ({ surveys, toggleExistingSurveyEditor }) => (
+export default ({ surveys, toggleExistingSurveyEditor, searchInput }) => (
   <table className="survey-table">
 
     <tbody>
@@ -44,7 +44,10 @@ export default ({ surveys, toggleExistingSurveyEditor }) => (
       </tr>
 
       {
-        surveys.map((survey, index2) => (
+        surveys && surveys
+        .filter(survey => survey.name.toLowerCase().includes(searchInput)
+          || survey.description.toLowerCase().includes(searchInput))
+        .map((survey, index2) => (
           <TableRow
             key={index2}
             clickHandler={(channelID) => toggleExistingSurveyEditor(channelID)}

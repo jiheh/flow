@@ -1,18 +1,19 @@
 import React from 'react';
 import './Members.scss'
-import Navbar from './MembersSubcomponents/MemberNavbar.jsx';
+// import Navbar from './MembersSubcomponents/MemberNavbar.jsx';
 
 import Member from './MembersSubcomponents/Member.jsx';
 
-export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChannel }) => (
+export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChannel, searchInput }) => (
 	<div id="members" className="">
-		<h3>Members</h3>
-		<Navbar toggleNewMemberForm={toggleNewMemberForm} />
 		
 		<div className="member-grid">
 					{
 						(
-							currentChannel.users && currentChannel.users.length > 0 && currentChannel.users[0].UserInfo && currentChannel.users.map((user,idx) => (
+							currentChannel.users && currentChannel.users.length > 0 && currentChannel.users[0].UserInfo && currentChannel.users
+							.filter(user => user.UserInfo.email.toLowerCase().includes(searchInput)
+                    || user.UserInfo.name.toLowerCase().includes(searchInput))
+							.map((user,idx) => (
 								<Member
 									toggleExistingMemberEditor={(userId) => toggleExistingMemberEditor(userId)}
 									key={idx}
@@ -27,3 +28,5 @@ export default ({ toggleNewMemberForm, toggleExistingMemberEditor, currentChanne
 
   </div>
 );
+
+// <Navbar toggleNewMemberForm={toggleNewMemberForm} />

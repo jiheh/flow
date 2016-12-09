@@ -78,4 +78,4 @@ const seedDatabase = num => {
     .finally(() => db.close())
 };
 
-seedDatabase(10);
+seedDatabase(10)

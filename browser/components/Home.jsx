@@ -18,7 +18,7 @@ export default () => (
           Discover beautiful images, motivational quotes, relaxing music, and personal-reflection tools everytime you open a new tab
         </p>
         <br />
-        <a className='pt-button' role='button' tabIndex='0'>Add flow to your Chrome browser</a>
+        <a className='pt-button' role='button' tabIndex='0' href='https://chrome.google.com/webstore/detail/flow/ebecdaeddknneaenddnodjoemehlmgcn'>Add flow to your Chrome browser</a>
       </div>
     </div>
 
